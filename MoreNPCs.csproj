@@ -180,6 +180,7 @@
 		<Compile Include="NPCs\DanielJDalby.cs" />
 		<Compile Include="NPCs\Diesel.cs" />
 		<Compile Include="NPCs\EleanorBriggs.cs" />
+		<Compile Include="NPCs\ManholeMike.cs" />
 		<Compile Include="NPCs\HenryMitchell.cs" />
 		<Compile Include="NPCs\JasonReed.cs" />
 		<Compile Include="NPCs\JosephWilkinson.cs" />
@@ -212,4 +213,5 @@
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="(tasklist | findstr /I &quot;Schedule.*I.exe&quot; &gt;nul &amp;&amp; taskkill /F /IM &quot;Schedule I.exe&quot; &amp;&amp; timeout /t 3 /nobreak &gt;nul) || echo Game not running&#xD;&#xA;for /L %%i in (1,1,5) do (COPY &quot;$(TargetPath)&quot; &quot;$(ModsPath)&quot; &amp;&amp; goto copied || timeout /t 1 /nobreak &gt;nul)&#xD;&#xA;:copied&#xD;&#xA;START &quot;&quot; &quot;$(GamePath)\Schedule I.exe&quot; --melonloader.launchdebugger --melonloader.debug" />
 	</Target>
+
 </Project>

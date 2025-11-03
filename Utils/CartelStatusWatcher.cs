@@ -31,7 +31,6 @@ namespace MoreNPCs.Utils
             if (thomasObj == null)
                 thomasObj = GameObject.Find("Thomas");
 
-            // 🟥 if cartel becomes hostile, turn him off
             if (thomasObj != null && (int)status == 3) // 2 = Hostile
             {
                 if (thomasObj.activeSelf)
@@ -40,7 +39,6 @@ namespace MoreNPCs.Utils
                     MelonLogger.Msg("[CartelWatcher] Cartel is Hostile — Thomas disabled.");
                 }
             }
-            // 🟩 if cartel is anything else, make sure he’s active again
             else if (thomasObj != null && !thomasObj.activeSelf)
             {
                 thomasObj.SetActive(true);
@@ -68,3 +66,4 @@ namespace MoreNPCs.Utils
         }
     }
 }
+

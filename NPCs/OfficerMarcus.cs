@@ -119,11 +119,7 @@ namespace CustomNPCTest.NPCs
                 });
         }
 
-        public OfficerMarcus() : base(
-            id: "officer_marcus",
-            firstName: "Officer",
-            lastName: "Marcus",
-            icon: null)
+        public OfficerMarcus() : base()
         {
         }
 
@@ -132,7 +128,6 @@ namespace CustomNPCTest.NPCs
             try
             {
                 base.OnCreated();
-                ApplyAppearance();
                 Appearance.Build();
                 Aggressiveness = 3f;
                 Region = Region.Northtown;
@@ -140,44 +135,13 @@ namespace CustomNPCTest.NPCs
                 // Customer.RequestProduct();
 
                 Schedule.Enable();
-                Schedule.InitializeActions();
+
             }
             catch (Exception ex)
             {
                 MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
-        }
-
-        /// <summary>
-        /// Applies an appearance. Tweak the values below to your liking.
-        /// </summary>
-        private void ApplyAppearance()
-        {
-            // Core biometrics
-            Appearance
-                .Set<S1API.Entities.Appearances.CustomizationFields.Gender>(0.0f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.Height>(1.0f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.Weight>(0.4f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.SkinColor>(new Color(0.713f, 0.592f, 0.486f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeBallTint>(new Color(1.0f, 0.8f, 0.8f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.PupilDilation>(1.0f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowScale>(1.1f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowThickness>(1.0f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingHeight>(-0.432f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingAngle>(-2.451f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateLeft>((0.219f, 0.5f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateRight>((0.219f, 0.5f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairColor>(new Color(0.31f, 0.2f, 0.12f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairStyle>("Avatar/Hair/BuzzCut/BuzzCut")
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Face>("Avatar/Layers/Face/Face_NeutralPout", Color.black)
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Eyes>("Avatar/Layers/Face/OldPersonWrinkles", new Color(0.957f, 0.474f, 0.938f))
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.FacialHair>("Avatar/Layers/Face/FacialHair_Goatee", new Color(0.31f, 0.2f, 0.12f))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Shirts>("Avatar/Layers/Top/RolledButtonUp", new Color(0.178f, 0.217f, 0.406f))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Pants>("Avatar/Layers/Bottom/Jeans", new Color(0.235f, 0.235f, 0.235f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Feet>("Avatar/Accessories/Feet/CombatBoots/CombatBoots", new Color(0.151f, 0.151f, 0.151f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Waist>("Avatar/Accessories/Waist/PoliceBelt/PoliceBelt", new Color(0.151f, 0.151f, 0.151f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Chest>("Avatar/Accessories/Chest/BulletProofVest/BulletProofVest_Police", Color.white);
         }
     }
 }

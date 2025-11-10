@@ -1,84 +1,60 @@
 ﻿using MoreNPCs.Save;
-using ScheduleOne.DevUtilities;
-using ScheduleOne.Persistence;
-using ScheduleOne.Persistence.Datas;
-using ScheduleOne.Persistence.Loaders;
-using System.Collections.Generic;
-using UnityEngine;
+using S1API.Internal.Abstraction;
+using S1API.Saveables;
 
 namespace MoreNPCs.Saveables
 {
-    public class PoliceBribeState : IBaseSaveable, ISaveable
+    public class PoliceBribeState : Saveable
     {
-        public static PoliceBribeState Instance { get; } = new PoliceBribeState();
+        public static PoliceBribeState Instance { get; private set; } = new PoliceBribeState();
 
+        [SaveableField("BribeState")]
         private PoliceBribeData _data = new PoliceBribeData();
-
-        // Our Loader instance knows how to parse and push data back into this object.
-        private readonly PoliceBribeLoader _loader;
 
         private PoliceBribeState()
         {
-            _loader = new PoliceBribeLoader(this);
-        }
-        
-        public string SaveFolderName => "Police";
-        public string SaveFileName => "BribeState";
-
-        public bool ShouldSaveUnderFolder => false;
-
-        public List<string> LocalExtraFiles { get; set; } = new List<string>();
-        public List<string> LocalExtraFolders { get; set; } = new List<string>();
-
-        public bool HasChanged { get; set; }
-
-        public int LoadOrder { get; } = 10;
-
-        public Loader Loader => _loader;
-
-        public void InitializeSaveable()
-        {.
-            Singleton<SaveManager>.Instance.RegisterSaveable(this);
+            Instance = this;
         }
 
-        public string GetSaveString() => _data.GetJson(pretty: true);
-
-        public void Load(PoliceBribeData data)
+        protected override void OnLoaded()
         {
-            _data = data ?? new PoliceBribeData();
-            HasChanged = false;
+            base.OnLoaded();
+            Instance = this;
+            
+            // Ensure data is initialized if it was null
+            if (_data == null)
+            {
+                _data = new PoliceBribeData();
+            }
+        }
+
+        protected override void OnCreated()
+        {
+            base.OnCreated();
+            Instance = this;
         }
 
         public bool IsBribed(string officerId)
         {
             if (string.IsNullOrWhiteSpace(officerId)) return false;
+            if (_data == null) return false;
             return _data.Contains(officerId);
         }
 
         public void MarkBribed(string officerId)
         {
             if (string.IsNullOrWhiteSpace(officerId)) return;
+            if (_data == null)
+            {
+                _data = new PoliceBribeData();
+            }
+            
             if (!_data.Contains(officerId))
             {
                 _data.SetBribed(officerId);
-                HasChanged = true; // tell SaveManager there are changes to write
+                // Request save after marking bribed
+                Saveable.RequestGameSave();
             }
-        }
-    }
-
-    public class PoliceBribeLoader : Loader
-    {
-        private readonly PoliceBribeState _owner;
-
-        public PoliceBribeLoader(PoliceBribeState owner)
-        {
-            _owner = owner;
-        }
-
-        public override void Load(string content)
-        {
-            var parsed = PoliceBribeData.FromJson(content);
-            _owner.Load(parsed);
         }
     }
 }

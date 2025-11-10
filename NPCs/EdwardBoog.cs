@@ -27,7 +27,35 @@ namespace CustomNPCTest.NPCs
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
             Vector3 spawnPos = new Vector3(134.1605f, 6.0623f, 114.3804f);
-            builder.WithSpawnPosition(spawnPos)
+            builder.WithIdentity("edward_boog", "Edward", "Boog")
+                .WithAppearanceDefaults(av =>
+                {
+                    av.Gender = 0.0f;
+                    av.Height = 1f;
+                    av.Weight = 0.5f;
+                    av.SkinColor = new Color(0.874f, 0.741f, 0.631f);
+                    av.LeftEyeLidColor = av.SkinColor;
+                    av.RightEyeLidColor = av.SkinColor;
+                    av.EyeBallTint = new Color(1.0f, 0.8f, 0.8f);
+                    av.PupilDilation = 0.46f;
+                    av.EyebrowScale = 1.25f;
+                    av.EyebrowThickness = 1.6f;
+                    av.EyebrowRestingHeight = -0.38f;
+                    av.EyebrowRestingAngle = 6.64f;
+                    av.LeftEye = (0.24f, 0.16f);
+                    av.RightEye = (0.24f, 0.16f);
+                    av.HairColor = new Color(0.32f, 0.32f, 0.32f);
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color32(255, 0, 255, 5));
+                    av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(1f, 1f, 1f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.235f, 0.235f, 0.235f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/DressShoes/DressShoes", new Color(0.151f, 0.151f, 0.151f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.613f, 0.493f, 0.344f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Head/PorkpieHat/PorkpieHat", new Color(0.481f, 0.331f, 0.225f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Head/SmallRoundGlasses/SmallRoundGlasses", new Color(1f, 0.756f, 0.212f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
+                })
+                .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -65,11 +93,7 @@ namespace CustomNPCTest.NPCs
                 });
         }
 
-        public EdwardBoog() : base(
-            id: "edward_boog",
-            firstName: "Edward",
-            lastName: "Boog",
-            icon: null)
+        public EdwardBoog() : base()
         {
         }
 
@@ -78,7 +102,6 @@ namespace CustomNPCTest.NPCs
             try
             {
                 base.OnCreated();
-                ApplyConsistentAppearance();
                 Appearance.Build();
 
                 Aggressiveness = 5f;
@@ -87,44 +110,13 @@ namespace CustomNPCTest.NPCs
                 // Customer.RequestProduct();
 
                 Schedule.Enable();
-                Schedule.InitializeActions();
+
             }
             catch (Exception ex)
             {
                 MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
-        }
-
-        /// <summary>
-        /// Applies a consistent appearance. Tweak the values below to your liking.
-        /// </summary>
-        private void ApplyConsistentAppearance()
-        {
-            // Core biometrics
-            Appearance
-                .Set<S1API.Entities.Appearances.CustomizationFields.Gender>(0.0f) // 0..1
-                .Set<S1API.Entities.Appearances.CustomizationFields.Height>(1f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.Weight>(0.5f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.SkinColor>(new Color(0.874f, 0.741f, 0.631f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeBallTint>(new Color(1.0f, 0.8f, 0.8f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.PupilDilation>(0.46f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowScale>(1.25f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowThickness>(1.6f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingHeight>(-0.38f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingAngle>(6.64f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateLeft>((0.24f, 0.16f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateRight>((0.24f, 0.16f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairColor>(new Color(0.32f, 0.32f, 0.32f))
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Face>("Avatar/Layers/Face/Face_Agitated", Color.black)
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Eyes>("Avatar/Layers/Face/OldPersonWrinkles", new Color32(255, 0, 255, 5))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Shirts>("Avatar/Layers/Top/Buttonup", new Color(1f, 1f, 1f))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Pants>("Avatar/Layers/Bottom/Jeans", new Color(0.235f, 0.235f, 0.235f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Feet>("Avatar/Accessories/Feet/DressShoes/DressShoes", new Color(0.151f, 0.151f, 0.151f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Chest>("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.613f, 0.493f, 0.344f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Head>("Avatar/Accessories/Head/PorkpieHat/PorkpieHat", new Color(0.481f, 0.331f, 0.225f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Head>("Avatar/Accessories/Head/SmallRoundGlasses/SmallRoundGlasses", new Color(1f, 0.756f, 0.212f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Waist>("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
         }
     }
 }

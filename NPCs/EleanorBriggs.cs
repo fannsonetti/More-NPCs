@@ -28,7 +28,33 @@ namespace CustomNPCTest.NPCs
             Vector3 hospital2 = new Vector3(100.1469f, 1.065f, 55.4907f);
             Vector3 hospital3 = new Vector3(100.0152f, 1.815f, 56.8694f);
             Vector3 spawnPos = new Vector3(-11.0538f, 1.065f, 66.753f);
-            builder.WithSpawnPosition(spawnPos)
+            builder.WithIdentity("eleanor_briggs", "Eleanor", "Briggs")
+                .WithAppearanceDefaults(av =>
+                {
+                    av.Gender = 1.0f;
+                    av.Height = 0.93f;
+                    av.Weight = 1.0f;
+                    av.SkinColor = new Color(0.784f, 0.655f, 0.545f);
+                    av.LeftEyeLidColor = av.SkinColor;
+                    av.RightEyeLidColor = av.SkinColor;
+                    av.EyeBallTint = new Color(1.0f, 1.0f, 1.0f);
+                    av.PupilDilation = 0.75f;
+                    av.EyebrowScale = 0.907f;
+                    av.EyebrowThickness = 0.981f;
+                    av.EyebrowRestingHeight = 0.419f;
+                    av.EyebrowRestingAngle = 1.806f;
+                    av.LeftEye = (0.258f, 0.306f);
+                    av.RightEye = (0.258f, 0.306f);
+                    av.HairColor = new Color(0.519f, 0.519f, 0.519f);
+                    av.HairPath = "Avatar/Hair/lowbun/LowBun";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color32(255, 0, 255, 5));
+                    av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.651f, 0.236f, 0.236f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.235f, 0.235f, 0.235f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.151f, 0.151f, 0.151f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.613f, 0.493f, 0.344f));
+                })
+                .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -69,11 +95,7 @@ namespace CustomNPCTest.NPCs
                 });
         }
 
-        public EleanorBriggs() : base(
-            id: "eleanor_briggs",
-            firstName: "Eleanor",
-            lastName: "Briggs",
-            icon: null)
+        public EleanorBriggs() : base()
         {
         }
 
@@ -82,7 +104,6 @@ namespace CustomNPCTest.NPCs
             try
             {
                 base.OnCreated();
-                ApplyConsistentAppearance();
                 Appearance.Build();
 
                 Aggressiveness = 5f;
@@ -91,42 +112,12 @@ namespace CustomNPCTest.NPCs
                 // Customer.RequestProduct();
 
                 Schedule.Enable();
-                Schedule.InitializeActions();
             }
             catch (Exception ex)
             {
                 MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
-        }
-
-        /// <summary>
-        /// Applies a consistent appearance. Tweak the values below to your liking.
-        /// </summary>
-        private void ApplyConsistentAppearance()
-        {
-            // Core biometrics
-            Appearance
-                .Set<S1API.Entities.Appearances.CustomizationFields.Gender>(1.0f) // 0..1
-                .Set<S1API.Entities.Appearances.CustomizationFields.Height>(0.93f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.Weight>(1.0f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.SkinColor>(new Color(0.784f, 0.655f, 0.545f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeBallTint>(new Color(1.0f, 1.0f, 1.0f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.PupilDilation>(0.75f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowScale>(0.907f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowThickness>(0.981f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingHeight>(0.419f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingAngle>(1.806f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateLeft>((0.258f, 0.306f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateRight>((0.258f, 0.306f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairColor>(new Color(0.519f, 0.519f, 0.519f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairStyle>("Avatar/Hair/lowbun/LowBun")
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Face>("Avatar/Layers/Face/Face_Neutral", Color.black)
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Eyes>("Avatar/Layers/Face/OldPersonWrinkles", new Color32(255, 0, 255, 5))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Shirts>("Avatar/Layers/Top/T-Shirt", new Color(0.651f, 0.236f, 0.236f))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Pants>("Avatar/Layers/Bottom/Jeans", new Color(0.235f, 0.235f, 0.235f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Feet>("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.151f, 0.151f, 0.151f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Chest>("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.613f, 0.493f, 0.344f));
         }
     }
 }

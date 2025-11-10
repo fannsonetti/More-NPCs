@@ -1,4 +1,5 @@
 ﻿using MelonLoader;
+using S1API.Cartel;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Downtown;
@@ -11,8 +12,6 @@ using S1API.Properties;
 using S1API.Vehicles;
 using UnityEngine;
 using UnityEngine.UI;
-// add this:
-using ScheduleOne.Cartel;
 
 namespace CustomNPCTest.NPCs
 {
@@ -29,7 +28,12 @@ namespace CustomNPCTest.NPCs
             Vector3 Window = new Vector3(158.964f, 11.465f, -62.2987f);
             Vector3 spawnPos = new Vector3(158.964f, 11.465f, -62.2987f);
 
-            builder.WithSpawnPosition(spawnPos)
+            builder.WithIdentity("thomas_benzie", "Thomas", "Benzie")
+                .WithAppearanceDefaults(av =>
+                {
+                    av.Gender = 0.0f;
+                })
+                .WithSpawnPosition(spawnPos)
                    .EnsureCustomer()
                    .WithCustomerDefaults(cd =>
                    {
@@ -69,11 +73,7 @@ namespace CustomNPCTest.NPCs
                    });
         }
 
-        public ThomasBenzie() : base(
-            id: "thomas_benzie",
-            firstName: "Thomas",
-            lastName: "Benzie",
-            icon: null)
+        public ThomasBenzie() : base()
         { }
 
         protected override void OnCreated()
@@ -96,26 +96,19 @@ namespace CustomNPCTest.NPCs
                 // continue normal spawn for all other statuses
                 base.OnCreated();
 
-                ApplyConsistentAppearance();
                 Appearance.Build();
 
                 Aggressiveness = 5f;
                 Region = Region.Uptown;
 
                 Schedule.Enable();
-                Schedule.InitializeActions();
+
             }
             catch (Exception ex)
             {
                 MelonLogger.Error($"ThomasBenzie OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
-        }
-
-
-        private void ApplyConsistentAppearance()
-        {
-            Appearance.Set<S1API.Entities.Appearances.CustomizationFields.Gender>(0.0f);
         }
     }
 }

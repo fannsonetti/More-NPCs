@@ -22,7 +22,7 @@ namespace CustomNPCTest.NPCs
     /// </summary>
     public sealed class EdwardBoog : NPC
     {
-        protected override bool IsPhysical => true;
+        public override bool IsPhysical => true;
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {

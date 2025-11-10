@@ -196,12 +196,7 @@
 		<Compile Include="Utils\PoliceBribeState.cs" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Reference Include="Assembly-CSharp">
-	    <HintPath>D:\Schedule 1 Dependencies\Mono\Schedule I_Data\Managed\Assembly-CSharp.dll</HintPath>
-	  </Reference>
-	  <Reference Include="S1API">
-	    <HintPath>D:\Schedule 1 Dependencies\S1API\S1API.dll</HintPath>
-	  </Reference>
+	  <PackageReference Include="S1API.Forked" Version="2.5.3" />
 	</ItemGroup>
 
 	<PropertyGroup>

@@ -40,6 +40,15 @@
 		<UsePublicized>false</UsePublicized>
 	</PropertyGroup>
 
+	<!-- S1API Reference Toggle -->
+	<!-- Set UseLocalS1API to 'true' to use a local assembly reference instead of NuGet -->
+	<!-- You can also set this via command line: dotnet build /p:UseLocalS1API=true -->
+	<PropertyGroup>
+		<UseLocalS1API>false</UseLocalS1API>
+		<!-- Update this path to point to your local S1API.Forked DLL -->
+		<S1APILocalPath>..\S1API.Forked\bin\Release\netstandard2.1\S1API.Forked.dll</S1APILocalPath>
+	</PropertyGroup>
+
 	<!-- Mono references -->
 	<ItemGroup Condition="'$(Configuration)'=='Mono'">
 		<Reference Include="com.rlabrecque.steamworks.net">
@@ -195,8 +204,17 @@
 		<Compile Include="Utils\PoliceBribeData.cs" />
 		<Compile Include="Utils\PoliceBribeState.cs" />
 	</ItemGroup>
-	<ItemGroup>
-	  <PackageReference Include="S1API.Forked" Version="2.5.3" />
+	<!-- S1API.Forked Reference: NuGet Package (default) -->
+	<ItemGroup Condition="'$(UseLocalS1API)' != 'true'">
+		<PackageReference Include="S1API.Forked" Version="2.5.3" />
+	</ItemGroup>
+
+	<!-- S1API.Forked Reference: Local Assembly -->
+	<ItemGroup Condition="'$(UseLocalS1API)' == 'true'">
+		<Reference Include="S1API.Forked">
+			<HintPath>$(S1APILocalPath)</HintPath>
+			<Private>True</Private>
+		</Reference>
 	</ItemGroup>
 
 	<PropertyGroup>

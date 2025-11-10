@@ -1,15 +1,15 @@
 ﻿using MelonLoader;
+using S1API.Cartel;
 using UnityEngine;
-using ScheduleOne.Cartel;
 
 namespace MoreNPCs.Utils
 {
     public class CartelStatusWatcher
     {
         private float _nextCheckTime = 0f;
-        private ECartelStatus _lastStatus;
+        private CartelStatus _lastStatus;
 
-        // optional: cache Thomas’s GameObject
+        // optional: cache Thomas's GameObject
         private GameObject thomasObj;
 
         public void Update()
@@ -20,18 +20,19 @@ namespace MoreNPCs.Utils
 
             _nextCheckTime = Time.time + 10f;
 
-            if (Cartel.Instance == null)
+            var cartel = Cartel.Instance;
+            if (cartel == null)
                 return;
 
-            var status = Cartel.Instance.Status;
-            var hours = Cartel.Instance.HoursSinceStatusChange;
-            string statusName = GetStatusName((int)status);
+            var status = cartel.Status;
+            var hours = cartel.HoursSinceStatusChange;
+            string statusName = GetStatusName(status);
 
             // find Thomas the first time
             if (thomasObj == null)
                 thomasObj = GameObject.Find("Thomas");
 
-            if (thomasObj != null && (int)status == 3) // 2 = Hostile
+            if (thomasObj != null && status == CartelStatus.Hostile)
             {
                 if (thomasObj.activeSelf)
                 {
@@ -53,15 +54,15 @@ namespace MoreNPCs.Utils
             }
         }
 
-        private string GetStatusName(int statusId)
+        private string GetStatusName(CartelStatus status)
         {
-            return statusId switch
+            return status switch
             {
-                0 => "Strangers",
-                1 => "Friendly",
-                2 => "Hostile",
-                3 => "Defeated",
-                _ => $"Unknown ({statusId})"
+                CartelStatus.Unknown => "Unknown",
+                CartelStatus.Truced => "Truced",
+                CartelStatus.Hostile => "Hostile",
+                CartelStatus.Defeated => "Defeated",
+                _ => $"Unknown ({(int)status})"
             };
         }
     }

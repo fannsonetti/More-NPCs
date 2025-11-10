@@ -18,7 +18,7 @@ namespace CustomNPCTest.NPCs
     /// </summary>
     public sealed class BobbyCooley : NPC
     {
-        protected override bool IsPhysical => true;
+        public override bool IsPhysical => true;
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
@@ -31,7 +31,32 @@ namespace CustomNPCTest.NPCs
             Vector3 pos3 = new Vector3(-30.741f, 1.065f, 72.7557f);
             Vector3 spawnPos = new Vector3(15.7046f, 1.215f, -1.6526f);
             // var building = Buildings.GetAll().First();
-            builder.WithSpawnPosition(spawnPos)
+            builder.WithIdentity("bobby_cooley", "Bobby", "Cooley")
+                .WithAppearanceDefaults(av =>
+                {
+                    av.Gender = 0.0f;
+                    av.Height = 0.8f;
+                    av.Weight = 0.4f;
+                    av.SkinColor = new Color(0.713f, 0.592f, 0.486f);
+                    av.LeftEyeLidColor = av.SkinColor;
+                    av.RightEyeLidColor = av.SkinColor;
+                    av.EyeBallTint = new Color(1.0f, 0.8f, 0.8f);
+                    av.PupilDilation = 1.0f;
+                    av.EyebrowScale = 0.95f;
+                    av.EyebrowThickness = 0.98f;
+                    av.EyebrowRestingHeight = 0.48f;
+                    av.EyebrowRestingAngle = -5.64f;
+                    av.LeftEye = (0.56f, 0.44f);
+                    av.RightEye = (0.56f, 0.44f);
+                    av.HairColor = new Color(0.716f, 0.527f, 0.226f);
+                    av.HairPath = "Avatar/Hair/Spiky/Spiky";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/Freckles", new Color32(164, 136, 111, 10));
+                    av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.298f, 0.547f, 0.198f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.177f, 0.216f, 0.405f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f));
+                })
+                .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -77,11 +102,7 @@ namespace CustomNPCTest.NPCs
                 });
         }
 
-        public BobbyCooley() : base(
-            id: "bobby_cooley",
-            firstName: "Bobby",
-            lastName: "Cooley",
-            icon: null)
+        public BobbyCooley() : base()
         {
         }
 
@@ -90,7 +111,6 @@ namespace CustomNPCTest.NPCs
             try
             {
                 base.OnCreated();
-                ApplyConsistentAppearance();
                 Appearance.Build();
 
                 Aggressiveness = 5f;
@@ -99,41 +119,13 @@ namespace CustomNPCTest.NPCs
                 // Customer.RequestProduct();
 
                 Schedule.Enable();
-                Schedule.InitializeActions();
+
             }
             catch (Exception ex)
             {
                 MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
-        }
-
-        /// <summary>
-        /// Applies a consistent appearance. Tweak the values below to your liking.
-        /// </summary>
-        private void ApplyConsistentAppearance()
-        {
-            // Core biometrics
-            Appearance
-                .Set<S1API.Entities.Appearances.CustomizationFields.Gender>(0.0f) // 0..1
-                .Set<S1API.Entities.Appearances.CustomizationFields.Height>(0.8f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.Weight>(0.4f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.SkinColor>(new Color(0.713f, 0.592f, 0.486f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeBallTint>(new Color(1.0f, 0.8f, 0.8f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.PupilDilation>(1.0f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowScale>(0.95f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowThickness>(0.98f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingHeight>(0.48f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingAngle>(-5.64f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateLeft>((0.56f, 0.44f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateRight>((0.56f, 0.44f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairColor>(new Color(0.716f, 0.527f, 0.226f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairStyle>("Avatar/Hair/Spiky/Spiky")
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Face>("Avatar/Layers/Face/Face_SlightSmile", Color.black)
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Eyes>("Avatar/Layers/Face/Freckles", new Color32(164, 136, 111, 10))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Shirts>("Avatar/Layers/Top/T-Shirt", new Color(0.298f, 0.547f, 0.198f))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Pants>("Avatar/Layers/Bottom/Jeans", new Color(0.177f, 0.216f, 0.405f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Feet>("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f));
         }
     }
 }

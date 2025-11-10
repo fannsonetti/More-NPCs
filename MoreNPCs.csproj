@@ -28,7 +28,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='CrossCompat'">
-		<GamePath>D:\Schedule 1 Dependencies\Mono</GamePath>
+		<GamePath>D:\SteamLibrary\steamapps\common\Schedule I_alternate</GamePath>
 		<ManagedPath>$(GamePath)\Schedule I_Data\Managed</ManagedPath>
 		<MelonLoaderPath>$(GamePath)\MelonLoader\net35</MelonLoaderPath>
 		<ModsPath>$(GamePath)\Mods</ModsPath>
@@ -38,6 +38,15 @@
 
 	<PropertyGroup>
 		<UsePublicized>false</UsePublicized>
+	</PropertyGroup>
+
+	<!-- S1API Reference Toggle -->
+	<!-- Set UseLocalS1API to 'true' to use a local assembly reference instead of NuGet -->
+	<!-- You can also set this via command line: dotnet build /p:UseLocalS1API=true -->
+	<PropertyGroup>
+		<UseLocalS1API>false</UseLocalS1API>
+		<!-- Update this path to point to your local S1API DLL -->
+		<S1APILocalPath>C:\Users\ghost\Desktop\Coding\ScheduleOne\S1API\S1API\bin\MonoMelon\netstandard2.1\S1API.dll</S1APILocalPath>
 	</PropertyGroup>
 
 	<!-- Mono references -->
@@ -195,13 +204,17 @@
 		<Compile Include="Utils\PoliceBribeData.cs" />
 		<Compile Include="Utils\PoliceBribeState.cs" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Reference Include="Assembly-CSharp">
-	    <HintPath>D:\Schedule 1 Dependencies\Mono\Schedule I_Data\Managed\Assembly-CSharp.dll</HintPath>
-	  </Reference>
-	  <Reference Include="S1API">
-	    <HintPath>D:\Schedule 1 Dependencies\S1API\S1API.dll</HintPath>
-	  </Reference>
+	<!-- S1API.Forked Reference: NuGet Package (default) -->
+	<ItemGroup Condition="'$(UseLocalS1API)' != 'true'">
+		<PackageReference Include="S1API.Forked" Version="*" />
+	</ItemGroup>
+
+	<!-- S1API.Forked Reference: Local Assembly -->
+	<ItemGroup Condition="'$(UseLocalS1API)' == 'true'">
+		<Reference Include="S1API.Forked">
+			<HintPath>$(S1APILocalPath)</HintPath>
+			<Private>True</Private>
+		</Reference>
 	</ItemGroup>
 
 	<PropertyGroup>

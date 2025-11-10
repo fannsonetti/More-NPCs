@@ -18,7 +18,7 @@ namespace CustomNPCTest.NPCs
     /// </summary>
     public sealed class HenryMitchell : NPC
     {
-        protected override bool IsPhysical => true;
+        public override bool IsPhysical => true;
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
@@ -30,7 +30,33 @@ namespace CustomNPCTest.NPCs
             Vector3 pos6 = new Vector3(-22.7021f, 1.065f, 46.8433f);
             Vector3 spawnPos = new Vector3(-10.8076f, 1.065f, 66.7038f);
             // var building = Buildings.GetAll().First();
-            builder.WithSpawnPosition(spawnPos)
+            builder.WithIdentity("henry_mitchell", "Henry", "Mitchell")
+                .WithAppearanceDefaults(av =>
+                {
+                    av.Gender = 0.0f;
+                    av.Height = 1.0f;
+                    av.Weight = 0.25f;
+                    av.SkinColor = new Color(0.713f, 0.592f, 0.486f);
+                    av.LeftEyeLidColor = av.SkinColor;
+                    av.RightEyeLidColor = av.SkinColor;
+                    av.EyeBallTint = new Color(1.0f, 0.8f, 0.8f);
+                    av.PupilDilation = 0.75f;
+                    av.EyebrowScale = 1.39f;
+                    av.EyebrowThickness = 0.7f;
+                    av.EyebrowRestingHeight = -0.48f;
+                    av.EyebrowRestingAngle = -4.64f;
+                    av.LeftEye = (0.18f, 0.24f);
+                    av.RightEye = (0.18f, 0.24f);
+                    av.HairColor = new Color(0.55f, 0.41f, 0.31f);
+                    av.HairPath = "Avatar/Hair/CloseBuzzCut/CloseBuzzCut";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.481f, 0.331f, 0.225f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/Blazer/Blazer", new Color(0.613f, 0.493f, 0.344f));
+                })
+                .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -73,11 +99,7 @@ namespace CustomNPCTest.NPCs
                 });
         }
 
-        public HenryMitchell() : base(
-            id: "henry_mitchell",
-            firstName: "Henry",
-            lastName: "Mitchell",
-            icon: null)
+        public HenryMitchell() : base()
         {
         }
 
@@ -86,7 +108,6 @@ namespace CustomNPCTest.NPCs
             try
             {
                 base.OnCreated();
-                ApplyConsistentAppearance();
                 Appearance.Build();
 
                 Aggressiveness = 5f;
@@ -95,42 +116,13 @@ namespace CustomNPCTest.NPCs
                 // Customer.RequestProduct();
 
                 Schedule.Enable();
-                Schedule.InitializeActions();
+
             }
             catch (Exception ex)
             {
                 MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
-        }
-
-        /// <summary>
-        /// Applies a consistent appearance. Tweak the values below to your liking.
-        /// </summary>
-        private void ApplyConsistentAppearance()
-        {
-            // Core biometrics
-            Appearance
-                .Set<S1API.Entities.Appearances.CustomizationFields.Gender>(0.0f) // 0..1
-                .Set<S1API.Entities.Appearances.CustomizationFields.Height>(1.0f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.Weight>(0.25f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.SkinColor>(new Color(0.713f, 0.592f, 0.486f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeBallTint>(new Color(1.0f, 0.8f, 0.8f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.PupilDilation>(0.75f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowScale>(1.39f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowThickness>(0.7f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingHeight>(-0.48f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingAngle>(-4.64f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateLeft>((0.18f, 0.24f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateRight>((0.18f, 0.24f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairColor>(new Color(0.55f, 0.41f, 0.31f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairStyle>("Avatar/Hair/CloseBuzzCut/CloseBuzzCut")
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Face>("Avatar/Layers/Face/Face_SlightSmile", Color.black)
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.FacialHair>("Avatar/Layers/Face/FacialHair_Stubble", Color.black)
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Shirts>("Avatar/Layers/Top/T-Shirt", new Color(0.481f, 0.331f, 0.225f))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Pants>("Avatar/Layers/Bottom/Jeans", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Feet>("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Chest>("Avatar/Accessories/Chest/Blazer/Blazer", new Color(0.613f, 0.493f, 0.344f));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace CustomNPCTest.NPCs
     /// </summary>
     public sealed class SkylerWilkinson : NPC
     {
-        protected override bool IsPhysical => true;
+        public override bool IsPhysical => true;
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
@@ -26,7 +26,32 @@ namespace CustomNPCTest.NPCs
             Vector3 hylandauto = new Vector3(24.1091f, 1.065f, -40.8684f);
             Vector3 spawnPos = new Vector3(68.9616f, 5.5412f, -119.5116f);
             // var building = Buildings.GetAll().First();
-            builder.WithSpawnPosition(spawnPos)
+            builder.WithIdentity("skyler_wilkinson", "Skyler", "Wilkinson")
+                .WithAppearanceDefaults(av =>
+                {
+                    av.Gender = 1.0f;
+                    av.Height = 0.97f;
+                    av.Weight = 0.3f;
+                    av.SkinColor = new Color(0.784f, 0.654f, 0.545f);
+                    av.LeftEyeLidColor = av.SkinColor;
+                    av.RightEyeLidColor = av.SkinColor;
+                    av.EyeBallTint = new Color(1.0f, 1f, 1f);
+                    av.PupilDilation = 0.75f;
+                    av.EyebrowScale = 0.882f;
+                    av.EyebrowThickness = 1.19f;
+                    av.EyebrowRestingHeight = -0.019f;
+                    av.EyebrowRestingAngle = 2.516f;
+                    av.LeftEye = (0.387f, 0.4f);
+                    av.RightEye = (0.387f, 0.4f);
+                    av.HairColor = new Color(0.716f, 0.527f, 0.226f);
+                    av.HairPath = "Avatar/Hair/SidePartBob/SidePartBob";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/ButtonUp", new Color(1f, 1f, 1f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/FemaleUnderwear", new Color(1f, 1f, 1f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Flats/Flats", new Color(0.151f, 0.151f, 0.151f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Bottom/MediumSkirt/MediumSkirt", new Color(0.178f, 0.217f, 0.406f));
+                })
+                .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -67,11 +92,7 @@ namespace CustomNPCTest.NPCs
                 });
         }
 
-        public SkylerWilkinson() : base(
-            id: "skyler_wilkinson",
-            firstName: "Skyler",
-            lastName: "Wilkinson",
-            icon: null)
+        public SkylerWilkinson() : base()
         {
         }
 
@@ -80,7 +101,6 @@ namespace CustomNPCTest.NPCs
             try
             {
                 base.OnCreated();
-                ApplyConsistentAppearance();
                 Appearance.Build();
 
                 Aggressiveness = 5f;
@@ -89,41 +109,13 @@ namespace CustomNPCTest.NPCs
                 // Customer.RequestProduct();
 
                 Schedule.Enable();
-                Schedule.InitializeActions();
+
             }
             catch (Exception ex)
             {
                 MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
-        }
-
-        /// <summary>
-        /// Applies a consistent appearance. Tweak the values below to your liking.
-        /// </summary>
-        private void ApplyConsistentAppearance()
-        {
-            // Core biometrics
-            Appearance
-                .Set<S1API.Entities.Appearances.CustomizationFields.Gender>(1.0f) // 0..1
-                .Set<S1API.Entities.Appearances.CustomizationFields.Height>(0.97f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.Weight>(0.3f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.SkinColor>(new Color(0.784f, 0.654f, 0.545f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeBallTint>(new Color(1.0f, 1f, 1f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.PupilDilation>(0.75f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowScale>(0.882f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowThickness>(1.19f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingHeight>(-0.019f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingAngle>(2.516f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateLeft>((0.387f, 0.4f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateRight>((0.387f, 0.4f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairColor>(new Color(0.716f, 0.527f, 0.226f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairStyle>("Avatar/Hair/SidePartBob/SidePartBob")
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Face>("Avatar/Layers/Face/Face_SlightSmile", Color.black)
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Shirts>("Avatar/Layers/Top/ButtonUp", new Color(1f, 1f, 1f))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Pants>("Avatar/Layers/Bottom/FemaleUnderwear", new Color(1f, 1f, 1f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Feet>("Avatar/Accessories/Feet/Flats/Flats", new Color(0.151f, 0.151f, 0.151f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Bottom>("Avatar/Accessories/Bottom/MediumSkirt/MediumSkirt", new Color(0.178f, 0.217f, 0.406f));
         }
     }
 }

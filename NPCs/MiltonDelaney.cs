@@ -20,7 +20,7 @@ namespace CustomNPCTest.NPCs
     /// </summary>
     public sealed class MiltonDelaney : NPC
     {
-        protected override bool IsPhysical => true;
+        public override bool IsPhysical => true;
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
@@ -28,7 +28,35 @@ namespace CustomNPCTest.NPCs
             Vector3 hospital2 = new Vector3(100.1469f, 1.065f, 55.4907f);
             Vector3 hospital3 = new Vector3(100.0152f, 1.815f, 56.8694f);
             Vector3 spawnPos = new Vector3(134.1605f, 6.0623f, 114.3804f);
-            builder.WithSpawnPosition(spawnPos)
+            builder.WithIdentity("milton_delaney", "Milton", "Delaney")
+                .WithAppearanceDefaults(av =>
+                {
+                    av.Gender = 0.0f;
+                    av.Height = 1f;
+                    av.Weight = 0.7f;
+                    av.SkinColor = new Color(0.874f, 0.741f, 0.631f);
+                    av.LeftEyeLidColor = av.SkinColor;
+                    av.RightEyeLidColor = av.SkinColor;
+                    av.EyeBallTint = new Color(1.0f, 1.0f, 1.0f);
+                    av.PupilDilation = 0.75f;
+                    av.EyebrowScale = 1.208f;
+                    av.EyebrowThickness = 1.6f;
+                    av.EyebrowRestingHeight = -0.335f;
+                    av.EyebrowRestingAngle = 10f;
+                    av.LeftEye = (0.296f, 0.164f);
+                    av.RightEye = (0.296f, 0.164f);
+                    av.HairColor = new Color(0.519f, 0.519f, 0.519f);
+                    av.HairPath = "Avatar/Hair/Balding/Balding";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color32(255, 0, 255, 5));
+                    av.WithBodyLayer("Avatar/Layers/Top/Tucked T-Shirt", new Color(0.34f, 0.38f, 0.42f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.29f, 0.28f, 0.20f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.151f, 0.151f, 0.151f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/Blazer/Blazer", new Color(0.33f, 0.24f, 0.14f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
+                })
+                .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -69,11 +97,7 @@ namespace CustomNPCTest.NPCs
                 });
         }
 
-        public MiltonDelaney() : base(
-            id: "milton_delaney",
-            firstName: "Milton",
-            lastName: "Delaney",
-            icon: null)
+        public MiltonDelaney() : base()
         {
         }
 
@@ -82,7 +106,6 @@ namespace CustomNPCTest.NPCs
             try
             {
                 base.OnCreated();
-                ApplyConsistentAppearance();
                 Appearance.Build();
 
                 Aggressiveness = 5f;
@@ -91,44 +114,13 @@ namespace CustomNPCTest.NPCs
                 // Customer.RequestProduct();
 
                 Schedule.Enable();
-                Schedule.InitializeActions();
+
             }
             catch (Exception ex)
             {
                 MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
-        }
-
-        /// <summary>
-        /// Applies a consistent appearance. Tweak the values below to your liking.
-        /// </summary>
-        private void ApplyConsistentAppearance()
-        {
-            // Core biometrics
-            Appearance
-                .Set<S1API.Entities.Appearances.CustomizationFields.Gender>(0.0f) // 0..1
-                .Set<S1API.Entities.Appearances.CustomizationFields.Height>(1f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.Weight>(0.7f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.SkinColor>(new Color(0.874f, 0.741f, 0.631f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeBallTint>(new Color(1.0f, 1.0f, 1.0f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.PupilDilation>(0.75f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowScale>(1.208f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowThickness>(1.6f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingHeight>(-0.335f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyebrowRestingAngle>(10f)
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateLeft>((0.296f, 0.164f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.EyeLidRestingStateRight>((0.296f, 0.164f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairColor>(new Color(0.519f, 0.519f, 0.519f))
-                .Set<S1API.Entities.Appearances.CustomizationFields.HairStyle>("Avatar/Hair/Balding/Balding")
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Face>("Avatar/Layers/Face/Face_Agitated", Color.black)
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.FacialHair>("Avatar/Layers/Face/FacialHair_Stubble", Color.black)
-                .WithFaceLayer<S1API.Entities.Appearances.FaceLayerFields.Eyes>("Avatar/Layers/Face/OldPersonWrinkles", new Color32(255, 0, 255, 5))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Shirts>("Avatar/Layers/Top/Tucked T-Shirt", new Color(0.34f, 0.38f, 0.42f))
-                .WithBodyLayer<S1API.Entities.Appearances.BodyLayerFields.Pants>("Avatar/Layers/Bottom/Jeans", new Color(0.29f, 0.28f, 0.20f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Feet>("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.151f, 0.151f, 0.151f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Chest>("Avatar/Accessories/Chest/Blazer/Blazer", new Color(0.33f, 0.24f, 0.14f))
-                .WithAccessoryLayer<S1API.Entities.Appearances.AccessoryFields.Waist>("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
         }
     }
 }

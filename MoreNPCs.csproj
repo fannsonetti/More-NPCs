@@ -44,9 +44,9 @@
 	<!-- Set UseLocalS1API to 'true' to use a local assembly reference instead of NuGet -->
 	<!-- You can also set this via command line: dotnet build /p:UseLocalS1API=true -->
 	<PropertyGroup>
-		<UseLocalS1API>false</UseLocalS1API>
-		<!-- Update this path to point to your local S1API.Forked DLL -->
-		<S1APILocalPath>..\S1API.Forked\bin\Release\netstandard2.1\S1API.Forked.dll</S1APILocalPath>
+		<UseLocalS1API>true</UseLocalS1API>
+		<!-- Update this path to point to your local S1API DLL -->
+		<S1APILocalPath>C:\Users\ghost\Desktop\Coding\ScheduleOne\S1API\S1API\bin\MonoMelon\netstandard2.1\S1API.dll</S1APILocalPath>
 	</PropertyGroup>
 
 	<!-- Mono references -->
@@ -206,7 +206,7 @@
 	</ItemGroup>
 	<!-- S1API.Forked Reference: NuGet Package (default) -->
 	<ItemGroup Condition="'$(UseLocalS1API)' != 'true'">
-		<PackageReference Include="S1API.Forked" Version="2.5.3" />
+		<PackageReference Include="S1API.Forked" Version="*" />
 	</ItemGroup>
 
 	<!-- S1API.Forked Reference: Local Assembly -->

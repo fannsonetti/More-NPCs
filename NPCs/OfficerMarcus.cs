@@ -74,8 +74,8 @@ namespace CustomNPCTest.NPCs
 
         public OfficerMarcus() : base(
             id: "officer_marcus",
-            firstName: "Officer",
-            lastName: "Marcus",
+            firstName: "Officer Marcus",
+            lastName: "",
             icon: null)
         {
         }

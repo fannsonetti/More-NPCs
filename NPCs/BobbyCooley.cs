@@ -61,11 +61,11 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 0600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 0700, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 0730, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf2, StartTime = 0830, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf3, StartTime = 0900, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 600, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 700, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 730, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = shelf2, StartTime = 830, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = shelf3, StartTime = 900, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1000, FaceDestinationDirection = true });
                     plan.Add(new UseVendingMachineSpec { StartTime = 1200 });
                     plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 1300, FaceDestinationDirection = true });

@@ -22,9 +22,13 @@ namespace CustomNPCTest.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
-            Vector3 spawnPos = new Vector3(13.7893f, 5.165f, 96.1018f);
+            Vector3 casinoBalcony = new Vector3(13.8808f, 5.165f, 92.364f);
+            Vector3 slotMachine1 = new Vector3(25.0217f, 1.865f, 95.0692f);
+            Vector3 rideTheBus = new Vector3(13.8508f, 1.865f, 94.4451f);
+            Vector3 blackJack = new Vector3(17.4742f, 1.865f, 93.5125f);
+            Vector3 frontDesk = new Vector3(19.1643f, 1.865f, 87.4606f);
             // var building = Buildings.GetAll().First();
-            builder.WithSpawnPosition(spawnPos)
+            builder.WithSpawnPosition(casinoBalcony)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -49,22 +53,21 @@ namespace CustomNPCTest.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("elizabeth_homley", "kevin_oakley");
+                        .WithConnectionsById("ray_hoffman", "lily_turner");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 700, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 800, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 900, FaceDestinationDirection = true });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 930 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1000, DurationMinutes = 120 });
-                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 1200, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1300, DurationMinutes = 120 });
-                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 1500, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 1800, DurationMinutes = 180 });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 2100 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2230, DurationMinutes = 510 });
+                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 1600, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 1630, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 1830, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = rideTheBus, StartTime = 2100, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 2300, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = casinoBalcony, StartTime = 030, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 200, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 300, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 330, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Les Ordures Puantes", StartTime = 500, DurationMinutes = 660 });
                 });
         }
 

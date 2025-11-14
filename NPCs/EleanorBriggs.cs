@@ -79,7 +79,7 @@ namespace CustomNPCTest.NPCs
                     r.WithDelta(2.5f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("michael_boog", "tobias_wentworth");
+                        .WithConnectionsById("randy_caulfield", "milton_delaney");
                 })
                 .WithSchedule(plan =>
                 {

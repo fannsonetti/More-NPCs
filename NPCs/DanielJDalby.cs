@@ -96,7 +96,7 @@ namespace CustomNPCTest.NPCs
                     plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 200, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 300, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 330, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Les Ordures Puantes", StartTime = 500, DurationMinutes = 660 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Les Ordures Puantes", StartTime = 400, DurationMinutes = 720 });
                 });
         }
 

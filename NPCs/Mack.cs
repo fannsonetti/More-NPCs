@@ -53,7 +53,7 @@ namespace CustomNPCTest.NPCs
                     av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.178f, 0.217f, 0.406f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.235f, 0.235f, 0.235f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/CombatBoots/CombatBoots", new Color(0.33f, 0.24f, 0.14f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Head/PorkpieHat/PorkpieHat", new Color(0.396f, 0.396f, 0.396f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Head/Beanie/Beanie", new Color(0.235f, 0.235f, 0.235f));
                     av.WithAccessoryLayer("Avatar/Accessories/Chest/Blazer/Blazer", new Color(0.33f, 0.24f, 0.14f));
                 })
                 .WithSpawnPosition(spawnPos)

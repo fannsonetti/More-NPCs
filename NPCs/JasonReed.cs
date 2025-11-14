@@ -23,7 +23,7 @@ namespace CustomNPCTest.NPCs
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
             Vector3 tacoticklers = new Vector3(-28.9266f, 1.065f, 74.6178f);
-            Vector3 tacoticklersStub = new Vector3(-28.9094f, 1.065f, 74.4508f);
+            Vector3 tacoticklersStub = new Vector3(-28.938f, 1.065f, 74.6178f);
             Vector3 outside = new Vector3(-36.3346f, 1.065f, 75.6414f);
             Vector3 outsideStub = new Vector3(-36.7476f, 1.065f, 75.7252f);
             Vector3 spawnPos = new Vector3(-28.9266f, 1.065f, 74.6178f);
@@ -86,11 +86,11 @@ namespace CustomNPCTest.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = tacoticklersStub, StartTime = 730, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = tacoticklersStub, StartTime = 730, FaceDestinationDirection = false });
                     plan.Add(new WalkToSpec { Destination = outside, StartTime = 1800, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = outsideStub, StartTime = 1830, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 2000, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = tacoticklersStub, StartTime = 2030, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = tacoticklersStub, StartTime = 2030, FaceDestinationDirection = false });
                     plan.Add(new UseVendingMachineSpec { StartTime = 2200 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "North apartments", StartTime = 2230, DurationMinutes = 450 });
                 });

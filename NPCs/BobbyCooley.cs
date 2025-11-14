@@ -51,10 +51,10 @@ namespace CustomNPCTest.NPCs
                     av.HairColor = new Color(0.716f, 0.527f, 0.226f);
                     av.HairPath = "Avatar/Hair/Spiky/Spiky";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/Freckles", new Color32(164, 136, 111, 10));
-                    av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.298f, 0.547f, 0.198f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.177f, 0.216f, 0.405f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f));
+                    av.WithFaceLayer("Avatar/Layers/Face/Freckles", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.317f, 0.503f, 0.243f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.207f, 0.236f, 0.378f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.236f, 0.236f, 0.236f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
@@ -86,11 +86,11 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 700, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 730, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf2, StartTime = 830, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf3, StartTime = 900, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 0600, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 0700, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 0730, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = shelf2, StartTime = 0830, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = shelf3, StartTime = 0900, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1000, FaceDestinationDirection = true });
                     plan.Add(new UseVendingMachineSpec { StartTime = 1200 });
                     plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 1300, FaceDestinationDirection = true });

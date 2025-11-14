@@ -90,7 +90,7 @@ namespace CustomNPCTest.NPCs
                     plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 900, FaceDestinationDirection = true });
                     plan.Add(new UseVendingMachineSpec { StartTime = 930 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1000, DurationMinutes = 120 });
-                    plan.Add(new WalkToSpec { Destination = elizabeth, StartTime = 1200, FaceDestinationDirection = true });
+                    plan.Add(new LocationDialogueSpec { Destination = elizabeth, StartTime = 1200, FaceDestinationDirection = true });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1300, DurationMinutes = 120 });
                     plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1500, FaceDestinationDirection = true });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 1800, DurationMinutes = 180 });

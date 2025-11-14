@@ -22,12 +22,11 @@ namespace CustomNPCTest.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
-            Vector3 pos1 = new Vector3(77.1413f, -4.535f, 34.6874f);
-            Vector3 pos2 = new Vector3(97.4504f, 1.065f, 7.0207f);
+            Vector3 sewerBalcony = new Vector3(77.1413f, -4.535f, 34.6874f);
+            Vector3 crossroad = new Vector3(97.4504f, 1.065f, 7.0207f);
             Vector3 pos3 = new Vector3(44.4508f, -8.035f, 36.1825f);
-            Vector3 pos4 = new Vector3(74.0413f, -4.535f, 28.6874f);
-            Vector3 pos5 = new Vector3(49.1051f, -8.035f, 72.686f);
-            Vector3 spawnPos = new Vector3(32.6734f, -8.035f, 85.892f);
+            Vector3 sewerWarehouse = new Vector3(74.0413f, -4.535f, 28.6874f);
+            Vector3 sewerOffice = new Vector3(48.6662f, -8.035f, 71.6929f);
             // var building = Buildings.GetAll().First();
             builder.WithIdentity("manhole_mike", "Manhole Mike", "")
                 .WithAppearanceDefaults(av =>
@@ -55,15 +54,15 @@ namespace CustomNPCTest.NPCs
                     av.WithBodyLayer("Avatar/Layers/Top/ChestHair1", Color.black);
                     av.WithBodyLayer("Avatar/Layers/Bottom/MaleUnderwear", new Color(0.613f, 0.493f, 0.344f));
                 })
-                .WithSpawnPosition(spawnPos)
+                .WithSpawnPosition(sewerOffice)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 600f, maxWeekly: 1000f)
-                        .WithOrdersPerWeek(1, 5)
+                    cd.WithSpending(minWeekly: 30f, maxWeekly: 600f)
+                        .WithOrdersPerWeek(1, 3)
                         .WithPreferredOrderDay(Day.Monday)
                         .WithOrderTime(2200)
-                        .WithStandards(CustomerStandard.Low)
+                        .WithStandards(CustomerStandard.VeryLow)
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
@@ -85,15 +84,15 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 900, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1130, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1400, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 1600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1800, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 2030, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 2300, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 100, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 300, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 0900, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1130, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1400, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1600, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1800, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 2030, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 2300, FaceDestinationDirection = false });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 0100, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 0300, FaceDestinationDirection = true });
                 });
         }
 

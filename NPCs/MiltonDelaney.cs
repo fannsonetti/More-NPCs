@@ -49,7 +49,7 @@ namespace CustomNPCTest.NPCs
                     av.HairPath = "Avatar/Hair/Balding/Balding";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color32(255, 0, 255, 5));
+                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", Color.black);
                     av.WithBodyLayer("Avatar/Layers/Top/Tucked T-Shirt", new Color(0.34f, 0.38f, 0.42f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.29f, 0.28f, 0.20f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.151f, 0.151f, 0.151f));
@@ -81,7 +81,7 @@ namespace CustomNPCTest.NPCs
                     r.WithDelta(2.5f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("michael_boog", "tobias_wentworth");
+                        .WithConnectionsById("jeff_gilmore", "eleanor_briggs");
                 })
                 .WithSchedule(plan =>
                 {

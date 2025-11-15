@@ -106,7 +106,7 @@ namespace CustomNPCTest.NPCs
                 WireDealerEvents();
 
                 Aggressiveness = 2f;
-                Region = Region.Northtown;
+                Region = Region.Suburbia;
 
                 Schedule.Enable();
             }

@@ -38,6 +38,8 @@ namespace MoreNPCs.Apps
         private RawImage _tiledBg;
 
         private const float TILE_PX = 64f;
+        private Texture2D _tiledTex;
+        private float _tilePx = TILE_PX; // effective tile size (src + padding)
 
 
         private readonly Dictionary<string, Image> _portraits = new();
@@ -115,12 +117,54 @@ namespace MoreNPCs.Apps
 
             _tiledBg = bgGO.AddComponent<RawImage>();
             _tiledBg.raycastTarget = false;
-            _tiledBg.texture = GenerateGridTexture(64, 64,
-                new Color(0.125f, 0.125f, 0.125f, 1f),  // base
-                new Color(0.16f, 0.16f, 0.16f, 1f),  // tile fill
-                new Color(0.20f, 0.20f, 0.20f, 1f)); // grid line
 
-            // make sure it renders behind the map content
+            // Load the embedded tile and build a padded, repeatable texture
+            var tileSprite = LoadEmbeddedSprite("MoreNPCs.Resources.tile.png");
+            if (tileSprite != null && tileSprite.texture != null)
+            {
+                var src = tileSprite.texture;
+                var lightGray = new Color(0.83f, 0.83f, 0.83f, 1f); // tile tint
+                var gapGray = new Color(0.20f, 0.20f, 0.20f, 1f); // lines between tiles
+
+                int pad = 5;
+                int w = src.width + pad * 2;
+                int h = src.height + pad * 2;
+
+                _tiledTex = new Texture2D(w, h, TextureFormat.RGBA32, false);
+                _tiledTex.wrapMode = TextureWrapMode.Repeat;   // <-- important
+                _tiledTex.filterMode = FilterMode.Bilinear;
+
+                // fill with the "between tiles" dark gray
+                var fill = new Color[w * h];
+                for (int i = 0; i < fill.Length; i++) fill[i] = gapGray;
+                _tiledTex.SetPixels(fill);
+
+                // copy + tint center tile
+                var srcPixels = src.GetPixels();
+                for (int y = 0; y < src.height; y++)
+                    for (int x = 0; x < src.width; x++)
+                    {
+                        var c = srcPixels[y * src.width + x];
+                        c = new Color(c.r * lightGray.r, c.g * lightGray.g, c.b * lightGray.b, c.a);
+                        _tiledTex.SetPixel(x + pad, y + pad, c);
+                    }
+
+                _tiledTex.Apply();
+                _tiledBg.texture = _tiledTex;
+
+                // each “unit” repeat = tile + 5px padding on all sides
+                _tilePx = w;
+            }
+            else
+            {
+                // fallback to your existing generated grid if tile.png isn't there
+                _tiledBg.texture = GenerateGridTexture(64, 64,
+                    new Color(0.125f, 0.125f, 0.125f, 1f),
+                    new Color(0.16f, 0.16f, 0.16f, 1f),
+                    new Color(0.20f, 0.20f, 0.20f, 1f));
+            }
+
+            // render behind map content
             bgGO.transform.SetAsFirstSibling();
 
             UpdateTiledBG(); // initial UVs
@@ -132,16 +176,19 @@ namespace MoreNPCs.Apps
 
             var parentRect = _mapParentGO.GetComponent<RectTransform>().rect;
 
-            // how many tiles should fit on screen (respect current zoom)
             float scale = Mathf.Max(0.0001f, _zoom);
-            float tilesX = parentRect.width / (TILE_PX * scale);
-            float tilesY = parentRect.height / (TILE_PX * scale);
+            float unit = Mathf.Max(1f, _tilePx); // fall back safely
 
-            // offset so tiles appear to move with pan (anchoredPosition)
-            // note: Y is inverted because we flipped map Y earlier
+            // how many repeats should be visible on screen
+            float tilesX = Mathf.Max(2f, parentRect.width / (unit * scale));
+            float tilesY = Mathf.Max(2f, parentRect.height / (unit * scale));
+
+            // pan offset in tile units, wrapped so it doesn't grow unbounded
             Vector2 p = _mapContentRT.anchoredPosition;
-            float offX = p.x / (TILE_PX * scale);
-            float offY = -p.y / (TILE_PX * scale);
+            float offX = (p.x / (unit * scale)) % 1f;
+            float offY = (-p.y / (unit * scale)) % 1f;
+            if (offX < 0) offX += 1f;
+            if (offY < 0) offY += 1f;
 
             _tiledBg.uvRect = new Rect(offX, offY, tilesX, tilesY);
         }

@@ -27,7 +27,6 @@ namespace CustomNPCTest.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
-            var manorParking = ParkingLotRegistry.Get<ManorParking>();
             var petersRoom = Building.Get<PetersRoom>();
             var northApartments = Building.Get<NorthApartments>();
             var budsBar = Building.Get<BudsBar>();
@@ -60,6 +59,7 @@ namespace CustomNPCTest.NPCs
                     av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.178f, 0.217f, 0.406f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(1.0f, 1.0f, 1.0f));
                     av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.481f, 0.331f, 0.225f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Head/RectangleFrameGlasses/RectangleFrameGlasses", new Color(0.151f, 0.151f, 0.151f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()

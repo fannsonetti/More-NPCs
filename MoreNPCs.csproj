@@ -28,7 +28,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='CrossCompat'">
-		<GamePath>D:\SteamLibrary\steamapps\common\Schedule I_alternate</GamePath>
+		<GamePath>D:\Schedule 1 Dependencies\Mono</GamePath>
 		<ManagedPath>$(GamePath)\Schedule I_Data\Managed</ManagedPath>
 		<MelonLoaderPath>$(GamePath)\MelonLoader\net35</MelonLoaderPath>
 		<ModsPath>$(GamePath)\Mods</ModsPath>
@@ -184,25 +184,33 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
+	  <None Remove="Resources\circle_mask.png" />
+	  <None Remove="Resources\relation_circle.png" />
+	  <None Remove="Resources\tile.png" />
+	</ItemGroup>
+	<ItemGroup>
 		<Compile Include="Core.cs" />
 		<Compile Include="NPCs\BobbyCooley.cs" />
+		<Compile Include="NPCs\Corkskrew.cs" />
 		<Compile Include="NPCs\DanielJDalby.cs" />
+		<Compile Include="NPCs\DariusCole.cs" />
 		<Compile Include="NPCs\Diesel.cs" />
+		<Compile Include="NPCs\EdwardBoog.cs" />
 		<Compile Include="NPCs\EleanorBriggs.cs" />
-		<Compile Include="NPCs\ManholeMike.cs" />
 		<Compile Include="NPCs\HenryMitchell.cs" />
 		<Compile Include="NPCs\JasonReed.cs" />
 		<Compile Include="NPCs\JosephWilkinson.cs" />
+		<Compile Include="NPCs\KaelaThorn.cs" />
 		<Compile Include="NPCs\Mack.cs" />
+		<Compile Include="NPCs\ManholeMike.cs" />
+		<Compile Include="NPCs\JamalBennett.cs" />
 		<Compile Include="NPCs\MiltonDelaney.cs" />
+		<Compile Include="NPCs\MoeLester.cs" />
 		<Compile Include="NPCs\OfficerMarcus.cs" />
-		<Compile Include="NPCs\EdwardBoog.cs" />
+		<Compile Include="NPCs\SergeantGrey.cs" />
 		<Compile Include="NPCs\SkylerWilkinson.cs" />
-		<Compile Include="NPCs\Thomas.cs" />
 		<Compile Include="Utils\Constants.cs" />
 		<Compile Include="Utils\CartelStatusWatcher.cs" />
-		<Compile Include="Utils\PoliceBribeData.cs" />
-		<Compile Include="Utils\PoliceBribeState.cs" />
 	</ItemGroup>
 	<!-- S1API.Forked Reference: NuGet Package (default) -->
 	<ItemGroup Condition="'$(UseLocalS1API)' != 'true'">
@@ -215,6 +223,11 @@
 			<HintPath>$(S1APILocalPath)</HintPath>
 			<Private>True</Private>
 		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\circle_mask.png" />
+	  <EmbeddedResource Include="Resources\relation_circle.png" />
+	  <EmbeddedResource Include="Resources\tile.png" />
 	</ItemGroup>
 
 	<PropertyGroup>

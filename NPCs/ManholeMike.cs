@@ -24,7 +24,7 @@ namespace CustomNPCTest.NPCs
         {
             Vector3 sewerBalcony = new Vector3(77.1413f, -4.535f, 34.6874f);
             Vector3 crossroad = new Vector3(97.4504f, 1.065f, 7.0207f);
-            Vector3 pos3 = new Vector3(44.4508f, -8.035f, 36.1825f);
+            Vector3 pit = new Vector3(44.4508f, -8.035f, 36.1825f);
             Vector3 sewerWarehouse = new Vector3(74.0413f, -4.535f, 28.6874f);
             Vector3 sewerOffice = new Vector3(48.6662f, -8.035f, 71.6929f);
             // var building = Buildings.GetAll().First();
@@ -79,12 +79,12 @@ namespace CustomNPCTest.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("cranky_frank", "anna_chesterfield");
+                        .WithConnectionsById("cranky_frank", "anna_chesterfield","mack");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 0900, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 0900, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1130, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1400, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1600, FaceDestinationDirection = true });

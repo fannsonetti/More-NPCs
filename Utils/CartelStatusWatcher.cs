@@ -9,16 +9,12 @@ namespace MoreNPCs.Utils
         private float _nextCheckTime = 0f;
         private CartelStatus _lastStatus;
 
-        // optional: cache Thomas's GameObject
-        private GameObject thomasObj;
-
         public void Update()
         {
-            // Only check every 10 seconds
             if (Time.time < _nextCheckTime)
                 return;
 
-            _nextCheckTime = Time.time + 10f;
+            _nextCheckTime = Time.time + 30f;
 
             var cartel = Cartel.Instance;
             if (cartel == null)
@@ -28,25 +24,6 @@ namespace MoreNPCs.Utils
             var hours = cartel.HoursSinceStatusChange;
             string statusName = GetStatusName(status);
 
-            // find Thomas the first time
-            if (thomasObj == null)
-                thomasObj = GameObject.Find("Thomas");
-
-            if (thomasObj != null && status == CartelStatus.Hostile)
-            {
-                if (thomasObj.activeSelf)
-                {
-                    thomasObj.SetActive(false);
-                    MelonLogger.Msg("[CartelWatcher] Cartel is Hostile — Thomas disabled.");
-                }
-            }
-            else if (thomasObj != null && !thomasObj.activeSelf)
-            {
-                thomasObj.SetActive(true);
-                MelonLogger.Msg($"[CartelWatcher] Cartel is {statusName} — Thomas re-enabled.");
-            }
-
-            // logging change
             if (status != _lastStatus)
             {
                 _lastStatus = status;

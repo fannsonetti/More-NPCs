@@ -61,11 +61,11 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 500f, maxWeekly: 1200f)
-                        .WithOrdersPerWeek(3, 5)
-                        .WithPreferredOrderDay(Day.Saturday)
+                    cd.WithSpending(minWeekly: 1000f, maxWeekly: 2000f)
+                        .WithOrdersPerWeek(1, 3)
+                        .WithPreferredOrderDay(Day.Friday)
                         .WithOrderTime(1100)
-                        .WithStandards(CustomerStandard.Moderate)
+                        .WithStandards(CustomerStandard.High)
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)

@@ -81,14 +81,14 @@ namespace CustomNPCTest.NPCs
                         {
                             (DrugType.Marijuana, -0.37f), (DrugType.Methamphetamine, 0.64f), (DrugType.Cocaine, 0.12f)
                         })
-                        .WithPreferredProperties(Property.Jennerising, Property.Refreshing, Property.Foggy);
+                        .WithPreferredProperties(Property.Smelly, Property.Seizure, Property.Foggy);
                 })
                 .WithRelationshipDefaults(r =>
                 {
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("peter_file", "jessi_waters");
+                        .WithConnectionsById("lisa_gardener", "anna_chesterfield");
                 })
                 .WithSchedule(plan =>
                 {

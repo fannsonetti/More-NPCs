@@ -1,5 +1,6 @@
 ﻿using MelonLoader;
 using MoreNPCs.Utils;
+using S1API.PhoneCalls;
 
 [assembly: MelonInfo(typeof(MoreNPCs.Core), Constants.MOD_NAME, Constants.MOD_VERSION, Constants.MOD_AUTHOR)]
 [assembly: MelonGame(Constants.Game.GAME_STUDIO, Constants.Game.GAME_NAME)]

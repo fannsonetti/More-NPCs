@@ -1,11 +1,12 @@
 ﻿using MelonLoader;
-using S1API.Entities;
-using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
 using S1API.Economy;
+using S1API.Entities;
 using S1API.Entities.NPCs.Downtown;
+using S1API.Entities.Schedule;
 using S1API.GameTime;
+using S1API.Map;
+using S1API.Map.Buildings;
+using S1API.Money;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace CustomNPCTest.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
+            var kyleandaustin = Building.Get<KyleAndAustinsHouse>();
             Vector3 behindcounter = new Vector3(15.7046f, 1.215f, -1.6526f);
             Vector3 shelf1 = new Vector3(15.2149f, 1.215f, -8.1838f);
             Vector3 shelf2 = new Vector3(11.042f, 1.215f, -8.2586f);
@@ -85,20 +87,20 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 0600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 0700, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 0730, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf2, StartTime = 0830, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf3, StartTime = 0900, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1000, FaceDestinationDirection = true });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 1200 });
-                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 1300, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1330, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1430, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 1730, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Kyle and Austin's House", StartTime = 1830, DurationMinutes = 690 });
+                    plan.EnsureDealSignal()
+                        .WalkTo(behindcounter, 600, faceDestinationDir: true)
+                        .WalkTo(shelf1, 700, faceDestinationDir: true)
+                        .WalkTo(behindcounter, 730, faceDestinationDir: true)
+                        .WalkTo(shelf2, 830, faceDestinationDir: true)
+                        .WalkTo(shelf3, 900, faceDestinationDir: true)
+                        .WalkTo(behindcounter, 1000, faceDestinationDir: true)
+                        .UseVendingMachine(1200)
+                        .WalkTo(shelf1, 1300, faceDestinationDir: true)
+                        .WalkTo(behindcounter, 1330, faceDestinationDir: true)
+                        .WalkTo(pos1, 1430, faceDestinationDir: true)
+                        .WalkTo(pos2, 1600, faceDestinationDir: true)
+                        .WalkTo(pos3, 1730, faceDestinationDir: true)
+                        .StayInBuilding(kyleandaustin, 1830, 690);
                 });
         }
 

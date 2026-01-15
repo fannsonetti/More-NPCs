@@ -21,54 +21,53 @@ namespace CustomNPCTest.NPCs
     /// An example S1API NPC that opts into a physical rig.
     /// Demonstrates movement and inventory usage.
     /// </summary>
-    public sealed class JamalBennett : NPC
+    public sealed class VictorHughes : NPC
     {
         public override bool IsPhysical => true;
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
             var shermanHouse = Building.Get<ShermanHouse>();
-            var janesVan = Building.Get<JanesCaravan>();
             var thePissHut = Building.Get<ThePissHut>();
             var cornerStore = Building.Get<CornerStore>();
-            Vector3 belowOverpass = new Vector3(-1.6567f, 0.9804f, -134.9677f);
-            Vector3 sunset = new Vector3(-182.3843f, -4.175f, 82.0797f);
-            builder.WithIdentity("jamal_bennett", "Jamal", "Bennett")
+            Vector3 northWaterfront = new Vector3(-63.2588f, -4.035f, 168.9073f);
+            Vector3 westGasmart = new Vector3(-113.1828f, -2.835f, 61.2241f);
+            builder.WithIdentity("victor_hughes", "Victor", "Hughes")
                 .WithAppearanceDefaults(av =>
                 {
                     av.Gender = 0.0f;
-                    av.Height = 1.0f;
-                    av.Weight = 0.48f;
-                    av.SkinColor = new Color(0.4f, 0.333f, 0.274f);
+                    av.Height = 1.03f;
+                    av.Weight = 0.28f;
+                    av.SkinColor = new Color(0.615f, 0.498f, 0.392f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
                     av.EyeBallTint = new Color(1.0f, 0.8f, 0.8f);
                     av.PupilDilation = 0.75f;
-                    av.EyebrowScale = 1.11f;
-                    av.EyebrowThickness = 1.88f;
-                    av.EyebrowRestingHeight = -0.322f;
-                    av.EyebrowRestingAngle = 3.741f;
-                    av.LeftEye = (0.27f, 0.39f);
-                    av.RightEye = (0.27f, 0.39f);
+                    av.EyebrowScale = 1.17f;
+                    av.EyebrowThickness = 1.44f;
+                    av.EyebrowRestingHeight = -0.286f;
+                    av.EyebrowRestingAngle = 2.945f;
+                    av.LeftEye = (0.30f, 0.39f);
+                    av.RightEye = (0.30f, 0.39f);
                     av.HairColor = new Color(0.075f, 0.075f, 0.075f);
-                    av.HairPath = "Avatar/Hair/CloseBuzzCut/CloseBuzzCut";
-                    av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/RolledButtonUp", new Color(0.236f, 0.236f, 0.236f));
+                    av.HairPath = "Avatar/Hair/Spiky/Spiky";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_SmugPout", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/Tucked T-Shirt", new Color(0.943f, 0.576f, 0.316f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.236f, 0.236f, 0.236f));
-                    av.WithBodyLayer("Avatar/Layers/Accessories/FingerlessGloves", new Color(0.943f, 0.576f, 0.316f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.717f, 0.717f, 0.717f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.151f, 0.151f, 0.151f));
                     av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.943f, 0.576f, 0.316f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Neck/GoldChain/GoldChain", new Color(0.717f, 0.717f, 0.717f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Hands/Polex/Polex", new Color(0.717f, 0.717f, 0.717f));
                 })
-                .WithSpawnPosition(belowOverpass)
+                .WithSpawnPosition(westGasmart)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 200f, maxWeekly: 500f)
-                        .WithOrdersPerWeek(3, 6)
-                        .WithPreferredOrderDay(Day.Sunday)
-                        .WithOrderTime(800)
+                    cd.WithSpending(minWeekly: 400f, maxWeekly: 800f)
+                        .WithOrdersPerWeek(1, 7)
+                        .WithPreferredOrderDay(Day.Saturday)
+                        .WithOrderTime(1900)
                         .WithStandards(CustomerStandard.Moderate)
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
@@ -77,33 +76,33 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.01f), (DrugType.Methamphetamine, 0.73f), (DrugType.Cocaine, -0.31f)
+                            (DrugType.Marijuana, 0.93f), (DrugType.Methamphetamine, -0.03f), (DrugType.Cocaine, -0.95f)
                         })
-                        .WithPreferredProperties(Property.Cyclopean, Property.Balding, Property.Disorienting);
+                        .WithPreferredProperties(Property.Lethal, Property.Euphoric, Property.ThoughtProvoking);
                 })
                 .WithRelationshipDefaults(r =>
                 {
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("trent_sherman");
+                        .WithConnectionsById("jamal_bennett");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal()
-                       .StayInBuilding(janesVan, 900, 120)
-                       .WalkTo(belowOverpass, 1100, faceDestinationDir: true)
-                       .StayInBuilding(thePissHut, 1400, 90)
-                       .UseATM(1530)
-                       .StayInBuilding(shermanHouse, 1615, 105)
-                       .UseVendingMachine(1800)
-                       .StayInBuilding(cornerStore, 1930, 90)
-                       .WalkTo(sunset, 2100, faceDestinationDir: false)
+                       .StayInBuilding(cornerStore, 900, 150)
+                       .WalkTo(northWaterfront, 1130, faceDestinationDir: true)
+                       .StayInBuilding(thePissHut, 1415, 90)
+                       .UseVendingMachine(1545)
+                       .StayInBuilding(cornerStore, 1630, 105)
+                       .UseATM(1815)
+                       .StayInBuilding(shermanHouse, 1930, 90)
+                       .WalkTo(westGasmart, 2100, faceDestinationDir: false)
                        .StayInBuilding(shermanHouse, 2230, 630);
                 });
         }
-        
-        public JamalBennett() : base()
+
+        public VictorHughes() : base()
         {
         }
 

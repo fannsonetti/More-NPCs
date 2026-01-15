@@ -112,7 +112,7 @@ namespace CustomNPCTest.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 15f;
+                Aggressiveness = 5f;
                 Region = Region.Docks;
 
                 // Customer.RequestProduct();

@@ -51,7 +51,7 @@ namespace CustomNPCTest.NPCs
                     av.LeftEye = (0.38f, 0.42f);
                     av.RightEye = (0.38f, 0.42f);
                     av.HairColor = new Color(0.509f, 0.375f, 0.161f);
-                    av.HairPath = "Avatar/Hair/Peaked/Peaked";
+                    av.HairPath = "Avatar/Hair/Receding/Receding";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SmugPout", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/Facialhair_Stubble", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", Color.black);
@@ -86,7 +86,7 @@ namespace CustomNPCTest.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("peter_file","jessi_waters");
+                        .WithConnectionsById("jessi_waters","peter_file");
                 })
                 .WithSchedule(plan =>
                 {

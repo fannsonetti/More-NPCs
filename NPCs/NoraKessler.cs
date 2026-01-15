@@ -21,54 +21,52 @@ namespace CustomNPCTest.NPCs
     /// An example S1API NPC that opts into a physical rig.
     /// Demonstrates movement and inventory usage.
     /// </summary>
-    public sealed class JamalBennett : NPC
+    public sealed class NoraKessler : NPC
     {
         public override bool IsPhysical => true;
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
             var shermanHouse = Building.Get<ShermanHouse>();
-            var janesVan = Building.Get<JanesCaravan>();
-            var thePissHut = Building.Get<ThePissHut>();
-            var cornerStore = Building.Get<CornerStore>();
-            Vector3 belowOverpass = new Vector3(-1.6567f, 0.9804f, -134.9677f);
-            Vector3 sunset = new Vector3(-182.3843f, -4.175f, 82.0797f);
-            builder.WithIdentity("jamal_bennett", "Jamal", "Bennett")
+            var arcade = Building.Get<Arcade>();
+            var sauerkrautSupreme = Building.Get<SauerkrautSupreme>();
+            Vector3 westWarehouseWarf = new Vector3(-60.5784f, 1.065f, 80.3446f);
+            Vector3 busStop = new Vector3(-13.0495f, 1.065f, 95.5169f);
+            builder.WithIdentity("nora_kessler", "Nora", "Kessler")
                 .WithAppearanceDefaults(av =>
                 {
-                    av.Gender = 0.0f;
-                    av.Height = 1.0f;
-                    av.Weight = 0.48f;
-                    av.SkinColor = new Color(0.4f, 0.333f, 0.274f);
+                    av.Gender = 2.85f;
+                    av.Height = 0.98f;
+                    av.Weight = 0.32f;
+                    av.SkinColor = new Color(0.615f, 0.498f, 0.392f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
                     av.EyeBallTint = new Color(1.0f, 0.8f, 0.8f);
                     av.PupilDilation = 0.75f;
-                    av.EyebrowScale = 1.11f;
-                    av.EyebrowThickness = 1.88f;
-                    av.EyebrowRestingHeight = -0.322f;
-                    av.EyebrowRestingAngle = 3.741f;
-                    av.LeftEye = (0.27f, 0.39f);
-                    av.RightEye = (0.27f, 0.39f);
+                    av.EyebrowScale = 1.0f;
+                    av.EyebrowThickness = 0.9f;
+                    av.EyebrowRestingHeight = -0.219f;
+                    av.EyebrowRestingAngle = 2.945f;
+                    av.LeftEye = (0.30f, 0.39f);
+                    av.RightEye = (0.30f, 0.39f);
                     av.HairColor = new Color(0.075f, 0.075f, 0.075f);
-                    av.HairPath = "Avatar/Hair/CloseBuzzCut/CloseBuzzCut";
-                    av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/RolledButtonUp", new Color(0.236f, 0.236f, 0.236f));
+                    av.HairPath = "Avatar/Hair/Shoulderlength/ShoulderLength";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.943f, 0.576f, 0.316f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.236f, 0.236f, 0.236f));
-                    av.WithBodyLayer("Avatar/Layers/Accessories/FingerlessGloves", new Color(0.943f, 0.576f, 0.316f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.717f, 0.717f, 0.717f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.151f, 0.151f, 0.151f));
                     av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.943f, 0.576f, 0.316f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Neck/GoldChain/GoldChain", new Color(0.717f, 0.717f, 0.717f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Neck/GoldChain/GoldChain", new Color(1.000f, 0.756f, 0.212f));
                 })
-                .WithSpawnPosition(belowOverpass)
+                .WithSpawnPosition(busStop)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 200f, maxWeekly: 500f)
-                        .WithOrdersPerWeek(3, 6)
-                        .WithPreferredOrderDay(Day.Sunday)
-                        .WithOrderTime(800)
+                    cd.WithSpending(minWeekly: 400f, maxWeekly: 800f)
+                        .WithOrdersPerWeek(2, 5)
+                        .WithPreferredOrderDay(Day.Thursday)
+                        .WithOrderTime(1615)
                         .WithStandards(CustomerStandard.Moderate)
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
@@ -77,33 +75,32 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.01f), (DrugType.Methamphetamine, 0.73f), (DrugType.Cocaine, -0.31f)
+                            (DrugType.Marijuana, -0.63f), (DrugType.Methamphetamine, 0.13f), (DrugType.Cocaine, 0.46f)
                         })
-                        .WithPreferredProperties(Property.Cyclopean, Property.Balding, Property.Disorienting);
+                        .WithPreferredProperties(Property.Smelly, Property.TropicThunder, Property.Gingeritis);
                 })
                 .WithRelationshipDefaults(r =>
                 {
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("trent_sherman");
+                        .WithConnectionsById("trent_sherman","victor_hughes");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal()
-                       .StayInBuilding(janesVan, 900, 120)
-                       .WalkTo(belowOverpass, 1100, faceDestinationDir: true)
-                       .StayInBuilding(thePissHut, 1400, 90)
-                       .UseATM(1530)
-                       .StayInBuilding(shermanHouse, 1615, 105)
-                       .UseVendingMachine(1800)
-                       .StayInBuilding(cornerStore, 1930, 90)
-                       .WalkTo(sunset, 2100, faceDestinationDir: false)
-                       .StayInBuilding(shermanHouse, 2230, 630);
+                       .StayInBuilding(arcade, 1230, 90)
+                       .WalkTo(busStop, 1400, faceDestinationDir: false)
+                       .UseATM(1545)
+                       .StayInBuilding(sauerkrautSupreme, 1630, 105)
+                       .UseVendingMachine(1815)
+                       .StayInBuilding(shermanHouse, 1930, 90)
+                       .WalkTo(busStop, 2100, faceDestinationDir: false)
+                       .StayInBuilding(shermanHouse, 2230, 840);
                 });
         }
-        
-        public JamalBennett() : base()
+
+        public NoraKessler() : base()
         {
         }
 

@@ -41,8 +41,8 @@ namespace CustomNPCTest.NPCs
                     av.EyebrowThickness = 1.19f;
                     av.EyebrowRestingHeight = -0.019f;
                     av.EyebrowRestingAngle = 2.516f;
-                    av.LeftEye = (0.387f, 0.4f);
-                    av.RightEye = (0.387f, 0.4f);
+                    av.LeftEye = (0.387f, 0.15f);
+                    av.RightEye = (0.387f, 0.15f);
                     av.HairColor = new Color(0.716f, 0.527f, 0.226f);
                     av.HairPath = "Avatar/Hair/SidePartBob/SidePartBob";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);

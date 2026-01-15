@@ -16,7 +16,7 @@ using UnityEngine;
 using System.Linq;
 using Steamworks;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -34,7 +34,7 @@ namespace CustomNPCTest.NPCs
             Vector3 forestRock = new Vector3(138.6413f, 1.2155f, -39.32f);
             Vector3 forestBarn = new Vector3(164.8612f, 2.8479f, -29.5627f);
             Vector3 forestMansion = new Vector3(164.8612f, 2.8479f, -29.5627f);
-            builder.WithIdentity("corkskrew_lenton", "Corkskrew", "Lenton")
+            builder.WithIdentity("corkskrew", "Corkskrew", "")
                 .WithAppearanceDefaults(av =>
                 {
                     av.Gender = 0.0f;
@@ -65,7 +65,7 @@ namespace CustomNPCTest.NPCs
                 .WithCustomerDefaults(cd =>
                 {
                     cd.WithSpending(minWeekly: 200f, maxWeekly: 500f)
-                        .WithOrdersPerWeek(1, 2)
+                        .WithOrdersPerWeek(1, 4)
                         .WithPreferredOrderDay(Day.Thursday)
                         .WithOrderTime(2300)
                         .WithStandards(CustomerStandard.Low)

@@ -197,6 +197,7 @@
 		<Compile Include="NPCs\Diesel.cs" />
 		<Compile Include="NPCs\EdwardBoog.cs" />
 		<Compile Include="NPCs\EleanorBriggs.cs" />
+		<Compile Include="NPCs\FannsoNetti.cs" />
 		<Compile Include="NPCs\HenryMitchell.cs" />
 		<Compile Include="NPCs\JasonReed.cs" />
 		<Compile Include="NPCs\JosephWilkinson.cs" />
@@ -206,9 +207,12 @@
 		<Compile Include="NPCs\JamalBennett.cs" />
 		<Compile Include="NPCs\MiltonDelaney.cs" />
 		<Compile Include="NPCs\MoeLester.cs" />
+		<Compile Include="NPCs\NoraKessler.cs" />
 		<Compile Include="NPCs\OfficerMarcus.cs" />
 		<Compile Include="NPCs\SergeantGrey.cs" />
 		<Compile Include="NPCs\SkylerWilkinson.cs" />
+		<Compile Include="NPCs\VictorHughes.cs" />
+		<Compile Include="NPCs\WayneKerr.cs" />
 		<Compile Include="Utils\Constants.cs" />
 		<Compile Include="Utils\CartelStatusWatcher.cs" />
 	</ItemGroup>

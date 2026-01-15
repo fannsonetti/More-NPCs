@@ -78,7 +78,7 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithRelationshipDefaults(r =>
                 {
-                    r.WithDelta(2.5f)
+                    r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
                         .WithConnectionsById("jeff_gilmore", "eleanor_briggs");

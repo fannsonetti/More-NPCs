@@ -42,10 +42,10 @@ namespace CustomNPCTest.NPCs
             builder.WithIdentity("sergeant_grey", "Sergeant", "Grey")
                 .WithAppearanceDefaults(av =>
                 {
-                    av.Gender = 0.0f; // Neutral gender
+                    var skinColor = new Color(0.282f, 0.239f, 0.203f);
+                    av.Gender = 0.0f;
                     av.Height = 1.0f;
                     av.Weight = 0.5f;
-                    var skinColor = new Color(0.282f, 0.239f, 0.203f);
                     av.SkinColor = skinColor;
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
@@ -72,9 +72,9 @@ namespace CustomNPCTest.NPCs
                 .WithDealerDefaults(dd =>
                 {
                     dd.WithSigningFee(7500f) // Cost to recruit this dealer
-                        .WithCut(0.15f) // Dealer keeps 15% of earnings
+                        .WithCut(0.25f) // Dealer keeps 25% of earnings
                         .WithDealerType(DealerType.PlayerDealer) // Works for the player
-                        .WithHomeName("Police Station") // Home building name
+                        .WithHome(policeStation) // Home building name
                         .AllowInsufficientQuality(false) // Won't sell below-quality items
                         .AllowExcessQuality(true) // Can sell above-quality items
                         .WithCompletedDealsVariable("dealer_completed_deals"); // Variable to track deals

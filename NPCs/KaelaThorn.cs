@@ -31,11 +31,10 @@ namespace CustomNPCTest.NPCs
             var northIndustrial = Building.Get<NorthIndustrialBuilding>();
             var hospital = Building.Get<HylandMedical>();
             var budsBar = Building.Get<BudsBar>();
-            var unit2 = Building.Get<StorageUnit2>();
-            Vector3 spawnPos = new Vector3(-71.2847f, -2.935f, 145.6754f);
+            var southoverpass = Building.Get<SouthOverpassBuilding>();
             Vector3 gasMart = new Vector3(17.6433f, 1.215f, -3.36f);
-            Vector3 barbershop = new Vector3(-66.189f, -3.025f, 124.795f);
-            Vector3 sidewalkCorner = new Vector3(124.3275f, 1.065f, 37.519f);
+            Vector3 docks = new Vector3(-74.9093f, -1.535f, -25.3793f);
+            Vector3 rv = new Vector3(10.0183f, 1.1662f, -75.892f);
             builder.WithIdentity("kaela_thorn", "Kaela", "Thorn")
                 .WithAppearanceDefaults(av =>
                 {
@@ -60,10 +59,10 @@ namespace CustomNPCTest.NPCs
                     av.WithBodyLayer("Avatar/Layers/Top/Tucked T-Shirt", new Color(1.000f, 0.756f, 0.212f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.178f, 0.217f, 0.406f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(1.0f, 1.0f, 1.0f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.151f, 0.151f, 0.151f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.236f, 0.236f, 0.236f));
                     av.WithAccessoryLayer("Avatar/Accessories/Head/RectangleFrameGlasses/RectangleFrameGlasses", new Color(0.151f, 0.151f, 0.151f));
                 })
-                .WithSpawnPosition(spawnPos)
+                .WithSpawnPosition(docks)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -93,7 +92,7 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal()
-                       .LocationDialogue(sidewalkCorner, 700, faceDestinationDir: true)
+                       .LocationDialogue(rv, 700, faceDestinationDir: true)
                        .UseVendingMachine(800)
                        .UseATM(845)
                        .StayInBuilding(hospital, 930, 150)
@@ -101,9 +100,9 @@ namespace CustomNPCTest.NPCs
                        .UseVendingMachine(1400)
                        .StayInBuilding(northIndustrial, 1425, 125)
                        .StayInBuilding(budsBar, 1630, 150)
-                       .StayInBuilding(unit2, 1900, 90)
-                       .WalkTo(barbershop, 2030, faceDestinationDir: false)
-                       .StayInBuilding(unit2, 2130, 570);
+                       .StayInBuilding(southoverpass, 1900, 90)
+                       .WalkTo(docks, 2030, faceDestinationDir: false)
+                       .StayInBuilding(southoverpass, 2130, 570);
                 });
         }
 

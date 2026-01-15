@@ -10,7 +10,7 @@ namespace MoreNPCs.Utils
         /// Mod information
         /// </summary>
         public const string MOD_NAME = "Fannso's MoreNPCs";
-        public const string MOD_VERSION = "1.1.0";
+        public const string MOD_VERSION = "1.1.2";
         public const string MOD_AUTHOR = "FannsoNetti";
         public const string MOD_DESCRIPTION = "More NPCs made by fannsonetti";
 

@@ -32,10 +32,8 @@ namespace CustomNPCTest.NPCs
             var bank = Building.Get<HylandBank>();
             var church = Building.Get<Church>();
             var upscaleApartments = Building.Get<UpscaleApartments>();
-            Vector3 spawnPos = new Vector3(-71.2847f, -2.935f, 145.6754f);
-            Vector3 gasMart = new Vector3(17.6433f, 1.215f, -3.36f);
-            Vector3 barbershop = new Vector3(-66.189f, -3.025f, 124.795f);
-            Vector3 sidewalkCorner = new Vector3(124.3275f, 1.065f, 37.519f);
+            Vector3 bleuball = new Vector3(70.766f, 1.3618f, -13.7107f);
+            Vector3 ocean = new Vector3(74.5873f, 1.015f, 100.9171f);
             builder.WithIdentity("darius_cole", "Darius", "Cole")
                 .WithAppearanceDefaults(av =>
                 {
@@ -66,7 +64,7 @@ namespace CustomNPCTest.NPCs
                     av.WithAccessoryLayer("Avatar/Accessories/Neck/GoldChain/GoldChain", new Color(1.000f, 0.756f, 0.212f));
                     av.WithAccessoryLayer("Avatar/Accessories/Hands/Polex/Polex", new Color(1.000f, 0.756f, 0.212f));
                 })
-                .WithSpawnPosition(spawnPos)
+                .WithSpawnPosition(ocean)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
@@ -96,7 +94,7 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal()
-                       .LocationDialogue(sidewalkCorner, 730, faceDestinationDir: true)
+                       .LocationDialogue(bleuball, 730, faceDestinationDir: true)
                        .UseVendingMachine(830)
                        .StayInBuilding(bank, 900, 330)
                        .UseVendingMachine(1430)
@@ -104,7 +102,7 @@ namespace CustomNPCTest.NPCs
                        .StayInBuilding(church, 1700, 120)
                        .StayInBuilding(upscaleApartments, 1900, 45)
                        .UseATM(1945)
-                       .WalkTo(barbershop, 2015, faceDestinationDir: false)
+                       .WalkTo(bleuball, 2015, faceDestinationDir: false)
                        .StayInBuilding(upscaleApartments, 2200, 570);
                 });
         }

@@ -1,21 +1,16 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Economy;
 using S1API.Entities.NPCs.Northtown;
 using S1API.GameTime;
-using S1API.Growing;
+using S1API.Map;
 using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
-using System.Linq;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -57,15 +52,14 @@ namespace CustomNPCTest.NPCs
                     av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.151f, 0.151f, 0.151f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/CombatBoots/CombatBoots", new Color(0.481f, 0.331f, 0.225f));
                     av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Neck/GoldChain/GoldChain", new Color(1.0f, 0.756f, 0.212f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Hands/Polex/Polex", new Color(1.0f, 0.756f, 0.212f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Hands/Polex/Polex", new Color(0.151f, 0.151f, 0.151f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 600f, maxWeekly: 1400f)
-                        .WithOrdersPerWeek(3, 6)
+                    cd.WithSpending(minWeekly: 400f, maxWeekly: 700f)
+                        .WithOrdersPerWeek(2, 4)
                         .WithPreferredOrderDay(Day.Tuesday)
                         .WithOrderTime(0715)
                         .WithStandards(CustomerStandard.High)
@@ -76,7 +70,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, -0.82f), (DrugType.Methamphetamine, 0.0f), (DrugType.Cocaine, 0.61f)
+                            (DrugType.Marijuana, -0.82f), (DrugType.Methamphetamine, 0.0f), (DrugType.Shrooms, 0.73f), (DrugType.Cocaine, 0.61f)
                         })
                         .WithPreferredProperties(Property.Calming);
                 })
@@ -89,18 +83,18 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal()
-                       .UseVendingMachine(900)
-                       .WalkTo(posA, 925, faceDestinationDir: true)
-                       .StayInBuilding(petersRoom, 1100, 120)
-                       .LocationDialogue(posA, 1300)
-                       .UseVendingMachine(1400)
-                       .StayInBuilding(petersRoom, 1425, 125)
-                       .UseATM(1630)
-                       .StayInBuilding(budsBar, 1730, 150)
-                       .UseVendingMachine(2000)
-                       .WalkTo(posB, 2100, faceDestinationDir: false)
-                       .StayInBuilding(motelOffice, 2230, 450);
+                    plan.EnsureDealSignal();
+                    plan.UseVendingMachine(896);
+                    plan.Add(new WalkToSpec { Destination = posA, StartTime = 922, FaceDestinationDirection = true });
+                    plan.StayInBuilding(petersRoom, 1104, 111);
+                    plan.LocationDialogue(posA, 1296);
+                    plan.UseVendingMachine(1403);
+                    plan.StayInBuilding(petersRoom, 1428, 118);
+                    plan.UseATM(1627);
+                    plan.StayInBuilding(budsBar, 1726, 156);
+                    plan.UseVendingMachine(2003);
+                    plan.Add(new WalkToSpec { Destination = posB, StartTime = 2057, FaceDestinationDirection = false });
+                    plan.StayInBuilding(motelOffice, 2226, 450);
                 });
         }
 

@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using MoreNPCs.Utils;
 using S1API.PhoneCalls;
 
@@ -17,7 +17,6 @@ namespace MoreNPCs
         {
             Instance = this;
             MelonLogger.Msg("MoreNPCs mod initialized");
-            // PoliceBribeState is automatically discovered and registered by S1API's Saveable system
         }
 
         public override void OnUpdate()

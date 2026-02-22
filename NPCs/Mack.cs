@@ -1,16 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Downtown;
 using S1API.GameTime;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -60,8 +57,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 600f, maxWeekly: 1000f)
-                        .WithOrdersPerWeek(1, 5)
+                    cd.WithSpending(minWeekly: 600f, maxWeekly: 900f)
+                        .WithOrdersPerWeek(1, 4)
                         .WithPreferredOrderDay(Day.Monday)
                         .WithOrderTime(0030)
                         .WithStandards(CustomerStandard.Low)
@@ -72,7 +69,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.32f), (DrugType.Methamphetamine, -0.45f), (DrugType.Cocaine, 0.67f)
+                            (DrugType.Marijuana, 0.32f), (DrugType.Methamphetamine, -0.45f), (DrugType.Shrooms, -0.73f), (DrugType.Cocaine, 0.67f)
                         })
                         .WithPreferredProperties(Property.Focused, Property.Sneaky, Property.Euphoric);
                 })
@@ -86,14 +83,14 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = behindFishShopMack, StartTime = 0900, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = waterMack, StartTime = 1100, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Bank", StartTime = 1300, DurationMinutes = 180 });
-                    plan.Add(new WalkToSpec { Destination = raysForest, StartTime = 1600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = rockInForest, StartTime = 1700, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 2000, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 2200, DurationMinutes = 210 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0130, DurationMinutes = 450 });
+                    plan.Add(new WalkToSpec { Destination = behindFishShopMack, StartTime = 0903, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 250, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = waterMack, StartTime = 1056, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Bank", StartTime = 1258, DurationMinutes = 185 });
+                    plan.Add(new WalkToSpec { Destination = raysForest, StartTime = 1604, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = rockInForest, StartTime = 1656, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 2003, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 2157, DurationMinutes = 209 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0127, DurationMinutes = 455 });
                 });
         }
 
@@ -109,7 +106,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 15f;
-                Region = Region.Docks;
+                Region = S1API.Map.Region.Docks;
 
                 // Customer.RequestProduct();
 

@@ -1,22 +1,16 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Economy;
 using S1API.Entities.NPCs.Docks;
 using S1API.GameTime;
-using S1API.Growing;
+using S1API.Map;
 using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
-using System.Linq;
-using S1API.Avatar;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -66,7 +60,7 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 400f, maxWeekly: 800f)
+                    cd.WithSpending(minWeekly: 600f, maxWeekly: 800f)
                         .WithOrdersPerWeek(1, 4)
                         .WithPreferredOrderDay(Day.Saturday)
                         .WithOrderTime(930)
@@ -78,7 +72,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, -0.37f), (DrugType.Methamphetamine, 0.64f), (DrugType.Cocaine, 0.12f)
+                            (DrugType.Marijuana, -0.37f), (DrugType.Methamphetamine, 0.64f), (DrugType.Shrooms, -0.58f), (DrugType.Cocaine, 0.12f)
                         })
                         .WithPreferredProperties(Property.Smelly, Property.Seizure, Property.Foggy);
                 })
@@ -91,18 +85,18 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal()
-                       .LocationDialogue(rv, 700, faceDestinationDir: true)
-                       .UseVendingMachine(800)
-                       .UseATM(845)
-                       .StayInBuilding(hospital, 930, 150)
-                       .LocationDialogue(gasMart, 1200)
-                       .UseVendingMachine(1400)
-                       .StayInBuilding(northIndustrial, 1425, 125)
-                       .StayInBuilding(budsBar, 1630, 150)
-                       .StayInBuilding(southoverpass, 1900, 90)
-                       .WalkTo(docks, 2030, faceDestinationDir: false)
-                       .StayInBuilding(southoverpass, 2130, 570);
+                    plan.EnsureDealSignal();
+                    plan.LocationDialogue(rv, 697, faceDestinationDir: true);
+                    plan.UseVendingMachine(804);
+                    plan.UseATM(843);
+                    plan.StayInBuilding(hospital, 927, 156);
+                    plan.LocationDialogue(gasMart, 1204);
+                    plan.UseVendingMachine(1396);
+                    plan.StayInBuilding(northIndustrial, 1428, 117);
+                    plan.StayInBuilding(budsBar, 1626, 150);
+                    plan.StayInBuilding(southoverpass, 1897, 88);
+                    plan.Add(new WalkToSpec { Destination = docks, StartTime = 2026, FaceDestinationDirection = false });
+                    plan.StayInBuilding(southoverpass, 2133, 563);
                 });
         }
 

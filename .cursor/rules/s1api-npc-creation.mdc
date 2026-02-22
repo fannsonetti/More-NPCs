@@ -1,0 +1,107 @@
+---
+description: S1API NPC creation reference - conventions and API usage for Schedule I mod NPCs
+globs: NPCs/**/*.cs
+alwaysApply: false
+---
+
+# S1API NPC Creation Reference
+
+Use this when creating or modifying NPCs for the More-NPCs mod. Full S1API docs: https://ifbars.github.io/S1API/api/S1API.Entities.html
+
+**When unsure about paths (avatar layers, buildings, etc.), ALWAYS check S1API docs or source** — e.g. https://github.com/ifBars/S1API (Head.cs for head accessories, Buildings for building types). Do not guess paths.
+
+## Project Convention: Schedule Actions
+
+**Use `plan.Add(new WalkToSpec { ... })` for walk-to actions** — NOT the fluent `.WalkTo()` shortcut. This keeps schedules consistent with spec-based actions like `StayInBuildingSpec`, `UseVendingMachineSpec`.
+
+```csharp
+// ✅ Correct
+plan.Add(new WalkToSpec { Destination = position, StartTime = 900, FaceDestinationDirection = true });
+
+// ❌ Avoid
+plan.WalkTo(position, 900, faceDestinationDir: true);
+```
+
+Other fluent methods (StayInBuilding, UseVendingMachine, UseATM, LocationDialogue) are fine — only WalkTo is standardized to plan.Add.
+
+## NPC Structure
+
+1. **ConfigurePrefab** — Identity, appearance, customer/dealer, relationships, schedule. All prefab setup happens here.
+2. **OnCreated** — Runtime init: `Appearance.Build()`, `Schedule.Enable()`, set `Aggressiveness`, `Region`.
+
+## NPCPrefabBuilder (ConfigurePrefab)
+
+| Method | Purpose |
+|-------|---------|
+| `WithIdentity(id, firstName, lastName)` | Unique ID and display name |
+| `WithAppearanceDefaults(av => {...})` | Avatar settings, hair, layers, colors |
+| `WithSpawnPosition(Vector3)` | World spawn position |
+| `EnsureCustomer()` | Enables customer behavior |
+| `WithCustomerDefaults(cd => {...})` | Spending, orders, standards, affinities |
+
+## Spending limits (guidelines)
+
+Spending values are **guidelines/suggestions** per region, not hard caps. Use increments of 100 (e.g. 400, 500, 600). Regional ranges:
+
+| Region | Min–Max (weekly) |
+|--------|------------------|
+| Northtown | 200–800 |
+| Westville | 400–700 |
+| Downtown | 400–1000 |
+| Docks | 600–1000 |
+| Suburbia | 700–1400 |
+| Uptown | 1000–2000 |
+
+**Extra-rich Uptown NPCs** (Daniel J Dalby, Darius Cole, Edward Boog) use 1000–2000 or 2000–8000 — above the guideline.
+
+## Orders per week
+
+Keep `WithOrdersPerWeek` max at 4 or lower — higher values spread the weekly budget thin and make per-order spend too small.
+| `WithRelationshipDefaults(r => {...})` | Delta, unlock type, connections |
+| `WithSchedule(plan => {...})` | Schedule actions |
+
+## Schedule Actions (PrefabScheduleBuilder)
+
+**Always call `plan.EnsureDealSignal()` first** for customer NPCs.
+
+| Action | Usage |
+|--------|-------|
+| WalkTo | `plan.Add(new WalkToSpec { Destination = pos, StartTime = 900, FaceDestinationDirection = true })` |
+| StayInBuilding | `plan.StayInBuilding(building, startTime, durationMinutes)` or `plan.Add(new StayInBuildingSpec { BuildingName = "Name", StartTime = 900, DurationMinutes = 60 })` |
+| UseVendingMachine | `plan.UseVendingMachine(startTime)` |
+| UseATM | `plan.UseATM(startTime)` |
+| LocationDialogue | `plan.LocationDialogue(destination, startTime, faceDestinationDir)` |
+
+**Time format**: HHMM — first two digits = hour (00–23), last two = minutes (00–59). Examples: `900` = 09:00, `1258` = 12:58. Invalid: `1298` (12:98), `1696` (16:96). Minutes must be 00–59.
+
+**DurationMinutes**: Set so the stay ends 1 minute before the next activity. Formula: (next_StartTime_minutes - this_StartTime_minutes) - 1. For overnight: (1440 - this) + next - 1. Max 1439 (1 min before same time next day).
+
+**StartTime order**: Do not reorder or vary StartTimes in a way that makes a later entry earlier than a previous one (e.g. first 1405, second 1355) — that breaks schedule flow.
+
+## AvatarDefaultsBuilder (appearance)
+
+- `Gender`, `Height`, `Weight`, `SkinColor`, `HairColor`, `HairPath`
+- **Colors**: Use ~20% less vibrant/saturated colors than you'd expect — in-game render tends to boost saturation by ~20%. Reduce saturation (push RGB toward gray) or scale bright colors down. E.g. a vivid red 1.0,0.2,0.1 → use 0.8,0.16,0.08.
+- `WithFaceLayer(path, color)`, `WithBodyLayer(path, color)`, `WithAccessoryLayer(path, color)`
+- Paths: `"Avatar/Hair/Spiky/Spiky"`, `"Avatar/Layers/Top/T-Shirt"`, etc.
+
+## Outfit conventions
+
+- Belts: brown, black, or white — avoid colored belts (e.g. no blue belt).
+- Gang members: pants within the scheme (white or blue, not gray).
+- Same color scheme: use different clothing items; avoid same color on adjacent layers (e.g. vest and shirt). Keep shoes white.
+
+## Connections (WithConnectionsById)
+
+- **No duplicate pairs**: Don't use the same two connection IDs together twice. Contact locations will collide. If you need overlapping connections, prefer connecting to one single lightly-used NPC instead; the user can add more connections later.
+- **Stereotype the vibe**: If a connection feels a certain way (e.g. white/suburban name, rough/blue-collar), the NPC you create should match that vibe. Same goes for the connection target — pick connection IDs whose characters fit the NPC you're building.
+
+## Buildings
+
+Use `Building.Get<BuildingType>()` for typed buildings (e.g. `Building.Get<ShermanHouse>()`).
+
+## Namespace & Registration
+
+- Use `MoreNPCs.NPCs` (or project namespace) for NPC classes
+- Physical NPCs: `IsPhysical => true`
+- In OnCreated: `base.OnCreated()`, `Appearance.Build()`, `Schedule.Enable()`

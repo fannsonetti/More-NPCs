@@ -1,21 +1,16 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Economy;
 using S1API.Entities.NPCs.Westville;
 using S1API.GameTime;
-using S1API.Growing;
+using S1API.Map;
 using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
-using System.Linq;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -32,7 +27,7 @@ namespace CustomNPCTest.NPCs
             var thePissHut = Building.Get<ThePissHut>();
             var cornerStore = Building.Get<CornerStore>();
             Vector3 belowOverpass = new Vector3(-1.6567f, 0.9804f, -134.9677f);
-            Vector3 sunset = new Vector3(-182.3843f, -4.175f, 82.0797f);
+            Vector3 sunset = new Vector3(-156.2632f, -4.34f, 34.682f);
             builder.WithIdentity("jamal_bennett", "Jamal", "Bennett")
                 .WithAppearanceDefaults(av =>
                 {
@@ -65,8 +60,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 200f, maxWeekly: 500f)
-                        .WithOrdersPerWeek(3, 6)
+                    cd.WithSpending(minWeekly: 500f, maxWeekly: 700f)
+                        .WithOrdersPerWeek(2, 4)
                         .WithPreferredOrderDay(Day.Sunday)
                         .WithOrderTime(800)
                         .WithStandards(CustomerStandard.Moderate)
@@ -77,7 +72,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.01f), (DrugType.Methamphetamine, 0.73f), (DrugType.Cocaine, -0.31f)
+                            (DrugType.Marijuana, 0.01f), (DrugType.Methamphetamine, 0.73f), (DrugType.Shrooms, 0.54f), (DrugType.Cocaine, -0.31f)
                         })
                         .WithPreferredProperties(Property.Cyclopean, Property.Balding, Property.Disorienting);
                 })
@@ -90,16 +85,16 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal()
-                       .StayInBuilding(janesVan, 900, 120)
-                       .WalkTo(belowOverpass, 1100, faceDestinationDir: true)
-                       .StayInBuilding(thePissHut, 1400, 90)
-                       .UseATM(1530)
-                       .StayInBuilding(shermanHouse, 1615, 105)
-                       .UseVendingMachine(1800)
-                       .StayInBuilding(cornerStore, 1930, 90)
-                       .WalkTo(sunset, 2100, faceDestinationDir: false)
-                       .StayInBuilding(shermanHouse, 2230, 630);
+                    plan.EnsureDealSignal();
+                    plan.StayInBuilding(janesVan, 897, 126);
+                    plan.Add(new WalkToSpec { Destination = belowOverpass, StartTime = 1104, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 20, 0) * Vector3.forward});
+                    plan.StayInBuilding(thePissHut, 1396, 96);
+                    plan.UseATM(1533);
+                    plan.StayInBuilding(shermanHouse, 1618, 104);
+                    plan.UseVendingMachine(1803);
+                    plan.StayInBuilding(cornerStore, 1926, 90);
+                    plan.Add(new WalkToSpec { Destination = sunset, StartTime = 2057, FaceDestinationDirection = false, Forward = Quaternion.Euler(0, 225, 0) * Vector3.forward});
+                    plan.StayInBuilding(shermanHouse, 2226, 630);
                 });
         }
         

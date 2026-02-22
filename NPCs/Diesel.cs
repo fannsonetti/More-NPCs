@@ -1,16 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Downtown;
 using S1API.GameTime;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -62,7 +59,7 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 400f, maxWeekly: 800f)
+                    cd.WithSpending(minWeekly: 600f, maxWeekly: 900f)
                         .WithOrdersPerWeek(1, 4)
                         .WithPreferredOrderDay(Day.Monday)
                         .WithOrderTime(0030)
@@ -74,7 +71,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, -0.12f), (DrugType.Methamphetamine, 0.78f), (DrugType.Cocaine, 0.41f)
+                            (DrugType.Marijuana, -0.12f), (DrugType.Methamphetamine, 0.78f), (DrugType.Shrooms, -0.85f), (DrugType.Cocaine, 0.41f)
                         })
                         .WithPreferredProperties(Property.Energizing, Property.Paranoia, Property.Explosive);
                 })
@@ -88,16 +85,16 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = behindFishShopDiesel, StartTime = 0900, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 1100, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 1230, DurationMinutes = 150 });
-                    plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 1500, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = gasmart, StartTime = 1800, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 1900, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 2030, DurationMinutes = 150 });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 2300 });
-                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 0100, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0200, DurationMinutes = 420 });
+                    plan.Add(new WalkToSpec { Destination = behindFishShopDiesel, StartTime = 0903, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 250, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 1056, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 1227, DurationMinutes = 156 });
+                    plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 1504, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = gasmart, StartTime = 1804, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 1857, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 2026, DurationMinutes = 157 });
+                    plan.Add(new UseVendingMachineSpec { StartTime = 2304 });
+                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 0057, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0157, DurationMinutes = 445 });
                 });
         }
 
@@ -113,7 +110,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Docks;
+                Region = S1API.Map.Region.Docks;
 
                 // Customer.RequestProduct();
 

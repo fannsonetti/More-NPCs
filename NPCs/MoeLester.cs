@@ -1,21 +1,16 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Economy;
 using S1API.Entities.NPCs.Northtown;
 using S1API.GameTime;
-using S1API.Growing;
+using S1API.Map;
 using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
-using System.Linq;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -65,8 +60,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 200f, maxWeekly: 800f)
-                        .WithOrdersPerWeek(3, 5)
+                    cd.WithSpending(minWeekly: 300f, maxWeekly: 600f)
+                        .WithOrdersPerWeek(2, 4)
                         .WithPreferredOrderDay(Day.Wednesday)
                         .WithOrderTime(1400)
                         .WithStandards(CustomerStandard.Low)
@@ -77,7 +72,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.52f), (DrugType.Methamphetamine, -0.23f), (DrugType.Cocaine, 0.31f)
+                            (DrugType.Marijuana, 0.52f), (DrugType.Methamphetamine, -0.23f), (DrugType.Shrooms, 0.51f), (DrugType.Cocaine, 0.31f)
                         })
                         .WithPreferredProperties(Property.Jennerising, Property.Refreshing, Property.Glowie);
                 })
@@ -90,18 +85,18 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal()
-                       .UseVendingMachine(900)
-                       .WalkTo(posA, 925, faceDestinationDir: true)
-                       .StayInBuilding(petersRoom, 1100, 120)
-                       .LocationDialogue(posA, 1300)
-                       .UseVendingMachine(1400)
-                       .StayInBuilding(petersRoom, 1425, 125)
-                       .UseATM(1630)
-                       .StayInBuilding(budsBar, 1730, 150)
-                       .UseVendingMachine(2000)
-                       .WalkTo(posB, 2100, faceDestinationDir: false)
-                       .StayInBuilding(northApartments, 2230, 450);
+                    plan.EnsureDealSignal();
+                    plan.UseVendingMachine(903);
+                    plan.Add(new WalkToSpec { Destination = posA, StartTime = 928, FaceDestinationDirection = true });
+                    plan.StayInBuilding(petersRoom, 1097, 126);
+                    plan.LocationDialogue(posA, 1304);
+                    plan.UseVendingMachine(1397);
+                    plan.StayInBuilding(petersRoom, 1422, 140);
+                    plan.UseATM(1633);
+                    plan.StayInBuilding(budsBar, 1733, 209);
+                    plan.UseVendingMachine(1997);
+                    plan.Add(new WalkToSpec { Destination = posB, StartTime = 2103, FaceDestinationDirection = false });
+                    plan.StayInBuilding(northApartments, 2233, 629);
                 });
         }
 

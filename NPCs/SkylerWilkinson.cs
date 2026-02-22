@@ -1,16 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Northtown;
 using S1API.GameTime;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -55,7 +52,7 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 500f, maxWeekly: 1200f)
+                    cd.WithSpending(minWeekly: 700f, maxWeekly: 1200f)
                         .WithOrdersPerWeek(1, 3)
                         .WithPreferredOrderDay(Day.Friday)
                         .WithOrderTime(0700)
@@ -67,7 +64,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.39f), (DrugType.Methamphetamine, 0.21f), (DrugType.Cocaine, 0.77f)
+                            (DrugType.Marijuana, 0.39f), (DrugType.Methamphetamine, 0.21f), (DrugType.Shrooms, -0.54f), (DrugType.Cocaine, 0.77f)
                         })
                         // .WithPreferredPropertiesById("Munchies", "Energizing", "Cyclopean");
                         .WithPreferredProperties(Property.Schizophrenic, Property.Glowie, Property.Toxic);
@@ -82,13 +79,13 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 0700, DurationMinutes = 240 });
-                    plan.Add(new WalkToSpec { Destination = hounddog, StartTime = 1100, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1215, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 1300, DurationMinutes = 240 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1700, DurationMinutes = 120 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1900, DurationMinutes = 120 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2100, DurationMinutes = 600 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 0657, DurationMinutes = 246 });
+                    plan.Add(new WalkToSpec { Destination = hounddog, StartTime = 1104, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1212, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 1303, DurationMinutes = 240 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1704, DurationMinutes = 92 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1857, DurationMinutes = 145 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2103, DurationMinutes = 593 });
                 });
         }
 
@@ -104,7 +101,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Suburbia;
+                Region = S1API.Map.Region.Suburbia;
 
                 // Customer.RequestProduct();
 

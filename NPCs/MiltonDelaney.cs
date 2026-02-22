@@ -1,18 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
-using S1API.Entities.NPCs.Downtown;
 using S1API.Entities.Schedule;
 using S1API.GameTime;
-using S1API.Map;
-using S1API.Money;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -60,8 +55,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 400f, maxWeekly: 800f)
-                        .WithOrdersPerWeek(1, 5)
+                    cd.WithSpending(minWeekly: 600f, maxWeekly: 1000f)
+                        .WithOrdersPerWeek(1, 4)
                         .WithPreferredOrderDay(Day.Saturday)
                         .WithOrderTime(1100)
                         .WithStandards(CustomerStandard.Moderate)
@@ -72,7 +67,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.64f), (DrugType.Methamphetamine, 0.86f), (DrugType.Cocaine, -0.22f)
+                            (DrugType.Marijuana, 0.64f), (DrugType.Methamphetamine, 0.86f), (DrugType.Shrooms, -0.59f), (DrugType.Cocaine, -0.22f)
                         })
                         .WithPreferredProperties(Property.Munchies, Property.Refreshing, Property.Zombifying);
                 })
@@ -86,14 +81,14 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1130, DurationMinutes = 90 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "HAM Legal", StartTime = 1300, DurationMinutes = 120 });
-                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 1500, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = hospital1, StartTime = 1600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = hospital2, StartTime = 1700, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1930, DurationMinutes = 90 });
-                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 2000, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2100, DurationMinutes = 870 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1127, DurationMinutes = 89 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "HAM Legal", StartTime = 1257, DurationMinutes = 126 });
+                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 1504, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = hospital1, StartTime = 1556, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = hospital2, StartTime = 1704, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1926, DurationMinutes = 36 });
+                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 2003, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2057, DurationMinutes = 869 });
                 });
         }
 
@@ -109,7 +104,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Downtown;
+                Region = S1API.Map.Region.Downtown;
 
                 // Customer.RequestProduct();
 

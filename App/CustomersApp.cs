@@ -1,4 +1,4 @@
-﻿using CustomNPCTest.NPCs;
+using MoreNPCs.NPCs;
 using MelonLoader;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;

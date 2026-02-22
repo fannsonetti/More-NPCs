@@ -1,24 +1,13 @@
-﻿using System;
-using System.Linq;
+using System;
 using MelonLoader;
-using S1API.Avatar;
 using S1API.Economy;
 using S1API.Entities;
-using S1API.Entities.Appearances.CustomizationFields;
-using S1API.Entities.NPCs.Northtown;
 using S1API.Entities.Schedule;
-using S1API.GameTime;
-using S1API.Growing;
 using S1API.Map;
 using S1API.Map.Buildings;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Products;
-using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into dealer functionality.
@@ -54,7 +43,7 @@ namespace CustomNPCTest.NPCs
                     av.EyeBallTint = Color.white;
                     av.PupilDilation = 0.475f;
                     av.EyebrowScale = 1.02f;
-                    av.EyebrowThickness = 1.0f;
+                    av.EyebrowThickness = 1.1f;
                     av.EyebrowRestingHeight = 0.0f;
                     av.EyebrowRestingAngle = 0.0f;
                     av.LeftEye = (0.35f, 0.44f);
@@ -94,6 +83,7 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal(); // Signal for handling deals
+                    plan.StayInBuilding(northwarehouse, 705, 1439); // 1 min before next at 705
                 });
         }
 

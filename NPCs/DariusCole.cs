@@ -1,22 +1,15 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Docks;
 using S1API.GameTime;
-using S1API.Growing;
+using S1API.Map;
 using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
-using System.Linq;
-using S1API.Avatar;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -80,7 +73,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, -0.13f), (DrugType.Methamphetamine, 0.87f), (DrugType.Cocaine, -0.17f)
+                            (DrugType.Marijuana, -0.13f), (DrugType.Methamphetamine, 0.87f), (DrugType.Shrooms, 0.49f), (DrugType.Cocaine, -0.17f)
                         })
                         .WithPreferredProperties(Property.Laxative, Property.Shrinking, Property.Zombifying);
                 })
@@ -93,17 +86,17 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal()
-                       .LocationDialogue(bleuball, 730, faceDestinationDir: true)
-                       .UseVendingMachine(830)
-                       .StayInBuilding(bank, 900, 330)
-                       .UseVendingMachine(1430)
-                       .StayInBuilding(bank, 1455, 125)
-                       .StayInBuilding(church, 1700, 120)
-                       .StayInBuilding(upscaleApartments, 1900, 45)
-                       .UseATM(1945)
-                       .WalkTo(bleuball, 2015, faceDestinationDir: false)
-                       .StayInBuilding(upscaleApartments, 2200, 570);
+                    plan.EnsureDealSignal();
+                    plan.Add(new WalkToSpec { Destination = bleuball, StartTime = 727, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.UseVendingMachine(896);
+                    plan.StayInBuilding(bank, 933, 299);
+                    plan.UseVendingMachine(1433);
+                    plan.StayInBuilding(bank, 1458, 125);
+                    plan.StayInBuilding(church, 1704, 112);
+                    plan.StayInBuilding(upscaleApartments, 1897, 25);
+                    plan.UseATM(1943);
+                    plan.Add(new WalkToSpec { Destination = bleuball, StartTime = 2012, FaceDestinationDirection = false, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.StayInBuilding(upscaleApartments, 2203, 563);
                 });
         }
 

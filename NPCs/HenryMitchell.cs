@@ -1,16 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Downtown;
 using S1API.GameTime;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -60,8 +57,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 500f, maxWeekly: 900f)
-                        .WithOrdersPerWeek(1, 5)
+                    cd.WithSpending(minWeekly: 700f, maxWeekly: 1000f)
+                        .WithOrdersPerWeek(1, 4)
                         .WithPreferredOrderDay(Day.Thursday)
                         .WithOrderTime(1200)
                         .WithStandards(CustomerStandard.Low)
@@ -72,7 +69,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.15f), (DrugType.Methamphetamine, -0.52f), (DrugType.Cocaine, 0.64f)
+                            (DrugType.Marijuana, 0.15f), (DrugType.Methamphetamine, -0.52f), (DrugType.Shrooms, 0.79f), (DrugType.Cocaine, 0.64f)
                         })
                         .WithPreferredProperties(Property.Calming, Property.ThoughtProvoking, Property.TropicThunder);
                 })
@@ -86,16 +83,16 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 900, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1100, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1300, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 1500, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1700, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1900, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 2100, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 2300, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 100, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 200, DurationMinutes = 420 });
+                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 857, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1104, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1256, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 1504, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1656, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1903, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 2057, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 2304, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 057, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 157, DurationMinutes = 419 });
                 });
         }
 
@@ -111,7 +108,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Docks;
+                Region = S1API.Map.Region.Docks;
 
                 // Customer.RequestProduct();
 

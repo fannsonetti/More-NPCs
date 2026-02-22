@@ -1,20 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Westville;
 using S1API.GameTime;
-using S1API.Growing;
+using S1API.Map;
 using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
-using System.Linq;
-using Steamworks;
 
 namespace MoreNPCs.NPCs
 {
@@ -64,7 +57,7 @@ namespace MoreNPCs.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 200f, maxWeekly: 500f)
+                    cd.WithSpending(minWeekly: 400f, maxWeekly: 600f)
                         .WithOrdersPerWeek(1, 4)
                         .WithPreferredOrderDay(Day.Thursday)
                         .WithOrderTime(2300)
@@ -76,7 +69,7 @@ namespace MoreNPCs.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.52f), (DrugType.Methamphetamine, 0.73f), (DrugType.Cocaine, 0.14f)
+                            (DrugType.Marijuana, 0.52f), (DrugType.Methamphetamine, 0.73f), (DrugType.Shrooms, -0.43f), (DrugType.Cocaine, 0.14f)
                         })
                         .WithPreferredProperties(Property.AntiGravity, Property.Spicy, Property.CalorieDense);
                 })
@@ -89,14 +82,14 @@ namespace MoreNPCs.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal()
-                       .WalkTo(sewerCrossSection, 630)
-                       .StayInBuilding(goblinHiding, 700, 840)
-                       .WalkTo(forestStraight, 2100)
-                       .WalkTo(forestRock, 2230)
-                       .UseVendingMachine(2359)
-                       .WalkTo(forestBarn, 100)
-                       .WalkTo(forestMansion, 300, faceDestinationDir: true);
+                    plan.EnsureDealSignal();
+                    plan.Add(new WalkToSpec { Destination = sewerCrossSection, StartTime = 627, FaceDestinationDirection = true });
+                    plan.StayInBuilding(goblinHiding, 697, 826);
+                    plan.Add(new WalkToSpec { Destination = forestStraight, StartTime = 2104, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = forestRock, StartTime = 2226, FaceDestinationDirection = true });
+                    plan.UseVendingMachine(2356);
+                    plan.Add(new WalkToSpec { Destination = forestBarn, StartTime = 057, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = forestMansion, StartTime = 303, FaceDestinationDirection = true });
                 });
         }
 
@@ -112,7 +105,7 @@ namespace MoreNPCs.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Westville;
+                Region = S1API.Map.Region.Westville;
 
                 // Customer.RequestProduct();
 

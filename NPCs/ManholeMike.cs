@@ -1,16 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Downtown;
 using S1API.GameTime;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -58,7 +55,7 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 30f, maxWeekly: 600f)
+                    cd.WithSpending(minWeekly: 600f, maxWeekly: 800f)
                         .WithOrdersPerWeek(1, 3)
                         .WithPreferredOrderDay(Day.Monday)
                         .WithOrderTime(2200)
@@ -70,7 +67,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, -0.73f), (DrugType.Methamphetamine, 0.92f), (DrugType.Cocaine, -0.26f)
+                            (DrugType.Marijuana, -0.73f), (DrugType.Methamphetamine, 0.92f), (DrugType.Shrooms, 0.05f), (DrugType.Cocaine, -0.26f)
                         })
                         .WithPreferredProperties(Property.Paranoia, Property.Laxative, Property.Munchies);
                 })
@@ -84,15 +81,15 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 0900, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1130, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1400, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1800, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 2030, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 2300, FaceDestinationDirection = false });
-                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 0100, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 0300, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 0857, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1127, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1403, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1556, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1804, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 2026, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 2304, FaceDestinationDirection = false });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 0057, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 0303, FaceDestinationDirection = true });
                 });
         }
 
@@ -108,7 +105,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Docks;
+                Region = S1API.Map.Region.Docks;
 
                 // Customer.RequestProduct();
 

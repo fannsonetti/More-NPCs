@@ -1,21 +1,16 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Economy;
 using S1API.Entities.NPCs.Westville;
 using S1API.GameTime;
-using S1API.Growing;
+using S1API.Map;
 using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
-using System.Linq;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -64,8 +59,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 400f, maxWeekly: 800f)
-                        .WithOrdersPerWeek(1, 7)
+                    cd.WithSpending(minWeekly: 500f, maxWeekly: 700f)
+                        .WithOrdersPerWeek(1, 4)
                         .WithPreferredOrderDay(Day.Saturday)
                         .WithOrderTime(1900)
                         .WithStandards(CustomerStandard.Moderate)
@@ -76,7 +71,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.93f), (DrugType.Methamphetamine, -0.03f), (DrugType.Cocaine, -0.95f)
+                            (DrugType.Marijuana, 0.93f), (DrugType.Methamphetamine, -0.03f), (DrugType.Shrooms, -0.05f), (DrugType.Cocaine, -0.95f)
                         })
                         .WithPreferredProperties(Property.Lethal, Property.Euphoric, Property.ThoughtProvoking);
                 })
@@ -89,16 +84,16 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal()
-                       .StayInBuilding(cornerStore, 900, 150)
-                       .WalkTo(northWaterfront, 1130, faceDestinationDir: true)
-                       .StayInBuilding(thePissHut, 1415, 90)
-                       .UseVendingMachine(1545)
-                       .StayInBuilding(cornerStore, 1630, 105)
-                       .UseATM(1815)
-                       .StayInBuilding(shermanHouse, 1930, 90)
-                       .WalkTo(westGasmart, 2100, faceDestinationDir: false)
-                       .StayInBuilding(shermanHouse, 2230, 630);
+                    plan.EnsureDealSignal();
+                    plan.StayInBuilding(cornerStore, 897, 149);
+                    plan.Add(new WalkToSpec { Destination = northWaterfront, StartTime = 1127, FaceDestinationDirection = true });
+                    plan.StayInBuilding(thePissHut, 1418, 124);
+                    plan.UseVendingMachine(1543);
+                    plan.StayInBuilding(cornerStore, 1626, 111);
+                    plan.UseATM(1818);
+                    plan.StayInBuilding(shermanHouse, 1927, 96);
+                    plan.Add(new WalkToSpec { Destination = westGasmart, StartTime = 2104, FaceDestinationDirection = false });
+                    plan.StayInBuilding(shermanHouse, 2233, 623);
                 });
         }
 

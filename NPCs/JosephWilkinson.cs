@@ -1,16 +1,13 @@
 using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Northtown;
 using S1API.GameTime;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -58,8 +55,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 500f, maxWeekly: 1200f)
-                        .WithOrdersPerWeek(3, 5)
+                    cd.WithSpending(minWeekly: 500f, maxWeekly: 900f)
+                        .WithOrdersPerWeek(2, 4)
                         .WithPreferredOrderDay(Day.Saturday)
                         .WithOrderTime(1100)
                         .WithStandards(CustomerStandard.Moderate)
@@ -70,7 +67,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, -0.06f), (DrugType.Methamphetamine, 0.58f), (DrugType.Cocaine, 0.96f)
+                            (DrugType.Marijuana, -0.06f), (DrugType.Methamphetamine, 0.58f), (DrugType.Shrooms, 0.88f), (DrugType.Cocaine, 0.96f)
                         })
                         // .WithPreferredPropertiesById("Munchies", "Energizing", "Cyclopean");
                         .WithPreferredProperties(Property.Zombifying, Property.Spicy, Property.Sedating);
@@ -80,22 +77,22 @@ namespace CustomNPCTest.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("elizabeth_homley", "kevin_oakley");
+                        .WithConnectionsById("elizabeth_homley", "fungal_phil");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = raysrealty, StartTime = 700, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = hounddog, StartTime = 800, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 900, FaceDestinationDirection = true });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 930 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1000, DurationMinutes = 120 });
-                    plan.Add(new LocationDialogueSpec { Destination = elizabeth, StartTime = 1200, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1300, DurationMinutes = 120 });
-                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1500, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 1800, DurationMinutes = 180 });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 2100 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2230, DurationMinutes = 510 });
+                    plan.Add(new UseATMSpec { StartTime = 657 });
+                    plan.Add(new WalkToSpec { Destination = hounddog, StartTime = 804, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 330, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 856, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 150, 0) * Vector3.forward });
+                    plan.Add(new UseVendingMachineSpec { StartTime = 927 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1003, DurationMinutes = 120 });
+                    plan.Add(new LocationDialogueSpec { Destination = elizabeth, StartTime = 1204, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1256, DurationMinutes = 127 });
+                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1504, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 150, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 1803, DurationMinutes = 173 });
+                    plan.Add(new UseVendingMachineSpec { StartTime = 2057 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2226, DurationMinutes = 509 });
                 });
         }
         
@@ -111,7 +108,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
                 
                 Aggressiveness = 5f;
-                Region = Region.Downtown;
+                Region = S1API.Map.Region.Downtown;
 
                 // Customer.RequestProduct();
                 

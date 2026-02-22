@@ -1,16 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Northtown;
 using S1API.GameTime;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -26,7 +23,7 @@ namespace CustomNPCTest.NPCs
             Vector3 slotMachine1 = new Vector3(25.0217f, 1.865f, 95.0692f);
             Vector3 rideTheBus = new Vector3(13.8508f, 1.865f, 94.4451f);
             Vector3 blackJack = new Vector3(17.4742f, 1.865f, 93.5125f);
-            Vector3 frontDesk = new Vector3(19.1643f, 1.865f, 87.4606f);
+            Vector3 frontDesk = new Vector3(16.9007f, 1.865f, 88.4941f);
             // var building = Buildings.GetAll().First();
             builder.WithIdentity("daniel_j_dalby", "Daniel J.", "D'alby")
                 .WithAppearanceDefaults(av =>
@@ -73,7 +70,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, -0.52f), (DrugType.Methamphetamine, -0.86f), (DrugType.Cocaine, 0.14f)
+                            (DrugType.Marijuana, -0.52f), (DrugType.Methamphetamine, -0.86f), (DrugType.Shrooms, -0.62f), (DrugType.Cocaine, 0.14f)
                         })
                         .WithPreferredProperties(Property.Slippery, Property.Electrifying, Property.BrightEyed);
                 })
@@ -87,16 +84,16 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 1600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 1630, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 1830, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = rideTheBus, StartTime = 2100, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 2300, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = casinoBalcony, StartTime = 030, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 200, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 300, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 330, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Les Ordures Puantes", StartTime = 400, DurationMinutes = 720 });
+                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 1604, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 1627, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 0, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 1833, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = rideTheBus, StartTime = 2057, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 270, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 2304, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = casinoBalcony, StartTime = 027, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 157, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 303, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 327, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 0, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Les Ordures Puantes", StartTime = 357, DurationMinutes = 726 });
                 });
         }
 
@@ -112,7 +109,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Uptown;
+                Region = S1API.Map.Region.Uptown;
 
                 // Customer.RequestProduct();
 

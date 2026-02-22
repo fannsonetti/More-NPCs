@@ -1,20 +1,13 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
-using S1API.Entities.NPCs.Downtown;
-using S1API.Entities.NPCs.Uptown;
 using S1API.Entities.Schedule;
 using S1API.GameTime;
-using S1API.Map;
-using S1API.Money;
 using S1API.Products;
 using S1API.Properties;
-using S1API.Properties.Tokens;
-using S1API.Vehicles;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -71,7 +64,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, -0.77f), (DrugType.Methamphetamine, 0.21f), (DrugType.Cocaine, 0.74f)
+                            (DrugType.Marijuana, -0.77f), (DrugType.Methamphetamine, 0.21f), (DrugType.Shrooms, -0.87f), (DrugType.Cocaine, 0.74f)
                         })
                         .WithPreferredProperties(Property.Lethal, Property.Schizophrenic, Property.Explosive);
                 })
@@ -85,11 +78,11 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Church", StartTime = 1130, DurationMinutes = 90 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Town hall", StartTime = 1300, DurationMinutes = 120 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Modern Mansion", StartTime = 1500, DurationMinutes = 180 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 1800, DurationMinutes = 180 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Modern Mansion", StartTime = 2100, DurationMinutes = 870 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Church", StartTime = 1127, DurationMinutes = 89 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Town hall", StartTime = 1257, DurationMinutes = 126 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Modern Mansion", StartTime = 1504, DurationMinutes = 178 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 1803, DurationMinutes = 173 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Modern Mansion", StartTime = 2057, DurationMinutes = 869 });
                 });
         }
 
@@ -105,7 +98,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Uptown;
+                Region = S1API.Map.Region.Uptown;
 
                 // Customer.RequestProduct();
 

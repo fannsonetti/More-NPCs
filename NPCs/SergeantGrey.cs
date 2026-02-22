@@ -1,22 +1,13 @@
-﻿using System;
-using System.Linq;
+using System;
 using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
-using S1API.Entities.NPCs.Northtown;
 using S1API.Entities.Schedule;
-using S1API.GameTime;
-using S1API.Growing;
 using S1API.Map;
 using S1API.Map.Buildings;
-using S1API.Map.ParkingLots;
-using S1API.Money;
-using S1API.Products;
-using S1API.Properties;
-using S1API.Vehicles;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into dealer functionality.
@@ -88,7 +79,8 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal(); // Signal for handling deals
+                    plan.EnsureDealSignal();
+                    plan.StayInBuilding(policeStation, 705, 1439); // Same as FannsoNetti but Police Station (1439 = 1 min before next at 705)
                 });
         }
 

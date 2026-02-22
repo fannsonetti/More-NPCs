@@ -1,16 +1,13 @@
 using MelonLoader;
+using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
-using S1API.Map;
-using S1API.Money;
-using S1API.Economy;
-using S1API.Entities.NPCs.Downtown;
 using S1API.GameTime;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -23,9 +20,7 @@ namespace CustomNPCTest.NPCs
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
             Vector3 tacoticklers = new Vector3(-28.9266f, 1.065f, 74.6178f);
-            Vector3 tacoticklersStub = new Vector3(-28.938f, 1.065f, 74.6178f);
             Vector3 outside = new Vector3(-36.3346f, 1.065f, 75.6414f);
-            Vector3 outsideStub = new Vector3(-36.7476f, 1.065f, 75.7252f);
             Vector3 spawnPos = new Vector3(-28.9266f, 1.065f, 74.6178f);
             // var building = Buildings.GetAll().First();
             builder.WithIdentity("jason_reed", "Jason", "Reed")
@@ -59,8 +54,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 400f, maxWeekly: 900f)
-                        .WithOrdersPerWeek(5, 7)
+                    cd.WithSpending(minWeekly: 400f, maxWeekly: 800f)
+                        .WithOrdersPerWeek(2, 4)
                         .WithPreferredOrderDay(Day.Monday)
                         .WithOrderTime(2020)
                         .WithStandards(CustomerStandard.VeryLow)
@@ -71,7 +66,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.1f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 0.86f), (DrugType.Methamphetamine, 0.25f), (DrugType.Cocaine, -0.67f)
+                            (DrugType.Marijuana, 0.86f), (DrugType.Methamphetamine, 0.25f), (DrugType.Shrooms, 1f), (DrugType.Cocaine, -0.67f)
                         })
                         .WithPreferredProperties(Property.LongFaced, Property.CalorieDense, Property.Shrinking);
                 })
@@ -85,14 +80,11 @@ namespace CustomNPCTest.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 600, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = tacoticklersStub, StartTime = 730, FaceDestinationDirection = false });
-                    plan.Add(new WalkToSpec { Destination = outside, StartTime = 1800, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = outsideStub, StartTime = 1830, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 2000, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = tacoticklersStub, StartTime = 2030, FaceDestinationDirection = false });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 2200 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "North apartments", StartTime = 2230, DurationMinutes = 450 });
+                    plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 557, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = outside, StartTime = 1804, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 240, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 2003, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.Add(new UseVendingMachineSpec { StartTime = 2157 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "North apartments", StartTime = 2226, DurationMinutes = 450 });
                 });
         }
 
@@ -108,7 +100,7 @@ namespace CustomNPCTest.NPCs
                 Appearance.Build();
 
                 Aggressiveness = 5f;
-                Region = Region.Northtown;
+                Region = S1API.Map.Region.Northtown;
 
                 // Customer.RequestProduct();
 

@@ -1,17 +1,15 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
-using S1API.Entities.NPCs.Downtown;
 using S1API.Entities.Schedule;
 using S1API.GameTime;
 using S1API.Map;
 using S1API.Map.Buildings;
-using S1API.Money;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
 
-namespace CustomNPCTest.NPCs
+namespace MoreNPCs.NPCs
 {
     /// <summary>
     /// An example S1API NPC that opts into a physical rig.
@@ -62,8 +60,8 @@ namespace CustomNPCTest.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 50f, maxWeekly: 200f)
-                        .WithOrdersPerWeek(5, 7)
+                    cd.WithSpending(minWeekly: 400f, maxWeekly: 600f)
+                        .WithOrdersPerWeek(2, 4)
                         .WithPreferredOrderDay(Day.Wednesday)
                         .WithOrderTime(1330)
                         .WithStandards(CustomerStandard.VeryLow)
@@ -74,7 +72,7 @@ namespace CustomNPCTest.NPCs
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
-                            (DrugType.Marijuana, 1f), (DrugType.Methamphetamine, 1f), (DrugType.Cocaine, 1f)
+                            (DrugType.Marijuana, 1f), (DrugType.Methamphetamine, 1f), (DrugType.Shrooms, 1f), (DrugType.Cocaine, 1f)
                         })
                         .WithPreferredProperties();
                 })
@@ -87,20 +85,19 @@ namespace CustomNPCTest.NPCs
                 })
                 .WithSchedule(plan =>
                 {
-                    plan.EnsureDealSignal()
-                        .WalkTo(behindcounter, 600, faceDestinationDir: true)
-                        .WalkTo(shelf1, 700, faceDestinationDir: true)
-                        .WalkTo(behindcounter, 730, faceDestinationDir: true)
-                        .WalkTo(shelf2, 830, faceDestinationDir: true)
-                        .WalkTo(shelf3, 900, faceDestinationDir: true)
-                        .WalkTo(behindcounter, 1000, faceDestinationDir: true)
-                        .UseVendingMachine(1200)
-                        .WalkTo(shelf1, 1300, faceDestinationDir: true)
-                        .WalkTo(behindcounter, 1330, faceDestinationDir: true)
-                        .WalkTo(pos1, 1430, faceDestinationDir: true)
-                        .WalkTo(pos2, 1600, faceDestinationDir: true)
-                        .WalkTo(pos3, 1730, faceDestinationDir: true)
-                        .StayInBuilding(kyleandaustin, 1830, 690);
+                    plan.EnsureDealSignal();
+                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 657, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 727, FaceDestinationDirection = true , Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = shelf2, StartTime = 833, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = shelf3, StartTime = 856, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 155, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1004, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
+                    plan.UseVendingMachine(1197);
+                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 1227, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1326, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1433, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1604, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 1726, FaceDestinationDirection = true });
+                    plan.StayInBuilding(kyleandaustin, 1826, 750); // 1 min before shelf1 at 657
                 });
         }
 

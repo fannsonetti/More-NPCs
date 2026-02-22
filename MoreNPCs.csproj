@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -72,6 +72,12 @@
 		<Reference Include="UnityEngine.JSONSerializeModule">
 			<HintPath>$(ManagedPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
 		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.IMGUIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(ManagedPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.TextRenderingModule">
 			<HintPath>$(ManagedPath)\UnityEngine.TextRenderingModule.dll</HintPath>
 		</Reference>
@@ -83,6 +89,12 @@
 		</Reference>
 		<Reference Include="UnityEngine.UIModule">
 			<HintPath>$(ManagedPath)\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(ManagedPath)\UnityEngine.PhysicsModule.dll</HintPath>
 		</Reference>
 		<Reference Include="MelonLoader">
 			<HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
@@ -115,6 +127,12 @@
 		<Reference Include="UnityEngine.JSONSerializeModule">
 			<HintPath>$(ManagedPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
 		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.IMGUIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(ManagedPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.TextRenderingModule">
 			<HintPath>$(ManagedPath)\UnityEngine.TextRenderingModule.dll</HintPath>
 		</Reference>
@@ -126,6 +144,12 @@
 		</Reference>
 		<Reference Include="UnityEngine.UIModule">
 			<HintPath>$(ManagedPath)\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(ManagedPath)\UnityEngine.PhysicsModule.dll</HintPath>
 		</Reference>
 		<Reference Include="MelonLoader">
 			<HintPath>$(MelonLoaderPath)\MelonLoader.dll</HintPath>
@@ -161,6 +185,12 @@
 		<Reference Include="UnityEngine.JSONSerializeModule">
 			<HintPath>$(ManagedPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
 		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.IMGUIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(ManagedPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.UI">
 			<HintPath>$(ManagedPath)\UnityEngine.UI.dll</HintPath>
 		</Reference>
@@ -169,6 +199,12 @@
 		</Reference>
 		<Reference Include="UnityEngine.UIModule">
 			<HintPath>$(ManagedPath)\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+			<HintPath>$(ManagedPath)\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(ManagedPath)\UnityEngine.PhysicsModule.dll</HintPath>
 		</Reference>
 		<Reference Include="Il2Cppmscorlib">
 			<HintPath>$(ManagedPath)\Il2Cppmscorlib.dll</HintPath>
@@ -190,29 +226,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="Core.cs" />
-		<Compile Include="NPCs\BobbyCooley.cs" />
-		<Compile Include="NPCs\Corkskrew.cs" />
-		<Compile Include="NPCs\DanielJDalby.cs" />
-		<Compile Include="NPCs\DariusCole.cs" />
-		<Compile Include="NPCs\Diesel.cs" />
-		<Compile Include="NPCs\EdwardBoog.cs" />
-		<Compile Include="NPCs\EleanorBriggs.cs" />
-		<Compile Include="NPCs\FannsoNetti.cs" />
-		<Compile Include="NPCs\HenryMitchell.cs" />
-		<Compile Include="NPCs\JasonReed.cs" />
-		<Compile Include="NPCs\JosephWilkinson.cs" />
-		<Compile Include="NPCs\KaelaThorn.cs" />
-		<Compile Include="NPCs\Mack.cs" />
-		<Compile Include="NPCs\ManholeMike.cs" />
-		<Compile Include="NPCs\JamalBennett.cs" />
-		<Compile Include="NPCs\MiltonDelaney.cs" />
-		<Compile Include="NPCs\MoeLester.cs" />
-		<Compile Include="NPCs\NoraKessler.cs" />
-		<Compile Include="NPCs\OfficerMarcus.cs" />
-		<Compile Include="NPCs\SergeantGrey.cs" />
-		<Compile Include="NPCs\SkylerWilkinson.cs" />
-		<Compile Include="NPCs\VictorHughes.cs" />
-		<Compile Include="NPCs\WayneKerr.cs" />
+		<Compile Include="NPCs\*.cs" />
 		<Compile Include="Utils\Constants.cs" />
 		<Compile Include="Utils\CartelStatusWatcher.cs" />
 	</ItemGroup>

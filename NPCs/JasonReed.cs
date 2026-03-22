@@ -84,7 +84,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new WalkToSpec { Destination = outside, StartTime = 1804, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 240, 0) * Vector3.forward});
                     plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 2003, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
                     plan.Add(new UseVendingMachineSpec { StartTime = 2157 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "North apartments", StartTime = 2226, DurationMinutes = 450 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "North Industrial Building", StartTime = 2226, DurationMinutes = 450 });
                 });
         }
 
@@ -99,7 +99,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.56f;
                 Region = S1API.Map.Region.Northtown;
 
                 // Customer.RequestProduct();

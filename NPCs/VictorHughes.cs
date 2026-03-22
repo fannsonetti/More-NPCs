@@ -108,7 +108,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.51f;
                 Region = Region.Westville;
 
                 // Customer.RequestProduct();

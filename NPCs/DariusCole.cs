@@ -82,7 +82,7 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("leo_rivers", "michael_boog");
+                        .WithConnectionsById("irene_meadows", "michael_boog");
                 })
                 .WithSchedule(plan =>
                 {
@@ -111,7 +111,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.89f; // dealer/criminal
                 Region = Region.Uptown;
 
                 // Customer.RequestProduct();

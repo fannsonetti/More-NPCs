@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Cartel;
 using UnityEngine;
 
@@ -27,7 +27,6 @@ namespace MoreNPCs.Utils
             if (status != _lastStatus)
             {
                 _lastStatus = status;
-                MelonLogger.Msg($"[Cartel] Status changed to: {statusName} (ID {(int)status}), Hours since change: {hours}");
             }
         }
 

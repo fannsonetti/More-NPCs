@@ -1,7 +1,6 @@
 using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
-using S1API.Entities.Schedule;
 using S1API.Entities.NPCs.Northtown;
 using S1API.GameTime;
 using S1API.Map;
@@ -13,7 +12,7 @@ using UnityEngine;
 namespace MoreNPCs.NPCs
 {
     /// <summary>
-    /// Vincent Reeves - Northtown customer, FannsoNetti gang. White/blue scheme, male. Main: North Industrial, secondary: North Warehouse. Variation: Nightclub, Slop Shop.
+    /// Vincent Reeves - Northtown customer. Connected to Jian Ming.
     /// </summary>
     public sealed class VincentReeves : NPC
     {
@@ -21,78 +20,58 @@ namespace MoreNPCs.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
-            var northIndustrial = Building.Get<NorthIndustrialBuilding>();
             var northWarehouse = Building.Get<NorthWarehouse>();
-            var nightclub = Building.Get<Nightclub>();
-            var slopShop = Building.Get<SlopShop>();
             var chineseRestaurant = Building.Get<ChineseRestaurant>();
-            var northApartments = Building.Get<NorthApartments>();
+            var budsBar = Building.Get<BudsBar>();
             Vector3 spawnPos = new Vector3(-41.7551f, -2.9354f, 171.8678f);
             builder.WithIdentity("vincent_reeves", "Vincent", "Reeves")
                 .WithAppearanceDefaults(av =>
                 {
                     av.Gender = 0.0f;
-                    av.Height = 1.02f;
-                    av.Weight = 0.42f;
-                    av.SkinColor = new Color(0.52f, 0.42f, 0.35f);
+                    av.Height = 1.0f;
+                    av.Weight = 0.4f;
+                    av.SkinColor = new Color(0.55f, 0.45f, 0.38f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = new Color(1.0f, 0.8f, 0.8f);
-                    av.PupilDilation = 0.75f;
-                    av.EyebrowScale = 1.1f;
-                    av.EyebrowThickness = 1.2f;
-                    av.EyebrowRestingHeight = -0.28f;
-                    av.EyebrowRestingAngle = 2.2f;
-                    av.LeftEye = (0.28f, 0.38f);
-                    av.RightEye = (0.28f, 0.38f);
-                    av.HairColor = new Color(0.11f, 0.09f, 0.07f);
+                    av.EyeBallTint = Color.white;
+                    av.HairColor = new Color(0.12f, 0.09f, 0.07f);
                     av.HairPath = "Avatar/Hair/Spiky/Spiky";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/RolledButtonUp", new Color(0.95f, 0.95f, 0.95f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.178f, 0.217f, 0.406f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(1.0f, 1.0f, 1.0f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.178f, 0.217f, 0.406f));
+                    av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.2f, 0.2f, 0.24f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.16f, 0.16f, 0.18f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/DressShoes/DressShoes", new Color(0.15f, 0.15f, 0.15f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.28f, 0.22f, 0.16f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(minWeekly: 400f, maxWeekly: 800f)
+                    cd.WithSpending(400f, 700f)
                         .WithOrdersPerWeek(2, 4)
                         .WithPreferredOrderDay(Day.Saturday)
-                        .WithOrderTime(2200)
+                        .WithOrderTime(2000)
                         .WithStandards(CustomerStandard.Moderate)
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
-                        .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.08f)
-                        .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
-                        .WithAffinities(new[]
-                        {
-                            (DrugType.Marijuana, -0.17f), (DrugType.Methamphetamine, 0.52f), (DrugType.Shrooms, -0.41f), (DrugType.Cocaine, 0.68f)
-                        })
-                        .WithPreferredProperties(Property.Euphoric, Property.Glowie, Property.Cyclopean);
+                        .WithMutualRelationRequirement(2.5f, 4.0f)
+                        .WithCallPoliceChance(0.1f)
+                        .WithDependence(0.25f, 1f)
+                        .WithAffinities(new[] { (DrugType.Marijuana, -0.2f), (DrugType.Methamphetamine, 0.5f), (DrugType.Shrooms, -0.3f), (DrugType.Cocaine, 0.5f) })
+                        .WithPreferredProperties(Property.Euphoric, Property.Glowie, Property.Energizing);
                 })
                 .WithRelationshipDefaults(r =>
                 {
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("fannsonetti");
+                        .WithConnectionsById("jian_ming");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(slopShop, 823, 95);
-                    plan.StayInBuilding(northIndustrial, 945, 135);
-                    plan.StayInBuilding(chineseRestaurant, 1112, 89);
-                    plan.StayInBuilding(northWarehouse, 1233, 148);
-                    plan.StayInBuilding(nightclub, 1412, 112);
-                    plan.StayInBuilding(northIndustrial, 1555, 122);
-                    plan.StayInBuilding(chineseRestaurant, 1708, 89);
-                    plan.StayInBuilding(northApartments, 1828, 611);
+                    plan.StayInBuilding(northWarehouse, 800, 299);
+                    plan.StayInBuilding(chineseRestaurant, 1100, 219);
+                    plan.StayInBuilding(budsBar, 1320, 919);
                 });
         }
 
@@ -107,7 +86,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.61f;
                 Region = S1API.Map.Region.Northtown;
 
                 Schedule.Enable();

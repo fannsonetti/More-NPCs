@@ -25,7 +25,7 @@ namespace MoreNPCs.NPCs
             var petersRoom = Building.Get<PetersRoom>();
             var motelOffice = Building.Get<MotelOffice>();
             var budsBar = Building.Get<BudsBar>();
-            Vector3 spawnPos = new Vector3(-71.2847f, -2.935f, 145.6754f);
+            Vector3 spawnPos = new Vector3(-49.5478f, -4.035f, 168.5777f); // swapped with Owen
             Vector3 posA = new Vector3(-76.0633f, -1.535f, 44.6816f);
             Vector3 posB = new Vector3(-49.5478f, -4.035f, 168.5777f);
             builder.WithIdentity("wayne_kerr", "Wayne", "Kerr")
@@ -72,7 +72,7 @@ namespace MoreNPCs.NPCs
                         {
                             (DrugType.Marijuana, -0.82f), (DrugType.Methamphetamine, 0.0f), (DrugType.Shrooms, 0.73f), (DrugType.Cocaine, 0.61f)
                         })
-                        .WithPreferredProperties(Property.Calming);
+                        .WithPreferredProperties(Property.Calming, Property.ThoughtProvoking, Property.Sedating);
                 })
                 .WithRelationshipDefaults(r =>
                 {
@@ -94,7 +94,7 @@ namespace MoreNPCs.NPCs
                     plan.StayInBuilding(budsBar, 1726, 156);
                     plan.UseVendingMachine(2003);
                     plan.Add(new WalkToSpec { Destination = posB, StartTime = 2057, FaceDestinationDirection = false });
-                    plan.StayInBuilding(motelOffice, 2226, 450);
+                    plan.StayInBuilding(petersRoom, 2226, 450); // swapped with Owen - overnight at Peter's Room
                 });
         }
 
@@ -109,7 +109,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.63f;
                 Region = Region.Northtown;
 
                 // Customer.RequestProduct();

@@ -80,7 +80,7 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("melissa_wood", "mack");
+                        .WithConnectionsById("melissa_wood", "jane_lucero");
                 })
                 .WithSchedule(plan =>
                 {
@@ -109,7 +109,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.69f;
                 Region = S1API.Map.Region.Docks;
 
                 // Customer.RequestProduct();

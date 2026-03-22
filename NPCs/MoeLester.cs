@@ -23,7 +23,7 @@ namespace MoreNPCs.NPCs
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
             var petersRoom = Building.Get<PetersRoom>();
-            var northApartments = Building.Get<NorthApartments>();
+            var northIndustrial = Building.Get<NorthIndustrialBuilding>();
             var budsBar = Building.Get<BudsBar>();
             Vector3 spawnPos = new Vector3(-71.2847f, -2.935f, 145.6754f);
             Vector3 posA = new Vector3(-76.0633f, -1.535f, 44.6816f);
@@ -96,7 +96,7 @@ namespace MoreNPCs.NPCs
                     plan.StayInBuilding(budsBar, 1733, 209);
                     plan.UseVendingMachine(1997);
                     plan.Add(new WalkToSpec { Destination = posB, StartTime = 2103, FaceDestinationDirection = false });
-                    plan.StayInBuilding(northApartments, 2233, 629);
+                    plan.StayInBuilding(northIndustrial, 2233, 629); // overnight at North Industrial Building
                 });
         }
 
@@ -111,7 +111,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.67f;
                 Region = Region.Northtown;
 
                 // Customer.RequestProduct();

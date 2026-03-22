@@ -109,7 +109,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.88f; // gang-affiliated
                 Region = Region.Westville;
 
                 // Customer.RequestProduct();

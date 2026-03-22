@@ -26,7 +26,7 @@ namespace MoreNPCs.NPCs
             builder.WithIdentity("maya_webb", "Maya", "Webb")
                 .WithAppearanceDefaults(av =>
                 {
-                    av.Gender = 2.85f;
+                    av.Gender = 1.0f;
                     av.Height = 0.96f;
                     av.Weight = 0.38f;
                     av.SkinColor = new Color(0.72f, 0.59f, 0.48f);
@@ -98,7 +98,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 3f;
+                Aggressiveness = 0.61f;
                 Region = S1API.Map.Region.Docks;
 
                 Schedule.Enable();

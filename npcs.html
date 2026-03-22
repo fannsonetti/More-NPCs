@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>More-NPCs | NPC Database</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#161a21; --panel:#1b2029; --muted:#a8b0bd; --text:#e8ecf2; --border:#262b36; --chip:#202633;
+      --accent:#22c55e; --accent-2:#16a34a; --danger:#ef4444; --blue:#3b82f6; --gold:#eab308; --purple:#a78bfa; --green:#22c55e;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;background:linear-gradient(180deg,#0b0f14,#0e131a 40%,#0b0f14);color:var(--text)}
+    main{max-width:1100px;margin:24px auto;padding:16px}
+    h1{font-size:42px;margin:0 0 6px 2px;font-weight:900}
+    .lead{margin:0 0 16px 2px;color:var(--muted)}
+    .meta{margin:0 0 20px 2px;font-size:13px;color:var(--muted)}
+    .meta a{color:var(--accent)}
+    .controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:12px 0;display:grid;gap:10px}
+    .controls-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr auto auto;gap:10px;align-items:end}
+    .controls .field{display:flex;flex-direction:column;gap:6px}
+    label{font-size:12px;color:var(--muted);font-weight:800;letter-spacing:.3px;text-transform:uppercase}
+    input[type="text"], select{background:var(--chip);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:10px 12px;font-weight:600}
+    .btn{appearance:none;border:1px solid var(--border);background:var(--panel);color:var(--text);padding:10px 12px;border-radius:10px;font-weight:800;cursor:pointer}
+    .btn:hover{box-shadow:0 0 0 3px rgba(34,197,94,.2);border-color:#2b3a2f}
+    .btn.ghost{background:transparent;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:0 4px 24px rgba(0,0,0,.25)}
+    .head{display:flex;align-items:center;gap:8px}
+    .label{display:flex;align-items:center;gap:8px;font-weight:700}
+    .label.customer{color:#9dd5ac}
+    .label.dealer{color:#f59e0b}
+    .label.supervisor{color:#a78bfa}
+    .badge{margin-left:auto;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}
+    .badge.customer{background:#132417;border:1px solid #1f3a26;color:#9dd5ac}
+    .badge.dealer{background:#2d2310;border:1px solid #4a3a14;color:#f59e0b}
+    .badge.supervisor{background:#251a33;border:1px solid #3d2a4d;color:#a78bfa}
+    .row{display:flex;gap:12px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:10px;overflow:hidden;background:#2a3444;border:1px solid var(--border);display:grid;place-items:center;font-size:26px}
+    .name h3{margin:0;font-size:20px}
+    .sub{color:var(--muted);font-size:14px}
+    .desc{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.4}
+    .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+    .tile{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px}
+    .tile .t{color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+    .tile .v{font-size:18px;font-weight:800;margin-top:6px}
+    .section{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+    .section h4{margin:0 0 10px;font-size:14px;color:var(--muted)}
+    .bar2{position:relative;height:10px;background:#232a36;border-radius:999px;border:1px solid var(--border);overflow:hidden}
+    .bar2::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:#2e3644}
+    .fill{position:absolute;top:0;bottom:0;width:50%}
+    .fill.pos{left:50%;transform-origin:left center;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .fill.neg{right:50%;transform-origin:right center;background:linear-gradient(90deg,#7a1e1e,var(--danger))}
+    .kv{display:grid;grid-template-columns:96px 1fr 40px;align-items:center;gap:10px;margin:6px 0}
+    .pct{font-size:12px;color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background:var(--chip);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:9px;font-size:12px}
+    .footer{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+    .days{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+    .pill{background:var(--chip);border:1px solid var(--border);border-radius:9px;padding:6px 10px;font-size:12px;color:var(--muted)}
+    .pill.active{background:#0f2316;border-color:#1f3a26;color:var(--text)}
+    @media (max-width:640px){.controls-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>More-NPCs Database</h1>
+    <p class="lead">Documentation for all custom NPCs in the More-NPCs mod. Data is auto-generated from source.</p>
+    <p class="meta">Generated from <code>NPCs/*.cs</code>. To refresh: <code>python scripts/generate_npc_docs.py</code></p>
+
+    <section class="controls">
+      <div class="controls-grid">
+        <div class="field"><label for="q">Search</label><input id="q" type="text" placeholder="Search by name, region…"></div>
+        <div class="field"><label for="type">Type</label>
+          <select id="type">
+            <option value="all">All Types</option>
+            <option value="customer">Customer</option>
+            <option value="dealer">Dealer</option>
+            <option value="supervisor">Supervisor</option>
+          </select>
+        </div>
+        <div class="field"><label for="region">Region</label>
+          <select id="region">
+            <option value="all">All Regions</option>
+            <option>Northtown</option><option>Westville</option><option>Downtown</option><option>Docks</option><option>Suburbia</option><option>Uptown</option>
+          </select>
+        </div>
+        <button class="btn" id="resetBtn" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="grid" id="cards" aria-label="NPCs"></section>
+  </main>
+
+  <script src="npc_data.js"></script>
+  <script>
+    const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+    const $ = (sel,all=false)=> (all?document.querySelectorAll(sel):document.querySelector(sel));
+    const money = n=> `$${Number(n).toLocaleString()}`;
+
+    function formatTime(t){
+      if(!t) return "—";
+      const [H,M] = t.split(":").map(Number);
+      const h = ((H+11)%12)+1, ap = H>=12?"PM":"AM";
+      return `${h}:${String(M||0).padStart(2,'0')} ${ap}`;
+    }
+
+    function affRow(label, val){
+      const pct = Math.min(100,Math.max(0,Math.abs(val)))/100;
+      const side = val>=0?'pos':'neg';
+      const short = label.replace("Methamphetamine","Meth").replace("Cocaine","Coke").replace("Marijuana","Weed").replace("Shrooms","Shroom");
+      return `<div class="kv"><span class="sub">${short}</span><div class="bar2"><span class="fill ${side}" style="transform:scaleX(${pct})"></span></div><span class="pct">${val>0?val+"%":"−"+Math.abs(val)+"%"}</span></div>`;
+    }
+
+    function renderCard(npc){
+      const card = document.createElement("section");
+      card.className = "card";
+      const type = npc.type || "customer";
+      const typeLabel = type.charAt(0).toUpperCase() + type.slice(1);
+
+      let inner = `
+        <div class="head"><div class="label ${type}">${type==="dealer"?"💰":type==="supervisor"?"👔":"👤"} ${typeLabel}</div><span class="badge ${type}">${npc.region}</span></div>
+        <div class="row" style="margin-top:8px">
+          <div class="avatar">${npc.avatar||"🧑"}</div>
+          <div style="flex:1">
+            <div class="name"><h3>${npc.name}</h3></div>
+            <div class="sub">${npc.id}</div>
+          </div>
+        </div>
+        ${npc.description ? `<div class="desc">${npc.description}</div>` : ""}
+      `;
+
+      if(type==="dealer"){
+        inner += `<div class="tiles"><div class="tile"><div class="t">Cut</div><div class="v">${npc.cut!=null?npc.cut+"%":"—"}</div></div><div class="tile"><div class="t">Signing Fee</div><div class="v">${npc.signingFee!=null?money(npc.signingFee):"—"}</div></div></div>`;
+        if(npc.home) inner += `<div class="footer"><span>🏠 ${npc.home}</span></div>`;
+      }
+      else if(type==="supervisor"){
+        inner += `<div class="footer"><span>Assign dealers & collect cash via dialogue</span></div>`;
+      }
+      else {
+        const sub = npc.spending ? `${money(npc.spending[0])} – ${money(npc.spending[1])} weekly • ${npc.region}` : npc.region;
+        inner += `<div class="sub" style="margin-top:4px">${sub}</div>`;
+        if(npc.spending){
+          inner += `<div class="tiles"><div class="tile"><div class="t">Orders/Week</div><div class="v">${npc.orders?npc.orders[0]+" – "+npc.orders[1]:"—"}</div></div><div class="tile"><div class="t">Preferred Time</div><div class="v">${formatTime(npc.time)}</div></div></div>`;
+          if(npc.day) inner += `<div class="days">${DAYS.map(d=>`<span class="pill ${d===npc.day?"active":""}">${d}</span>`).join("")}</div>`;
+          if(npc.standardsDisplay) inner += `<div class="section"><h4>Standards</h4><span class="chip">${npc.standardsDisplay}</span></div>`;
+          if(npc.affinities && Object.keys(npc.affinities).length){
+            inner += `<div class="section"><h4>Drug Affinities</h4>${Object.entries(npc.affinities).map(([k,v])=>affRow(k,v)).join("")}</div>`;
+          }
+          if(npc.properties && npc.properties.length){
+            inner += `<div class="section"><h4>Preferred Properties</h4><div class="chips">${npc.properties.map(p=>`<span class="chip">${p}</span>`).join("")}</div></div>`;
+          }
+          else if(npc.noProps){
+            inner += `<div class="section"><h4>Preferred Properties</h4><div class="sub">No preferred properties</div></div>`;
+          }
+          inner += `<div class="footer"><span>🚔 ${npc.policeRisk||0}% Police Risk</span><span>🔓 ${(npc.unlocked||[]).join(", ")||"—"}</span></div>`;
+        }
+      }
+
+      card.innerHTML = inner;
+      return card;
+    }
+
+    function apply(){
+      const q = $("#q").value.trim().toLowerCase();
+      const typeFilter = $("#type").value;
+      const region = $("#region").value;
+
+      let out = NPC_DATA.filter(n=>{
+        if(q && !n.name.toLowerCase().includes(q) && !n.region.toLowerCase().includes(q) && !(n.id||"").toLowerCase().includes(q)) return false;
+        if(typeFilter!=="all" && n.type!==typeFilter) return false;
+        if(region!=="all" && n.region!==region) return false;
+        return true;
+      });
+      $("#cards").innerHTML = "";
+      out.forEach(n=> $("#cards").appendChild(renderCard(n)));
+    }
+
+    $("#resetBtn").addEventListener("click", ()=>{
+      $("#q").value=""; $("#type").value="all"; $("#region").value="all";
+      apply();
+    });
+    $("#q").addEventListener("input", apply);
+    $("#type").addEventListener("change", apply);
+    $("#region").addEventListener("change", apply);
+
+    apply();
+  </script>
+</body>
+</html>

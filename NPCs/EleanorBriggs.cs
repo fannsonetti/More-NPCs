@@ -74,7 +74,7 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.5f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("randy_caulfield", "milton_delaney");
+                        .WithConnectionsById("randy_caulfield");
                 })
                 .WithSchedule(plan =>
                 {
@@ -101,7 +101,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.43f; // professional
                 Region = S1API.Map.Region.Downtown;
 
                 // Customer.RequestProduct();

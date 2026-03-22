@@ -111,7 +111,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.60f;
                 Region = Region.Docks;
 
                 // Customer.RequestProduct();

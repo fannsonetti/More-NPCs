@@ -117,7 +117,7 @@ namespace MoreNPCs.NPCs
             {
                 base.OnCreated();
                 Appearance.Build();
-                Aggressiveness = 3f;
+                Aggressiveness = 0.78f; // officer
                 Region = S1API.Map.Region.Suburbia;
 
                 // Customer.RequestProduct();

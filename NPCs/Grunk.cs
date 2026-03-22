@@ -46,7 +46,7 @@ namespace MoreNPCs.NPCs
                     av.HairPath = "";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color(0.62f, 0.30f, 0.60f));
+                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color(0.957f, 0.474f, 0.938f));
                     av.WithFaceLayer("Avatar/Layers/Face/Eyeshadow", new Color(0f, 0f, 0f, 1f));
                     av.WithBodyLayer("Avatar/Layers/Top/Nipples", new Color(0.5402f, 0.5124f, 0.5124f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/MaleUnderwear", new Color(0.3884f, 0.37f, 0.313f));
@@ -69,7 +69,7 @@ namespace MoreNPCs.NPCs
                         {
                             (DrugType.Marijuana, -0.68f), (DrugType.Methamphetamine, 0.86f), (DrugType.Shrooms, -0.02f), (DrugType.Cocaine, -0.85f)
                         })
-                        .WithPreferredProperties(Property.Munchies, Property.Paranoia);
+                        .WithPreferredProperties(Property.Munchies, Property.Paranoia, Property.Toxic);
                 })
                 .WithRelationshipDefaults(r =>
                 {
@@ -105,7 +105,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 8f;
+                Aggressiveness = 0.87f; // rough character
                 Region = Region.Docks;
 
                 Schedule.Enable();

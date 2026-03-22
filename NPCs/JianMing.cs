@@ -1,7 +1,6 @@
 using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
-using S1API.Entities.Schedule;
 using S1API.Entities.NPCs.Northtown;
 using S1API.GameTime;
 using S1API.Map;
@@ -24,7 +23,6 @@ namespace MoreNPCs.NPCs
             var northIndustrial = Building.Get<NorthIndustrialBuilding>();
             var northWarehouse = Building.Get<NorthWarehouse>();
             var chineseRestaurant = Building.Get<ChineseRestaurant>();
-            var northApartments = Building.Get<NorthApartments>();
             Vector3 spawnPos = new Vector3(-37.1751f, -3.035f, 175.8911f);
             builder.WithIdentity("jian_ming", "Jian", "Ming")
                 .WithAppearanceDefaults(av =>
@@ -46,11 +44,11 @@ namespace MoreNPCs.NPCs
                     av.HairColor = new Color(0.24f, 0.21f, 0.18f);
                     av.HairPath = "Avatar/Hair/Spiky/Spiky";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.95f, 0.95f, 0.95f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.178f, 0.217f, 0.406f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(1.0f, 1.0f, 1.0f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.20f, 0.15f, 0.10f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.178f, 0.217f, 0.406f));
+                    av.WithBodyLayer("Avatar/Layers/Top/RolledButtonUp", new Color(0.92f, 0.88f, 0.82f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.18f, 0.16f, 0.14f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sandals/Sandals", new Color(0.32f, 0.26f, 0.20f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.28f, 0.22f, 0.16f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Neck/GoldChain/GoldChain", new Color(0.85f, 0.72f, 0.35f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
@@ -77,18 +75,17 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("ludwig_meyer", "mrs_ming", "mr_ming", "fannsonetti");
+                        .WithConnectionsById("ludwig_meyer", "ming", "mr_ming", "fannsonetti");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northIndustrial, 720, 178);
-                    plan.StayInBuilding(chineseRestaurant, 933, 89);
-                    plan.StayInBuilding(northWarehouse, 1055, 145);
-                    plan.UseVendingMachine(1245);
-                    plan.StayInBuilding(northIndustrial, 1305, 118);
-                    plan.StayInBuilding(chineseRestaurant, 1443, 89);
-                    plan.StayInBuilding(northApartments, 1603, 836);
+                    plan.StayInBuilding(northIndustrial, 720, 232);
+                    plan.StayInBuilding(chineseRestaurant, 953, 91);
+                    plan.UseVendingMachine(1045);
+                    plan.StayInBuilding(northIndustrial, 1105, 217);
+                    plan.StayInBuilding(chineseRestaurant, 1323, 109);
+                    plan.StayInBuilding(chineseRestaurant, 1433, 806); // overnight at Chinese Restaurant
                 });
         }
 
@@ -103,7 +100,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 4f;
+                Aggressiveness = 0.58f;
                 Region = S1API.Map.Region.Northtown;
 
                 Schedule.Enable();

@@ -45,11 +45,13 @@ namespace MoreNPCs.NPCs
                     av.HairColor = new Color(0.12f, 0.09f, 0.06f);
                     av.HairPath = "Avatar/Hair/Spiky/Spiky";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/FlannelButtonUp", new Color(0.72f, 0.62f, 0.48f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.25f, 0.30f, 0.42f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.65f, 0.45f, 0.28f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.35f, 0.25f, 0.18f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Head/BucketHat/BucketHat", new Color(0.42f, 0.48f, 0.36f));
+                    var vestColor = new Color(0.32f, 0.38f, 0.24f); // muted olive green (vest)
+                    av.WithBodyLayer("Avatar/Layers/Top/FlannelButtonUp", new Color(0.44f, 0.26f, 0.24f)); // muted red
+                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.22f, 0.26f, 0.35f)); // muted blue-gray
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", vestColor);
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.48f, 0.38f, 0.26f)); // muted tan
+                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.28f, 0.22f, 0.16f)); // muted brown
+                    av.WithAccessoryLayer("Avatar/Accessories/Head/BucketHat/BucketHat", vestColor);
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
@@ -105,7 +107,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 4f;
+                Aggressiveness = 0.59f;
                 Region = S1API.Map.Region.Docks;
 
                 Schedule.Enable();

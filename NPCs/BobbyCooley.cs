@@ -81,7 +81,7 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(3.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("meg_cooley");
+                        .WithConnectionsById("meg_cooley", "marcus_sherman");
                 })
                 .WithSchedule(plan =>
                 {
@@ -112,7 +112,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.32f; // kid, friendly
                 Region = Region.Westville;
 
                 // Customer.RequestProduct();

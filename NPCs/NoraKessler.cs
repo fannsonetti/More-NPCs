@@ -30,7 +30,7 @@ namespace MoreNPCs.NPCs
             builder.WithIdentity("nora_kessler", "Nora", "Kessler")
                 .WithAppearanceDefaults(av =>
                 {
-                    av.Gender = 2.85f;
+                    av.Gender = 1.0f;
                     av.Height = 0.98f;
                     av.Weight = 0.32f;
                     av.SkinColor = new Color(0.615f, 0.498f, 0.392f);
@@ -79,16 +79,16 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("trent_sherman","victor_hughes");
+                        .WithConnectionsById("trent_sherman");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(arcade, 1227, 95);
-                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 1403, FaceDestinationDirection = false });
-                    plan.UseATM(1542);
-                    plan.StayInBuilding(sauerkrautSupreme, 1626, 111);
-                    plan.UseVendingMachine(1818);
+                    plan.StayInBuilding(sauerkrautSupreme, 900, 104);
+                    plan.StayInBuilding(arcade, 1055, 114);
+                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 1220, FaceDestinationDirection = false });
+                    plan.UseATM(1400);
+                    plan.UseVendingMachine(1545);
                     plan.StayInBuilding(shermanHouse, 1928, 98);
                     plan.Add(new WalkToSpec { Destination = busStop, StartTime = 2057, FaceDestinationDirection = false });
                     plan.StayInBuilding(shermanHouse, 2226, 840);
@@ -106,7 +106,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.91f; // gang-affiliated
                 Region = Region.Westville;
 
                 // Customer.RequestProduct();

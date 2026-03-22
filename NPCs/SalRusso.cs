@@ -44,7 +44,7 @@ namespace MoreNPCs.NPCs
                     av.RightEye = (0.24f, 0.31f);
                     av.HairColor = new Color(0.19f, 0.14f, 0.10f);
                     av.HairPath = "Avatar/Hair/Shoulderlength/ShoulderLength";
-                    av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
                     av.WithBodyLayer("Avatar/Layers/Top/FlannelButtonUp", new Color(0.22f, 0.28f, 0.38f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.24f, 0.22f, 0.20f));
@@ -76,7 +76,7 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("marco_boon", "sherman_giles");
+                        .WithConnectionsById("marco_baron", "sherman_giles");
                 })
                 .WithSchedule(plan =>
                 {
@@ -104,7 +104,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 5f;
+                Aggressiveness = 0.71f;
                 Region = S1API.Map.Region.Docks;
 
                 Schedule.Enable();

@@ -39,8 +39,8 @@ namespace MoreNPCs.NPCs
                     av.RightEye = (0.32f, 0.38f);
                     av.HairColor = new Color(0.24f, 0.21f, 0.18f); // Lightened dark brown
                     av.HairPath = "Avatar/Hair/Receding/Receding";
-                    av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color(0.62f, 0.30f, 0.60f)); // ~20% less vibrant
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color(0.957f, 0.474f, 0.938f));
                     av.WithBodyLayer("Avatar/Layers/Top/ButtonUp", new Color(0.56f, 0.12f, 0.10f)); // Red - lucky color (~20% less vibrant)
                     av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.2f, 0.2f, 0.2f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/DressShoes/DressShoes", new Color(0.15f, 0.15f, 0.15f));
@@ -65,7 +65,7 @@ namespace MoreNPCs.NPCs
                         {
                             (DrugType.Marijuana, 0.3f), (DrugType.Methamphetamine, 0.2f), (DrugType.Shrooms, 0.26f), (DrugType.Cocaine, 0.1f)
                         })
-                        .WithPreferredProperties(Property.Calming, Property.Refreshing);
+                        .WithPreferredProperties(Property.Calming, Property.Refreshing, Property.ThoughtProvoking);
                 })
                 .WithRelationshipDefaults(r =>
                 {
@@ -92,7 +92,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 3f;
+                Aggressiveness = 0.49f;
                 Region = S1API.Map.Region.Northtown;
 
                 Schedule.Enable();

@@ -63,7 +63,7 @@ namespace MoreNPCs.NPCs
                 .WithDealerDefaults(dd =>
                 {
                     dd.WithSigningFee(7500f) // Cost to recruit this dealer
-                        .WithCut(0.25f) // Dealer keeps 25% of earnings
+                        .WithCut(0.20f) // Dealer keeps 20% of earnings
                         .WithDealerType(DealerType.PlayerDealer) // Works for the player
                         .WithHome(policeStation) // Home building name
                         .AllowInsufficientQuality(false) // Won't sell below-quality items
@@ -80,7 +80,7 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(policeStation, 705, 1439); // Same as FannsoNetti but Police Station (1439 = 1 min before next at 705)
+                    plan.StayInBuilding(policeStation, 0, 1439); // Stay 24/7 except for deals
                 });
         }
 
@@ -97,7 +97,7 @@ namespace MoreNPCs.NPCs
 
                 WireDealerEvents();
 
-                Aggressiveness = 2f;
+                Aggressiveness = 0.81f; // sergeant
                 Region = Region.Suburbia;
 
                 Schedule.Enable();
@@ -158,20 +158,10 @@ namespace MoreNPCs.NPCs
             }
         }
 
-        private void HandleDealerRecruited()
-        {
-            MelonLogger.Msg($"Dealer {ID} has been recruited!");
-            SendTextMessage("I'm ready to work for you!");
-        }
+        private void HandleDealerRecruited() { /* Recruitment done in person, no message needed */ }
 
-        private void HandleContractAccepted()
-        {
-            MelonLogger.Msg($"Dealer {ID} accepted a new contract!");
-        }
+        private void HandleContractAccepted() { }
 
-        private void HandleDealerRecommended()
-        {
-            MelonLogger.Msg($"Dealer {ID} has been recommended!");
-        }
+        private void HandleDealerRecommended() { }
     }
 }

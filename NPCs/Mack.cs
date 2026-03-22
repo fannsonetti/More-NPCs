@@ -78,7 +78,7 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("cranky_frank", "diesel");
+                        .WithConnectionsById("melissa_wood", "diesel");
                 })
                 .WithSchedule(plan =>
                 {
@@ -105,7 +105,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 15f;
+                Aggressiveness = 0.96f; // criminal/undercover
                 Region = S1API.Map.Region.Docks;
 
                 // Customer.RequestProduct();

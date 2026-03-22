@@ -22,12 +22,11 @@ namespace MoreNPCs.NPCs
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
             var westGasMart = Building.Get<WestGasMart>();
-            var room3 = Building.Get<Room3>();
             Vector3 managerSpot = new Vector3(-117.6071f, -2.835f, 58.6968f);
             builder.WithIdentity("rhonda_vex", "Rhonda", "Vex")
                 .WithAppearanceDefaults(av =>
                 {
-                    av.Gender = 2.85f;
+                    av.Gender = 1.0f;
                     av.Height = 1.02f;
                     av.Weight = 0.38f;
                     av.SkinColor = new Color(0.68f, 0.55f, 0.45f);
@@ -87,7 +86,7 @@ namespace MoreNPCs.NPCs
                     plan.UseVendingMachine(1108); // afternoon break
                     plan.StayInBuilding(westGasMart, 1112, 120); // ~2h (total ~8h at GasMart)
                     plan.Add(new WalkToSpec { Destination = managerSpot, StartTime = 1232, FaceDestinationDirection = false });
-                    plan.StayInBuilding(room3, 1858, 764); // Room 3 overnight until next shift
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 4", StartTime = 1858, DurationMinutes = 764 }); // Room 4 overnight until next shift
                 });
         }
 
@@ -102,7 +101,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 4f;
+                Aggressiveness = 0.48f;
                 Region = Region.Westville;
 
                 Schedule.Enable();

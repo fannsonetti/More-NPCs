@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customers</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#161a21; --panel:#1b2029; --muted:#a8b0bd; --text:#e8ecf2; --border:#262b36; --chip:#202633;
+      --accent:#22c55e; --accent-2:#16a34a; --danger:#ef4444; --blue:#3b82f6; --gold:#eab308; --purple:#a78bfa; --green:#22c55e; 
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";background:linear-gradient(180deg,#0b0f14,#0e131a 40%,#0b0f14);color:var(--text)}
+    main{max-width:1100px;margin:24px auto;padding:16px}
+    h1{font-size:42px;margin:0 0 6px 2px;font-weight:900}
+    .lead{margin:0 0 16px 2px;color:var(--muted)}
+
+    /* Controls */
+    .controls{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin:12px 0;display:grid;gap:10px}
+    .controls-grid{display:grid;grid-template-columns:1.5fr repeat(2,1fr) auto auto; gap:10px; align-items: end;}
+    .controls .field{display:flex;flex-direction:column;gap:6px}
+    label{font-size:12px;color:var(--muted);font-weight:800;letter-spacing:.3px;text-transform:uppercase}
+    input[type="text"], select{background:var(--chip);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:10px 12px;font-weight:600}
+    .btn{appearance:none;border:1px solid var(--border);background:var(--panel);color:var(--text);padding:10px 12px;border-radius:10px;font-weight:800;cursor:pointer}
+    .btn:hover{box-shadow:0 0 0 3px rgba(34,197,94,.2);border-color:#2b3a2f}
+    .btn.ghost{background:transparent;color:var(--muted)}
+
+    .controls-adv{display:none;grid-template-columns:1fr 1fr 2fr;gap:10px;align-items:end;margin-top:6px}
+    .dual{display:grid;gap:6px}
+    .range-row{display:grid;grid-template-columns:1fr 1fr; gap:6px}
+    .range-row input[type=range]{width:100%}
+    .range-label{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+    .range-summary{grid-column:1/-1;color:var(--muted);font-size:12px}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+
+    /* Card */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:0 4px 24px rgba(0,0,0,.25)}
+    .head{display:flex;align-items:center;gap:8px}
+    .label{display:flex;align-items:center;gap:8px;font-weight:700;color:#9dd5ac}
+    .badge{margin-left:auto;background:#132417;border:1px solid #1f3a26;color:#9dd5ac;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}
+    .row{display:flex;gap:12px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:10px;overflow:hidden;background:#2a3444;border:1px solid var(--border);display:grid;place-items:center;font-size:26px}
+    .name{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .name h3{margin:0;font-size:20px}
+    .star{font-size:18px}
+    .star.red{color:var(--danger)}
+    .star.green{color:var(--green)}
+    .star.blue{color:var(--blue)}
+    .star.purple{color:var(--purple)}
+    .star.gold{color:var(--gold)}
+    .sub{color:var(--muted)}
+    .tiles{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px;margin-top:10px}
+    .tile{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px}
+    .tile .t{color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+    .tile .v{font-size:18px;font-weight:800;margin-top:6px}
+    .days{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+    .pill{background:var(--chip);border:1px solid var(--border);border-radius:9px;padding:6px 10px;font-size:12px;color:var(--muted)}
+    .pill.active{background:#0f2316;border-color:#1f3a26;color:var(--text);box-shadow:inset 0 0 0 1px #214b2a}
+    .section{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+    .section h4{margin:0 0 10px;font-size:14px;color:var(--muted)}
+    .aff{display:grid;gap:8px}
+    .kv{display:grid;grid-template-columns:96px 1fr 40px;align-items:center;gap:10px}
+    /* BIPOLAR BAR (centered) */
+    .bar2{position:relative;height:10px;background:#232a36;border-radius:999px;border:1px solid var(--border);overflow:hidden}
+    .bar2::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:#2e3644}
+    .fill{position:absolute;top:0;bottom:0;width:50%}
+    .fill.pos{left:50%;transform-origin:left center;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .fill.neg{right:50%;transform-origin:right center;background:linear-gradient(90deg,#7a1e1e,var(--danger))}
+    .pct{font-size:12px;color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background:var(--chip);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:9px;font-size:12px}
+    .no-props{font-style:italic;color:var(--muted)}
+    .footer{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+
+    @media (max-width:1000px){.controls-grid{grid-template-columns:1fr 1fr auto auto}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.controls-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Customers Database</h1>
+    <p class="lead">Search and filter customers by name, standards, region, properties and spending.</p>
+
+    <!-- Controls -->
+    <section class="controls">
+      <div class="controls-grid">
+        <div class="field"><label for="q">Search</label><input id="q" type="text" placeholder="Search by name…"></div>
+        <div class="field"><label for="region">Region</label>
+          <select id="region">
+            <option value="all">All Regions</option>
+            <option>Northtown</option><option>Westville</option><option>Downtown</option><option>Docks</option><option>Suburbia</option><option>Uptown</option>
+          </select>
+        </div>
+        <div class="field"><label for="standards">Standards</label>
+          <select id="standards">
+            <option value="all">All Standards</option>
+            <option value="Trash">Trash</option>
+            <option value="Low">Low</option>
+            <option value="Moderate">Moderate</option>
+            <option value="High">High</option>
+            <option value="Extreme">Extreme</option>
+          </select>
+        </div>
+        <button class="btn" id="moreBtn" type="button">More Filters</button>
+        <button class="btn ghost" id="resetBtn" type="button">Reset</button>
+      </div>
+
+      <div class="controls-adv" id="adv">
+        <div class="field"><label for="property">Preferred Property</label>
+          <select id="property">
+            <option value="any">Any</option>
+            <option>Anti-Gravity</option><optioCalorie-Denseption><option>Balding</option><option>Bright-Eyed</option>
+            <option>Calming</option><option>Calorie-Dense</option><option>Cyclopean</option><option>DisorientAnti-Gravity
+            <option>Electrifying</option><option>Energizing</option><option>Euphoric</option><option>Explosive</option>
+            <option>Focused</option><option>Foggy</option><option>Gingeritis</option><option>Glowing</option>
+            <option>Jennerising</option><option>Laxative</option><option>Lethal</option><option>Long Faced</option>
+            <option>Munchies</option><option>Paranoia</option><option>Refreshing</option><option>Schizophrenic</option>
+            <option>Sedating</option><option>Seizure-Inducing</option><option>Shrinking</option><option>Slippery</option>
+            <option>Smelly</option><option>Sneaky</option><option>Spicy</option><option>Thought-Provoking</option>
+            <option>Toxic</option><option>Tropic Thunder</option><option>Zombifying</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sortDay">Preferred Day (sort)</label>
+          <select id="sortDay">
+            <option value="none">None</option>
+            <option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option>
+          </select>
+        </div>
+        <div class="field dual">
+          <label>Spending Range (weekly)</label>
+          <div class="range-row">
+            <input id="minSpend" type="range" min="0" max="10000" step="50" value="0" />
+            <input id="maxSpend" type="range" min="0" max="10000" step="50" value="10000" />
+          </div>
+          <div class="range-label"><span id="minLbl">$0</span><span id="maxLbl">$2,000</span></div>
+          <div class="range-summary" id="rangeSummary">Showing $0 – $2,000</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="grid" id="cards" aria-label="Customers"></section>
+  </main>
+
+  <script>
+    const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]; // for sorting
+
+    const CUSTOMERS = [
+      {
+        name:"Jason Reed", star:"red", standards:"Trash", region:"Northtown",
+        spending:[400,900], orders:[5,7], time:"20:20", day:"Mon",
+        affinities:{Marijuana:86, Meth:25, Cocaine:-67},
+        properties:["Long Faced","Calorie-Dense","Shrinking"],
+        policeRisk:33, dependence:1,
+        unlocked:["Kyle Cooley","Austin Steiner"], avatar:"🧑"
+      },
+      {
+        name:"Joseph Wilkinson", star:"blue", standards:"Moderate", region:"Downtown",
+        spending:[500,1200], orders:[3,5], time:"11:00", day:"Sat",
+        affinities:{Marijuana:-6, Meth:58, Cocaine:96},
+        properties:["Zombifying","Spicy","Sedating"],
+        policeRisk:15, dependence:1,
+        unlocked:["Elizabeth Homley","Kevin Oakley"], avatar:"🧑"
+      },
+      {
+        name:"Officer Marcus", star:"purple", standards:"High", region:"Suburbia",
+        spending:[800,1200], orders:[1,5], time:"23:30", day:"Sun",
+        affinities:{Marijuana:52, Meth:-84, Cocaine:-9},
+        properties:["Athletic","Anti-Gravity","Sneaky"],
+        policeRisk:90, dependence:1,
+        unlocked:["Alison Knight","Carl Bundy","Jack Knight"], avatar:"🧑‍✈️"
+      },
+      {
+        name:"Bobby Cooley", star:"red", standards:"Trash", region:"Westville",
+        spending:[50,200], orders:[5,7], time:"13:30", day:"Wed",
+        affinities:{Marijuana:100, Meth:100, Cocaine:100},
+        properties:[], noProps:true,
+        policeRisk:5, dependence:1,
+        unlocked:["Meg Cooley"], avatar:"🧑"
+      },
+      {
+        name:"Henry Mitchell", star:"green", standards:"Low", region:"Docks",
+        spending:[500,900], orders:[3,5], time:"03:00", day:"Thu",
+        affinities:{Marijuana:15, Meth:-52, Cocaine:64},
+        properties:["Calming","Thought-Provoking","Tropic Thunder"],
+        policeRisk:33, dependence:1,
+        unlocked:["Jane Lucero","Billy Kramer"], avatar:"🧑"
+      },
+      {
+        name:"Edward Boog", star:"gold", standards:"Extreme", region:"Uptown",
+        spending:[2000,8000], orders:[1,2], time:"21:00", day:"Tue",
+        affinities:{Marijuana:-77, Meth:21, Cocaine:74},
+        properties:["Lethal","Schizophrenic","Explosive"],
+        policeRisk:100, dependence:1,
+        unlocked:["Tobias Wentworth","Michael Boog"], avatar:"🧑"
+      },
+      {
+        name:"Eleanor Briggs", star:"blue", standards:"Moderate", region:"Downtown",
+        spending:[400,800], orders:[1,5], time:"08:00", day:"Sat",
+        affinities:{Marijuana:53, Meth:92, Cocaine:-24},
+        properties:["Jennerising","Gingeritis","TropicThunder"],
+        policeRisk:35, dependence:1,
+        unlocked:["Tobias Wentworth","Michael Boog"], avatar:"🧑"
+      },
+      {
+        name:"Milton Delaney", star:"blue", standards:"Moderate", region:"Downtown",
+        spending:[400,800], orders:[1,5], time:"11:00", day:"Fri",
+        affinities:{Marijuana:64, Meth:86, Cocaine:-22},
+        properties:["Munchies","Refreshing","Zombifying"],
+        policeRisk:50, dependence:1,
+        unlocked:["Tobias Wentworth","Michael Boog"], avatar:"🧑"
+      },
+      {
+        name:"Moe Lester", star:"green", standards:"Low", region:"Northtown",
+        spending:[200,800], orders:[3,5], time:"14:00", day:"Wed",
+        affinities:{Marijuana:52, Meth:-23, Cocaine:31},
+        properties:["Jennerising","Refreshing","Glowing"],
+        policeRisk:25, dependence:1,
+        unlocked:[], avatar:"🧑"
+      },
+      {
+        name:"Skyler Wilkinson", star:"purple", standards:"High", region:"Northtown",
+        spending:[500,1200], orders:[1,3], time:"07:00", day:"Fri",
+        affinities:{Marijuana:39, Meth:21, Cocaine:77},
+        properties:["Schizophrenic","Glowing","Toxic"],
+        policeRisk:15, dependence:1,
+        unlocked:["Alison Knight","Officer Marcus"], avatar:"👩"
+      },
+      {
+        name:"Corkskrew Lenton", star:"green", standards:"Low", region:"Westville",
+        spending:[200,500], orders:[1,2], time:"23:00", day:"Thu",
+        affinities:{Marijuana:52, Meth:73, Cocaine:14},
+        properties:["Anti-Gravity","Spicy","Calorie-Dense"],
+        policeRisk:15, dependence:1,
+        unlocked:["Trent Sherman","Keith Wagner"], avatar:"🧑"
+      },
+      {
+        name:"Diesel", star:"blue", standards:"Moderate", region:"Downtown",
+        spending:[400,800], orders:[1,4], time:"00:30", day:"Mon",
+        affinities:{Marijuana:-12, Meth:78, Cocaine:41},
+        properties:["Energizing","Paranoia","Explosive"],
+        policeRisk:10, dependence:1,
+        unlocked:["Melissa Wood","Mack"], avatar:"🧑"
+      },
+      {
+        name:"Mack", star:"green", standards:"Low", region:"Downtown",
+        spending:[600,1000], orders:[1,5], time:"00:30", day:"Mon",
+        affinities:{Marijuana:32, Meth:-45, Cocaine:67},
+        properties:["Focused","Sneaky","Euphoric"],
+        policeRisk:10, dependence:1,
+        unlocked:["Cranky Frank","Diesel"], avatar:"🧑"
+      },
+      {
+        name:"Manhole Mike", star:"red", standards:"Very Low", region:"Downtown",
+        spending:[300,600], orders:[1,3], time:"22:00", day:"Mon",
+        affinities:{Marijuana:-73, Meth:92, Cocaine:-26},
+        properties:["Paranoia","Laxative","Munchies"],
+        policeRisk:0, dependence:1,
+        unlocked:["Cranky Frank","Anna Chesterfield"], avatar:"🧑"
+      }
+
+    ];
+
+    const starClass = s=>({Trash:"red", Low:"green", Moderate:"blue", High:"purple", Extreme:"gold"}[s]||"blue");
+
+    const $ = (sel,all=false)=> all?document.querySelectorAll(sel):document.querySelector(sel);
+
+    function money(n){return `$${n.toLocaleString()}`}
+
+    function renderCards(list){
+      const wrap = $("#cards");
+      wrap.innerHTML = "";
+      list.forEach(c=>{
+        const card = document.createElement("section");
+        card.className = "card";
+        const subtitle = `${money(c.spending[0])} – ${money(c.spending[1])} weekly • ${c.region}`;
+        card.innerHTML = `
+          <div class="head"><div class="label">👤 Customer</div><span class="badge">${c.standards} Standards</span></div>
+          <div class="row" style="margin-top:8px">
+            <div class="avatar">${c.avatar}</div>
+            <div>
+              <div class="name"><h3>${c.name}</h3><span class="star ${starClass(c.standards)}">★</span></div>
+              <div class="sub">${subtitle}</div>
+            </div>
+          </div>
+          <div class="tiles">
+            <div class="tile"><div class="t">Orders per Week</div><div class="v">${c.orders[0]} – ${c.orders[1]}</div></div>
+            <div class="tile"><div class="t">Preferred Time</div><div class="v">${formatTime(c.time)}</div></div>
+          </div>
+          <div class="days">${DAYS.map(d=>`<span class="pill ${d===c.day?"active":""}">${d}</span>`).join("")}</div>
+          <div class="section"><h4>Drug Affinities</h4>
+            ${Object.entries(c.affinities).map(([k,v])=>bipolarRow(k,v)).join("")}
+          </div>
+          <div class="section"><h4>Preferred Properties</h4>
+            ${c.noProps? `<div class="no-props">No preferred properties</div>` : `<div class="chips">${c.properties.map(p=>`<span class=\"chip\">${p}</span>`).join("")}</div>`}
+          </div>
+          <div class="footer"><span>🚔 ${c.policeRisk}% Police Risk</span><span>🧷 ${c.dependence}× Dependence</span><span>🔓 Unlocked from: ${c.unlocked.join(", ")}</span></div>
+        `;
+        wrap.appendChild(card);
+      });
+    }
+
+    function bipolarRow(label, val){
+      const pct = Math.min(100, Math.max(0, Math.abs(val)))/100; // 0..1
+      const side = val>=0? 'pos':'neg';
+      return `<div class="kv"><span class="sub">${label}</span>
+        <div class="bar2"><span class="fill ${side}" style="transform:scaleX(${pct})"></span></div>
+        <span class="pct">${val>0?val+"%":"−"+Math.abs(val)+"%"}</span></div>`;
+    }
+
+    function formatTime(t){
+      const [H,M] = t.split(":").map(Number);
+      const h = ((H+11)%12)+1; const ap = H>=12?"PM":"AM"; return `${h}:${M.toString().padStart(2,'0')} ${ap}`;
+    }
+
+    // Filtering / Sorting
+    function apply(){
+      const q = $("#q").value.trim().toLowerCase();
+      const region = $("#region").value;
+      const std = $("#standards").value;
+      const prop = $("#property").value;
+      let min = Number($("#minSpend").value); let max = Number($("#maxSpend").value);
+
+      let out = CUSTOMERS.filter(c=>{
+        if(q && !c.name.toLowerCase().includes(q)) return false;
+        if(region!=="all" && c.region!==region) return false;
+        if(std!=="all" && c.standards!==std) return false;
+        if(prop && prop!=="any" && !c.properties.includes(prop)) return false;
+        // containment: c.spending must be within [min,max]
+        const [lo,hi]=c.spending; if(lo < min || hi > max) return false;
+        return true;
+      });
+
+      const sortDay = $("#sortDay").value;
+      if(sortDay!=="none"){
+        const idx = d=>DAYS.indexOf(d);
+        out = out.sort((a,b)=> idx(a.day)-idx(b.day));
+        out = out.sort((a,b)=> (b.day===sortDay)-(a.day===sortDay));
+      }
+
+      renderCards(out);
+    }
+
+    function reset(){
+      $("#q").value=""; $("#region").value='all'; $("#standards").value='all';
+      $("#property").value='any'; $("#sortDay").value='none'; $("#minSpend").value=0; $("#maxSpend").value=2000; updateRangeLabels();
+      renderCards(CUSTOMERS);
+    }
+
+    function updateRangeLabels(){
+      const min = Number($("#minSpend").value), max = Number($("#maxSpend").value);
+      $("#minLbl").textContent = money(min);
+      $("#maxLbl").textContent = money(max);
+      $("#rangeSummary").textContent = `Showing ${money(min)} – ${money(max)}`;
+    }
+
+    // keep sliders ordered: first = lower bound, second = upper bound
+    $("#minSpend").addEventListener('input', ()=>{
+      const min = Number($("#minSpend").value), max = Number($("#maxSpend").value);
+      if(min>max){ $("#maxSpend").value = min; }
+      updateRangeLabels(); apply();
+    });
+    $("#maxSpend").addEventListener('input', ()=>{
+      const min = Number($("#minSpend").value), max = Number($("#maxSpend").value);
+      if(max<min){ $("#minSpend").value = max; }
+      updateRangeLabels(); apply();
+    });
+
+    $("#moreBtn").addEventListener('click',()=>{
+      const adv = $("#adv"); adv.style.display = adv.style.display==='grid'? 'none':'grid';
+    });
+    $("#resetBtn").addEventListener('click', reset);
+    ["#q","#region","#standards","#property","#sortDay"].forEach(sel=> $(sel).addEventListener('input', apply));
+
+    // Init
+    updateRangeLabels();
+    renderCards(CUSTOMERS);
+  </script>
+</body>
+</html>

@@ -13,7 +13,7 @@ using UnityEngine;
 namespace MoreNPCs.NPCs
 {
     /// <summary>
-    /// Valerie Voss - Northtown customer, connected to FannsoNetti. White and blue color scheme (Fannso tree).
+    /// Valerie Voss - Northtown customer. Connected to Vincent Reeves. White and blue color scheme.
     /// </summary>
     public sealed class ValerieVoss : NPC
     {
@@ -22,7 +22,7 @@ namespace MoreNPCs.NPCs
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
             var northIndustrial = Building.Get<NorthIndustrialBuilding>();
-            var northWarehouse = Building.Get<NorthWarehouse>();
+            var budsBar = Building.Get<BudsBar>();
             var chineseRestaurant = Building.Get<ChineseRestaurant>();
             var northApartments = Building.Get<NorthApartments>();
             Vector3 waterfront = new Vector3(-49.5478f, -4.035f, 168.5777f);
@@ -30,7 +30,7 @@ namespace MoreNPCs.NPCs
             builder.WithIdentity("valerie_voss", "Valerie", "Voss")
                 .WithAppearanceDefaults(av =>
                 {
-                    av.Gender = 2.85f;
+                    av.Gender = 1.0f;
                     av.Height = 0.98f;
                     av.Weight = 0.32f;
                     av.SkinColor = new Color(0.684f, 0.554f, 0.445f);
@@ -47,11 +47,11 @@ namespace MoreNPCs.NPCs
                     av.HairColor = new Color(0.239f, 0.182f, 0.139f);
                     av.HairPath = "Avatar/Hair/Shoulderlength/ShoulderLength";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.95f, 0.95f, 0.95f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.178f, 0.217f, 0.406f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(1.0f, 1.0f, 1.0f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.20f, 0.15f, 0.10f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.178f, 0.217f, 0.406f));
+                    av.WithBodyLayer("Avatar/Layers/Top/FlannelButtonUp", new Color(0.45f, 0.32f, 0.28f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.22f, 0.22f, 0.24f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/CombatBoots/CombatBoots", new Color(0.18f, 0.18f, 0.18f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.32f, 0.24f, 0.16f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.15f, 0.12f, 0.10f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
@@ -78,18 +78,18 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("fannsonetti");
+                        .WithConnectionsById("vincent_reeves");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = waterfront, StartTime = 720, FaceDestinationDirection = true, Forward = Quaternion.Euler(0f, 0f, 0f) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = waterfront, StartTime = 720, FaceDestinationDirection = true });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Northtown/Waterfront/OutdoorBench (1)", StartTime = 800, DurationMinutes = 46 });
                     plan.UseATM(847);
                     plan.StayInBuilding(chineseRestaurant, 913, 89);
-                    plan.StayInBuilding(northWarehouse, 1032, 118);
-                    plan.StayInBuilding(northIndustrial, 1180, 195);
-                    plan.StayInBuilding(chineseRestaurant, 1415, 89);
-                    plan.StayInBuilding(northIndustrial, 1535, 122);
+                    plan.StayInBuilding(budsBar, 1045, 134);
+                    plan.StayInBuilding(northIndustrial, 1220, 174);
+                    plan.StayInBuilding(chineseRestaurant, 1435, 99);
                     plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 1688, FaceDestinationDirection = false });
                     plan.StayInBuilding(northApartments, 1750, 1049);
                 });
@@ -106,7 +106,7 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 4f;
+                Aggressiveness = 0.57f;
                 Region = S1API.Map.Region.Northtown;
 
                 Schedule.Enable();

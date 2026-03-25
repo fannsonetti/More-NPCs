@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -65,7 +65,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.12f)
+                        .WithCallPoliceChance(0.21f)
                         .WithDependence(baseAddiction: 0.2f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -120,3 +120,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

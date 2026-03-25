@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -62,7 +62,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.12f)
+                        .WithCallPoliceChance(0.21f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -84,8 +84,7 @@ namespace MoreNPCs.NPCs
                     plan.StayInBuilding(chineseRestaurant, 953, 91);
                     plan.UseVendingMachine(1045);
                     plan.StayInBuilding(northIndustrial, 1105, 217);
-                    plan.StayInBuilding(chineseRestaurant, 1323, 109);
-                    plan.StayInBuilding(chineseRestaurant, 1433, 806); // overnight at Chinese Restaurant
+                    plan.StayInBuilding(chineseRestaurant, 1323, 876); // merged evening + overnight stay
                 });
         }
 
@@ -113,3 +112,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

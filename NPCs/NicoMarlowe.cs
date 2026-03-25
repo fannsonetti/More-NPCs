@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -24,7 +24,7 @@ namespace MoreNPCs.NPCs
         {
             var chineseRestaurant = Building.Get<ChineseRestaurant>();
             var budsBar = Building.Get<BudsBar>();
-            var petersRoom = Building.Get<PetersRoom>();
+            var northWarehouse = Building.Get<NorthWarehouse>();
             var northIndustrial = Building.Get<NorthIndustrialBuilding>();
             Vector3 spawnPos = new Vector3(-71.2847f, -2.935f, 145.6754f);
             Vector3 northStreet = new Vector3(-49.5478f, -4.035f, 168.5777f);
@@ -67,7 +67,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.05f)
+                        .WithCallPoliceChance(0.15f)
                         .WithDependence(baseAddiction: 0.17f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -85,13 +85,13 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northIndustrial, 0, 430); // overnight at North Industrial Building
+                    plan.StayInBuilding(northIndustrial, 000, 430);
                     plan.StayInBuilding(chineseRestaurant, 845, 94);
-                    plan.StayInBuilding(petersRoom, 1015, 101);
+                    plan.StayInBuilding(northWarehouse, 1015, 101);
                     plan.Add(new WalkToSpec { Destination = northStreet, StartTime = 1245, FaceDestinationDirection = true });
                     plan.StayInBuilding(budsBar, 1450, 128);
                     plan.UseVendingMachine(1715);
-                    plan.StayInBuilding(northIndustrial, 2145, 294); // overnight at North Industrial Building
+                    plan.StayInBuilding(northIndustrial, 2145, 294);
                 });
         }
 
@@ -118,3 +118,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

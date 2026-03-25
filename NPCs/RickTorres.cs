@@ -9,9 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// Rick Torres - Downtown dealer who lives in the Supermarket. Connected to Jeff Gilmore and Bruce Norton.
-    /// </summary>
     public sealed class RickTorres : NPC
     {
         public override bool IsPhysical => true;
@@ -76,7 +73,7 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(supermarket, 0, 1439);
+                    plan.StayInBuilding(supermarket, 000, 1439);
                 });
         }
 

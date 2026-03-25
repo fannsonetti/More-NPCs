@@ -11,6 +11,8 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 NPCS_DIR = PROJECT_ROOT / "NPCs"
 OUTPUT_JS = PROJECT_ROOT / "npc_data.js"
+SUPERVISOR_COLLECTOR_FILE = PROJECT_ROOT / "Supervisor" / "SupervisorEarningsCollector.cs"
+MANAGER_CHAIN_FILE = PROJECT_ROOT / "Manager" / "ManagerLaunderingChain.cs"
 
 # Day enum to string
 DAY_MAP = {
@@ -19,6 +21,34 @@ DAY_MAP = {
     "Day.Monday": "Mon", "Day.Tuesday": "Tue", "Day.Wednesday": "Wed",
     "Day.Thursday": "Thu", "Day.Friday": "Fri", "Day.Saturday": "Sat", "Day.Sunday": "Sun",
 }
+
+
+def _read_text(path: Path) -> str:
+    try:
+        return path.read_text(encoding="utf-8", errors="replace")
+    except Exception:
+        return ""
+
+
+def _extract_percent_from_multiplier(path: Path, pattern: str, default_percent: float) -> float:
+    text = _read_text(path)
+    m = re.search(pattern, text)
+    if not m:
+        return default_percent
+    return float(m.group(1)) * 100.0
+
+
+SUPERVISOR_CUT_PERCENT = _extract_percent_from_multiplier(
+    SUPERVISOR_COLLECTOR_FILE,
+    r'cut\s*=\s*raw\s*\*\s*([\d.]+)f?\s*;',
+    10.0
+)
+
+MANAGER_CUT_PERCENT = _extract_percent_from_multiplier(
+    MANAGER_CHAIN_FILE,
+    r'LaunderCutPercent\s*=\s*([\d.]+)f?\s*;',
+    10.0
+)
 
 def parse_file(path):
     """Parse a single NPC C# file and return extracted metadata or None."""
@@ -34,15 +64,8 @@ def parse_file(path):
 
     out = {"file": path.name, "type": "customer"}
 
-    # Summary (first /// line)
-    summary = re.search(r'///\s*<summary>\s*(.+?)\s*</summary>', text, re.DOTALL)
-    if summary:
-        desc = summary.group(1).strip().replace("\n", " ")
-        desc = re.sub(r'\s+', ' ', desc).strip()
-        desc = desc.replace("///", "").strip()
-        out["description"] = desc
-    else:
-        out["description"] = ""
+    # Description intentionally omitted from generated DB output.
+    out["description"] = ""
 
     # WithIdentity("id", "FirstName", "LastName")
     identity = re.search(r'WithIdentity\s*\(\s*"([^"]+)"\s*,\s*"([^"]*)"\s*,\s*"([^"]*)"\s*\)', text)
@@ -58,10 +81,21 @@ def parse_file(path):
     # IsDealer
     out["isDealer"] = "IsDealer => true" in text or "override bool IsDealer => true" in text
 
-    # Supervisor: Silas or similar (has UseContainerOnInteract / supervisor dialogue)
-    out["isSupervisor"] = "supervisor" in out["description"].lower() or "UseContainerOnInteract" in text
+    # Role inference
+    out["isManager"] = (
+        "Manager.ManagerDialogue.SetupFor(this)" in text
+        or "ManagerLaunderingChain.Initialize(this)" in text
+        or ('WithIdentity("thomas_ashford"' in text)
+    )
+    out["isSupervisor"] = (
+        "SupervisorDialogue.SetupFor(this" in text
+        or "SupervisorActivityChain.Initialize(this" in text
+        or out.get("id") in {"silas_mercer", "dominic_cross"}
+    )
 
-    if out["isDealer"]:
+    if out["isManager"]:
+        out["type"] = "manager"
+    elif out["isDealer"]:
         out["type"] = "dealer"
     elif out["isSupervisor"]:
         out["type"] = "supervisor"
@@ -87,7 +121,17 @@ def parse_file(path):
         else:
             out["home"] = None
 
-    # Customer-specific
+    # Supervisor-specific
+    if out["isSupervisor"]:
+        out["cut"] = SUPERVISOR_CUT_PERCENT
+
+    # Manager-specific
+    if out["isManager"]:
+        out["cut"] = MANAGER_CUT_PERCENT
+
+    # Customer-specific fields only.
+    # Managers/supervisors use EnsureCustomer wrappers in code, but we intentionally
+    # keep the DB output focused on their management role (no orders/week, standards, etc).
     if out["type"] == "customer" and "WithCustomerDefaults" in text:
         spend = re.search(r'WithSpending\s*\(\s*minWeekly:\s*([\d.]+)f?\s*,\s*maxWeekly:\s*([\d.]+)f?\s*\)', text)
         if spend:
@@ -173,9 +217,9 @@ def main():
         if data:
             npcs.append(data)
 
-    # Sort: supervisors first, then dealers, then customers; then by name
+    # Sort: supervisors, managers, dealers, then customers; then by name
     def order(n):
-        t = {"supervisor": 0, "dealer": 1, "customer": 2}.get(n["type"], 3)
+        t = {"supervisor": 0, "manager": 1, "dealer": 2, "customer": 3}.get(n["type"], 4)
         return (t, n["name"])
     npcs.sort(key=order)
 

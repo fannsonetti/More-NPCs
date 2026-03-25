@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -12,10 +12,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class JamalBennett : NPC
     {
         public override bool IsPhysical => true;
@@ -68,7 +64,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0f)
+                        .WithCallPoliceChance(0.23f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -86,9 +82,9 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(janesVan, 897, 126);
+                    plan.StayInBuilding(janesVan, 937, 126);
                     plan.Add(new WalkToSpec { Destination = belowOverpass, StartTime = 1104, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 20, 0) * Vector3.forward});
-                    plan.StayInBuilding(thePissHut, 1396, 96);
+                    plan.StayInBuilding(thePissHut, 1436, 96);
                     plan.UseATM(1533);
                     plan.StayInBuilding(shermanHouse, 1618, 104);
                     plan.UseVendingMachine(1803);
@@ -109,10 +105,8 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 0.88f; // gang-affiliated
+                Aggressiveness = 0.88f;
                 Region = Region.Westville;
-
-                // Customer.RequestProduct();
 
                 Schedule.Enable();
             }
@@ -124,5 +118,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

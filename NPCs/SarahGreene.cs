@@ -31,25 +31,25 @@ namespace MoreNPCs.NPCs
                     av.Gender = 1.0f;
                     av.Height = 0.98f;
                     av.Weight = 0.38f;
-                    av.SkinColor = new Color(0.62f, 0.52f, 0.42f);
+                    av.SkinColor = new Color(0.52f, 0.41f, 0.34f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = new Color(0.98f, 0.90f, 0.85f);
+                    av.EyeBallTint = new Color(0.96f, 0.88f, 0.83f);
                     av.PupilDilation = 0.68f;
-                    av.EyebrowScale = 1.02f;
-                    av.EyebrowThickness = 0.88f;
-                    av.EyebrowRestingHeight = -0.16f;
-                    av.EyebrowRestingAngle = 1.8f;
-                    av.LeftEye = (0.28f, 0.38f);
-                    av.RightEye = (0.28f, 0.38f);
-                    av.HairColor = new Color(0.20f, 0.15f, 0.11f);
-                    av.HairPath = "Avatar/Hair/HighBun/HighBun";
+                    av.EyebrowScale = 1.08f;
+                    av.EyebrowThickness = 0.94f;
+                    av.EyebrowRestingHeight = -0.24f;
+                    av.EyebrowRestingAngle = 2.6f;
+                    av.LeftEye = (0.24f, 0.36f);
+                    av.RightEye = (0.30f, 0.36f);
+                    av.HairColor = new Color(0.18f, 0.14f, 0.10f);
+                    av.HairPath = "Avatar/Hair/FringePonyTail/FringePonyTail";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/RolledButtonUp", new Color(0.28f, 0.38f, 0.27f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/Jorts", new Color(0.27f, 0.30f, 0.36f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sandals/Sandals", new Color(0.21f, 0.34f, 0.25f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/Blazer/Blazer", new Color(0.20f, 0.30f, 0.24f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Head/SmallRoundGlasses/SmallRoundGlasses", new Color(0.15f, 0.15f, 0.17f));
+                    av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.30f, 0.52f, 0.36f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.22f, 0.24f, 0.30f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.92f, 0.92f, 0.92f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Hands/Polex/Polex", new Color(0.76f, 0.64f, 0.28f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.14f, 0.14f, 0.14f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
@@ -63,7 +63,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0.06f)
+                        .WithCallPoliceChance(0.19f)
                         .WithDependence(0.10f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0.45f), (DrugType.Methamphetamine, 0.12f), (DrugType.Shrooms, 0.22f), (DrugType.Cocaine, 0.18f) })
                         .WithPreferredProperties(Property.Refreshing, Property.Focused, Property.Glowie);
@@ -78,13 +78,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "George and Molly's House", StartTime = 0, DurationMinutes = 599 });
                     plan.StayInBuilding(arcade, 1030, 119);
-                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 1305, FaceDestinationDirection = true });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench", StartTime = 1305, DurationMinutes = 129 });
                     plan.StayInBuilding(thePissHut, 1435, 89);
                     plan.UseATM(1610);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "George and Molly's House", StartTime = 1735, DurationMinutes = 204 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "George and Molly's House", StartTime = 2145, DurationMinutes = 734 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "George and Molly's House", StartTime = 1735, DurationMinutes = 984 });
                 });
         }
 
@@ -107,3 +105,5 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
+

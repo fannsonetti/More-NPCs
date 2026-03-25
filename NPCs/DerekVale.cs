@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -24,7 +24,7 @@ namespace MoreNPCs.NPCs
             var shack = Building.Get<Shack>();
             var thePissHut = Building.Get<ThePissHut>();
             var communityCenter = Building.Get<CommunityCenter>();
-            Vector3 spawnPos = new Vector3(-36.3346f, 1.065f, 75.6414f); // near Shack area
+            Vector3 spawnPos = new Vector3(-36.3346f, 1.065f, 75.6414f);
 
             builder.WithIdentity("derek_vale", "Derek", "Vale")
                 .WithAppearanceDefaults(av =>
@@ -64,7 +64,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.09f)
+                        .WithCallPoliceChance(0.15f)
                         .WithDependence(baseAddiction: 0.14f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -82,12 +82,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(shack, 0, 479); // overnight in Shack until 8am
+                    plan.StayInBuilding(shack, 000, 479);
                     plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat (1)", StartTime = 800, DurationMinutes = 109 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 1010, DurationMinutes = 119 });
-                    plan.StayInBuilding(shack, 1155, 104); // back to Shack for a bit
-                    plan.StayInBuilding(communityCenter, 1300, 120); // Community Center 2 hours (last stop before sleep)
-                    plan.StayInBuilding(shack, 1425, 1050); // Shack until 10pm sleep, through to 8am next day
+                    plan.StayInBuilding(shack, 1155, 104);
+                    plan.StayInBuilding(communityCenter, 1300, 120);
+                    plan.StayInBuilding(shack, 1425, 1050);
                 });
         }
 
@@ -114,3 +114,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

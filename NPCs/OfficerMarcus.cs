@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class OfficerMarcus : NPC
     {
         public override bool IsPhysical => true;
@@ -67,7 +63,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.90f)
+                        .WithCallPoliceChance(0.75f)
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1.1f)
                         .WithAffinities(new[]
                         {
@@ -98,11 +94,8 @@ namespace MoreNPCs.NPCs
                 })
                 .WithInventoryDefaults(inv =>
                 {
-                    // Startup items that will always be in inventory when spawned
                     inv.WithStartupItems("m1911", "m1911mag")
-                        // Random cash between $50 and $500
                         .WithRandomCash(min: 50, max: 500)
-                        // Preserve inventory across sleep cycles
                         .WithClearInventoryEachNight(false);
                 });
         }
@@ -117,10 +110,8 @@ namespace MoreNPCs.NPCs
             {
                 base.OnCreated();
                 Appearance.Build();
-                Aggressiveness = 0.78f; // officer
+                Aggressiveness = 0.78f;
                 Region = S1API.Map.Region.Suburbia;
-
-                // Customer.RequestProduct();
 
                 Schedule.Enable();
 
@@ -133,3 +124,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

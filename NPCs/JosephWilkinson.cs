@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class JosephWilkinson : NPC
     {
         public override bool IsPhysical => true;
@@ -24,7 +20,6 @@ namespace MoreNPCs.NPCs
             Vector3 hylandauto = new Vector3(24.1091f, 1.065f, -40.8684f);
             Vector3 elizabeth = new Vector3(2.8427f, 1.065f, 46.9832f);
             Vector3 spawnPos = new Vector3(68.9616f, 5.5412f, -119.5116f);
-            // var building = Buildings.GetAll().First();
             builder.WithIdentity("joseph_wilkinson", "Joseph", "Wilkinson")
                 .WithAppearanceDefaults(av =>
                 {
@@ -63,13 +58,12 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.15f)
+                        .WithCallPoliceChance(0.21f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
                             (DrugType.Marijuana, -0.06f), (DrugType.Methamphetamine, 0.58f), (DrugType.Shrooms, 0.88f), (DrugType.Cocaine, 0.96f)
                         })
-                        // .WithPreferredPropertiesById("Munchies", "Energizing", "Cyclopean");
                         .WithPreferredProperties(Property.Zombifying, Property.Spicy, Property.Sedating);
                 })
                 .WithRelationshipDefaults(r =>
@@ -110,8 +104,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.59f;
                 Region = S1API.Map.Region.Downtown;
 
-                // Customer.RequestProduct();
-                
                 Schedule.Enable();
 
             }
@@ -123,5 +115,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

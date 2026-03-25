@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -12,10 +12,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class WayneKerr : NPC
     {
         public override bool IsPhysical => true;
@@ -25,7 +21,7 @@ namespace MoreNPCs.NPCs
             var petersRoom = Building.Get<PetersRoom>();
             var motelOffice = Building.Get<MotelOffice>();
             var budsBar = Building.Get<BudsBar>();
-            Vector3 spawnPos = new Vector3(-49.5478f, -4.035f, 168.5777f); // swapped with Owen
+            Vector3 spawnPos = new Vector3(-49.5478f, -4.035f, 168.5777f);
             Vector3 posA = new Vector3(-76.0633f, -1.535f, 44.6816f);
             Vector3 posB = new Vector3(-49.5478f, -4.035f, 168.5777f);
             builder.WithIdentity("wayne_kerr", "Wayne", "Kerr")
@@ -66,7 +62,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.25f)
+                        .WithCallPoliceChance(0.29f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -84,17 +80,17 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.UseVendingMachine(896);
+                    plan.UseVendingMachine(902);
                     plan.Add(new WalkToSpec { Destination = posA, StartTime = 922, FaceDestinationDirection = true });
                     plan.StayInBuilding(petersRoom, 1104, 111);
-                    plan.LocationDialogue(posA, 1296);
+                    plan.LocationDialogue(posA, 1336);
                     plan.UseVendingMachine(1403);
                     plan.StayInBuilding(petersRoom, 1428, 118);
                     plan.UseATM(1627);
                     plan.StayInBuilding(budsBar, 1726, 156);
                     plan.UseVendingMachine(2003);
                     plan.Add(new WalkToSpec { Destination = posB, StartTime = 2057, FaceDestinationDirection = false });
-                    plan.StayInBuilding(petersRoom, 2226, 450); // swapped with Owen - overnight at Peter's Room
+                    plan.StayInBuilding(petersRoom, 2226, 450);
                 });
         }
 
@@ -112,8 +108,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.63f;
                 Region = Region.Northtown;
 
-                // Customer.RequestProduct();
-
                 Schedule.Enable();
             }
             catch (Exception ex)
@@ -124,5 +118,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -12,10 +12,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class MoeLester : NPC
     {
         public override bool IsPhysical => true;
@@ -68,7 +64,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.25f)
+                        .WithCallPoliceChance(0.16f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -96,7 +92,7 @@ namespace MoreNPCs.NPCs
                     plan.StayInBuilding(budsBar, 1733, 209);
                     plan.UseVendingMachine(1997);
                     plan.Add(new WalkToSpec { Destination = posB, StartTime = 2103, FaceDestinationDirection = false });
-                    plan.StayInBuilding(northIndustrial, 2233, 629); // overnight at North Industrial Building
+                    plan.StayInBuilding(northIndustrial, 2233, 629);
                 });
         }
 
@@ -114,8 +110,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.67f;
                 Region = Region.Northtown;
 
-                // Customer.RequestProduct();
-
                 Schedule.Enable();
             }
             catch (Exception ex)
@@ -126,5 +120,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

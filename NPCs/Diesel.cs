@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class Diesel : NPC
     {
         public override bool IsPhysical => true;
@@ -26,7 +22,6 @@ namespace MoreNPCs.NPCs
             Vector3 pos5 = new Vector3(-121.0444f, -2.935f, 78.6722f);
             Vector3 pos6 = new Vector3(-22.7021f, 1.065f, 46.8433f);
             Vector3 spawnPos = new Vector3(-12.8076f, 1.065f, 66.7038f);
-            // var building = Buildings.GetAll().First();
             builder.WithIdentity("diesel", "Diesel", "")
                 .WithAppearanceDefaults(av =>
                 {
@@ -67,7 +62,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.1f)
+                        .WithCallPoliceChance(0.22f)
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
@@ -112,8 +107,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.69f;
                 Region = S1API.Map.Region.Docks;
 
-                // Customer.RequestProduct();
-
                 Schedule.Enable();
 
             }
@@ -125,5 +118,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

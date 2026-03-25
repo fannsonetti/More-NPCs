@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -12,10 +12,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class VictorHughes : NPC
     {
         public override bool IsPhysical => true;
@@ -67,7 +63,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0f)
+                        .WithCallPoliceChance(0.20f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -85,7 +81,7 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(cornerStore, 897, 149);
+                    plan.StayInBuilding(cornerStore, 937, 149);
                     plan.Add(new WalkToSpec { Destination = northWaterfront, StartTime = 1127, FaceDestinationDirection = true });
                     plan.StayInBuilding(thePissHut, 1418, 124);
                     plan.UseVendingMachine(1543);
@@ -111,8 +107,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.51f;
                 Region = Region.Westville;
 
-                // Customer.RequestProduct();
-
                 Schedule.Enable();
             }
             catch (Exception ex)
@@ -123,5 +117,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

@@ -29,13 +29,15 @@
     .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:0 4px 24px rgba(0,0,0,.25)}
     .head{display:flex;align-items:center;gap:8px}
     .label{display:flex;align-items:center;gap:8px;font-weight:700}
-    .label.customer{color:#9dd5ac}
-    .label.dealer{color:#f59e0b}
+    .label.customer{color:#9ca3af}
+    .label.dealer{color:#38bdf8}
     .label.supervisor{color:#a78bfa}
+    .label.manager{color:#f59e0b}
     .badge{margin-left:auto;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}
-    .badge.customer{background:#132417;border:1px solid #1f3a26;color:#9dd5ac}
-    .badge.dealer{background:#2d2310;border:1px solid #4a3a14;color:#f59e0b}
+    .badge.customer{background:#1f232b;border:1px solid #323744;color:#d1d5db}
+    .badge.dealer{background:#102433;border:1px solid #1e4661;color:#7dd3fc}
     .badge.supervisor{background:#251a33;border:1px solid #3d2a4d;color:#a78bfa}
+    .badge.manager{background:#2d2310;border:1px solid #4a3a14;color:#f59e0b}
     .row{display:flex;gap:12px;align-items:center}
     .avatar{width:56px;height:56px;border-radius:10px;overflow:hidden;background:#2a3444;border:1px solid var(--border);display:grid;place-items:center;font-size:26px}
     .name h3{margin:0;font-size:20px}
@@ -56,6 +58,11 @@
     .pct{font-size:12px;color:var(--muted)}
     .chips{display:flex;flex-wrap:wrap;gap:8px}
     .chip{background:var(--chip);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:9px;font-size:12px}
+    .chip.std-trash{background:#3a1212;border-color:#6b1a1a;color:#ef4444}
+    .chip.std-low{background:#102914;border-color:#1f4d25;color:#22c55e}
+    .chip.std-moderate{background:#12243c;border-color:#1d4e89;color:#60a5fa}
+    .chip.std-high{background:#341736;border-color:#7e2f8e;color:#e879f9}
+    .chip.std-veryhigh{background:#3b3211;border-color:#8b6f17;color:#eab308}
     .footer{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
     .days{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
     .pill{background:var(--chip);border:1px solid var(--border);border-radius:9px;padding:6px 10px;font-size:12px;color:var(--muted)}
@@ -78,6 +85,7 @@
             <option value="customer">Customer</option>
             <option value="dealer">Dealer</option>
             <option value="supervisor">Supervisor</option>
+            <option value="manager">Manager</option>
           </select>
         </div>
         <div class="field"><label for="region">Region</label>
@@ -113,6 +121,16 @@
       return `<div class="kv"><span class="sub">${short}</span><div class="bar2"><span class="fill ${side}" style="transform:scaleX(${pct})"></span></div><span class="pct">${val>0?val+"%":"−"+Math.abs(val)+"%"}</span></div>`;
     }
 
+    function standardsClass(npc){
+      const raw = (npc.standards || npc.standardsDisplay || "").replace(/\s+/g, "").toLowerCase();
+      if(raw === "trash") return "std-trash";
+      if(raw === "low" || raw === "verylow") return "std-low";
+      if(raw === "moderate") return "std-moderate";
+      if(raw === "high") return "std-high";
+      if(raw === "veryhigh" || raw === "extreme") return "std-veryhigh";
+      return "";
+    }
+
     function renderCard(npc){
       const card = document.createElement("section");
       card.className = "card";
@@ -120,7 +138,7 @@
       const typeLabel = type.charAt(0).toUpperCase() + type.slice(1);
 
       let inner = `
-        <div class="head"><div class="label ${type}">${type==="dealer"?"💰":type==="supervisor"?"👔":"👤"} ${typeLabel}</div><span class="badge ${type}">${npc.region}</span></div>
+        <div class="head"><div class="label ${type}">${type==="dealer"?"💰":type==="supervisor"?"👔":type==="manager"?"🧾":"👤"} ${typeLabel}</div><span class="badge ${type}">${npc.region}</span></div>
         <div class="row" style="margin-top:8px">
           <div class="avatar">${npc.avatar||"🧑"}</div>
           <div style="flex:1">
@@ -136,7 +154,12 @@
         if(npc.home) inner += `<div class="footer"><span>🏠 ${npc.home}</span></div>`;
       }
       else if(type==="supervisor"){
+        inner += `<div class="tiles"><div class="tile"><div class="t">Supervisor Cut</div><div class="v">${npc.cut!=null?npc.cut+"%":"—"}</div></div><div class="tile"><div class="t">Role</div><div class="v">Dealer Oversight</div></div></div>`;
         inner += `<div class="footer"><span>Assign dealers & collect cash via dialogue</span></div>`;
+      }
+      else if(type==="manager"){
+        inner += `<div class="tiles"><div class="tile"><div class="t">Manager Cut</div><div class="v">${npc.cut!=null?npc.cut+"%":"—"}</div></div><div class="tile"><div class="t">Role</div><div class="v">Business Laundering</div></div></div>`;
+        inner += `<div class="footer"><span>Assign businesses and manage deposited funds</span></div>`;
       }
       else {
         const sub = npc.spending ? `${money(npc.spending[0])} – ${money(npc.spending[1])} weekly • ${npc.region}` : npc.region;
@@ -144,7 +167,7 @@
         if(npc.spending){
           inner += `<div class="tiles"><div class="tile"><div class="t">Orders/Week</div><div class="v">${npc.orders?npc.orders[0]+" – "+npc.orders[1]:"—"}</div></div><div class="tile"><div class="t">Preferred Time</div><div class="v">${formatTime(npc.time)}</div></div></div>`;
           if(npc.day) inner += `<div class="days">${DAYS.map(d=>`<span class="pill ${d===npc.day?"active":""}">${d}</span>`).join("")}</div>`;
-          if(npc.standardsDisplay) inner += `<div class="section"><h4>Standards</h4><span class="chip">${npc.standardsDisplay}</span></div>`;
+          if(npc.standardsDisplay) inner += `<div class="section"><h4>Standards</h4><span class="chip ${standardsClass(npc)}">${npc.standardsDisplay}</span></div>`;
           if(npc.affinities && Object.keys(npc.affinities).length){
             inner += `<div class="section"><h4>Drug Affinities</h4>${Object.entries(npc.affinities).map(([k,v])=>affRow(k,v)).join("")}</div>`;
           }

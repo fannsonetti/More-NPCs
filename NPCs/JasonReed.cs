@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class JasonReed : NPC
     {
         public override bool IsPhysical => true;
@@ -22,7 +18,6 @@ namespace MoreNPCs.NPCs
             Vector3 tacoticklers = new Vector3(-28.9266f, 1.065f, 74.6178f);
             Vector3 outside = new Vector3(-36.3346f, 1.065f, 75.6414f);
             Vector3 spawnPos = new Vector3(-28.9266f, 1.065f, 74.6178f);
-            // var building = Buildings.GetAll().First();
             builder.WithIdentity("jason_reed", "Jason", "Reed")
                 .WithAppearanceDefaults(av =>
                 {
@@ -62,7 +57,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.33f)
+                        .WithCallPoliceChance(0.11f)
                         .WithDependence(baseAddiction: 0.1f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
@@ -101,8 +96,6 @@ namespace MoreNPCs.NPCs
 
                 Aggressiveness = 0.56f;
                 Region = S1API.Map.Region.Northtown;
-
-                // Customer.RequestProduct();
 
                 Schedule.Enable();
 

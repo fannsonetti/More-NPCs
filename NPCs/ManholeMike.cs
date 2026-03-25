@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class ManholeMike : NPC
     {
         public override bool IsPhysical => true;
@@ -24,7 +20,6 @@ namespace MoreNPCs.NPCs
             Vector3 pit = new Vector3(44.4508f, -8.035f, 36.1825f);
             Vector3 sewerWarehouse = new Vector3(74.0413f, -4.535f, 28.6874f);
             Vector3 sewerOffice = new Vector3(48.6662f, -8.035f, 71.6929f);
-            // var building = Buildings.GetAll().First();
             builder.WithIdentity("manhole_mike", "Manhole Mike", "")
                 .WithAppearanceDefaults(av =>
                 {
@@ -63,7 +58,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.0f)
+                        .WithCallPoliceChance(0.12f)
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
@@ -107,8 +102,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.66f;
                 Region = S1API.Map.Region.Docks;
 
-                // Customer.RequestProduct();
-
                 Schedule.Enable();
 
             }
@@ -120,5 +113,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

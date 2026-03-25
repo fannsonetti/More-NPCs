@@ -64,7 +64,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0.04f)
+                        .WithCallPoliceChance(0.14f)
                         .WithDependence(0.16f, 1f)
                         .WithAffinities(new[]
                         {
@@ -82,13 +82,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 0, DurationMinutes = 389 });
                     plan.StayInBuilding(arcade, 700, 149);
                     plan.Add(new WalkToSpec { Destination = courtyard, StartTime = 1045, FaceDestinationDirection = true });
                     plan.StayInBuilding(cornerStore, 1215, 89);
                     plan.UseVendingMachine(1400);
                     plan.StayInBuilding(thePissHut, 1635, 89);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 1835, DurationMinutes = 804 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 1835, DurationMinutes = 744 });
                 });
         }
 

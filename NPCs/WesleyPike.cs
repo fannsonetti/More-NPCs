@@ -58,7 +58,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0.04f)
+                        .WithCallPoliceChance(0.14f)
                         .WithDependence(0.14f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0.24f), (DrugType.Methamphetamine, 0.22f), (DrugType.Shrooms, -0.14f), (DrugType.Cocaine, 0.05f) })
                         .WithPreferredProperties(Property.Energizing, Property.Foggy, Property.Smelly);
@@ -72,7 +72,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new StayInBuildingSpec { BuildingName = "Corner Store", StartTime = 1145, DurationMinutes = 119 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 1325, DurationMinutes = 99 });
                     plan.UseATM(1645);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 1950, DurationMinutes = 670 }); // until 7am, no 4am kickout
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 4", StartTime = 1950, DurationMinutes = 670 }); // until 7am, no 4am kickout
                 });
         }
 

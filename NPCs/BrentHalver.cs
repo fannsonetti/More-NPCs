@@ -57,7 +57,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0.06f)
+                        .WithCallPoliceChance(0.14f)
                         .WithDependence(0.13f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0.52f), (DrugType.Methamphetamine, -0.08f), (DrugType.Shrooms, 0.10f), (DrugType.Cocaine, -0.25f) })
                         .WithPreferredProperties(Property.Munchies, Property.Calming, Property.Energizing);
@@ -69,7 +69,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 845, DurationMinutes = 99 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Corner Store", StartTime = 1045, DurationMinutes = 104 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1220, DurationMinutes = 119 });
-                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 1400, FaceDestinationDirection = false });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Corner Store/OutdoorBench", StartTime = 1400, DurationMinutes = 119 });
                     plan.UseATM(1620);
                     plan.Add(new StayInBuildingSpec { BuildingName = "Tool Shed", StartTime = 1920, DurationMinutes = 700 }); // until 7am, no 4am kickout
                 });
@@ -84,3 +84,5 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
+

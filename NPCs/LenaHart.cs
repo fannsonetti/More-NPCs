@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -68,7 +68,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.14f)
+                        .WithCallPoliceChance(0.15f)
                         .WithDependence(baseAddiction: 0.08f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -86,7 +86,7 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northApartments, 0, 419);
+                    plan.StayInBuilding(northApartments, 000, 419);
                     plan.StayInBuilding(townHall, 830, 149);
                     plan.StayInBuilding(cafe, 1040, 94);
                     plan.UseATM(1215);
@@ -121,3 +121,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

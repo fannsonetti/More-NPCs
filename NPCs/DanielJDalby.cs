@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class DanielJDalby : NPC
     {
         public override bool IsPhysical => true;
@@ -24,7 +20,6 @@ namespace MoreNPCs.NPCs
             Vector3 rideTheBus = new Vector3(13.8508f, 1.865f, 94.4451f);
             Vector3 blackJack = new Vector3(17.4742f, 1.865f, 93.5125f);
             Vector3 frontDesk = new Vector3(16.9007f, 1.865f, 88.4941f);
-            // var building = Buildings.GetAll().First();
             builder.WithIdentity("daniel_j_dalby", "Daniel J.", "D'alby")
                 .WithAppearanceDefaults(av =>
                 {
@@ -66,7 +61,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.15f)
+                        .WithCallPoliceChance(0.29f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -111,8 +106,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.58f;
                 Region = S1API.Map.Region.Uptown;
 
-                // Customer.RequestProduct();
-
                 Schedule.Enable();
             }
             catch (Exception ex)
@@ -123,5 +116,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

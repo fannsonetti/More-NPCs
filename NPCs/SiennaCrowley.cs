@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -60,7 +60,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0.07f)
+                        .WithCallPoliceChance(0.20f)
                         .WithDependence(0.11f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0.18f), (DrugType.Methamphetamine, 0.24f), (DrugType.Shrooms, 0.34f), (DrugType.Cocaine, -0.21f) })
                         .WithPreferredProperties(Property.Euphoric, Property.Refreshing, Property.Sedating);
@@ -86,3 +86,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

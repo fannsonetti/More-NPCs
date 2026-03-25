@@ -12,10 +12,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class NoraKessler : NPC
     {
         public override bool IsPhysical => true;
@@ -66,7 +62,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0f)
+                        .WithCallPoliceChance(0.23f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -79,18 +75,18 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("trent_sherman");
+                        .WithConnectionsById("trent_sherman", "lila_park");
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
                     plan.StayInBuilding(sauerkrautSupreme, 900, 104);
                     plan.StayInBuilding(arcade, 1055, 114);
-                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 1220, FaceDestinationDirection = false });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench", StartTime = 1220, DurationMinutes = 99 });
                     plan.UseATM(1400);
                     plan.UseVendingMachine(1545);
                     plan.StayInBuilding(shermanHouse, 1928, 98);
-                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 2057, FaceDestinationDirection = false });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench", StartTime = 2057, DurationMinutes = 168 });
                     plan.StayInBuilding(shermanHouse, 2226, 840);
                 });
         }
@@ -106,10 +102,8 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 0.91f; // gang-affiliated
+                Aggressiveness = 0.91f;
                 Region = Region.Westville;
-
-                // Customer.RequestProduct();
 
                 Schedule.Enable();
             }
@@ -121,5 +115,7 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
+
 
 

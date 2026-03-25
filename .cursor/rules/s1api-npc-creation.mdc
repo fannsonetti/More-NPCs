@@ -450,6 +450,108 @@ For new Northtown NPCs, avoid North Apartments. Use these for overnight stays in
 
 NPCs can also use `SitSpec` at Taco Ticklers (`@Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat`) or other seats for day activities.
 
+### Regional hangout guidance (user-provided)
+
+Use these as preferred day-time hangout anchors when building schedules. If a region has few true hangouts, use seat paths/benches as the fallback.
+
+#### Westville
+- Primary hangout: `Community Center`
+- Westville is mostly residential; bench seating is expected and valid.
+- Preferred Westville seat paths:
+  - `Map/Hyland Point/Region_Westville/Apartment Building/Walls/OutdoorBench`
+  - `Map/Hyland Point/Region_Westville/Apartment Building/Walls (1)/OutdoorBench`
+  - `Map/Hyland Point/Region_Westville/Apartment Building/Walls (2)/OutdoorBench`
+
+#### Downtown
+- Preferred hangout buildings:
+  - `Slop Shop`
+  - `Supermarket`
+  - `Cafe`
+  - `The Crimson Canary`
+  - `Les Ordures Puantes`
+
+#### Docks
+- No major dedicated hangout buildings. Prefer benches/seating areas.
+
+#### Suburbia
+- No major dedicated hangout buildings. Prefer benches/seating areas.
+- Preferred Suburbia seat paths:
+  - `Map/Hyland Point/Region_Suburbia/Residential park/OutdoorBench (2)`
+  - `Map/Hyland Point/Region_Suburbia/Residential park/OutdoorBench (1)`
+  - `Map/Hyland Point/Region_Suburbia/Residential park/OutdoorBench`
+
+#### Uptown
+- Use only when the NPC profile makes sense for Uptown/civic/official traffic.
+- Preferred contextual hangout buildings:
+  - `Church`
+  - `Hyland Medical`
+  - `Hyland Bank`
+  - `Fire station`
+  - `Courthouse`
+  - `Town hall`
+
+### Hyland Point seat paths (verified)
+
+Use these exact scene paths when building `SitSpec`/`LocationDialogue` style seated activities.
+
+- `@Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat (1)`
+- `@Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat`
+- `@Businesses/Taco Ticklers/Fast Food Booth (2)/fast food booth/Seat (1)`
+- `@Businesses/Taco Ticklers/Fast Food Booth (2)/fast food booth/Seat`
+- `@Businesses/Taco Ticklers/Fast Food Booth (3)/fast food booth/Seat (1)`
+- `@Businesses/Taco Ticklers/Fast Food Booth (3)/fast food booth/Seat`
+- `Map/Hyland Point/Bus stops/Bus Stop (10)/OutdoorBench`
+- `Map/Hyland Point/Region_Northtown/Shooting range/OutdoorBench`
+- `Map/Hyland Point/Region_Northtown/Plaza/OutdoorBench (2)`
+- `Map/Hyland Point/Region_Northtown/Basketball court/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (8)/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (9)/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (7)/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (6)/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (5)/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (4)/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (3)/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (2)/OutdoorBench`
+- `Map/Hyland Point/Bus stops/Bus Stop (1)/OutdoorBench`
+- `Map/Hyland Point/Region_Westville/Corner Store/OutdoorBench`
+- `Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench`
+- `Map/Hyland Point/Region_Westville/OutdoorBench`
+- `Map/Hyland Point/Region_Westville/OutdoorBench (1)`
+- `Map/Hyland Point/Region_Docks/WaterFront/OutdoorBench`
+- `Map/Hyland Point/Region_Docks/WaterFront/OutdoorBench (1)`
+- `Map/Hyland Point/Region_Docks/WaterFront/OutdoorBench (2)`
+- `Map/Hyland Point/Region_Docks/OutdoorBench (1)`
+- `@Businesses/PostOffice/Interior/Double Sofa`
+- `Map/Hyland Point/Region_Downtown/Boutique Store/Interior/Double Sofa (1)`
+- `Map/Hyland Point/Region_Downtown/Boutique Store/Interior/Double Sofa`
+- `Map/Hyland Point/Region_Downtown/RE Office/Interior/Double Sofa (1)`
+- `Map/Hyland Point/Region_Downtown/RE Office/Interior/Double Sofa`
+- `Map/Hyland Point/Region_Downtown/TownCenter/OutdoorBench (1)`
+- `Map/Hyland Point/Region_Downtown/TownCenter/OutdoorBench`
+- `Map/Hyland Point/Region_Downtown/Diner/Round Outdoor Set/Outdoor chair`
+- `Map/Hyland Point/Region_Downtown/Diner/Round Outdoor Set/Outdoor chair (2)`
+- `Map/Hyland Point/Region_Northtown/Pawn shop/Interior/Double Sofa`
+- `Map/Hyland Point/Region_Northtown/Pawn shop/Interior/Outdoor chair`
+- `Map/Hyland Point/Region_Northtown/Pawn shop/OutdoorBench`
+- `Map/Hyland Point/Region_Northtown/Pawn shop/OutdoorBench (1)`
+- `Map/Hyland Point/Region_Westville/Encampment/OutdoorBench`
+- `Map/Hyland Point/Sewer/Decoration/Outdoor chair Prop (3)`
+- `Map/Hyland Point/Sewer/Decoration/Outdoor chair Prop (2)`
+- `Map/Hyland Point/Sewer/Decoration/Outdoor chair Prop`
+- `Map/Hyland Point/Region_Westville/Apartment Building/Walls/OutdoorBench`
+- `Map/Hyland Point/Region_Westville/Apartment Building/Walls (1)/OutdoorBench`
+- `Map/Hyland Point/Region_Westville/Apartment Building/Walls (2)/OutdoorBench`
+- `Map/Hyland Point/Region_Suburbia/Residential park/OutdoorBench (2)`
+- `Map/Hyland Point/Region_Suburbia/Residential park/OutdoorBench (1)`
+- `Map/Hyland Point/Region_Suburbia/Residential park/OutdoorBench`
+- `Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench`
+- `Map/Hyland Point/Region_Westville/Slums Gas Station/slums gas station/Shop/Outdoor chair`
+- `Map/Hyland Point/Region_Northtown/Waterfront/OutdoorBench (1)`
+- `Map/Hyland Point/Region_Northtown/Waterfront/Round Outdoor Set/Outdoor chair`
+- `Map/Hyland Point/Region_Northtown/Waterfront/Round Outdoor Set/Outdoor chair (1)`
+- `Map/Hyland Point/Region_Northtown/Waterfront/Round Outdoor Set/Outdoor chair (2)`
+- `Map/Hyland Point/Region_Northtown/Hardware Store/Outdoor chair`
+
 ## Namespace & Registration
 
 - Use `MoreNPCs.NPCs` (or project namespace) for NPC classes

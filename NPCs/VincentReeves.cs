@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -54,7 +54,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(2.5f, 4.0f)
-                        .WithCallPoliceChance(0.1f)
+                        .WithCallPoliceChance(0.21f)
                         .WithDependence(0.25f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, -0.2f), (DrugType.Methamphetamine, 0.5f), (DrugType.Shrooms, -0.3f), (DrugType.Cocaine, 0.5f) })
                         .WithPreferredProperties(Property.Euphoric, Property.Glowie, Property.Energizing);
@@ -99,3 +99,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

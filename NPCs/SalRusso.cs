@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -63,7 +63,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.08f)
+                        .WithCallPoliceChance(0.17f)
                         .WithDependence(baseAddiction: 0.15f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -84,11 +84,11 @@ namespace MoreNPCs.NPCs
                     plan.StayInBuilding(docksIndustrial, 705, 113);
                     plan.UseATM(855);
                     plan.StayInBuilding(fishWarehouse, 915, 124);
-                    plan.StayInBuilding(randysBait, 1075, 87);
+                    plan.StayInBuilding(randysBait, 1115, 87);
                     plan.UseVendingMachine(1202);
                     plan.StayInBuilding(docksIndustrial, 1232, 148);
                     plan.StayInBuilding(fishWarehouse, 1417, 118);
-                    plan.StayInBuilding(hylandBank, 1572, 95);
+                    plan.StayInBuilding(hylandBank, 1612, 95);
                     plan.StayInBuilding(docksIndustrial, 1704, 635);
                 });
         }
@@ -117,3 +117,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

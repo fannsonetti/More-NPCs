@@ -66,7 +66,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.4f)
+                        .WithCallPoliceChance(0.14f)
                         .WithDependence(baseAddiction: 0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
@@ -84,7 +84,7 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(dansHardwareUpstairs, 0, 479);
+                    plan.StayInBuilding(dansHardwareUpstairs, 000, 479);
                     plan.StayInBuilding(budsBar, 800, 239);
                     plan.StayInBuilding(sauerkrautSupreme, 1200, 239);
                     plan.Add(new WalkToSpec { Destination = outdoorChair, StartTime = 1600, FaceDestinationDirection = true });

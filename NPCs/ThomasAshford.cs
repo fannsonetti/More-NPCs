@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using MelonLoader;
 using MoreNPCs.Supervisor;
 using S1API.Economy;
@@ -11,10 +11,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// Thomas Ashford - manager of legitimate businesses (laundromat, post office, carwash, taco ticklers).
-    /// Professional appearance. Idles around Hyland Bank when not on a run.
-    /// </summary>
     public sealed class ThomasAshford : NPC
     {
         public override bool IsPhysical => true;
@@ -62,7 +58,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0f)
+                        .WithCallPoliceChance(0.18f)
                         .WithDependence(0f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0f), (DrugType.Methamphetamine, 0f), (DrugType.Shrooms, 0f), (DrugType.Cocaine, 0f) })
                         .WithPreferredProperties();
@@ -71,7 +67,8 @@ namespace MoreNPCs.NPCs
                 {
                     r.WithDelta(4.0f)
                         .SetUnlocked(false)
-                        .SetUnlockType(NPCRelationship.UnlockType.DirectApproach);
+                        .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
+                        .WithConnectionsById("");
                 })
                 .WithSchedule(plan => plan.EnsureDealSignal());
         }
@@ -100,3 +97,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

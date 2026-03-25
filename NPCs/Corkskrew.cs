@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -11,10 +11,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class Corkskrew : NPC
     {
         public override bool IsPhysical => true;
@@ -65,7 +61,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.15f)
+                        .WithCallPoliceChance(0.19f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -104,10 +100,8 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 0.63f;
+                Aggressiveness = 0.98f;
                 Region = S1API.Map.Region.Westville;
-
-                // Customer.RequestProduct();
 
                 Schedule.Enable();
             }
@@ -119,5 +113,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

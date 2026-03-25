@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -66,7 +66,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.08f)
+                        .WithCallPoliceChance(0.11f)
                         .WithDependence(baseAddiction: 0.18f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -84,14 +84,13 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northIndustrial, 0, 430); // overnight at North Industrial Building
+                    plan.StayInBuilding(northIndustrial, 000, 430);
                     plan.StayInBuilding(chineseRestaurant, 830, 99);
                     plan.UseATM(1005);
                     plan.StayInBuilding(budsBar, 1100, 164);
                     plan.Add(new WalkToSpec { Destination = northStreet, StartTime = 1340, FaceDestinationDirection = true });
                     plan.UseVendingMachine(1545);
-                    plan.StayInBuilding(northIndustrial, 1615, 109);
-                    plan.StayInBuilding(northIndustrial, 2140, 299); // overnight at North Industrial Building
+                    plan.StayInBuilding(northIndustrial, 1615, 624);
                 });
         }
 
@@ -118,3 +117,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -12,10 +12,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class KaelaThorn : NPC
     {
         public override bool IsPhysical => true;
@@ -68,7 +64,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.20f)
+                        .WithCallPoliceChance(0.21f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -86,17 +82,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.LocationDialogue(rv, 697, faceDestinationDir: true);
+                    plan.LocationDialogue(rv, 737, faceDestinationDir: true);
                     plan.UseVendingMachine(804);
                     plan.UseATM(843);
                     plan.StayInBuilding(hospital, 927, 156);
                     plan.LocationDialogue(gasMart, 1204);
-                    plan.UseVendingMachine(1396);
-                    plan.StayInBuilding(northIndustrial, 1428, 117);
+                    plan.UseVendingMachine(1436);
+                    plan.StayInBuilding(northIndustrial, 1440, 117);
                     plan.StayInBuilding(budsBar, 1626, 150);
-                    plan.StayInBuilding(southoverpass, 1897, 88);
-                    plan.Add(new WalkToSpec { Destination = docks, StartTime = 2026, FaceDestinationDirection = false });
-                    plan.StayInBuilding(southoverpass, 2133, 563);
+                    plan.Add(new WalkToSpec { Destination = docks, StartTime = 1946, FaceDestinationDirection = false });
+                    plan.StayInBuilding(southoverpass, 2037, 659);
                 });
         }
 
@@ -114,8 +109,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.60f;
                 Region = Region.Docks;
 
-                // Customer.RequestProduct();
-
                 Schedule.Enable();
             }
             catch (Exception ex)
@@ -126,5 +119,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

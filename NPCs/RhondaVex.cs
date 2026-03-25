@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -47,7 +47,7 @@ namespace MoreNPCs.NPCs
                     av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.28f, 0.26f, 0.30f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.22f, 0.22f, 0.24f));
                     av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.20f, 0.18f, 0.16f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.35f, 0.32f, 0.38f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.22f, 0.24f, 0.27f));
                 })
                 .WithSpawnPosition(managerSpot)
                 .EnsureCustomer()
@@ -61,7 +61,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.12f)
+                        .WithCallPoliceChance(0.20f)
                         .WithDependence(baseAddiction: 0.22f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -114,3 +114,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

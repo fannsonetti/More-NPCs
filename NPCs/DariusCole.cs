@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -11,10 +11,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class DariusCole : NPC
     {
         public override bool IsPhysical => true;
@@ -69,7 +65,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.50f)
+                        .WithCallPoliceChance(0.31f)
                         .WithDependence(baseAddiction: 0.25f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -88,12 +84,12 @@ namespace MoreNPCs.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.Add(new WalkToSpec { Destination = bleuball, StartTime = 727, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
-                    plan.UseVendingMachine(896);
+                    plan.UseVendingMachine(936);
                     plan.StayInBuilding(bank, 933, 299);
                     plan.UseVendingMachine(1433);
                     plan.StayInBuilding(bank, 1458, 125);
                     plan.StayInBuilding(church, 1704, 112);
-                    plan.StayInBuilding(upscaleApartments, 1897, 25);
+                    plan.StayInBuilding(upscaleApartments, 2037, 25);
                     plan.UseATM(1943);
                     plan.Add(new WalkToSpec { Destination = bleuball, StartTime = 2012, FaceDestinationDirection = false, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
                     plan.StayInBuilding(upscaleApartments, 2203, 563);
@@ -111,10 +107,8 @@ namespace MoreNPCs.NPCs
                 base.OnCreated();
                 Appearance.Build();
 
-                Aggressiveness = 0.89f; // dealer/criminal
+                Aggressiveness = 0.89f;
                 Region = Region.Uptown;
-
-                // Customer.RequestProduct();
 
                 Schedule.Enable();
             }
@@ -126,5 +120,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

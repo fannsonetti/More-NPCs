@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -67,7 +67,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.06f)
+                        .WithCallPoliceChance(0.15f)
                         .WithDependence(baseAddiction: 0.12f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -85,14 +85,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(shack, 0, 479); // overnight in Shack with Derek
+                    plan.StayInBuilding(shack, 000, 479);
                     plan.Add(new WalkToSpec { Destination = northLookout, StartTime = 815, FaceDestinationDirection = true });
                     plan.StayInBuilding(budsBar, 930, 104);
-                    plan.StayInBuilding(northWarehouse, 1075, 119);
+                    plan.StayInBuilding(northWarehouse, 1115, 119);
                     plan.UseATM(1255);
                     plan.StayInBuilding(chineseRestaurant, 1615, 89);
                     plan.UseVendingMachine(1755);
-                    plan.StayInBuilding(shack, 1825, 394); // Shack with Derek until sleep
+                    plan.StayInBuilding(shack, 1825, 394);
                 });
         }
 
@@ -119,3 +119,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

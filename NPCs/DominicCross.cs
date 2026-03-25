@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using MelonLoader;
 using MoreNPCs.Supervisor;
 using S1API.Economy;
@@ -11,10 +11,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// Dominic Cross - second supervisor NPC. Dealer appearance. Unlocked in Downtown.
-    /// Separate dealers and inventory from Silas. Idles around the Slop Shop.
-    /// </summary>
     public sealed class DominicCross : NPC
     {
         public override bool IsPhysical => true;
@@ -61,7 +57,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0f)
+                        .WithCallPoliceChance(0.18f)
                         .WithDependence(0f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0f), (DrugType.Methamphetamine, 0f), (DrugType.Shrooms, 0f), (DrugType.Cocaine, 0f) })
                         .WithPreferredProperties();
@@ -137,3 +133,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

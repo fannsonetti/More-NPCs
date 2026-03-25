@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using MelonLoader;
 using MoreNPCs.Supervisor;
 using S1API.Economy;
@@ -11,11 +11,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// Silas Mercer - supervisor NPC. Assign him dealers to oversee; collect their cash through him.
-    /// His inventory persists across sleep (WithClearInventoryEachNight=false).
-    /// Unlocked in Uptown. Separate dealers and inventory from other supervisors.
-    /// </summary>
     public sealed class SilasMercer : NPC
     {
         public override bool IsPhysical => true;
@@ -62,7 +57,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0f)
+                        .WithCallPoliceChance(0.18f)
                         .WithDependence(0f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0f), (DrugType.Methamphetamine, 0f), (DrugType.Shrooms, 0f), (DrugType.Cocaine, 0f) })
                         .WithPreferredProperties();
@@ -140,3 +135,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

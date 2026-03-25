@@ -63,7 +63,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0.05f)
+                        .WithCallPoliceChance(0.15f)
                         .WithDependence(0.12f, 1f)
                         .WithAffinities(new[]
                         {
@@ -84,10 +84,10 @@ namespace MoreNPCs.NPCs
                     plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 730, FaceDestinationDirection = true });
                     plan.StayInBuilding(cornerStore, 815, 104);
                     plan.StayInBuilding(arcade, 1000, 114);
-                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 1145, FaceDestinationDirection = true });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Corner Store/OutdoorBench", StartTime = 1145, DurationMinutes = 94 });
                     plan.UseVendingMachine(1320);
                     plan.UseATM(1520);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 4", StartTime = 1910, DurationMinutes = 700 }); // until 7am, no 4am kickout
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 1910, DurationMinutes = 700 }); // until 7am, no 4am kickout
                 });
         }
 
@@ -110,3 +110,5 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
+

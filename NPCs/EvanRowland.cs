@@ -12,7 +12,7 @@ using UnityEngine;
 namespace MoreNPCs.NPCs
 {
     /// <summary>
-    /// Evan Rowland - Nerdy kid. Dad (Charles) is single parent working at gas station. Friend of Bobby Cooley and Cody Lubbin. Lives in Charles' House.
+    /// Evan Rowland - Nerdy kid. Connected only to Bobby Cooley. Lives in Charles' House.
     /// </summary>
     public sealed class EvanRowland : NPC
     {
@@ -23,7 +23,7 @@ namespace MoreNPCs.NPCs
             var charlesHouse = Building.Get<CharlesHouse>();
             Vector3 arcade = new Vector3(-22f, 1.065f, 45f);
             Vector3 busStop = new Vector3(-13.0495f, 1.065f, 95.5169f);
-            Vector3 spawnPos = new Vector3(-60f, 1.065f, 75f); // Westville, near Charles' House area
+            Vector3 spawnPos = new Vector3(-60f, 1.065f, 75f);
 
             builder.WithIdentity("evan_rowland", "Evan", "Rowland")
                 .WithAppearanceDefaults(av =>
@@ -54,7 +54,7 @@ namespace MoreNPCs.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(200f, 400f)
+                    cd.WithSpending(50f, 250f)
                         .WithOrdersPerWeek(1, 2)
                         .WithPreferredOrderDay(Day.Friday)
                         .WithOrderTime(1530)
@@ -62,7 +62,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0.05f)
+                        .WithCallPoliceChance(0.09f)
                         .WithDependence(0.0f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0.1f), (DrugType.Methamphetamine, -0.4f), (DrugType.Shrooms, 0.2f), (DrugType.Cocaine, -0.5f) })
                         .WithPreferredProperties(Property.Calming, Property.Refreshing, Property.Focused);
@@ -78,10 +78,10 @@ namespace MoreNPCs.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 900, DurationMinutes = 119 });
-                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 1100, FaceDestinationDirection = true });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Bus stops/Bus Stop (8)/OutdoorBench", StartTime = 1100, DurationMinutes = 129 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 1230, DurationMinutes = 119 });
                     plan.UseVendingMachine(1400);
-                    plan.StayInBuilding(charlesHouse, 1730, 547); // overnight at Charles' House
+                    plan.StayInBuilding(charlesHouse, 1730, 547);
                 });
         }
 
@@ -93,7 +93,7 @@ namespace MoreNPCs.NPCs
             {
                 base.OnCreated();
                 Appearance.Build();
-                Aggressiveness = 0.28f; // nerdy kid, low
+                Aggressiveness = 0.28f;
                 Region = Region.Westville;
                 Schedule.Enable();
             }
@@ -104,3 +104,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

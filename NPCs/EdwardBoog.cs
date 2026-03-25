@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into a physical rig.
-    /// Demonstrates movement and inventory usage.
-    /// </summary>
     public sealed class EdwardBoog : NPC
     {
         public override bool IsPhysical => true;
@@ -60,7 +56,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(1.0f)
+                        .WithCallPoliceChance(0.60f)
                         .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
                         .WithAffinities(new[]
                         {
@@ -100,8 +96,6 @@ namespace MoreNPCs.NPCs
                 Aggressiveness = 0.54f;
                 Region = S1API.Map.Region.Uptown;
 
-                // Customer.RequestProduct();
-
                 Schedule.Enable();
 
             }
@@ -113,5 +107,6 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
 
 

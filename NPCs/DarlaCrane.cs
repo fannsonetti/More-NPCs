@@ -31,21 +31,23 @@ namespace MoreNPCs.NPCs
                 {
                     av.Gender = 1.0f;
                     av.Height = 0.94f;
-                    av.Weight = 0.32f;
+                    av.Weight = 0.22f;
                     av.SkinColor = new Color(0.56f, 0.46f, 0.38f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = new Color(0.96f, 0.86f, 0.78f);
-                    av.PupilDilation = 0.92f;
+                    av.EyeBallTint = new Color(0.9018f, 0.74f, 0.74f);
+                    av.PupilDilation = 0.24f;
                     av.EyebrowScale = 0.98f;
                     av.EyebrowThickness = 0.72f;
                     av.EyebrowRestingHeight = -0.28f;
                     av.EyebrowRestingAngle = 2.6f;
-                    av.LeftEye = (0.30f, 0.20f);
-                    av.RightEye = (0.30f, 0.20f);
+                    av.LeftEye = (0.55f, 0.09f);
+                    av.RightEye = (0.55f, 0.09f);
                     av.HairColor = new Color(0.18f, 0.14f, 0.10f);
-                    av.HairPath = "Avatar/Hair/LowBun/LowBun";
+                    av.HairPath = "Avatar/Hair/MessyBob/MessyBob";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/EyeShadow", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", Color.black);
                     av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.35f, 0.30f, 0.32f));
                     av.WithBodyLayer("Avatar/Layers/Top/UpperBodyTattoos", new Color(0.10f, 0.08f, 0.06f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.20f, 0.20f, 0.22f));
@@ -64,7 +66,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(0f, 1f)
-                        .WithCallPoliceChance(0.04f)
+                        .WithCallPoliceChance(0.19f)
                         .WithDependence(0.32f, 1f)
                         .WithAffinities(new[] { (DrugType.Marijuana, 0.28f), (DrugType.Methamphetamine, 0.91f), (DrugType.Shrooms, -0.42f), (DrugType.Cocaine, -0.12f) })
                         .WithPreferredProperties(Property.Energizing, Property.Smelly, Property.Paranoia);
@@ -79,14 +81,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Jessi's Room", StartTime = 0, DurationMinutes = 479 });
                     plan.StayInBuilding(cornerStore, 800, 84);
-                    plan.Add(new WalkToSpec { Destination = busStop, StartTime = 1015, FaceDestinationDirection = true });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench", StartTime = 1015, DurationMinutes = 99 });
                     plan.StayInBuilding(thePissHut, 1115, 104);
                     plan.UseATM(1335);
                     plan.StayInBuilding(cornerStore, 1510, 79);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Jessi's Room", StartTime = 1700, DurationMinutes = 179 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Jessi's Room", StartTime = 2015, DurationMinutes = 704 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Jessi's Room", StartTime = 1700, DurationMinutes = 899 });
                 });
         }
 
@@ -98,7 +98,7 @@ namespace MoreNPCs.NPCs
             {
                 base.OnCreated();
                 Appearance.Build();
-                Aggressiveness = 0.72f;
+                Aggressiveness = 0.97f;
                 Region = Region.Westville;
                 Schedule.Enable();
             }
@@ -109,3 +109,5 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+
+

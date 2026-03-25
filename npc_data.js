@@ -5,36 +5,55 @@ const NPC_DATA = [
   {
     "file": "DominicCross.cs",
     "type": "supervisor",
-    "description": "Dominic Cross - second supervisor NPC. Dealer appearance. Unlocked in Downtown.  Separate dealers and inventory from Silas. Idles around the Slop Shop.",
+    "description": "",
     "id": "dominic_cross",
     "firstName": "Dominic",
     "lastName": "Cross",
     "name": "Dominic Cross",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": true,
-    "region": "Downtown"
+    "region": "Downtown",
+    "cut": 10.0
   },
   {
     "file": "SilasMercer.cs",
     "type": "supervisor",
-    "description": "Silas Mercer - supervisor NPC. Assign him dealers to oversee; collect their cash through him.  His inventory persists across sleep (WithClearInventoryEachNight=false).  Unlocked in Uptown. Separate dealers and inventory from other supervisors.",
+    "description": "",
     "id": "silas_mercer",
     "firstName": "Silas",
     "lastName": "Mercer",
     "name": "Silas Mercer",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": true,
-    "region": "Uptown"
+    "region": "Uptown",
+    "cut": 10.0
+  },
+  {
+    "file": "ThomasAshford.cs",
+    "type": "manager",
+    "description": "",
+    "id": "thomas_ashford",
+    "firstName": "Thomas",
+    "lastName": "Ashford",
+    "name": "Thomas Ashford",
+    "isDealer": false,
+    "isManager": true,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "cut": 10.0
   },
   {
     "file": "FannsoNetti.cs",
     "type": "dealer",
-    "description": "FannsoNetti - Northtown dealer at North Warehouse. Connected to Valerie and Jian.",
+    "description": "",
     "id": "fannsonetti",
     "firstName": "FannsoNetti",
     "lastName": "",
     "name": "FannsoNetti",
     "isDealer": true,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "cut": 20.0,
@@ -44,12 +63,13 @@ const NPC_DATA = [
   {
     "file": "MaxineJunefield.cs",
     "type": "dealer",
-    "description": "Maxine Junefield - Westville dealer based on Max (Maxine Mayfield) from Stranger Things S4.  Fringe ponytail, white flannel, light blue collar jacket, red-gold chain.",
+    "description": "",
     "id": "maxine_junefield",
     "firstName": "Maxine",
     "lastName": "Junefield",
     "name": "Maxine Junefield",
     "isDealer": true,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "cut": 20.0,
@@ -59,12 +79,13 @@ const NPC_DATA = [
   {
     "file": "RickTorres.cs",
     "type": "dealer",
-    "description": "Rick Torres - Downtown dealer who lives in the Supermarket. Connected to Jeff Gilmore and Bruce Norton.",
+    "description": "",
     "id": "rick_torres",
     "firstName": "Rick",
     "lastName": "Torres",
     "name": "Rick Torres",
     "isDealer": true,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Downtown",
     "cut": 20.0,
@@ -74,12 +95,13 @@ const NPC_DATA = [
   {
     "file": "SergeantGrey.cs",
     "type": "dealer",
-    "description": "An example S1API NPC that opts into dealer functionality.  Demonstrates dealer configuration, customer assignment, and cash management.",
+    "description": "",
     "id": "sergeant_grey",
     "firstName": "Sergeant",
     "lastName": "Grey",
     "name": "Sergeant Grey",
     "isDealer": true,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Suburbia",
     "cut": 20.0,
@@ -87,19 +109,68 @@ const NPC_DATA = [
     "home": "PoliceStation"
   },
   {
+    "file": "BenDover.cs",
+    "type": "customer",
+    "description": "",
+    "id": "ben_dover",
+    "firstName": "Ben",
+    "lastName": "Dover",
+    "name": "Ben Dover",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Northtown",
+    "spending": [
+      350,
+      650
+    ],
+    "orders": [
+      2,
+      4
+    ],
+    "time": "19:40",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": 21,
+      "Methamphetamine": 35,
+      "Shrooms": -14,
+      "Cocaine": 10
+    },
+    "properties": [
+      "Calming",
+      "Refreshing",
+      "Smelly"
+    ],
+    "noProps": false,
+    "policeRisk": 16,
+    "dependence": 0.2,
+    "connections": [
+      "tess_tickle",
+      "wayne_kerr"
+    ],
+    "unlocked": [
+      "tess_tickle",
+      "wayne_kerr"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "BobbyCooley.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "bobby_cooley",
     "firstName": "Bobby",
     "lastName": "Cooley",
     "name": "Bobby Cooley",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
-      400,
-      600
+      50,
+      250
     ],
     "orders": [
       2,
@@ -117,15 +188,13 @@ const NPC_DATA = [
     },
     "properties": [],
     "noProps": true,
-    "policeRisk": 5,
+    "policeRisk": 10,
     "dependence": 0.0,
     "connections": [
-      "meg_cooley",
-      "marcus_sherman"
+      "meg_cooley"
     ],
     "unlocked": [
-      "meg_cooley",
-      "marcus_sherman"
+      "meg_cooley"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -138,6 +207,7 @@ const NPC_DATA = [
     "lastName": "Halver",
     "name": "Brent Halver",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -164,7 +234,7 @@ const NPC_DATA = [
       "Energizing"
     ],
     "noProps": false,
-    "policeRisk": 6,
+    "policeRisk": 14,
     "dependence": 1,
     "connections": [
       "george_greene",
@@ -179,17 +249,18 @@ const NPC_DATA = [
   {
     "file": "BryceSherman.cs",
     "type": "customer",
-    "description": "Marcus Sherman - Kid living in the Trent house with gangsters. Connected to Victor Hughes and Bobby Cooley. Moderate standards but limited budget. 100% affinity for all drugs.",
+    "description": "",
     "id": "bryce_sherman",
     "firstName": "Bryce",
     "lastName": "Sherman",
     "name": "Bryce Sherman",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
-      150,
-      350
+      50,
+      250
     ],
     "orders": [
       1,
@@ -207,7 +278,7 @@ const NPC_DATA = [
     },
     "properties": [],
     "noProps": true,
-    "policeRisk": 3,
+    "policeRisk": 18,
     "dependence": 1,
     "connections": [
       "victor_hughes",
@@ -216,65 +287,19 @@ const NPC_DATA = [
     "unlocked": [
       "victor_hughes",
       "bobby_cooley"
-    ],
-    "avatar": "\ud83e\uddd1"
-  },
-  {
-    "file": "CodyLubbin.cs",
-    "type": "customer",
-    "description": "Cody Lubbin - Westville teen with a cowboy hat. Hangs around Taco Ticklers and the Corner Store.",
-    "id": "cody_lubbin",
-    "firstName": "Cody",
-    "lastName": "Lubbin",
-    "name": "Cody Lubbin",
-    "isDealer": false,
-    "isSupervisor": false,
-    "region": "Westville",
-    "spending": [
-      200,
-      500
-    ],
-    "orders": [
-      1,
-      3
-    ],
-    "time": "15:00",
-    "standards": "VeryLow",
-    "standardsDisplay": "Very Low",
-    "day": "Sat",
-    "affinities": {
-      "Marijuana": 36,
-      "Methamphetamine": -18,
-      "Shrooms": 24,
-      "Cocaine": -28
-    },
-    "properties": [
-      "Calming",
-      "Munchies",
-      "Refreshing"
-    ],
-    "noProps": false,
-    "policeRisk": 4,
-    "dependence": 1,
-    "connections": [
-      "bobby_cooley",
-      "evan_rowland"
-    ],
-    "unlocked": [
-      "bobby_cooley",
-      "evan_rowland"
     ],
     "avatar": "\ud83e\uddd1"
   },
   {
     "file": "Corkskrew.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "corkskrew",
     "firstName": "Corkskrew",
     "lastName": "",
     "name": "Corkskrew",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -301,7 +326,7 @@ const NPC_DATA = [
       "CalorieDense"
     ],
     "noProps": false,
-    "policeRisk": 15,
+    "policeRisk": 19,
     "dependence": 0.25,
     "connections": [
       "trent_sherman",
@@ -314,14 +339,61 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "CoryLubbin.cs",
+    "type": "customer",
+    "description": "",
+    "id": "cory_lubbin",
+    "firstName": "Cory",
+    "lastName": "Lubbin",
+    "name": "Cory Lubbin",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Westville",
+    "spending": [
+      400,
+      600
+    ],
+    "orders": [
+      2,
+      4
+    ],
+    "time": "15:00",
+    "standards": "VeryLow",
+    "standardsDisplay": "Very Low",
+    "day": "Sat",
+    "affinities": {
+      "Marijuana": 38,
+      "Methamphetamine": -14,
+      "Shrooms": 18,
+      "Cocaine": -25
+    },
+    "properties": [
+      "Energizing",
+      "Refreshing",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 9,
+    "dependence": 1,
+    "connections": [
+      "bobby_cooley"
+    ],
+    "unlocked": [
+      "bobby_cooley"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "DanielJDalby.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "daniel_j_dalby",
     "firstName": "Daniel J.",
     "lastName": "D'alby",
     "name": "Daniel J. D'alby",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Uptown",
     "spending": [
@@ -348,7 +420,7 @@ const NPC_DATA = [
       "BrightEyed"
     ],
     "noProps": false,
-    "policeRisk": 15,
+    "policeRisk": 28,
     "dependence": 0.25,
     "connections": [
       "ray_hoffman",
@@ -363,12 +435,13 @@ const NPC_DATA = [
   {
     "file": "DariusCole.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "darius_cole",
     "firstName": "Darius",
     "lastName": "Cole",
     "name": "Darius Cole",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Uptown",
     "spending": [
@@ -395,7 +468,7 @@ const NPC_DATA = [
       "Zombifying"
     ],
     "noProps": false,
-    "policeRisk": 50,
+    "policeRisk": 31,
     "dependence": 0.25,
     "connections": [
       "irene_meadows",
@@ -410,12 +483,13 @@ const NPC_DATA = [
   {
     "file": "DarlaCrane.cs",
     "type": "customer",
-    "description": "Darla Crane - Westville methhead with tattoos. Connected to Dean Webster and Shirley Watts.",
+    "description": "",
     "id": "darla_crane",
     "firstName": "Darla",
     "lastName": "Crane",
     "name": "Darla Crane",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -442,7 +516,7 @@ const NPC_DATA = [
       "Paranoia"
     ],
     "noProps": false,
-    "policeRisk": 4,
+    "policeRisk": 19,
     "dependence": 1,
     "connections": [
       "dean_webster",
@@ -457,12 +531,13 @@ const NPC_DATA = [
   {
     "file": "DerekVale.cs",
     "type": "customer",
-    "description": "Derek Vale - hippie Northtown regular who loves shrooms. Lives in the Shack. Day: Taco Ticklers, Piss Hut, Shack, Community Center. Connected to Jason Reed and Austin Steiner.",
+    "description": "",
     "id": "derek_vale",
     "firstName": "Derek",
     "lastName": "Vale",
     "name": "Derek Vale",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -489,7 +564,7 @@ const NPC_DATA = [
       "Glowing"
     ],
     "noProps": false,
-    "policeRisk": 9,
+    "policeRisk": 15,
     "dependence": 0.14,
     "connections": [
       "jason_reed",
@@ -504,12 +579,13 @@ const NPC_DATA = [
   {
     "file": "Diesel.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "diesel",
     "firstName": "Diesel",
     "lastName": "",
     "name": "Diesel",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -536,7 +612,7 @@ const NPC_DATA = [
       "Explosive"
     ],
     "noProps": false,
-    "policeRisk": 10,
+    "policeRisk": 22,
     "dependence": 0.0,
     "connections": [
       "melissa_wood",
@@ -551,12 +627,13 @@ const NPC_DATA = [
   {
     "file": "DorothySamwell.cs",
     "type": "customer",
-    "description": "Dorothy Samwell - elderly Northtown resident. Lives above Dan's Hardware,  visits Bud's Bar and Sauerkraut Supreme during the day, relaxes on the outdoor chair.",
+    "description": "",
     "id": "dorothy_samwell",
     "firstName": "Dorothy",
     "lastName": "Samwell",
     "name": "Dorothy Samwell",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -583,7 +660,7 @@ const NPC_DATA = [
       "Focused"
     ],
     "noProps": false,
-    "policeRisk": 40,
+    "policeRisk": 14,
     "dependence": 0.0,
     "connections": [
       "beth_penn",
@@ -596,14 +673,63 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "EarlHaskins.cs",
+    "type": "customer",
+    "description": "",
+    "id": "earl_haskins",
+    "firstName": "Earl",
+    "lastName": "Haskins",
+    "name": "Earl Haskins",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Westville",
+    "spending": [
+      500,
+      700
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "17:40",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Mon",
+    "affinities": {
+      "Marijuana": 24,
+      "Methamphetamine": 8,
+      "Shrooms": -18,
+      "Cocaine": 30
+    },
+    "properties": [
+      "Energizing",
+      "Sedating",
+      "Smelly"
+    ],
+    "noProps": false,
+    "policeRisk": 15,
+    "dependence": 1,
+    "connections": [
+      "dean_webster",
+      "marlene_haskins"
+    ],
+    "unlocked": [
+      "dean_webster",
+      "marlene_haskins"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "EdwardBoog.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "edward_boog",
     "firstName": "Edward",
     "lastName": "Boog",
     "name": "Edward Boog",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Uptown",
     "spending": [
@@ -630,7 +756,7 @@ const NPC_DATA = [
       "Explosive"
     ],
     "noProps": false,
-    "policeRisk": 100,
+    "policeRisk": 60,
     "dependence": 0.0,
     "connections": [
       "michael_boog",
@@ -645,12 +771,13 @@ const NPC_DATA = [
   {
     "file": "EleanorBriggs.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "eleanor_briggs",
     "firstName": "Eleanor",
     "lastName": "Briggs",
     "name": "Eleanor Briggs",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Downtown",
     "spending": [
@@ -677,7 +804,7 @@ const NPC_DATA = [
       "TropicThunder"
     ],
     "noProps": false,
-    "policeRisk": 35,
+    "policeRisk": 19,
     "dependence": 0.0,
     "connections": [
       "randy_caulfield"
@@ -690,17 +817,18 @@ const NPC_DATA = [
   {
     "file": "EvanRowland.cs",
     "type": "customer",
-    "description": "Evan Rowland - Nerdy kid. Dad (Charles) is single parent working at gas station. Friend of Bobby Cooley and Cody Lubbin. Lives in Charles' House.",
+    "description": "",
     "id": "evan_rowland",
     "firstName": "Evan",
     "lastName": "Rowland",
     "name": "Evan Rowland",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
-      200,
-      400
+      50,
+      250
     ],
     "orders": [
       1,
@@ -722,7 +850,7 @@ const NPC_DATA = [
       "Focused"
     ],
     "noProps": false,
-    "policeRisk": 5,
+    "policeRisk": 9,
     "dependence": 1,
     "connections": [
       "bobby_cooley"
@@ -735,12 +863,13 @@ const NPC_DATA = [
   {
     "file": "FinnMurphy.cs",
     "type": "customer",
-    "description": "Finn Murphy - Docks fisherman. Works at Fish Warehouse, Randy's Bait. Connections: kelly_reynolds, lisa_gardener.",
+    "description": "",
     "id": "finn_murphy",
     "firstName": "Finn",
     "lastName": "Murphy",
     "name": "Finn Murphy",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -767,7 +896,7 @@ const NPC_DATA = [
       "Glowing"
     ],
     "noProps": false,
-    "policeRisk": 12,
+    "policeRisk": 21,
     "dependence": 0.2,
     "connections": [
       "kelly_reynolds",
@@ -782,12 +911,13 @@ const NPC_DATA = [
   {
     "file": "GavinHolt.cs",
     "type": "customer",
-    "description": "Gavin Holt - Downtown professional (classy outfit). Schedule uses placeholder buildings; update when provided.",
+    "description": "",
     "id": "gavin_holt",
     "firstName": "Gavin",
     "lastName": "Holt",
     "name": "Gavin Holt",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Downtown",
     "spending": [
@@ -814,27 +944,28 @@ const NPC_DATA = [
       "Sneaky"
     ],
     "noProps": false,
-    "policeRisk": 1,
+    "policeRisk": 20,
     "dependence": 1,
     "connections": [
       "philip_wentworth",
-      "greg_figgle"
+      "greg_fliggle"
     ],
     "unlocked": [
       "philip_wentworth",
-      "greg_figgle"
+      "greg_fliggle"
     ],
     "avatar": "\ud83e\uddd1"
   },
   {
     "file": "Grunk.cs",
     "type": "customer",
-    "description": "Grunk - sewer-dwelling ogre. Home: Goblin Hide Building.",
+    "description": "",
     "id": "grunk",
     "firstName": "Grunk",
     "lastName": "",
     "name": "Grunk",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -861,7 +992,7 @@ const NPC_DATA = [
       "Toxic"
     ],
     "noProps": false,
-    "policeRisk": 0,
+    "policeRisk": 14,
     "dependence": 0.1,
     "connections": [
       "manhole_mike"
@@ -874,12 +1005,13 @@ const NPC_DATA = [
   {
     "file": "HenryMitchell.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "henry_mitchell",
     "firstName": "Henry",
     "lastName": "Mitchell",
     "name": "Henry Mitchell",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -906,7 +1038,7 @@ const NPC_DATA = [
       "TropicThunder"
     ],
     "noProps": false,
-    "policeRisk": 33,
+    "policeRisk": 16,
     "dependence": 0.0,
     "connections": [
       "jane_lucero",
@@ -921,12 +1053,13 @@ const NPC_DATA = [
   {
     "file": "JamalBennett.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "jamal_bennett",
     "firstName": "Jamal",
     "lastName": "Bennett",
     "name": "Jamal Bennett",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -953,7 +1086,7 @@ const NPC_DATA = [
       "Disorienting"
     ],
     "noProps": false,
-    "policeRisk": 0,
+    "policeRisk": 23,
     "dependence": 0.25,
     "connections": [
       "trent_sherman"
@@ -966,12 +1099,13 @@ const NPC_DATA = [
   {
     "file": "JasonReed.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "jason_reed",
     "firstName": "Jason",
     "lastName": "Reed",
     "name": "Jason Reed",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -998,7 +1132,7 @@ const NPC_DATA = [
       "Shrinking"
     ],
     "noProps": false,
-    "policeRisk": 33,
+    "policeRisk": 11,
     "dependence": 0.1,
     "connections": [
       "kyle_cooley",
@@ -1013,12 +1147,13 @@ const NPC_DATA = [
   {
     "file": "JianMing.cs",
     "type": "customer",
-    "description": "Jian Ming - Chinese, last name Ming. White/blue scheme. Main: North Industrial, secondary: North Warehouse. Chinese Restaurant 90min at dinner. Connected to Ludwig Meyer, Mrs. Ming, Mr. Ming.",
+    "description": "",
     "id": "jian_ming",
     "firstName": "Jian",
     "lastName": "Ming",
     "name": "Jian Ming",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -1045,7 +1180,7 @@ const NPC_DATA = [
       "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 12,
+    "policeRisk": 21,
     "dependence": 0.25,
     "connections": [
       "ludwig_meyer",
@@ -1060,12 +1195,13 @@ const NPC_DATA = [
   {
     "file": "JosephWilkinson.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "joseph_wilkinson",
     "firstName": "Joseph",
     "lastName": "Wilkinson",
     "name": "Joseph Wilkinson",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Downtown",
     "spending": [
@@ -1092,7 +1228,7 @@ const NPC_DATA = [
       "Sedating"
     ],
     "noProps": false,
-    "policeRisk": 15,
+    "policeRisk": 21,
     "dependence": 0.25,
     "connections": [
       "elizabeth_homley",
@@ -1107,12 +1243,13 @@ const NPC_DATA = [
   {
     "file": "KaelaThorn.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "kaela_thorn",
     "firstName": "Kaela",
     "lastName": "Thorn",
     "name": "Kaela Thorn",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -1139,7 +1276,7 @@ const NPC_DATA = [
       "Foggy"
     ],
     "noProps": false,
-    "policeRisk": 20,
+    "policeRisk": 21,
     "dependence": 0.25,
     "connections": [
       "lisa_gardener",
@@ -1154,12 +1291,13 @@ const NPC_DATA = [
   {
     "file": "KaraDempsey.cs",
     "type": "customer",
-    "description": "Kara Dempsey - Westville local tied to Rory and Sarah.",
+    "description": "",
     "id": "kara_dempsey",
     "firstName": "Kara",
     "lastName": "Dempsey",
     "name": "Kara Dempsey",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -1186,7 +1324,7 @@ const NPC_DATA = [
       "Foggy"
     ],
     "noProps": false,
-    "policeRisk": 4,
+    "policeRisk": 14,
     "dependence": 1,
     "connections": [
       "rory_dempsey",
@@ -1201,12 +1339,13 @@ const NPC_DATA = [
   {
     "file": "LenaHart.cs",
     "type": "customer",
-    "description": "Lena Hart - Northtown resident who spends most of her day around downtown offices and cafes.  Connected to Kathy Henderson and Donna Martin.",
+    "description": "",
     "id": "lena_hart",
     "firstName": "Lena",
     "lastName": "Hart",
     "name": "Lena Hart",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -1233,7 +1372,7 @@ const NPC_DATA = [
       "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 14,
+    "policeRisk": 15,
     "dependence": 0.08,
     "connections": [
       "kathy_henderson",
@@ -1246,14 +1385,63 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "LilaPark.cs",
+    "type": "customer",
+    "description": "",
+    "id": "lila_park",
+    "firstName": "Lila",
+    "lastName": "Park",
+    "name": "Lila Park",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Westville",
+    "spending": [
+      450,
+      700
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "18:20",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Sat",
+    "affinities": {
+      "Marijuana": 30,
+      "Methamphetamine": -22,
+      "Shrooms": 48,
+      "Cocaine": 7
+    },
+    "properties": [
+      "Sneaky",
+      "Spicy",
+      "BrightEyed"
+    ],
+    "noProps": false,
+    "policeRisk": 19,
+    "dependence": 1,
+    "connections": [
+      "nora_kessler",
+      "maxine_junefield"
+    ],
+    "unlocked": [
+      "nora_kessler",
+      "maxine_junefield"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "Mack.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "mack",
     "firstName": "Mack",
     "lastName": "",
     "name": "Mack",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -1280,7 +1468,7 @@ const NPC_DATA = [
       "Euphoric"
     ],
     "noProps": false,
-    "policeRisk": 10,
+    "policeRisk": 19,
     "dependence": 0.0,
     "connections": [
       "melissa_wood",
@@ -1295,12 +1483,13 @@ const NPC_DATA = [
   {
     "file": "ManholeMike.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "manhole_mike",
     "firstName": "Manhole Mike",
     "lastName": "",
     "name": "Manhole Mike",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -1327,7 +1516,7 @@ const NPC_DATA = [
       "Munchies"
     ],
     "noProps": false,
-    "policeRisk": 0,
+    "policeRisk": 12,
     "dependence": 0.0,
     "connections": [
       "cranky_frank",
@@ -1342,12 +1531,13 @@ const NPC_DATA = [
   {
     "file": "MarlaHale.cs",
     "type": "customer",
-    "description": "Marla Hale - Northtown regular who bounces between Chinese Restaurant, Bud's Bar, and Kyle and Austin's place.  Connected to Kyle Cooley and Nico Marlowe.",
+    "description": "",
     "id": "marla_hale",
     "firstName": "Marla",
     "lastName": "Hale",
     "name": "Marla Hale",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -1374,7 +1564,7 @@ const NPC_DATA = [
       "Foggy"
     ],
     "noProps": false,
-    "policeRisk": 8,
+    "policeRisk": 11,
     "dependence": 0.18,
     "connections": [
       "kyle_cooley",
@@ -1387,61 +1577,61 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MasonKeel.cs",
+    "file": "MarleneHaskins.cs",
     "type": "customer",
-    "description": "Mason Keel - rough Westville runner tied to Dean Webster and Rory Dempsey.",
-    "id": "mason_keel",
-    "firstName": "Mason",
-    "lastName": "Keel",
-    "name": "Mason Keel",
+    "description": "",
+    "id": "marlene_haskins",
+    "firstName": "Marlene",
+    "lastName": "Haskins",
+    "name": "Marlene Haskins",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
-      400,
-      700
+      450,
+      650
     ],
     "orders": [
       1,
-      4
+      3
     ],
-    "time": "21:10",
+    "time": "18:10",
     "standards": "Low",
     "standardsDisplay": "Low",
-    "day": "Mon",
+    "day": "Fri",
     "affinities": {
-      "Marijuana": 20,
-      "Methamphetamine": 57,
-      "Shrooms": -14,
-      "Cocaine": 32
+      "Marijuana": 18,
+      "Methamphetamine": -26,
+      "Shrooms": 34,
+      "Cocaine": 9
     },
     "properties": [
-      "Energizing",
-      "Smelly",
-      "Sneaky"
+      "Glowing",
+      "Focused",
+      "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 3,
+    "policeRisk": 15,
     "dependence": 1,
     "connections": [
-      "dean_webster",
-      "rory_dempsey"
+      "earl_haskins"
     ],
     "unlocked": [
-      "dean_webster",
-      "rory_dempsey"
+      "earl_haskins"
     ],
     "avatar": "\ud83e\uddd1"
   },
   {
     "file": "MaxPennyson.cs",
     "type": "customer",
-    "description": "Max Pennyson - Grandpa Ben-inspired character from Downtown (looks based on him, parody name). Eats at Slop Shop 90+ min at dinner, walks forest before. South Overpass Building after dinner until wake 7:02. Connections: bruce_norton, philip_wentworth.",
+    "description": "",
     "id": "max_pennyson",
     "firstName": "Max",
     "lastName": "Pennyson",
     "name": "Max Pennyson",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Downtown",
     "spending": [
@@ -1468,7 +1658,7 @@ const NPC_DATA = [
       "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 18,
+    "policeRisk": 21,
     "dependence": 0.2,
     "connections": [
       "bruce_norton",
@@ -1483,12 +1673,13 @@ const NPC_DATA = [
   {
     "file": "MayaWebb.cs",
     "type": "customer",
-    "description": "Maya Webb - Chemical factory worker in Westville. Lives in Docks. Spawn and break spot at warehouse pier. Connections: mac_cooper, billy_kramer.",
+    "description": "",
     "id": "maya_webb",
     "firstName": "Maya",
     "lastName": "Webb",
     "name": "Maya Webb",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -1515,7 +1706,7 @@ const NPC_DATA = [
       "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 18,
+    "policeRisk": 21,
     "dependence": 0.2,
     "connections": [
       "mac_cooper",
@@ -1530,12 +1721,13 @@ const NPC_DATA = [
   {
     "file": "MiltonDelaney.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "milton_delaney",
     "firstName": "Milton",
     "lastName": "Delaney",
     "name": "Milton Delaney",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Downtown",
     "spending": [
@@ -1562,7 +1754,7 @@ const NPC_DATA = [
       "Zombifying"
     ],
     "noProps": false,
-    "policeRisk": 35,
+    "policeRisk": 20,
     "dependence": 0.0,
     "connections": [
       "jeff_gilmore",
@@ -1577,12 +1769,13 @@ const NPC_DATA = [
   {
     "file": "MoeLester.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "moe_lester",
     "firstName": "Moe",
     "lastName": "Lester",
     "name": "Moe Lester",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -1609,7 +1802,7 @@ const NPC_DATA = [
       "Glowing"
     ],
     "noProps": false,
-    "policeRisk": 25,
+    "policeRisk": 16,
     "dependence": 0.25,
     "connections": [
       "jessi_waters",
@@ -1624,12 +1817,13 @@ const NPC_DATA = [
   {
     "file": "MrMing.cs",
     "type": "customer",
-    "description": "Mr. Ming - Chinese elder. Empty schedule (add positions manually).",
+    "description": "",
     "id": "mr_ming",
     "firstName": "Mr.",
     "lastName": "Ming",
     "name": "Mr. Ming",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -1656,7 +1850,7 @@ const NPC_DATA = [
       "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 10,
+    "policeRisk": 20,
     "dependence": 0.1,
     "connections": [
       "ming"
@@ -1667,14 +1861,63 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "NadiaParker.cs",
+    "type": "customer",
+    "description": "",
+    "id": "nadia_parker",
+    "firstName": "Nadia",
+    "lastName": "Parker",
+    "name": "Nadia Parker",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      500,
+      800
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "19:30",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Tue",
+    "affinities": {
+      "Marijuana": 28,
+      "Methamphetamine": 4,
+      "Shrooms": 20,
+      "Cocaine": -8
+    },
+    "properties": [
+      "Refreshing",
+      "Focused",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 22,
+    "dependence": 1,
+    "connections": [
+      "eugene_buckley",
+      "gavin_holt"
+    ],
+    "unlocked": [
+      "eugene_buckley",
+      "gavin_holt"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "NicoMarlowe.cs",
     "type": "customer",
-    "description": "Nico Marlowe - a low-end Northtown floater who sits between Marla Hale and Owen Crowe socially.  Connected to Owen Crowe.",
+    "description": "",
     "id": "nico_marlowe",
     "firstName": "Nico",
     "lastName": "Marlowe",
     "name": "Nico Marlowe",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -1701,7 +1944,7 @@ const NPC_DATA = [
       "Smelly"
     ],
     "noProps": false,
-    "policeRisk": 5,
+    "policeRisk": 15,
     "dependence": 0.17,
     "connections": [
       "owen_crowe"
@@ -1714,12 +1957,13 @@ const NPC_DATA = [
   {
     "file": "NoraKessler.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "nora_kessler",
     "firstName": "Nora",
     "lastName": "Kessler",
     "name": "Nora Kessler",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -1746,25 +1990,28 @@ const NPC_DATA = [
       "Gingeritis"
     ],
     "noProps": false,
-    "policeRisk": 0,
+    "policeRisk": 23,
     "dependence": 0.25,
     "connections": [
-      "trent_sherman"
+      "trent_sherman",
+      "lila_park"
     ],
     "unlocked": [
-      "trent_sherman"
+      "trent_sherman",
+      "lila_park"
     ],
     "avatar": "\ud83e\uddd1"
   },
   {
     "file": "OfficerMarcus.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "officer_marcus",
     "firstName": "Officer",
     "lastName": "Marcus",
     "name": "Officer Marcus",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Suburbia",
     "spending": [
@@ -1791,7 +2038,7 @@ const NPC_DATA = [
       "Sneaky"
     ],
     "noProps": false,
-    "policeRisk": 90,
+    "policeRisk": 75,
     "dependence": 0.0,
     "connections": [
       "alison_knight",
@@ -1806,12 +2053,13 @@ const NPC_DATA = [
   {
     "file": "OwenCrowe.cs",
     "type": "customer",
-    "description": "Owen Crowe - Northtown burnout who drifts between Peter's Room, the motel office, Bud's Bar, and Kyle's place.  Connected to Kyle Cooley and Jason Reed.",
+    "description": "",
     "id": "owen_crowe",
     "firstName": "Owen",
     "lastName": "Crowe",
     "name": "Owen Crowe",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -1838,7 +2086,7 @@ const NPC_DATA = [
       "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 1,
+    "policeRisk": 16,
     "dependence": 0.26,
     "connections": [
       "kyle_cooley",
@@ -1853,12 +2101,13 @@ const NPC_DATA = [
   {
     "file": "PiperSloan.cs",
     "type": "customer",
-    "description": "Piper Sloan - outgoing Northtown errand-runner who treats Kyle as her only real contact.  Connected only to Kyle Cooley.",
+    "description": "",
     "id": "piper_sloan",
     "firstName": "Piper",
     "lastName": "Sloan",
     "name": "Piper Sloan",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -1885,7 +2134,7 @@ const NPC_DATA = [
       "Shrinking"
     ],
     "noProps": false,
-    "policeRisk": 6,
+    "policeRisk": 15,
     "dependence": 0.12,
     "connections": [
       "kyle_cooley"
@@ -1898,12 +2147,13 @@ const NPC_DATA = [
   {
     "file": "PriyaMadden.cs",
     "type": "customer",
-    "description": "Priya Madden - Downtown professional. Schedule uses placeholder buildings; update when provided.",
+    "description": "",
     "id": "priya_madden",
     "firstName": "Priya",
     "lastName": "Madden",
     "name": "Priya Madden",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Downtown",
     "spending": [
@@ -1930,7 +2180,7 @@ const NPC_DATA = [
       "Glowing"
     ],
     "noProps": false,
-    "policeRisk": 8,
+    "policeRisk": 20,
     "dependence": 1,
     "connections": [
       "jennifer_rivera",
@@ -1943,14 +2193,63 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "RheaLarkin.cs",
+    "type": "customer",
+    "description": "",
+    "id": "rhea_larkin",
+    "firstName": "Rhea",
+    "lastName": "Larkin",
+    "name": "Rhea Larkin",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      500,
+      800
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "20:00",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Thu",
+    "affinities": {
+      "Marijuana": 24,
+      "Methamphetamine": 8,
+      "Shrooms": 22,
+      "Cocaine": -10
+    },
+    "properties": [
+      "Refreshing",
+      "Focused",
+      "Glowing"
+    ],
+    "noProps": false,
+    "policeRisk": 22,
+    "dependence": 1,
+    "connections": [
+      "jennifer_rivera",
+      "sienna_crowley"
+    ],
+    "unlocked": [
+      "jennifer_rivera",
+      "sienna_crowley"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "RhondaVex.cs",
     "type": "customer",
-    "description": "Rhonda Vex - Westville GasMart manager. Female, enjoys meth most. Spawns at West Gas-Mart, works ~8 hrs/day, steps out for vending breaks (~30 min). Lives in Room 3. Connections: charles_rowland, kim_delaney.",
+    "description": "",
     "id": "rhonda_vex",
     "firstName": "Rhonda",
     "lastName": "Vex",
     "name": "Rhonda Vex",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -1977,7 +2276,7 @@ const NPC_DATA = [
       "Paranoia"
     ],
     "noProps": false,
-    "policeRisk": 12,
+    "policeRisk": 20,
     "dependence": 0.22,
     "connections": [
       "charles_rowland",
@@ -1992,12 +2291,13 @@ const NPC_DATA = [
   {
     "file": "RoryDempsey.cs",
     "type": "customer",
-    "description": "Rory Dempsey - Westville regular. Connections: George Greene. Lives in Room 3.",
+    "description": "",
     "id": "rory_dempsey",
     "firstName": "Rory",
     "lastName": "Dempsey",
     "name": "Rory Dempsey",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -2024,7 +2324,7 @@ const NPC_DATA = [
       "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 5,
+    "policeRisk": 15,
     "dependence": 1,
     "connections": [
       "george_greene"
@@ -2037,12 +2337,13 @@ const NPC_DATA = [
   {
     "file": "SalRusso.cs",
     "type": "customer",
-    "description": "Sal Russo - Docks dockworker. Heavier build, longer hair. Single connection: mack (above-ground docks).",
+    "description": "",
     "id": "sal_russo",
     "firstName": "Sal",
     "lastName": "Russo",
     "name": "Sal Russo",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Docks",
     "spending": [
@@ -2069,7 +2370,7 @@ const NPC_DATA = [
       "Paranoia"
     ],
     "noProps": false,
-    "policeRisk": 8,
+    "policeRisk": 17,
     "dependence": 0.15,
     "connections": [
       "marco_baron",
@@ -2084,12 +2385,13 @@ const NPC_DATA = [
   {
     "file": "SarahGreene.cs",
     "type": "customer",
-    "description": "Sarah Greene - Westville resident in George and Molly's House. Orders once per week Sundays at 12:45. Moderate standards, likes green.",
+    "description": "",
     "id": "sarah_greene",
     "firstName": "Sarah",
     "lastName": "Greene",
     "name": "Sarah Greene",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -2111,12 +2413,12 @@ const NPC_DATA = [
       "Cocaine": 18
     },
     "properties": [
-      "Calming",
       "Refreshing",
-      "Euphoric"
+      "Focused",
+      "Glowing"
     ],
     "noProps": false,
-    "policeRisk": 6,
+    "policeRisk": 19,
     "dependence": 1,
     "connections": [
       "george_greene"
@@ -2127,14 +2429,63 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "SharonWebster.cs",
+    "type": "customer",
+    "description": "",
+    "id": "sharon_webster",
+    "firstName": "Sharon",
+    "lastName": "Webster",
+    "name": "Sharon Webster",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Westville",
+    "spending": [
+      350,
+      650
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "18:30",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Tue",
+    "affinities": {
+      "Marijuana": 22,
+      "Methamphetamine": -16,
+      "Shrooms": 10,
+      "Cocaine": 31
+    },
+    "properties": [
+      "CalorieDense",
+      "Paranoia",
+      "AntiGravity"
+    ],
+    "noProps": false,
+    "policeRisk": 15,
+    "dependence": 1,
+    "connections": [
+      "dean_webster",
+      "marlene_haskins"
+    ],
+    "unlocked": [
+      "dean_webster",
+      "marlene_haskins"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "SiennaCrowley.cs",
     "type": "customer",
-    "description": "Sienna Crowley - Downtown professional (classy outfit). Schedule uses placeholder buildings; update when provided.",
+    "description": "",
     "id": "sienna_crowley",
     "firstName": "Sienna",
     "lastName": "Crowley",
     "name": "Sienna Crowley",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Downtown",
     "spending": [
@@ -2161,7 +2512,7 @@ const NPC_DATA = [
       "Sedating"
     ],
     "noProps": false,
-    "policeRisk": 7,
+    "policeRisk": 20,
     "dependence": 1,
     "connections": [
       "lucy_pennington",
@@ -2176,12 +2527,13 @@ const NPC_DATA = [
   {
     "file": "SkylerWilkinson.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "skyler_wilkinson",
     "firstName": "Skyler",
     "lastName": "Wilkinson",
     "name": "Skyler Wilkinson",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Suburbia",
     "spending": [
@@ -2208,7 +2560,7 @@ const NPC_DATA = [
       "Toxic"
     ],
     "noProps": false,
-    "policeRisk": 15,
+    "policeRisk": 28,
     "dependence": 0.0,
     "connections": [
       "alison_knight",
@@ -2223,12 +2575,13 @@ const NPC_DATA = [
   {
     "file": "TessTickle.cs",
     "type": "customer",
-    "description": "Tess Tickle - flirty Northtown barfly who knows Peter File and Wayne Kerr.  Connected to Peter File and Wayne Kerr.",
+    "description": "",
     "id": "tess_tickle",
     "firstName": "Tess",
     "lastName": "Tickle",
     "name": "Tess Tickle",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -2255,7 +2608,7 @@ const NPC_DATA = [
       "Refreshing"
     ],
     "noProps": false,
-    "policeRisk": 11,
+    "policeRisk": 15,
     "dependence": 0.16,
     "connections": [
       "peter_file",
@@ -2268,51 +2621,15 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "ThomasAshford.cs",
-    "type": "customer",
-    "description": "Thomas Ashford - manager of legitimate businesses (laundromat, post office, carwash, taco ticklers).  Professional appearance. Idles around Hyland Bank when not on a run.",
-    "id": "thomas_ashford",
-    "firstName": "Thomas",
-    "lastName": "Ashford",
-    "name": "Thomas Ashford",
-    "isDealer": false,
-    "isSupervisor": false,
-    "region": "Suburbia",
-    "spending": [
-      0,
-      0
-    ],
-    "orders": [
-      0,
-      0
-    ],
-    "time": "12:00",
-    "standards": "Low",
-    "standardsDisplay": "Low",
-    "day": "Mon",
-    "affinities": {
-      "Marijuana": 0,
-      "Methamphetamine": 0,
-      "Shrooms": 0,
-      "Cocaine": 0
-    },
-    "properties": [],
-    "noProps": true,
-    "policeRisk": 0,
-    "dependence": 1,
-    "connections": [],
-    "unlocked": [],
-    "avatar": "\ud83e\uddd1"
-  },
-  {
     "file": "TrishaMorrow.cs",
     "type": "customer",
-    "description": "Trisha Morrow - Female Westville regular who lives in Room 3. Connected to Shirley Watts.",
+    "description": "",
     "id": "trisha_morrow",
     "firstName": "Trisha",
     "lastName": "Morrow",
     "name": "Trisha Morrow",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -2334,12 +2651,12 @@ const NPC_DATA = [
       "Cocaine": -18
     },
     "properties": [
-      "Calming",
-      "Euphoric",
-      "ThoughtProvoking"
+      "Energizing",
+      "Smelly",
+      "Paranoia"
     ],
     "noProps": false,
-    "policeRisk": 2,
+    "policeRisk": 16,
     "dependence": 1,
     "connections": [
       "shirley_watts"
@@ -2352,12 +2669,13 @@ const NPC_DATA = [
   {
     "file": "ValerieVoss.cs",
     "type": "customer",
-    "description": "Valerie Voss - Northtown customer. Connected to Vincent Reeves. White and blue color scheme.",
+    "description": "",
     "id": "valerie_voss",
     "firstName": "Valerie",
     "lastName": "Voss",
     "name": "Valerie Voss",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -2384,7 +2702,7 @@ const NPC_DATA = [
       "Glowing"
     ],
     "noProps": false,
-    "policeRisk": 15,
+    "policeRisk": 21,
     "dependence": 0.25,
     "connections": [
       "vincent_reeves"
@@ -2397,12 +2715,13 @@ const NPC_DATA = [
   {
     "file": "VictorHughes.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "victor_hughes",
     "firstName": "Victor",
     "lastName": "Hughes",
     "name": "Victor Hughes",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -2429,7 +2748,7 @@ const NPC_DATA = [
       "ThoughtProvoking"
     ],
     "noProps": false,
-    "policeRisk": 0,
+    "policeRisk": 20,
     "dependence": 0.25,
     "connections": [
       "jamal_bennett"
@@ -2442,12 +2761,13 @@ const NPC_DATA = [
   {
     "file": "VincentReeves.cs",
     "type": "customer",
-    "description": "Vincent Reeves - Northtown customer. Connected to Jian Ming.",
+    "description": "",
     "id": "vincent_reeves",
     "firstName": "Vincent",
     "lastName": "Reeves",
     "name": "Vincent Reeves",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -2474,7 +2794,7 @@ const NPC_DATA = [
       "Energizing"
     ],
     "noProps": false,
-    "policeRisk": 10,
+    "policeRisk": 21,
     "dependence": 1,
     "connections": [
       "jian_ming"
@@ -2487,12 +2807,13 @@ const NPC_DATA = [
   {
     "file": "WayneKerr.cs",
     "type": "customer",
-    "description": "An example S1API NPC that opts into a physical rig.  Demonstrates movement and inventory usage.",
+    "description": "",
     "id": "wayne_kerr",
     "firstName": "Wayne",
     "lastName": "Kerr",
     "name": "Wayne Kerr",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Northtown",
     "spending": [
@@ -2519,7 +2840,7 @@ const NPC_DATA = [
       "Sedating"
     ],
     "noProps": false,
-    "policeRisk": 25,
+    "policeRisk": 28,
     "dependence": 0.25,
     "connections": [
       "peter_file",
@@ -2540,6 +2861,7 @@ const NPC_DATA = [
     "lastName": "Pike",
     "name": "Wesley Pike",
     "isDealer": false,
+    "isManager": false,
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
@@ -2566,7 +2888,7 @@ const NPC_DATA = [
       "Smelly"
     ],
     "noProps": false,
-    "policeRisk": 4,
+    "policeRisk": 14,
     "dependence": 1,
     "connections": [
       "kim_delaney",

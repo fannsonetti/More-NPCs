@@ -22,10 +22,10 @@ namespace MoreNPCs.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
-            var petersRoom = Building.Get<PetersRoom>();
             var motelOffice = Building.Get<MotelOffice>();
             var budsBar = Building.Get<BudsBar>();
-            var northApartments = Building.Get<NorthApartments>();
+            var northWarehouse = Building.Get<NorthWarehouse>();
+            var chineseRestaurant = Building.Get<ChineseRestaurant>();
             Vector3 spawnPos = new Vector3(-76.0633f, -1.535f, 44.6816f);
             Vector3 northWalk = new Vector3(-49.5478f, -4.035f, 168.5777f);
 
@@ -67,7 +67,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.11f)
+                        .WithCallPoliceChance(0.15f)
                         .WithDependence(baseAddiction: 0.16f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -86,12 +86,12 @@ namespace MoreNPCs.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.UseVendingMachine(915);
-                    plan.StayInBuilding(petersRoom, 1010, 111);
+                    plan.StayInBuilding(chineseRestaurant, 1010, 111);
                     plan.Add(new WalkToSpec { Destination = northWalk, StartTime = 1235, FaceDestinationDirection = true });
                     plan.StayInBuilding(motelOffice, 1455, 91);
                     plan.UseATM(1635);
                     plan.StayInBuilding(budsBar, 1735, 196);
-                    plan.StayInBuilding(northApartments, 2210, 229);
+                    plan.StayInBuilding(northWarehouse, 2210, 229);
                 });
         }
 
@@ -118,3 +118,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

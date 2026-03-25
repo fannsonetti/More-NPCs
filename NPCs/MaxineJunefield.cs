@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// Maxine Junefield - Westville dealer based on Max (Maxine Mayfield) from Stranger Things S4.
-    /// Fringe ponytail, white flannel, light blue collar jacket, red-gold chain.
-    /// </summary>
     public sealed class MaxineJunefield : NPC
     {
         public override bool IsPhysical => true;
@@ -71,13 +67,13 @@ namespace MoreNPCs.NPCs
                 {
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
-                        .WithConnectionsById("joyce_ball", "doris_lubbin")
+                        .WithConnectionsById("joyce_ball", "doris_lubbin", "lila_park")
                         .SetUnlockType(NPCRelationship.UnlockType.Recommendation);
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(caravan, 0, 1439); // Stay 24/7 except for deals
+                    plan.StayInBuilding(caravan, 000, 1439);
                 });
         }
 
@@ -95,7 +91,7 @@ namespace MoreNPCs.NPCs
 
                 WireDealerEvents();
 
-                Aggressiveness = 0.82f; // dealer
+                Aggressiveness = 0.82f;
                 Region = Region.Westville;
 
                 Schedule.Enable();

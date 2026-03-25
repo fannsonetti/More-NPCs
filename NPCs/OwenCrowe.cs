@@ -1,4 +1,4 @@
-using MelonLoader;
+﻿using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -25,7 +25,7 @@ namespace MoreNPCs.NPCs
             var petersRoom = Building.Get<PetersRoom>();
             var motelOffice = Building.Get<MotelOffice>();
             var budsBar = Building.Get<BudsBar>();
-            Vector3 spawnPos = new Vector3(-71.2847f, -2.935f, 145.6754f); // swapped with Wayne
+            Vector3 spawnPos = new Vector3(-71.2847f, -2.935f, 145.6754f);
             Vector3 northWaterfront = new Vector3(-49.5478f, -4.035f, 168.5777f);
 
             builder.WithIdentity("owen_crowe", "Owen", "Crowe")
@@ -67,7 +67,7 @@ namespace MoreNPCs.NPCs
                         .AllowDirectApproach(true)
                         .GuaranteeFirstSample(false)
                         .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
-                        .WithCallPoliceChance(0.01f)
+                        .WithCallPoliceChance(0.16f)
                         .WithDependence(baseAddiction: 0.26f, dependenceMultiplier: 1.0f)
                         .WithAffinities(new[]
                         {
@@ -85,14 +85,13 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(motelOffice, 0, 390); // overnight at Motel Office (swapped with Wayne)
+                    plan.StayInBuilding(motelOffice, 000, 390);
                     plan.UseVendingMachine(920);
                     plan.StayInBuilding(petersRoom, 1005, 96);
                     plan.Add(new WalkToSpec { Destination = northWaterfront, StartTime = 1205, FaceDestinationDirection = true });
                     plan.StayInBuilding(budsBar, 1430, 124);
                     plan.UseATM(1625);
-                    plan.StayInBuilding(motelOffice, 1715, 91);
-                    plan.StayInBuilding(motelOffice, 2145, 294); // overnight at Motel Office (swapped with Wayne)
+                    plan.StayInBuilding(motelOffice, 1715, 564);
                 });
         }
 
@@ -119,3 +118,4 @@ namespace MoreNPCs.NPCs
         }
     }
 }
+

@@ -9,10 +9,6 @@ using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
-    /// <summary>
-    /// An example S1API NPC that opts into dealer functionality.
-    /// Demonstrates dealer configuration, customer assignment, and cash management.
-    /// </summary>
     public sealed class SergeantGrey : NPC
     {
         public override bool IsPhysical => true;
@@ -62,25 +58,25 @@ namespace MoreNPCs.NPCs
                 .EnsureDealer()
                 .WithDealerDefaults(dd =>
                 {
-                    dd.WithSigningFee(7500f) // Cost to recruit this dealer
-                        .WithCut(0.20f) // Dealer keeps 20% of earnings
-                        .WithDealerType(DealerType.PlayerDealer) // Works for the player
-                        .WithHome(policeStation) // Home building name
-                        .AllowInsufficientQuality(false) // Won't sell below-quality items
-                        .AllowExcessQuality(true) // Can sell above-quality items
-                        .WithCompletedDealsVariable("dealer_completed_deals"); // Variable to track deals
+                    dd.WithSigningFee(7500f)
+                        .WithCut(0.20f)
+                        .WithDealerType(DealerType.PlayerDealer)
+                        .WithHome(policeStation)
+                        .AllowInsufficientQuality(false)
+                        .AllowExcessQuality(true)
+                        .WithCompletedDealsVariable("dealer_completed_deals");
                 })
                 .WithRelationshipDefaults(r =>
                 {
-                    r.WithDelta(2.0f) // Starting relationship
-                        .SetUnlocked(false) // Start locked
+                    r.WithDelta(2.0f)
+                        .SetUnlocked(false)
                         .WithConnectionsById("officer_marcus")
-                        .SetUnlockType(NPCRelationship.UnlockType.Recommendation); // Can be unlocked via direct approach
+                        .SetUnlockType(NPCRelationship.UnlockType.Recommendation);
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(policeStation, 0, 1439); // Stay 24/7 except for deals
+                    plan.StayInBuilding(policeStation, 000, 1439);
                 });
         }
 
@@ -97,7 +93,7 @@ namespace MoreNPCs.NPCs
 
                 WireDealerEvents();
 
-                Aggressiveness = 0.81f; // sergeant
+                Aggressiveness = 0.81f;
                 Region = Region.Suburbia;
 
                 Schedule.Enable();

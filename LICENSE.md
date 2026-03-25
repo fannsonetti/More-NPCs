@@ -1,77 +1,53 @@
 Copyright (c) 2026 FannsoNetti
-All rights reserved.
 
-# Custom Source-Available License
+# Custom Attribution License
 
-This repository and all source code, compiled binaries, assets, data files, generated files, text, and other included material (collectively, the "Project") are protected by copyright and other applicable laws.
+This repository and its source code, compiled binaries, generated data, assets, and related materials (collectively, the "Project") are protected by copyright.
 
-## 1. No Open-Source Grant
+## 1. Permission Granted
 
-The Project is made available for visibility, reference, archival purposes, and limited personal use only. No open-source license is granted.
+You may:
 
-## 2. Limited Permission Granted
+1. View, download, and study the Project.
+2. Build and use the Project.
+3. Modify the Project.
+4. Learn from the code and use it as reference.
+5. Include compiled releases of the Project in modpacks, as long as the attribution requirements in this license are followed.
 
-Subject to the restrictions below, you are granted a personal, revocable, non-exclusive, non-transferable license to:
+## 2. Attribution Requirements
 
-1. View and download the Project.
-2. Compile and run the Project for personal use.
-3. Modify the Project privately for your own local, non-public use.
-4. Study the Project for learning and reference purposes.
+If you redistribute the Project, include it in a modpack, publish a fork, or publish a modified version, you must:
+
+1. Keep this copyright notice and license text with the Project.
+2. Clearly credit `FannsoNetti` as the original author.
+3. Clearly state when your version includes edits, additions, or other modifications.
+4. Avoid presenting the original work as if it were created only by you.
 
 ## 3. Restrictions
 
-Unless you have the prior written permission of the copyright holder, you may not:
+You may not:
 
-1. Reupload, mirror, host, archive, or otherwise republish the Project, in whole or in part, in source or binary form.
-2. Redistribute the original Project or any modified version of it.
-3. Publish public forks containing any portion of the Project.
-4. Include the Project in a mod pack, installer, compilation, bundle, or reposted download, except as expressly allowed under Section 4.
-5. Sell, sublicense, rent, monetize, or commercially exploit the Project.
-6. Copy substantial portions of the Project into another public project.
-7. Remove, alter, or hide copyright, attribution, or license notices.
-8. Use the name of the Project, the author's name, or related branding in a way that suggests endorsement.
+1. Remove, hide, or alter copyright, attribution, or license notices in a misleading way.
+2. Claim that you created the original Project or the original code if you did not.
+3. Reupload verbatim or near-verbatim copies of the Project while obscuring, removing, or downplaying the original author's credit.
+4. Copy the code 1:1 into another public project and present it as your own independent work.
+5. Use the author's name, identity, or project name in a way that falsely implies endorsement.
 
-## 4. Modpack Exception
+## 4. Modpacks
 
-Notwithstanding the redistribution restrictions above, you may include compiled, unmodified releases of the Project in modpacks so long as all of the following are true:
+Redistributing compiled releases of the Project in modpacks is allowed if clear credit to the original author is included.
 
-1. Clear credit is given to the original author.
-2. The modpack does not claim authorship of the Project.
-3. The Project is not sold as a standalone product.
-4. No source code from the Project is reuploaded as part of the modpack.
+## 5. Permission Requests
 
-## 5. Derivative and Similar Works
-
-Permission to make private local modifications does not include permission to publish derivative works.
-
-If you want to release your own public project inspired by this Project, it must be independently created and must not copy substantial protected expression from this Project. For clarity, the following do not make a copied version "independent":
-
-1. Renaming classes, files, methods, variables, or identifiers.
-2. Reformatting or reorganizing the same code.
-3. Making minor balance tweaks, text edits, bug fixes, or content substitutions.
-4. Reusing NPC definitions, schedules, data, assets, generated outputs, or other recognizable project content with only superficial changes.
-
-Learning from the Project is allowed. Copying the Project 1:1, or near-verbatim copying of substantial portions of its protected expression, is not allowed.
-
-If your planned release is based on this Project or reuses any meaningful part of it, obtain prior written permission first.
-
-## 6. Permission Requests
-
-Exceptions may be granted only by the copyright holder in writing.
-
-Permission requests may be sent to:
+If you want permission for a use that is unclear under this license, contact:
 
 1. `Fannsonetti` on Nexus Mods
 2. `fannso` on Discord
 
-## 7. Termination
-
-Any breach of these terms automatically terminates the permissions granted by this license. Upon termination, you must stop use and destroy copies of the Project in your possession or control, except where retention is required by law.
-
-## 8. No Warranty
+## 6. No Warranty
 
 THE PROJECT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
 
-## 9. Limitation of Liability
+## 7. Limitation of Liability
 
 TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING FROM OR IN CONNECTION WITH THE PROJECT OR THE USE OF THE PROJECT.

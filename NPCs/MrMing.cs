@@ -77,7 +77,7 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Chinese Restaurant", StartTime = 503, DurationMinutes = 1439 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Chinese Restaurant", StartTime = 0457, DurationMinutes = 1439 });
                 });
         }
 

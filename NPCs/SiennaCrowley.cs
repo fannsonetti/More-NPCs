@@ -69,11 +69,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 835, DurationMinutes = 109 });
-                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1125, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1435, DurationMinutes = 99 });
-                    plan.UseVendingMachine(1705);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 1945, DurationMinutes = 494 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 0851, DurationMinutes = 109 });
+                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1141, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1451, DurationMinutes = 99 });
+                    plan.UseVendingMachine(1721);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2001, DurationMinutes = 494 });
                 });
         }
 

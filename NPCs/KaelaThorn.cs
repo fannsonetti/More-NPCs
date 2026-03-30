@@ -82,16 +82,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.LocationDialogue(rv, 737, faceDestinationDir: true);
-                    plan.UseVendingMachine(804);
-                    plan.UseATM(843);
-                    plan.StayInBuilding(hospital, 927, 156);
-                    plan.LocationDialogue(gasMart, 1204);
-                    plan.UseVendingMachine(1436);
-                    plan.StayInBuilding(northIndustrial, 1440, 117);
-                    plan.StayInBuilding(budsBar, 1626, 150);
-                    plan.Add(new WalkToSpec { Destination = docks, StartTime = 1946, FaceDestinationDirection = false });
-                    plan.StayInBuilding(southoverpass, 2037, 659);
+                    plan.LocationDialogue(rv, 0759, faceDestinationDir: true);
+                    plan.UseVendingMachine(0826);
+                    plan.UseATM(0905);
+                    plan.StayInBuilding(hospital, 0949, 156);
+                    plan.LocationDialogue(gasMart, 1226);
+                    plan.UseVendingMachine(1458);
+                    plan.StayInBuilding(northIndustrial, 1502, 117);
+                    plan.StayInBuilding(budsBar, 1648, 150);
+                    plan.Add(new WalkToSpec { Destination = docks, StartTime = 2008, FaceDestinationDirection = false });
+                    plan.StayInBuilding(southoverpass, 2059, 659);
                 });
         }
 

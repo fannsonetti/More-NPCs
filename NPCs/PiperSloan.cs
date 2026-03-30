@@ -85,14 +85,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(shack, 000, 479);
-                    plan.Add(new WalkToSpec { Destination = northLookout, StartTime = 815, FaceDestinationDirection = true });
-                    plan.StayInBuilding(budsBar, 930, 104);
-                    plan.StayInBuilding(northWarehouse, 1115, 119);
-                    plan.UseATM(1255);
-                    plan.StayInBuilding(chineseRestaurant, 1615, 89);
-                    plan.UseVendingMachine(1755);
-                    plan.StayInBuilding(shack, 1825, 394);
+                    plan.StayInBuilding(shack, 0015, 479);
+                    plan.Add(new WalkToSpec { Destination = northLookout, StartTime = 0830, FaceDestinationDirection = true });
+                    plan.StayInBuilding(budsBar, 0945, 104);
+                    plan.StayInBuilding(northWarehouse, 1130, 119);
+                    plan.UseATM(1310);
+                    plan.StayInBuilding(chineseRestaurant, 1630, 89);
+                    plan.UseVendingMachine(1810);
+                    plan.StayInBuilding(shack, 1840, 394);
                 });
         }
 

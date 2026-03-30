@@ -85,12 +85,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(cornerStore, 930, 89);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench (1)", StartTime = 1145, DurationMinutes = 124 });
-                    plan.StayInBuilding(thePissHut, 1310, 99);
-                    plan.StayInBuilding(arcade, 1450, 109);
-                    plan.UseVendingMachine(1645);
-                    plan.StayInBuilding(room3, 1810, 809);
+                    plan.StayInBuilding(cornerStore, 0940, 89);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench (1)", StartTime = 1155, DurationMinutes = 124 });
+                    plan.StayInBuilding(thePissHut, 1320, 99);
+                    plan.StayInBuilding(arcade, 1500, 109);
+                    plan.UseVendingMachine(1655);
+                    plan.StayInBuilding(room3, 1820, 809);
                 });
         }
 

@@ -82,15 +82,15 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(janesVan, 937, 126);
-                    plan.Add(new WalkToSpec { Destination = belowOverpass, StartTime = 1104, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 20, 0) * Vector3.forward});
-                    plan.StayInBuilding(thePissHut, 1436, 96);
-                    plan.UseATM(1533);
-                    plan.StayInBuilding(shermanHouse, 1618, 104);
-                    plan.UseVendingMachine(1803);
-                    plan.StayInBuilding(cornerStore, 1926, 90);
-                    plan.Add(new WalkToSpec { Destination = sunset, StartTime = 2057, FaceDestinationDirection = false, Forward = Quaternion.Euler(0, 225, 0) * Vector3.forward});
-                    plan.StayInBuilding(shermanHouse, 2226, 630);
+                    plan.StayInBuilding(janesVan, 0910, 126);
+                    plan.Add(new WalkToSpec { Destination = belowOverpass, StartTime = 1037, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 20, 0) * Vector3.forward});
+                    plan.StayInBuilding(thePissHut, 1409, 96);
+                    plan.UseATM(1506);
+                    plan.StayInBuilding(shermanHouse, 1551, 104);
+                    plan.UseVendingMachine(1736);
+                    plan.StayInBuilding(cornerStore, 1859, 90);
+                    plan.Add(new WalkToSpec { Destination = sunset, StartTime = 2030, FaceDestinationDirection = false, Forward = Quaternion.Euler(0, 225, 0) * Vector3.forward});
+                    plan.StayInBuilding(shermanHouse, 2159, 630);
                 });
         }
         

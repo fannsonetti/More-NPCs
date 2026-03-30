@@ -79,16 +79,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 1604, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 1627, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 0, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 1833, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = rideTheBus, StartTime = 2057, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 270, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 2304, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = casinoBalcony, StartTime = 027, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 157, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 303, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 327, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 0, 0) * Vector3.forward });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Les Ordures Puantes", StartTime = 357, DurationMinutes = 726 });
+                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 1614, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 1637, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 0, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 1843, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = rideTheBus, StartTime = 2107, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 270, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 2314, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = casinoBalcony, StartTime = 0037, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = slotMachine1, StartTime = 0207, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 90, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = frontDesk, StartTime = 0313, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = blackJack, StartTime = 0337, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 0, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Les Ordures Puantes", StartTime = 0407, DurationMinutes = 726 });
                 });
         }
 

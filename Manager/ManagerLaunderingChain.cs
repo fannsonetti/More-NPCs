@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using MelonLoader;
 using MoreNPCs.NPCs;
-using MoreNPCs.Supervisor;
 using MoreNPCs.Utils;
 using S1API.Entities;
 using S1API.Property;
@@ -12,16 +11,18 @@ using UnityEngine;
 
 namespace MoreNPCs.Manager
 {
-    /// <summary>Thomas walks to assigned businesses in order, deposits stored funds as laundering (10% cut).</summary>
+    /// <summary>Thomas walks to assigned businesses in order, deposits stored funds as laundering (cut from prefs).</summary>
     public static class ManagerLaunderingChain
     {
-        private const float IdleCheckInterval = 45f;
+        private const float IdleCheckInterval = 15f;
         private const float ChainDelaySeconds = 5f;
         private const float InitialStartDelay = 10f;
         private const float ArrivalRadiusDefault = 2.5f;
         private const float ArrivalRadiusLaundromat = 0.5f;
         private const float WalkTimeout = 180f;
-        private const float LaunderCutPercent = 0.10f;
+
+        private static float LaunderCutPercent =>
+            !MoreNPCsPreferences.Registered ? 0.10f : MoreNPCsPreferences.Manager_LaunderCutPercent.Value;
 
         private static readonly (string Name, Vector3 Position)[] BusinessRoute = new[]
         {
@@ -72,7 +73,7 @@ namespace MoreNPCs.Manager
                 yield return wait;
                 if (ManagerDialogue.IsPlayerInMenu) continue;
                 if (_running) continue;
-                if (ManagerFundsSave.GetStored() <= 0) continue;
+                if (ManagerBusinessSave.GetStored() <= 0) continue;
                 var assigned = ManagerBusinessSave.GetAssignedStatic();
                 if (assigned == null || assigned.Count == 0) continue;
                 var hasRoute = BusinessRoute.Any(r => IsAssigned(r.Name, assigned));
@@ -89,6 +90,7 @@ namespace MoreNPCs.Manager
             foreach (var a in assigned)
             {
                 if (string.IsNullOrEmpty(a)) continue;
+                if (ArtificialBusinessMapping.MatchesRouteStop(businessName, a)) return true;
                 if (a.Trim().ToLowerInvariant().Contains(key) || key.Contains(a.Trim().ToLowerInvariant())) return true;
                 if (MatchesBusiness(key, a)) return true;
             }
@@ -108,7 +110,7 @@ namespace MoreNPCs.Manager
         {
             if (npc == null) yield break;
             if (ManagerDialogue.IsPlayerInMenu) yield break;
-            var stored = ManagerFundsSave.GetStored();
+            var stored = ManagerBusinessSave.GetStored();
             if (stored <= 0) yield break;
             var assigned = ManagerBusinessSave.GetAssignedStatic();
             if (assigned == null || assigned.Count == 0) yield break;
@@ -121,7 +123,7 @@ namespace MoreNPCs.Manager
                 foreach (var (name, pos) in BusinessRoute)
                 {
                     if (!IsAssigned(name, assigned)) continue;
-                    if (ManagerFundsSave.GetStored() <= 0) break;
+                    if (ManagerBusinessSave.GetStored() <= 0) break;
                     if (ManagerDialogue.IsPlayerInMenu) yield break;
 
                     var radius = string.Equals(name, "Laundromat", StringComparison.OrdinalIgnoreCase) ? ArrivalRadiusLaundromat : ArrivalRadiusDefault;
@@ -153,7 +155,7 @@ namespace MoreNPCs.Manager
                 if (biz == null || !biz.IsOwned) return;
                 if (biz.IsAtLaunderingCapacity) return;
 
-                var stored = ManagerFundsSave.GetStored();
+                var stored = ManagerBusinessSave.GetStored();
                 if (stored <= 0) return;
 
                 var capacity = biz.AppliedLaunderLimit - biz.CurrentLaunderTotal;
@@ -165,7 +167,7 @@ namespace MoreNPCs.Manager
                 var amountToDeduct = launderAmount * (1f + LaunderCutPercent);
                 if (amountToDeduct > stored) amountToDeduct = stored;
 
-                ManagerFundsSave.TakeStatic(amountToDeduct);
+                ManagerBusinessSave.TakeStatic(amountToDeduct);
                 biz.AddLaunderingOperation(launderAmount, 0);
             }
             catch (Exception ex) { MelonLogger.Warning($"ManagerLaunderingChain TryLaunderAtBusiness: {ex.Message}"); }

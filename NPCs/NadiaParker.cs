@@ -79,12 +79,13 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(cafe, 900, 104);
-                    plan.StayInBuilding(slopShop, 1115, 124);
-                    plan.Add(new WalkToSpec { Destination = townCenter, StartTime = 1335, FaceDestinationDirection = true });
-                    plan.UseATM(1545);
-                    plan.StayInBuilding(supermarket, 1700, 179);
-                    plan.StayInBuilding(supermarket, 2030, 329);
+                    // Offset from Rhea Larkin (cafe 900 / slop 1115) — no concurrent cafe or slop overlap
+                    plan.StayInBuilding(cafe, 1050, 153);
+                    plan.StayInBuilding(slopShop, 1324, 124);
+                    plan.Add(new WalkToSpec { Destination = townCenter, StartTime = 1530, FaceDestinationDirection = true });
+                    plan.UseATM(1625);
+                    plan.StayInBuilding(supermarket, 1710, 179);
+                    plan.StayInBuilding(supermarket, 2040, 329);
                 });
         }
 

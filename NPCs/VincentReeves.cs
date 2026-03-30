@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -28,18 +28,28 @@ namespace MoreNPCs.NPCs
                 .WithAppearanceDefaults(av =>
                 {
                     av.Gender = 0.0f;
-                    av.Height = 1.0f;
+                    av.Height = 0.98f;
                     av.Weight = 0.4f;
-                    av.SkinColor = new Color(0.55f, 0.45f, 0.38f);
+                    av.SkinColor = new Color(0.63f, 0.52f, 0.43f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = Color.white;
-                    av.HairColor = new Color(0.12f, 0.09f, 0.07f);
+                    av.EyeBallTint = new Color(1.0f, 0.95f, 0.9f);
+                    av.PupilDilation = 0.4f;
+                    av.EyebrowScale = 1.15f;
+                    av.EyebrowThickness = 1.23f;
+                    av.EyebrowRestingHeight = -0.44f;
+                    av.EyebrowRestingAngle = -5.2f;
+                    av.LeftEye = (0.15f, 0.24f);
+                    av.RightEye = (0.15f, 0.24f);
+                    av.HairColor = new Color(0.18f, 0.14f, 0.10f);
                     av.HairPath = "Avatar/Hair/Spiky/Spiky";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", new Color(0f, 0f, 0f, 0.55f));
                     av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.2f, 0.2f, 0.24f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.16f, 0.16f, 0.18f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/DressShoes/DressShoes", new Color(0.15f, 0.15f, 0.15f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.16f, 0.16f, 0.18f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.15f, 0.15f, 0.15f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.15f, 0.15f, 0.15f));
                     av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.28f, 0.22f, 0.16f));
                 })
                 .WithSpawnPosition(spawnPos)
@@ -69,9 +79,9 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northWarehouse, 800, 299);
-                    plan.StayInBuilding(chineseRestaurant, 1100, 219);
-                    plan.StayInBuilding(budsBar, 1320, 919);
+                    plan.StayInBuilding(northWarehouse, 0808, 299);
+                    plan.StayInBuilding(chineseRestaurant, 1108, 219);
+                    plan.StayInBuilding(budsBar, 1328, 919);
                 });
         }
 

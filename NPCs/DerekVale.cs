@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -82,12 +82,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(shack, 000, 479);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat (1)", StartTime = 800, DurationMinutes = 109 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 1010, DurationMinutes = 119 });
-                    plan.StayInBuilding(shack, 1155, 104);
-                    plan.StayInBuilding(communityCenter, 1300, 120);
-                    plan.StayInBuilding(shack, 1425, 1050);
+                    plan.StayInBuilding(shack, 2355, 479);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat (1)", StartTime = 0755, DurationMinutes = 109 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 1005, DurationMinutes = 119 });
+                    plan.StayInBuilding(shack, 1150, 104);
+                    plan.StayInBuilding(communityCenter, 1255, 120);
+                    plan.StayInBuilding(shack, 1420, 1050);
                 });
         }
 

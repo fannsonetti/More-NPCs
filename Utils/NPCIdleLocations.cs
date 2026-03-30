@@ -20,6 +20,24 @@ namespace MoreNPCs.Utils
 
         public static string GetThomasIdleDialogue() => "When I'm idle, you'll usually find me at Hyland Bank.";
 
+        /// <summary>Vanilla NPC schedule-one ids where mod code needs a consistent idle location line (e.g. GasMart clerks).</summary>
+        public static bool TryGetVanillaNpcIdleLocationLine(string scheduleOneNpcId, out string line)
+        {
+            line = "";
+            if (string.IsNullOrEmpty(scheduleOneNpcId)) return false;
+            if (string.Equals(scheduleOneNpcId, "chloe_bowers", System.StringComparison.OrdinalIgnoreCase))
+            {
+                line = "When I'm not on shift, I'm usually at West GasMart.";
+                return true;
+            }
+            if (string.Equals(scheduleOneNpcId, "meg_cooley", System.StringComparison.OrdinalIgnoreCase))
+            {
+                line = "When I'm not on shift, I'm usually at Central GasMart.";
+                return true;
+            }
+            return false;
+        }
+
         public static string GetSupervisorIdleDialogue(string supervisorId)
         {
             if (string.Equals(supervisorId, SupervisorIds.Dominic, System.StringComparison.OrdinalIgnoreCase))

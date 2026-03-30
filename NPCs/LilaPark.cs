@@ -42,10 +42,10 @@ namespace MoreNPCs.NPCs
                     av.HairColor = new Color(0.26f, 0.18f, 0.12f);
                     av.HairPath = "Avatar/Hair/SidePartBob/SidePartBob";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/RolledButtonUp", new Color(0.39f, 0.45f, 0.53f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/Jorts", new Color(0.27f, 0.28f, 0.32f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Flats/Flats", new Color(0.20f, 0.20f, 0.22f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Neck/GoldChain/GoldChain", new Color(0.72f, 0.62f, 0.33f));
+                    av.WithBodyLayer("Avatar/Layers/Top/ButtonUp", new Color(0.53f, 0.45f, 0.39f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.17f, 0.18f, 0.22f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.20f, 0.20f, 0.22f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.20f, 0.20f, 0.22f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()
@@ -77,12 +77,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(cornerStore, 845, 109);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench (1)", StartTime = 1045, DurationMinutes = 104 });
-                    plan.StayInBuilding(sauerkrautSupreme, 1230, 124);
-                    plan.UseATM(1500);
-                    plan.UseVendingMachine(1650);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 2", StartTime = 1900, DurationMinutes = 720 });
+                    plan.StayInBuilding(cornerStore, 0839, 109);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench (1)", StartTime = 1039, DurationMinutes = 104 });
+                    plan.StayInBuilding(sauerkrautSupreme, 1224, 124);
+                    plan.UseATM(1454);
+                    plan.UseVendingMachine(1644);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 2", StartTime = 1854, DurationMinutes = 720 });
                 });
         }
 

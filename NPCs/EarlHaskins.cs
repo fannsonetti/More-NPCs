@@ -88,12 +88,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(westGasMart, 730, 104);
-                    plan.Add(new WalkToSpec { Destination = oldCourt, StartTime = 915, FaceDestinationDirection = true });
-                    plan.StayInBuilding(arcade, 1135, 124);
-                    plan.UseATM(1515);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Encampment/OutdoorBench", StartTime = 1705, DurationMinutes = 139 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 6", StartTime = 1845, DurationMinutes = 764 });
+                    plan.StayInBuilding(westGasMart, 0749, 104);
+                    plan.Add(new WalkToSpec { Destination = oldCourt, StartTime = 0934, FaceDestinationDirection = true });
+                    plan.StayInBuilding(arcade, 1154, 124);
+                    plan.UseATM(1534);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Encampment/OutdoorBench", StartTime = 1724, DurationMinutes = 139 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 6", StartTime = 1904, DurationMinutes = 764 });
                 });
         }
 

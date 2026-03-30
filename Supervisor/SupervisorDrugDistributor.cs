@@ -117,13 +117,14 @@ namespace MoreNPCs.Supervisor
                 if (count == 0) yield break;
                 var perDealer = new Dictionary<string, int>();
                 foreach (var kv in drugTotals) perDealer[kv.Key] = kv.Value.Sum(x => x.qty) / count;
-                const float ArrivalRadius = 2.5f, WalkTimeout = 120f;
+                float arrivalRadius = !MoreNPCsPreferences.Registered ? 2.5f : MoreNPCsPreferences.Supervisor_ArrivalRadius.Value;
+                float walkTimeout = !MoreNPCsPreferences.Registered ? 120f : MoreNPCsPreferences.Supervisor_WalkTimeoutSeconds.Value;
                 for (int d = 0; d < dealers.Count; d++)
                 {
                     var target = dealers[d];
                     npc.Movement.SetDestination(target.Position);
-                    float timeout = WalkTimeout;
-                    while (Vector3.Distance(npc.Movement.FootPosition, target.Position) > ArrivalRadius && timeout > 0)
+                    float timeout = walkTimeout;
+                    while (Vector3.Distance(npc.Movement.FootPosition, target.Position) > arrivalRadius && timeout > 0)
                     {
                         if (SupervisorDialogue.IsPlayerInMenu) yield break;
                         timeout -= Time.deltaTime;

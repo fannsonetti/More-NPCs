@@ -5,6 +5,7 @@ using System.Reflection;
 using MelonLoader;
 using MoreNPCs.Manager;
 using MoreNPCs.NPCs;
+using MoreNPCs.Persistence;
 using MoreNPCs.Supervisor;
 using S1API.Entities;
 using S1API.GameTime;
@@ -20,15 +21,16 @@ namespace MoreNPCs.Utils
         private const float LockEnforceIntervalSeconds = 5f;
         private const int DominicDealerThreshold = 6;
         private const int SilasDealerThreshold = 12;
-        private const float ComeToMeRelationshipThreshold = 5f;
+        /// <summary>Relationship level at which the NPC gets the “come to me” SMS option and one-time intro text.</summary>
+        private const float MeetAtPlayerSmsRelationshipThreshold = 5f;
         private const float DailyRelationshipGain = 0.1f;
         private float _nextCheckTime;
         private float _nextLockEnforceTime;
         private int _lastRelationshipDay = -1;
 
         private static readonly string[] TacoTicklerKeywords = { "taco tickler", "tacotickler" };
-        private static readonly string[] ComeToMeNPCIds = { "silas_mercer", "dominic_cross", "thomas_ashford" };
-        private static readonly HashSet<string> _comeToMeAddedThisSession = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        private static readonly string[] NpcIdsWithMeetAtPlayerSms = { "silas_mercer", "dominic_cross", "thomas_ashford" };
+        private static readonly HashSet<string> _meetAtPlayerSmsUnlockedThisSession = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         private static readonly Dictionary<string, bool> _lastKnownUnlockStates = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         public void Initialize()
@@ -42,7 +44,7 @@ namespace MoreNPCs.Utils
         {
             TryEnforceLockedState();
             TryDailyRelationshipGain();
-            TryUnlockComeToMe();
+            TryUnlockMeetAtPlayerSms();
             TryRefreshDialogueState();
 
             if (Time.time < _nextCheckTime) return;
@@ -64,7 +66,7 @@ namespace MoreNPCs.Utils
                     if (npc?.Relationship == null) continue;
                     var id = npc.ID;
                     if (string.IsNullOrEmpty(id)) continue;
-                    if (!ComeToMeNPCIds.Contains(id)) continue;
+                    if (!NpcIdsWithMeetAtPlayerSms.Contains(id)) continue;
 
                     var isUnlocked = npc.Relationship.IsUnlocked;
                     if (_lastKnownUnlockStates.TryGetValue(id, out var previous) && previous == isUnlocked) continue;
@@ -111,7 +113,7 @@ namespace MoreNPCs.Utils
             catch (Exception ex) { MelonLogger.Warning($"Daily relationship gain failed: {ex.Message}"); }
         }
 
-        private void TryUnlockComeToMe()
+        private void TryUnlockMeetAtPlayerSms()
         {
             if (!NPC.CustomNpcsReady) return;
             try
@@ -123,19 +125,19 @@ namespace MoreNPCs.Utils
                 {
                     if (npc?.Relationship == null || !npc.Relationship.IsUnlocked) continue;
                     var id = npc.ID;
-                    if (string.IsNullOrEmpty(id) || !ComeToMeNPCIds.Contains(id)) continue;
-                    if (_comeToMeAddedThisSession.Contains(id)) continue;
+                    if (string.IsNullOrEmpty(id) || !NpcIdsWithMeetAtPlayerSms.Contains(id)) continue;
+                    if (_meetAtPlayerSmsUnlockedThisSession.Contains(id)) continue;
 
-                    if (npc.Relationship.Delta >= ComeToMeRelationshipThreshold)
+                    if (npc.Relationship.Delta >= MeetAtPlayerSmsRelationshipThreshold)
                     {
-                        _comeToMeAddedThisSession.Add(id);
+                        _meetAtPlayerSmsUnlockedThisSession.Add(id);
                         if (string.Equals(id, "thomas_ashford", StringComparison.OrdinalIgnoreCase) && npc is ThomasAshford thomas)
                             ManagerTextingSetup.AddComeToMeOption(thomas);
                         else
                             SupervisorTextingSetup.AddComeToMeOption(npc);
-                        if (!ComeToMeSave.HasNotifySent(id))
+                        if (!MoreNPCsModSave.NpcUnlockIntroTexts.HasBeenSentFor(id))
                         {
-                            ComeToMeSave.MarkNotifySent(id);
+                            MoreNPCsModSave.NpcUnlockIntroTexts.MarkSentFor(id);
                             if (string.Equals(id, "thomas_ashford", StringComparison.OrdinalIgnoreCase) && npc is ThomasAshford managerNpc)
                                 ManagerTextingSetup.SendMessageFrom(managerNpc, "You can tell me to come to you now.");
                             else
@@ -144,7 +146,7 @@ namespace MoreNPCs.Utils
                     }
                 }
             }
-            catch (Exception ex) { MelonLogger.Warning($"Come-to-me unlock failed: {ex.Message}"); }
+            catch (Exception ex) { MelonLogger.Warning($"Meet-at-player SMS unlock failed: {ex.Message}"); }
         }
 
         private void TryEnforceLockedState()

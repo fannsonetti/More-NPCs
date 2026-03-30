@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -78,12 +78,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(chemicalPlantA, 630, 178);
-                    plan.Add(new WalkToSpec { Destination = breakSpot, StartTime = 845, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 270, 0) * Vector3.forward });
-                    plan.StayInBuilding(chemicalPlantA, 1145, 118);
-                    plan.Add(new WalkToSpec { Destination = breakSpot, StartTime = 1302, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 270, 0) * Vector3.forward });
-                    plan.StayInBuilding(chemicalPlantA, 1555, 148);
-                    plan.StayInBuilding(docksIndustrial, 1740, 768);
+                    plan.StayInBuilding(chemicalPlantA, 0654, 178);
+                    plan.Add(new WalkToSpec { Destination = breakSpot, StartTime = 0909, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 270, 0) * Vector3.forward });
+                    plan.StayInBuilding(chemicalPlantA, 1209, 118);
+                    plan.Add(new WalkToSpec { Destination = breakSpot, StartTime = 1326, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 270, 0) * Vector3.forward });
+                    plan.StayInBuilding(chemicalPlantA, 1619, 148);
+                    plan.StayInBuilding(docksIndustrial, 1804, 768);
                 });
         }
 

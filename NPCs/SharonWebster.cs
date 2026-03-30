@@ -78,11 +78,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(websterHouse, 730, 164);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench", StartTime = 1045, DurationMinutes = 89 });
-                    plan.StayInBuilding(westGasMart, 1215, 124);
-                    plan.UseVendingMachine(1505);
-                    plan.StayInBuilding(websterHouse, 1700, 799);
+                    plan.StayInBuilding(websterHouse, 0706, 164);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench", StartTime = 1021, DurationMinutes = 89 });
+                    plan.StayInBuilding(westGasMart, 1151, 124);
+                    plan.UseVendingMachine(1441);
+                    plan.StayInBuilding(websterHouse, 1636, 799);
                 });
         }
 

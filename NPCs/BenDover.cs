@@ -80,13 +80,13 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.UseVendingMachine(920);
-                    plan.StayInBuilding(chineseRestaurant, 1010, 99);
-                    plan.Add(new WalkToSpec { Destination = northCorner, StartTime = 1210, FaceDestinationDirection = true });
-                    plan.StayInBuilding(motelOffice, 1430, 99);
-                    plan.UseATM(1655);
-                    plan.StayInBuilding(budsBar, 1755, 194);
-                    plan.StayInBuilding(northWarehouse, 2210, 289);
+                    plan.UseVendingMachine(0926);
+                    plan.StayInBuilding(chineseRestaurant, 1016, 99);
+                    plan.Add(new WalkToSpec { Destination = northCorner, StartTime = 1216, FaceDestinationDirection = true });
+                    plan.StayInBuilding(motelOffice, 1436, 99);
+                    plan.UseATM(1701);
+                    plan.StayInBuilding(budsBar, 1801, 194);
+                    plan.StayInBuilding(northWarehouse, 2216, 289);
                 });
         }
 

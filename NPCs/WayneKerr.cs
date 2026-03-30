@@ -80,17 +80,17 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.UseVendingMachine(902);
-                    plan.Add(new WalkToSpec { Destination = posA, StartTime = 922, FaceDestinationDirection = true });
-                    plan.StayInBuilding(petersRoom, 1104, 111);
-                    plan.LocationDialogue(posA, 1336);
-                    plan.UseVendingMachine(1403);
-                    plan.StayInBuilding(petersRoom, 1428, 118);
-                    plan.UseATM(1627);
-                    plan.StayInBuilding(budsBar, 1726, 156);
-                    plan.UseVendingMachine(2003);
-                    plan.Add(new WalkToSpec { Destination = posB, StartTime = 2057, FaceDestinationDirection = false });
-                    plan.StayInBuilding(petersRoom, 2226, 450);
+                    plan.UseVendingMachine(0833);
+                    plan.Add(new WalkToSpec { Destination = posA, StartTime = 0853, FaceDestinationDirection = true });
+                    plan.StayInBuilding(petersRoom, 1035, 111);
+                    plan.LocationDialogue(posA, 1307);
+                    plan.UseVendingMachine(1334);
+                    plan.StayInBuilding(petersRoom, 1359, 118);
+                    plan.UseATM(1558);
+                    plan.StayInBuilding(budsBar, 1657, 156);
+                    plan.UseVendingMachine(1934);
+                    plan.Add(new WalkToSpec { Destination = posB, StartTime = 2028, FaceDestinationDirection = false });
+                    plan.StayInBuilding(petersRoom, 2157, 450);
                 });
         }
 

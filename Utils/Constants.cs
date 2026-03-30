@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,7 +15,7 @@ namespace MoreNPCs.Utils
         public const string MOD_DESCRIPTION = "More NPCs made by fannsonetti";
 
         /// <summary>
-        /// MelonPreferences configuration
+        /// Legacy single-category name. Tunables now live in <see cref="MoreNPCsPreferences"/> (multiple categories: MoreNPCs_Manager, MoreNPCs_Supervisor, MoreNPCs_BusinessEconomy, etc.).
         /// </summary>
         public const string PREFERENCES_CATEGORY = "MoreNPCs";
 

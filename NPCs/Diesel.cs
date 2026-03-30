@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -80,16 +80,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = behindFishShopDiesel, StartTime = 0903, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 250, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 1056, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 1227, DurationMinutes = 156 });
-                    plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 1504, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = gasmart, StartTime = 1804, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 1857, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 2026, DurationMinutes = 157 });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 2304 });
-                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 0057, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0157, DurationMinutes = 445 });
+                    plan.Add(new WalkToSpec { Destination = behindFishShopDiesel, StartTime = 0839, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 250, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 1032, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 1203, DurationMinutes = 156 });
+                    plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 1440, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = gasmart, StartTime = 1740, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 1833, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 2002, DurationMinutes = 157 });
+                    plan.Add(new UseVendingMachineSpec { StartTime = 2216 });
+                    plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 0033, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0133, DurationMinutes = 445 });
                 });
         }
 

@@ -66,13 +66,13 @@ namespace MoreNPCs.Manager
 
         private static void RespondHolding(ThomasAshford npc)
         {
-            var amount = ManagerFundsSave.GetStored();
+            var amount = ManagerBusinessSave.GetStored();
             npc.SendTextMessage(string.Format(HoldingResponses[_holdingIndex++ % HoldingResponses.Length], amount));
         }
 
         private static void RespondEarnings(ThomasAshford npc)
         {
-            var earnings = ManagerFundsSave.GetBusinessEarnings();
+            var earnings = ManagerBusinessSave.GetBusinessEarnings();
             npc.SendTextMessage(earnings > 0 ? $"${earnings:N0} ready for you." : "Nothing yet.");
         }
 

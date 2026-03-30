@@ -69,6 +69,9 @@
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
 		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+			<HintPath>$(ManagedPath)\UnityEngine.ImageConversionModule.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.JSONSerializeModule">
 			<HintPath>$(ManagedPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
 		</Reference>
@@ -123,6 +126,9 @@
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+			<HintPath>$(ManagedPath)\UnityEngine.ImageConversionModule.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.JSONSerializeModule">
 			<HintPath>$(ManagedPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
@@ -182,6 +188,9 @@
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
 		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+			<HintPath>$(ManagedPath)\UnityEngine.ImageConversionModule.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.JSONSerializeModule">
 			<HintPath>$(ManagedPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
 		</Reference>
@@ -228,18 +237,19 @@
 		<Compile Include="Core.cs" />
 		<Compile Include="NPCs\*.cs" />
 		<Compile Include="Utils\Constants.cs" />
+		<Compile Include="Utils\MoreNPCsPreferences.cs" />
+		<Compile Include="Utils\ExperimentalArtificialProperties.cs" />
+		<Compile Include="Utils\WhiteboardListingSpriteLoader.cs" />
 		<Compile Include="Utils\CartelStatusWatcher.cs" />
 		<Compile Include="Utils\NPCUnlockWatcher.cs" />
 		<Compile Include="Utils\NPCIdleLocations.cs" />
 		<Compile Include="Utils\GameDealerFinder.cs" />
 		<Compile Include="Utils\PlayerCashHelper.cs" />
-		<Compile Include="Utils\ComeToMeSave.cs" />
+		<Compile Include="Persistence\MoreNPCsModSave.cs" />
 		<Compile Include="Utils\BuildingSetup.cs" />
 		<Compile Include="Supervisor\SupervisorIds.cs" />
 		<Compile Include="Supervisor\SupervisorConfig.cs" />
 		<Compile Include="Supervisor\SupervisorRegistry.cs" />
-		<Compile Include="Supervisor\SilasSupervisorSave.cs" />
-		<Compile Include="Supervisor\DominicSupervisorSave.cs" />
 		<Compile Include="Supervisor\SupervisorManager.cs" />
 		<Compile Include="Supervisor\SupervisorDialogue.cs" />
 		<Compile Include="Supervisor\SupervisorActivityChain.cs" />
@@ -252,9 +262,12 @@
 		<Compile Include="Manager\ManagerEarningsCollector.cs" />
 		<Compile Include="Manager\ManagerLaunderingChain.cs" />
 		<Compile Include="Manager\ManagerTextingSetup.cs" />
-		<Compile Include="Manager\ManagerFundsSave.cs" />
 		<Compile Include="Manager\ManagerDialogue.cs" />
 		<Compile Include="Manager\ManagerIndicator.cs" />
+		<Compile Include="Manager\ArtificialBusinessMapping.cs" />
+		<Compile Include="Manager\ArtificialBusinessCatalog.cs" />
+		<Compile Include="Manager\ReOfficePropertyBusinessUnlock.cs" />
+		<Compile Include="Manager\ReOfficeWhiteboardDisplay.cs" />
 	</ItemGroup>
 	<!-- S1API.Forked Reference: NuGet Package (default) -->
 	<ItemGroup Condition="'$(UseLocalS1API)' != 'true'">
@@ -272,6 +285,7 @@
 	  <EmbeddedResource Include="Resources\circle_mask.png" />
 	  <EmbeddedResource Include="Resources\relation_circle.png" />
 	  <EmbeddedResource Include="Resources\tile.png" />
+	  <EmbeddedResource Include="Resources\WhiteboardListing\*.jpg" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -284,7 +298,8 @@
 		<Exec Command="python &quot;$(ProjectDir)scripts\generate_npc_docs.py&quot;" IgnoreExitCode="true" />
 	</Target>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="(tasklist | findstr /I &quot;Schedule.*I.exe&quot; &gt;nul &amp;&amp; taskkill /F /IM &quot;Schedule I.exe&quot; &amp;&amp; timeout /t 3 /nobreak &gt;nul) || echo Game not running&#xD;&#xA;for /L %%i in (1,1,5) do (COPY &quot;$(TargetPath)&quot; &quot;$(ModsPath)&quot; &amp;&amp; goto copied || timeout /t 1 /nobreak &gt;nul)&#xD;&#xA;:copied&#xD;&#xA;START &quot;&quot; &quot;$(GamePath)\Schedule I.exe&quot; --melonloader.launchdebugger --melonloader.debug" />
+		<!-- IgnoreExitCode: copy/launch can fail in CI or when paths differ; DLL is already in $(OutputPath). -->
+		<Exec Command="(tasklist | findstr /I &quot;Schedule.*I.exe&quot; &gt;nul &amp;&amp; taskkill /F /IM &quot;Schedule I.exe&quot; &amp;&amp; timeout /t 3 /nobreak &gt;nul) || echo Game not running&#xD;&#xA;for /L %%i in (1,1,5) do (COPY &quot;$(TargetPath)&quot; &quot;$(ModsPath)&quot; &amp;&amp; goto copied || timeout /t 1 /nobreak &gt;nul)&#xD;&#xA;:copied&#xD;&#xA;START &quot;&quot; &quot;$(GamePath)\Schedule I.exe&quot; --melonloader.launchdebugger --melonloader.debug" IgnoreExitCode="true" />
 	</Target>
 
 </Project>

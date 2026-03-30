@@ -77,11 +77,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 900, DurationMinutes = 119 });
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Bus stops/Bus Stop (8)/OutdoorBench", StartTime = 1100, DurationMinutes = 129 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 1230, DurationMinutes = 119 });
-                    plan.UseVendingMachine(1400);
-                    plan.StayInBuilding(charlesHouse, 1730, 547);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 0856, DurationMinutes = 119 });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Bus stops/Bus Stop (8)/OutdoorBench", StartTime = 1056, DurationMinutes = 129 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 1226, DurationMinutes = 119 });
+                    plan.UseVendingMachine(1356);
+                    plan.StayInBuilding(charlesHouse, 1726, 547);
                 });
         }
 

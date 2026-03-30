@@ -41,15 +41,15 @@ namespace MoreNPCs.NPCs
                     av.EyebrowThickness = 0.72f;
                     av.EyebrowRestingHeight = -0.28f;
                     av.EyebrowRestingAngle = 2.6f;
-                    av.LeftEye = (0.55f, 0.09f);
-                    av.RightEye = (0.55f, 0.09f);
+                    av.LeftEye = (0.55f, 0.0f);
+                    av.RightEye = (0.55f, 0.0f);
                     av.HairColor = new Color(0.18f, 0.14f, 0.10f);
                     av.HairPath = "Avatar/Hair/MessyBob/MessyBob";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/EyeShadow", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", Color.black);
                     av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.35f, 0.30f, 0.32f));
-                    av.WithBodyLayer("Avatar/Layers/Top/UpperBodyTattoos", new Color(0.10f, 0.08f, 0.06f));
+                    av.WithBodyLayer("Avatar/Layers/Top/UpperBodyTattoos", new Color(0.41f, 0.18f, 0.06f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.20f, 0.20f, 0.22f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.14f, 0.14f, 0.16f));
                     av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.14f, 0.14f, 0.16f));
@@ -81,12 +81,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(cornerStore, 800, 84);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench", StartTime = 1015, DurationMinutes = 99 });
-                    plan.StayInBuilding(thePissHut, 1115, 104);
-                    plan.UseATM(1335);
-                    plan.StayInBuilding(cornerStore, 1510, 79);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Jessi's Room", StartTime = 1700, DurationMinutes = 899 });
+                    plan.StayInBuilding(cornerStore, 0829, 84);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench", StartTime = 1044, DurationMinutes = 99 });
+                    plan.StayInBuilding(thePissHut, 1144, 104);
+                    plan.UseATM(1404);
+                    plan.StayInBuilding(cornerStore, 1539, 79);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Jessi's Room", StartTime = 1729, DurationMinutes = 899 });
                 });
         }
 

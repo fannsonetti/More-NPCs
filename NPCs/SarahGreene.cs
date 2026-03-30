@@ -78,11 +78,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(arcade, 1030, 119);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench", StartTime = 1305, DurationMinutes = 129 });
-                    plan.StayInBuilding(thePissHut, 1435, 89);
-                    plan.UseATM(1610);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "George and Molly's House", StartTime = 1735, DurationMinutes = 984 });
+                    plan.StayInBuilding(arcade, 1007, 119);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench", StartTime = 1242, DurationMinutes = 129 });
+                    plan.StayInBuilding(thePissHut, 1412, 89);
+                    plan.UseATM(1547);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "George and Molly's House", StartTime = 1712, DurationMinutes = 984 });
                 });
         }
 

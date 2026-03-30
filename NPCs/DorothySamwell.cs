@@ -84,11 +84,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(dansHardwareUpstairs, 000, 479);
-                    plan.StayInBuilding(budsBar, 800, 239);
-                    plan.StayInBuilding(sauerkrautSupreme, 1200, 239);
-                    plan.Add(new WalkToSpec { Destination = outdoorChair, StartTime = 1600, FaceDestinationDirection = true });
-                    plan.StayInBuilding(dansHardwareUpstairs, 2000, 279);
+                    plan.StayInBuilding(dansHardwareUpstairs, 0006, 479);
+                    plan.StayInBuilding(budsBar, 0806, 239);
+                    plan.StayInBuilding(sauerkrautSupreme, 1206, 239);
+                    plan.Add(new WalkToSpec { Destination = outdoorChair, StartTime = 1606, FaceDestinationDirection = true });
+                    plan.StayInBuilding(dansHardwareUpstairs, 2006, 279);
                 });
         }
 

@@ -17,14 +17,19 @@ namespace MoreNPCs.Supervisor
         private static readonly HashSet<string> _collecting = new HashSet<string>();
         public static bool IsCollecting => _collecting.Count > 0;
         public static bool IsCollectingFor(string supervisorId) => _collecting.Contains(supervisorId);
-        private const float WalkTimeout = 120f;
+        private static float WalkTimeout =>
+            !MoreNPCsPreferences.Registered ? 120f : MoreNPCsPreferences.Supervisor_WalkTimeoutSeconds.Value;
+        private static float MinCashToCollect =>
+            !MoreNPCsPreferences.Registered ? 2000f : MoreNPCsPreferences.Supervisor_MinCashToCollect.Value;
+        private static float CollectCutPercent =>
+            !MoreNPCsPreferences.Registered ? 0.10f : MoreNPCsPreferences.Supervisor_CollectCutPercent.Value;
 
         public static bool CanCollect(NPC npc, string supervisorId)
         {
             if (_collecting.Count > 0 || npc == null) return false;
             var targets = SupervisorManager.GetDealersWithCashToCollect(supervisorId);
             if (targets == null || targets.Count == 0) return false;
-            return targets.Any(t => t.Cash >= 2000f);
+            return targets.Any(t => t.Cash >= MinCashToCollect);
         }
 
         public static bool TryStartCollect(NPC npc, string supervisorId)
@@ -32,7 +37,7 @@ namespace MoreNPCs.Supervisor
             if (_collecting.Count > 0 || npc == null) return false;
             var targets = SupervisorManager.GetDealersWithCashToCollect(supervisorId);
             if (targets == null || targets.Count == 0) return false;
-            if (!targets.Any(t => t.Cash >= 2000f)) return false;
+            if (!targets.Any(t => t.Cash >= MinCashToCollect)) return false;
             _collecting.Add(supervisorId);
             SupervisorTextingSetup.SendMessageFrom(npc, "Going to pick up the take. I'll text when I'm done.");
             MelonCoroutines.Start(CollectCoroutine(npc, supervisorId, targets));
@@ -46,7 +51,7 @@ namespace MoreNPCs.Supervisor
             {
                 foreach (var t in targets)
                 {
-                    if (t.Cash < 2000f) continue;
+                    if (t.Cash < MinCashToCollect) continue;
                     var dest = GetDealerPositionNow(t.DealerId);
                     if (dest == Vector3.zero) dest = t.Position;
                     npc.Movement.SetDestination(dest);
@@ -60,7 +65,7 @@ namespace MoreNPCs.Supervisor
                     if (SupervisorDialogue.IsPlayerInMenu) yield break;
                     yield return new WaitForSeconds(0.5f);
                     float raw = SupervisorManager.TakeDealerCashForSupervisor(supervisorId, t.DealerId);
-                    float cut = raw * 0.10f;
+                    float cut = raw * CollectCutPercent;
                     float toStorage = raw - cut;
                     SupervisorManager.AddToStoredCash(supervisorId, toStorage);
                     totalCollected += toStorage;

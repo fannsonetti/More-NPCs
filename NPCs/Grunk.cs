@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -31,24 +31,25 @@ namespace MoreNPCs.NPCs
             builder.WithIdentity("grunk", "Grunk", "")
                 .WithAppearanceDefaults(av =>
                 {
-                    av.Gender = 0.0f;
+                    av.Gender = 0f;
                     av.Height = 1.6f;
-                    av.Weight = 1f;
+                    av.Weight = 1.1f;
                     av.SkinColor = new Color(0.478f, 0.4659f, 0.3983f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = new Color(1f, 1f, 1f);
-                    av.PupilDilation = 0.6f;
+                    av.EyeBallTint = new Color(1f, 0.55f, 0.7f);
+                    av.PupilDilation = 0.05f;
                     av.EyebrowScale = 0f;
                     av.EyebrowThickness = 0f;
                     av.LeftEye = (0.3594f, 1f);
                     av.RightEye = (0.3594f, 1f);
                     av.HairPath = "";
-                    av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_OpenMouthSmile", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", Color.black);
                     av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color(0.957f, 0.474f, 0.938f));
-                    av.WithFaceLayer("Avatar/Layers/Face/Eyeshadow", new Color(0f, 0f, 0f, 1f));
+                    av.WithFaceLayer("Avatar/Layers/Face/Eyeshadow", new Color(0f, 0f, 0f, 0.55f));
                     av.WithBodyLayer("Avatar/Layers/Top/Nipples", new Color(0.5402f, 0.5124f, 0.5124f));
+                    av.WithBodyLayer("Avatar/Layers/Top/ChestHair1", Color.black);
                     av.WithBodyLayer("Avatar/Layers/Bottom/MaleUnderwear", new Color(0.3884f, 0.37f, 0.313f));
                 })
                 .WithSpawnPosition(spawnPos)
@@ -81,16 +82,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 0204, FaceDestinationDirection = false });
-                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 0327, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 0533, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 0626, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1104, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1256, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 1504, FaceDestinationDirection = false });
-                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 1726, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1932, FaceDestinationDirection = true });
-                    plan.StayInBuilding(goblinHiding, 2103, 300);
+                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 0201, FaceDestinationDirection = false });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 0324, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 0530, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 0623, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1101, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1253, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 1501, FaceDestinationDirection = false });
+                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 1723, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1929, FaceDestinationDirection = true });
+                    plan.StayInBuilding(goblinHiding, 2100, 300);
                 });
         }
 

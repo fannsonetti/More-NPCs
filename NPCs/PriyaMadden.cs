@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -78,11 +78,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 830, DurationMinutes = 149 });
-                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1055, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1230, DurationMinutes = 104 });
-                    plan.UseVendingMachine(1510);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 1915, DurationMinutes = 524 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 0852, DurationMinutes = 149 });
+                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1117, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1252, DurationMinutes = 104 });
+                    plan.UseVendingMachine(1532);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 1937, DurationMinutes = 524 });
                 });
         }
 

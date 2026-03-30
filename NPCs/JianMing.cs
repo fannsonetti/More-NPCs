@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -80,11 +80,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northIndustrial, 720, 232);
-                    plan.StayInBuilding(chineseRestaurant, 953, 91);
-                    plan.UseVendingMachine(1045);
-                    plan.StayInBuilding(northIndustrial, 1105, 217);
-                    plan.StayInBuilding(chineseRestaurant, 1323, 876); // merged evening + overnight stay
+                    plan.StayInBuilding(northIndustrial, 0706, 232);
+                    plan.StayInBuilding(chineseRestaurant, 0939, 91);
+                    plan.UseVendingMachine(1031);
+                    plan.StayInBuilding(northIndustrial, 1051, 217);
+                    plan.StayInBuilding(chineseRestaurant, 1309, 876); // merged evening + overnight stay
                 });
         }
 

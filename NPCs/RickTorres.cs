@@ -73,7 +73,7 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(supermarket, 000, 1439);
+                    plan.StayInBuilding(supermarket, 0016, 1439);
                 });
         }
 

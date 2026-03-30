@@ -77,12 +77,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(cornerStore, 830, 89);
-                    plan.Add(new WalkToSpec { Destination = westGasmart, StartTime = 1015, FaceDestinationDirection = true });
-                    plan.StayInBuilding(shermanHouse, 1145, 119);
-                    plan.UseVendingMachine(1330);
-                    plan.StayInBuilding(cornerStore, 1415, 104);
-                    plan.StayInBuilding(shermanHouse, 1730, 547);
+                    plan.StayInBuilding(cornerStore, 0825, 89);
+                    plan.Add(new WalkToSpec { Destination = westGasmart, StartTime = 1010, FaceDestinationDirection = true });
+                    plan.StayInBuilding(shermanHouse, 1140, 119);
+                    plan.UseVendingMachine(1325);
+                    plan.StayInBuilding(cornerStore, 1410, 104);
+                    plan.StayInBuilding(shermanHouse, 1725, 547);
                 });
         }
 

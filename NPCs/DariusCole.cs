@@ -83,16 +83,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = bleuball, StartTime = 727, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
-                    plan.UseVendingMachine(936);
-                    plan.StayInBuilding(bank, 933, 299);
-                    plan.UseVendingMachine(1433);
-                    plan.StayInBuilding(bank, 1458, 125);
-                    plan.StayInBuilding(church, 1704, 112);
-                    plan.StayInBuilding(upscaleApartments, 2037, 25);
-                    plan.UseATM(1943);
-                    plan.Add(new WalkToSpec { Destination = bleuball, StartTime = 2012, FaceDestinationDirection = false, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
-                    plan.StayInBuilding(upscaleApartments, 2203, 563);
+                    plan.Add(new WalkToSpec { Destination = bleuball, StartTime = 0731, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.UseVendingMachine(0940);
+                    plan.StayInBuilding(bank, 0937, 299);
+                    plan.UseVendingMachine(1437);
+                    plan.StayInBuilding(bank, 1502, 125);
+                    plan.StayInBuilding(church, 1708, 112);
+                    plan.StayInBuilding(upscaleApartments, 2041, 25);
+                    plan.UseATM(1947);
+                    plan.Add(new WalkToSpec { Destination = bleuball, StartTime = 2016, FaceDestinationDirection = false, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.StayInBuilding(upscaleApartments, 2207, 563);
                 });
         }
 

@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -79,14 +79,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = behindFishShopMack, StartTime = 0903, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 250, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = waterMack, StartTime = 1056, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Bank", StartTime = 1258, DurationMinutes = 185 });
-                    plan.Add(new WalkToSpec { Destination = raysForest, StartTime = 1604, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = rockInForest, StartTime = 1656, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 2003, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 2157, DurationMinutes = 209 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0127, DurationMinutes = 455 });
+                    plan.Add(new WalkToSpec { Destination = behindFishShopMack, StartTime = 0905, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 250, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = waterMack, StartTime = 1058, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Bank", StartTime = 1300, DurationMinutes = 185 });
+                    plan.Add(new WalkToSpec { Destination = raysForest, StartTime = 1606, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = rockInForest, StartTime = 1658, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 2005, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 2159, DurationMinutes = 209 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0129, DurationMinutes = 455 });
                 });
         }
 

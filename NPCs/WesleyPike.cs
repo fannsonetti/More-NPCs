@@ -67,12 +67,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Jane's Caravan", StartTime = 830, DurationMinutes = 104 });
-                    plan.Add(new WalkToSpec { Destination = gasMart, StartTime = 1015, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Corner Store", StartTime = 1145, DurationMinutes = 119 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 1325, DurationMinutes = 99 });
-                    plan.UseATM(1645);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 4", StartTime = 1950, DurationMinutes = 670 }); // until 7am, no 4am kickout
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Jane's Caravan", StartTime = 0850, DurationMinutes = 104 });
+                    plan.Add(new WalkToSpec { Destination = gasMart, StartTime = 1035, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Corner Store", StartTime = 1205, DurationMinutes = 119 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 1345, DurationMinutes = 99 });
+                    plan.UseATM(1705);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 4", StartTime = 2010, DurationMinutes = 670 }); // until 7am, no 4am kickout
                 });
         }
 

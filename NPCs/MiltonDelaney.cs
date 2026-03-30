@@ -77,14 +77,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1127, DurationMinutes = 89 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "HAM Legal", StartTime = 1257, DurationMinutes = 126 });
-                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 1504, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = hospital1, StartTime = 1556, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = hospital2, StartTime = 1704, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1926, DurationMinutes = 36 });
-                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 2003, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2057, DurationMinutes = 869 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1133, DurationMinutes = 89 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "HAM Legal", StartTime = 1303, DurationMinutes = 126 });
+                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 1510, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = hospital1, StartTime = 1602, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = hospital2, StartTime = 1710, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1932, DurationMinutes = 36 });
+                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 2009, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2103, DurationMinutes = 869 });
                 });
         }
 

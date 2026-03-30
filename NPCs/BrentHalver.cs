@@ -66,12 +66,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 845, DurationMinutes = 99 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Corner Store", StartTime = 1045, DurationMinutes = 104 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1220, DurationMinutes = 119 });
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Corner Store/OutdoorBench", StartTime = 1400, DurationMinutes = 119 });
-                    plan.UseATM(1620);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Tool Shed", StartTime = 1920, DurationMinutes = 700 }); // until 7am, no 4am kickout
+                    plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 0852, DurationMinutes = 99 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Corner Store", StartTime = 1052, DurationMinutes = 104 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1227, DurationMinutes = 119 });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Corner Store/OutdoorBench", StartTime = 1407, DurationMinutes = 119 });
+                    plan.UseATM(1627);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Tool Shed", StartTime = 1927, DurationMinutes = 700 }); // until 7am, no 4am kickout
                 });
         }
 

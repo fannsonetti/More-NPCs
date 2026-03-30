@@ -76,15 +76,15 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 0857, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1127, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1403, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1556, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1804, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 2026, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 2304, FaceDestinationDirection = false });
-                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 0057, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 0303, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 0905, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1135, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1411, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1604, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerOffice, StartTime = 1812, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 2034, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 2312, FaceDestinationDirection = false });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 0105, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 0311, FaceDestinationDirection = true });
                 });
         }
 

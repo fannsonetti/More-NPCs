@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -80,7 +80,7 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("kyle_cooley", "jason_reed");
+                        .WithConnectionsById("moe_lester");
                 })
                 .WithSchedule(plan =>
                 {

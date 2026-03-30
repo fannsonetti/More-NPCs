@@ -75,14 +75,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "HAM Legal", StartTime = 1127, DurationMinutes = 90 });
-                    plan.Add(new WalkToSpec { Destination = hospital1, StartTime = 1258, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 1403, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1504, DurationMinutes = 91 });
-                    plan.Add(new WalkToSpec { Destination = hospital2, StartTime = 1656, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1826, DurationMinutes = 96 });
-                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 2003, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2057, DurationMinutes = 869 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "HAM Legal", StartTime = 1132, DurationMinutes = 90 });
+                    plan.Add(new WalkToSpec { Destination = hospital1, StartTime = 1303, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 1408, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1509, DurationMinutes = 91 });
+                    plan.Add(new WalkToSpec { Destination = hospital2, StartTime = 1701, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1831, DurationMinutes = 96 });
+                    plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 2008, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2102, DurationMinutes = 869 });
                 });
         }
 

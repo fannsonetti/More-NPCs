@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using MelonLoader;
+using MoreNPCs.Persistence;
 using MoreNPCs.Utils;
 using UnityEngine;
 
@@ -16,19 +17,20 @@ namespace MoreNPCs.Supervisor
         public struct AssignableDealer { public string Id; public string DisplayName; }
         public struct CollectTarget { public Vector3 Position; public string DealerId; public float Cash; }
 
-        public const int MaxAssignedDealers = 6;
+        public static int MaxAssignedDealers =>
+            !MoreNPCsPreferences.Registered ? 6 : Math.Max(1, MoreNPCsPreferences.Supervisor_MaxAssignedDealers.Value);
 
         public static IReadOnlyList<string> GetAssignedDealerIds(string supervisorId)
         {
-            if (supervisorId == SupervisorIds.Silas) return SilasSupervisorSave.GetAssignedDealerIds();
-            if (supervisorId == SupervisorIds.Dominic) return DominicSupervisorSave.GetAssignedDealerIds();
+            if (supervisorId == SupervisorIds.Silas) return MoreNPCsModSave.SilasCartelSupervisor.GetAssignedDealerIds();
+            if (supervisorId == SupervisorIds.Dominic) return MoreNPCsModSave.DominicCartelSupervisor.GetAssignedDealerIds();
             return Array.Empty<string>();
         }
 
         public static float GetStoredCash(string supervisorId)
         {
-            if (supervisorId == SupervisorIds.Silas) return SilasSupervisorSave.GetStoredCashTotal();
-            if (supervisorId == SupervisorIds.Dominic) return DominicSupervisorSave.GetStoredCashTotal();
+            if (supervisorId == SupervisorIds.Silas) return MoreNPCsModSave.SilasCartelSupervisor.GetStoredCashTotal();
+            if (supervisorId == SupervisorIds.Dominic) return MoreNPCsModSave.DominicCartelSupervisor.GetStoredCashTotal();
             return 0f;
         }
 
@@ -36,13 +38,13 @@ namespace MoreNPCs.Supervisor
         {
             if (supervisorId == SupervisorIds.Silas)
             {
-                if (SilasSupervisorSave.Instance != null) SilasSupervisorSave.Instance.AssignDealer(dealerId);
-                else SilasSupervisorSave.AssignDealerRuntime(dealerId);
+                if (MoreNPCsModSave.Instance != null) MoreNPCsModSave.Instance.SilasAssignDealer(dealerId);
+                else MoreNPCsModSave.SilasCartelSupervisor.AssignDealerRuntime(dealerId);
             }
             else if (supervisorId == SupervisorIds.Dominic)
             {
-                if (DominicSupervisorSave.Instance != null) DominicSupervisorSave.Instance.AssignDealer(dealerId);
-                else DominicSupervisorSave.AssignDealerRuntime(dealerId);
+                if (MoreNPCsModSave.Instance != null) MoreNPCsModSave.Instance.DominicAssignDealer(dealerId);
+                else MoreNPCsModSave.DominicCartelSupervisor.AssignDealerRuntime(dealerId);
             }
         }
 
@@ -50,34 +52,34 @@ namespace MoreNPCs.Supervisor
         {
             if (supervisorId == SupervisorIds.Silas)
             {
-                if (SilasSupervisorSave.Instance != null) SilasSupervisorSave.Instance.UnassignDealer(dealerId);
-                else SilasSupervisorSave.UnassignDealerRuntime(dealerId);
+                if (MoreNPCsModSave.Instance != null) MoreNPCsModSave.Instance.SilasUnassignDealer(dealerId);
+                else MoreNPCsModSave.SilasCartelSupervisor.UnassignDealerRuntime(dealerId);
             }
             else if (supervisorId == SupervisorIds.Dominic)
             {
-                if (DominicSupervisorSave.Instance != null) DominicSupervisorSave.Instance.UnassignDealer(dealerId);
-                else DominicSupervisorSave.UnassignDealerRuntime(dealerId);
+                if (MoreNPCsModSave.Instance != null) MoreNPCsModSave.Instance.DominicUnassignDealer(dealerId);
+                else MoreNPCsModSave.DominicCartelSupervisor.UnassignDealerRuntime(dealerId);
             }
         }
 
         public static bool IsAssigned(string supervisorId, string dealerId)
         {
-            if (supervisorId == SupervisorIds.Silas) return SilasSupervisorSave.IsAssignedStatic(dealerId);
-            if (supervisorId == SupervisorIds.Dominic) return DominicSupervisorSave.IsAssignedStatic(dealerId);
+            if (supervisorId == SupervisorIds.Silas) return MoreNPCsModSave.SilasCartelSupervisor.IsAssignedStatic(dealerId);
+            if (supervisorId == SupervisorIds.Dominic) return MoreNPCsModSave.DominicCartelSupervisor.IsAssignedStatic(dealerId);
             return false;
         }
 
         public static float TakeAllStoredCash(string supervisorId)
         {
-            if (supervisorId == SupervisorIds.Silas) return SilasSupervisorSave.TakeAllStoredCashStatic();
-            if (supervisorId == SupervisorIds.Dominic) return DominicSupervisorSave.TakeAllStoredCashStatic();
+            if (supervisorId == SupervisorIds.Silas) return MoreNPCsModSave.SilasCartelSupervisor.TakeAllStoredCashStatic();
+            if (supervisorId == SupervisorIds.Dominic) return MoreNPCsModSave.DominicCartelSupervisor.TakeAllStoredCashStatic();
             return 0f;
         }
 
         public static void AddToStoredCash(string supervisorId, float amount)
         {
-            if (supervisorId == SupervisorIds.Silas) SilasSupervisorSave.AddToStoredCashStatic(amount);
-            else if (supervisorId == SupervisorIds.Dominic) DominicSupervisorSave.AddToStoredCashStatic(amount);
+            if (supervisorId == SupervisorIds.Silas) MoreNPCsModSave.SilasCartelSupervisor.AddToStoredCashStatic(amount);
+            else if (supervisorId == SupervisorIds.Dominic) MoreNPCsModSave.DominicCartelSupervisor.AddToStoredCashStatic(amount);
         }
 
         public static List<AssignableDealer> GetAssignableDealers(string supervisorId, bool forceRefresh = false)
@@ -155,7 +157,8 @@ namespace MoreNPCs.Supervisor
             return false;
         }
 
-        private const int LowStockThreshold = 20;
+        private static int LowStockThreshold =>
+            !MoreNPCsPreferences.Registered ? 20 : Math.Max(0, MoreNPCsPreferences.Supervisor_LowStockDrugThreshold.Value);
 
         public static int GetDealersRunningLowCount(string supervisorId)
         {
@@ -163,12 +166,13 @@ namespace MoreNPCs.Supervisor
             if (assigned == null || assigned.Count == 0) return 0;
             var dealers = GameDealerFinder.GetRecruitedDealersFromGame(false);
             int count = 0;
+            var threshold = LowStockThreshold;
             foreach (var id in assigned)
             {
                 if (!IsUsableDealer(supervisorId, id)) continue;
                 var dealer = dealers?.FirstOrDefault(g => string.Equals(g?.Id, id, StringComparison.OrdinalIgnoreCase));
                 if (dealer == null) continue;
-                if (GetDealerTotalDrugCount(dealer) < LowStockThreshold) count++;
+                if (GetDealerTotalDrugCount(dealer) < threshold) count++;
             }
             return count;
         }
@@ -180,12 +184,13 @@ namespace MoreNPCs.Supervisor
                 return "Nobody on the books yet. Get someone assigned and I'll handle it.";
             var dealers = GameDealerFinder.GetRecruitedDealersFromGame(false);
             var lowStock = new List<string>();
+            var threshold = LowStockThreshold;
             foreach (var id in assigned)
             {
                 if (!IsUsableDealer(supervisorId, id)) continue;
                 var dealer = dealers?.FirstOrDefault(g => string.Equals(g?.Id, id, StringComparison.OrdinalIgnoreCase));
                 if (dealer == null) continue;
-                if (GetDealerTotalDrugCount(dealer) < LowStockThreshold)
+                if (GetDealerTotalDrugCount(dealer) < threshold)
                     lowStock.Add(dealer.FullName ?? id);
             }
             if (lowStock.Count > 0)

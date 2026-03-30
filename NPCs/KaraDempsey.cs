@@ -46,6 +46,8 @@ namespace MoreNPCs.NPCs
                     av.HairColor = new Color(0.18f, 0.14f, 0.11f);
                     av.HairPath = "Avatar/Hair/DoubleTopKnot/DoubleTopKnot";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", new Color(0.10f, 0.09f, 0.09f));
+                    av.WithFaceLayer("Avatar/Layers/Face/Freckles", new Color(0.40f, 0.30f, 0.24f));
                     av.WithBodyLayer("Avatar/Layers/Top/RolledButtonUp", new Color(0.30f, 0.37f, 0.45f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/Jorts", new Color(0.28f, 0.29f, 0.34f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sandals/Sandals", new Color(0.24f, 0.22f, 0.20f));
@@ -82,12 +84,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(arcade, 700, 149);
-                    plan.Add(new WalkToSpec { Destination = courtyard, StartTime = 1045, FaceDestinationDirection = true });
-                    plan.StayInBuilding(cornerStore, 1215, 89);
-                    plan.UseVendingMachine(1400);
-                    plan.StayInBuilding(thePissHut, 1635, 89);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 1835, DurationMinutes = 744 });
+                    plan.StayInBuilding(arcade, 0705, 149);
+                    plan.Add(new WalkToSpec { Destination = courtyard, StartTime = 1050, FaceDestinationDirection = true });
+                    plan.StayInBuilding(cornerStore, 1220, 89);
+                    plan.UseVendingMachine(1405);
+                    plan.StayInBuilding(thePissHut, 1640, 89);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 1840, DurationMinutes = 744 });
                 });
         }
 

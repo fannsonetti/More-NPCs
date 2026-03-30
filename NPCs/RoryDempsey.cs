@@ -81,13 +81,13 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 730, FaceDestinationDirection = true });
-                    plan.StayInBuilding(cornerStore, 815, 104);
-                    plan.StayInBuilding(arcade, 1000, 114);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Corner Store/OutdoorBench", StartTime = 1145, DurationMinutes = 94 });
-                    plan.UseVendingMachine(1320);
-                    plan.UseATM(1520);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 1910, DurationMinutes = 700 }); // until 7am, no 4am kickout
+                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 0755, FaceDestinationDirection = true });
+                    plan.StayInBuilding(cornerStore, 0840, 104);
+                    plan.StayInBuilding(arcade, 1025, 114);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Corner Store/OutdoorBench", StartTime = 1210, DurationMinutes = 94 });
+                    plan.UseVendingMachine(1345);
+                    plan.UseATM(1545);
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 5", StartTime = 1935, DurationMinutes = 700 }); // until 7am, no 4am kickout
                 });
         }
 

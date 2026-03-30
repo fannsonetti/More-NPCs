@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.NPCs.Northtown;
@@ -86,15 +86,15 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northApartments, 000, 419);
-                    plan.StayInBuilding(townHall, 830, 149);
-                    plan.StayInBuilding(cafe, 1040, 94);
-                    plan.UseATM(1215);
-                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1320, FaceDestinationDirection = true });
-                    plan.StayInBuilding(slopShop, 1520, 99);
-                    plan.StayInBuilding(hylandBank, 1700, 94);
-                    plan.StayInBuilding(townHall, 1835, 139);
-                    plan.StayInBuilding(northApartments, 2200, 239);
+                    plan.StayInBuilding(northApartments, 0014, 419);
+                    plan.StayInBuilding(townHall, 0844, 149);
+                    plan.StayInBuilding(cafe, 1054, 94);
+                    plan.UseATM(1229);
+                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1334, FaceDestinationDirection = true });
+                    plan.StayInBuilding(slopShop, 1534, 99);
+                    plan.StayInBuilding(hylandBank, 1714, 94);
+                    plan.StayInBuilding(townHall, 1849, 139);
+                    plan.StayInBuilding(northApartments, 2214, 239);
                 });
         }
 

@@ -75,11 +75,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 557, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = outside, StartTime = 1804, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 240, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 2003, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 2157 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "North Industrial Building", StartTime = 2226, DurationMinutes = 450 });
+                    plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 0543, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = outside, StartTime = 1750, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 240, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = tacoticklers, StartTime = 1949, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.Add(new UseVendingMachineSpec { StartTime = 2129 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "North Industrial Building", StartTime = 2212, DurationMinutes = 450 });
                 });
         }
 

@@ -79,13 +79,13 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = sewerCrossSection, StartTime = 627, FaceDestinationDirection = true });
-                    plan.StayInBuilding(goblinHiding, 697, 826);
-                    plan.Add(new WalkToSpec { Destination = forestStraight, StartTime = 2104, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = forestRock, StartTime = 2226, FaceDestinationDirection = true });
-                    plan.UseVendingMachine(2356);
-                    plan.Add(new WalkToSpec { Destination = forestBarn, StartTime = 057, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = forestMansion, StartTime = 303, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerCrossSection, StartTime = 0650, FaceDestinationDirection = true });
+                    plan.StayInBuilding(goblinHiding, 0800, 826);
+                    plan.Add(new WalkToSpec { Destination = forestStraight, StartTime = 2127, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = forestRock, StartTime = 2249, FaceDestinationDirection = true });
+                    plan.UseVendingMachine(0019);
+                    plan.Add(new WalkToSpec { Destination = forestBarn, StartTime = 0120, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = forestMansion, StartTime = 0326, FaceDestinationDirection = true });
                 });
         }
 

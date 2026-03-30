@@ -73,12 +73,12 @@ namespace MoreNPCs.Manager
                 return;
             }
 
-            var stored = ManagerFundsSave.GetStored();
-            var businessEarnings = ManagerFundsSave.GetBusinessEarnings();
+            var stored = ManagerBusinessSave.GetStored();
+            var businessEarnings = ManagerBusinessSave.GetBusinessEarnings();
             var playerCash = 0f;
             try { playerCash = S1API.Money.Money.GetCashBalance(); } catch { }
 
-            var businesses = GetOwnedBusinesses();
+            var assignable = GetAssignableBusinessEntries();
             var assigned = ManagerBusinessSave.GetAssignedStatic() ?? new List<string>();
             int assignedCount = assigned.Count;
             bool hasAssigned = assignedCount > 0;
@@ -92,7 +92,7 @@ namespace MoreNPCs.Manager
             {
                 c.AddNode("ENTRY", "What can I do for you?", choices =>
                 {
-                    var earnings = ManagerFundsSave.GetBusinessEarnings();
+                    var earnings = ManagerBusinessSave.GetBusinessEarnings();
                     var earningsStr = earnings > 0 ? $" <color=#54E717>(${earnings:N0})</color>" : "";
                     choices.Add("funds", "I need to manage your funds", "FUNDS_MENU")
                         .Add("collect", $"I need to collect the earnings{earningsStr}", "ENTRY")
@@ -109,7 +109,6 @@ namespace MoreNPCs.Manager
                 });
 
                 var dailyCap = GetDailyLaunderCapacity(assigned);
-                if (dailyCap <= 0) dailyCap = 2000f;
                 c.AddNode("GIVE_MENU", "How much would you like to give?", choices =>
                 {
                     var ch = choices;
@@ -174,20 +173,16 @@ namespace MoreNPCs.Manager
                 });
 
                 var assignChoices = new List<(string label, string text, string target)>();
-                foreach (var b in businesses)
+                foreach (var (name, safeId) in assignable)
                 {
-                    var name = b?.PropertyName?.Trim();
-                    if (string.IsNullOrEmpty(name)) continue;
-                    if (ManagerBusinessSave.IsAssignedStatic(name)) continue;
                     if (!canAddMore) continue;
-                    var safeId = SafeBusinessId(name);
                     assignChoices.Add((safeId, name, $"DO_ASSIGN_{safeId}"));
                 }
                 assignChoices.Add(("back_assign", "Back", "MANAGE_BUSINESSES"));
 
-                c.AddNode("ASSIGN_BUSINESS", businesses.Count > 0
+                c.AddNode("ASSIGN_BUSINESS", assignable.Count > 0
                     ? "Which business should I manage?"
-                    : "You don't own any businesses yet.", choices =>
+                    : "You don't have any businesses to assign yet.", choices =>
                 {
                     var ch = choices;
                     foreach (var (label, text, target) in assignChoices) ch = ch.Add(label, text, target);
@@ -211,11 +206,8 @@ namespace MoreNPCs.Manager
                     foreach (var (label, text, target) in removeChoices) ch = ch.Add(label, text, target);
                 });
 
-                foreach (var b in businesses)
+                foreach (var (name, safeId) in assignable)
                 {
-                    var name = b?.PropertyName?.Trim();
-                    if (string.IsNullOrEmpty(name) || ManagerBusinessSave.IsAssignedStatic(name)) continue;
-                    var safeId = SafeBusinessId(name);
                     if (!canAddMore) continue;
                     c.AddNode($"DO_ASSIGN_{safeId}", "", ch => ch.Add("ok", "OK", "MANAGE_BUSINESSES"));
                 }
@@ -236,7 +228,6 @@ namespace MoreNPCs.Manager
                 dialogue.End();
             });
             var cap = GetDailyLaunderCapacity(assigned);
-            if (cap <= 0) cap = 2000f;
             dialogue.OnNodeDisplayed("DO_GIVE_1D", () => HandleGive(manager!, cap * 1));
             dialogue.OnNodeDisplayed("DO_GIVE_3D", () => HandleGive(manager!, cap * 3));
             dialogue.OnNodeDisplayed("DO_GIVE_7D", () => HandleGive(manager!, cap * 7));
@@ -254,11 +245,8 @@ namespace MoreNPCs.Manager
                 dialogue.End();
             });
 
-            foreach (var b in businesses)
+            foreach (var (name, safeId) in assignable)
             {
-                var name = b?.PropertyName?.Trim();
-                if (string.IsNullOrEmpty(name) || ManagerBusinessSave.IsAssignedStatic(name)) continue;
-                var safeId = SafeBusinessId(name);
                 if (!canAddMore) continue;
                 var nameCapture = name;
                 dialogue.OnNodeDisplayed($"DO_ASSIGN_{safeId}", () =>
@@ -304,7 +292,7 @@ namespace MoreNPCs.Manager
         {
             try
             {
-                var taken = ManagerFundsSave.TakeAllEarningsStatic();
+                var taken = ManagerBusinessSave.TakeAllEarningsStatic();
                 if (taken > 0) PlayerCashHelper.TryAddCash(taken);
                 IsPlayerInMenu = false;
                 _currentManager = null;
@@ -345,7 +333,7 @@ namespace MoreNPCs.Manager
                     return;
                 }
                 S1API.Money.Money.ChangeCashBalance(-amount, visualizeChange: true, playCashSound: true);
-                ManagerFundsSave.AddStatic(amount);
+                ManagerBusinessSave.AddStatic(amount);
                 IsPlayerInMenu = false;
                 _currentManager = null;
                 manager.Dialogue?.End();
@@ -358,10 +346,10 @@ namespace MoreNPCs.Manager
         {
             try
             {
-                var stored = ManagerFundsSave.GetStored();
+                var stored = ManagerBusinessSave.GetStored();
                 var take = Math.Min(amount, stored);
                 if (take <= 0) return;
-                var taken = ManagerFundsSave.TakeStatic(take);
+                var taken = ManagerBusinessSave.TakeStatic(take);
                 if (taken > 0) PlayerCashHelper.TryAddCash(taken);
                 BuildDialogueContainer(manager, false);
                 manager.Dialogue?.JumpTo(ContainerName, "TAKE_MENU", false);
@@ -373,7 +361,7 @@ namespace MoreNPCs.Manager
         {
             try
             {
-                var taken = ManagerFundsSave.TakeStatic(float.MaxValue);
+                var taken = ManagerBusinessSave.TakeStatic(float.MaxValue);
                 if (taken > 0) PlayerCashHelper.TryAddCash(taken);
                 BuildDialogueContainer(manager, false);
                 manager.Dialogue?.JumpTo(ContainerName, "TAKE_MENU", false);
@@ -381,24 +369,40 @@ namespace MoreNPCs.Manager
             catch (Exception ex) { MelonLogger.Warning($"Manager HandleTakeAll: {ex.Message}"); }
         }
 
-        private static List<BusinessWrapper> GetOwnedBusinesses()
+        /// <summary>Game-owned properties plus vanilla NPC purchases, excluding businesses already assigned to Thomas.</summary>
+        private static List<(string Name, string SafeId)> GetAssignableBusinessEntries()
         {
-            try { return BusinessManager.GetOwnedBusinesses() ?? new List<BusinessWrapper>(); }
-            catch { return new List<BusinessWrapper>(); }
+            var list = new List<(string Name, string SafeId)>();
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            try
+            {
+                foreach (var b in BusinessManager.GetOwnedBusinesses() ?? new List<BusinessWrapper>())
+                {
+                    var name = b?.PropertyName?.Trim();
+                    if (string.IsNullOrEmpty(name) || !seen.Add(name)) continue;
+                    if (ManagerBusinessSave.IsAssignedStatic(name)) continue;
+                    list.Add((name, SafeBusinessId(name)));
+                }
+            }
+            catch { }
+            foreach (var name in ManagerBusinessSave.GetVanillaPurchasedNames())
+            {
+                if (string.IsNullOrEmpty(name) || !seen.Add(name)) continue;
+                if (ExperimentalArtificialProperties.IsArtificialPropertyDisabled(name)) continue;
+                if (ManagerBusinessSave.IsAssignedStatic(name)) continue;
+                list.Add((name, SafeBusinessId(name)));
+            }
+            return list;
         }
 
         private static float GetDailyLaunderCapacity(IReadOnlyList<string> assigned)
         {
-            if (assigned == null || assigned.Count == 0) return 0f;
             float total = 0f;
+            if (assigned == null || assigned.Count == 0) return total;
             foreach (var name in assigned)
             {
                 if (string.IsNullOrWhiteSpace(name)) continue;
-                var key = name.Trim().ToLowerInvariant();
-                if (key.Contains("laundromat")) total += 2000f;
-                else if (key.Contains("post") || key.Contains("office")) total += 4000f;
-                else if (key.Contains("car") && key.Contains("wash")) total += 6000f;
-                else if (key.Contains("taco") || key.Contains("tickler")) total += 8000f;
+                total += ArtificialBusinessMapping.GetDailyLaunderCapacity(name);
             }
             return total;
         }

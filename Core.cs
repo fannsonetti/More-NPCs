@@ -1,4 +1,5 @@
 using MelonLoader;
+using MoreNPCs.Manager;
 using MoreNPCs.Utils;
 
 [assembly: MelonInfo(typeof(MoreNPCs.Core), Constants.MOD_NAME, Constants.MOD_VERSION, Constants.MOD_AUTHOR)]
@@ -17,6 +18,7 @@ namespace MoreNPCs
         public override void OnInitializeMelon()
         {
             Instance = this;
+            MoreNPCsPreferences.Register();
             _unlockWatcher.Initialize();
         }
 
@@ -25,6 +27,7 @@ namespace MoreNPCs
             _cartelWatcher.Update();
             _unlockWatcher.Update();
             _buildingSetup.Update();
+            ReOfficePropertyBusinessUnlock.Update();
         }
 
         public override void OnApplicationQuit()

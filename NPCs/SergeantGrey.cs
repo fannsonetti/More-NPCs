@@ -76,7 +76,7 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(policeStation, 000, 1439);
+                    plan.StayInBuilding(policeStation, 2352, 1439);
                 });
         }
 

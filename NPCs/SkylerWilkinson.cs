@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -73,13 +73,13 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 0657, DurationMinutes = 246 });
-                    plan.Add(new WalkToSpec { Destination = hounddog, StartTime = 1104, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1212, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 1303, DurationMinutes = 240 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1704, DurationMinutes = 92 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1857, DurationMinutes = 145 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2103, DurationMinutes = 593 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 0649, DurationMinutes = 246 });
+                    plan.Add(new WalkToSpec { Destination = hounddog, StartTime = 1056, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1204, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 1255, DurationMinutes = 240 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1656, DurationMinutes = 92 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1849, DurationMinutes = 145 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2055, DurationMinutes = 593 });
                 });
         }
 

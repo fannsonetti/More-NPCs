@@ -80,14 +80,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = playZone, StartTime = 735, FaceDestinationDirection = true });
-                    plan.StayInBuilding(cornerStore, 840, 94);
-                    plan.Add(new WalkToSpec { Destination = dadsWork, StartTime = 1015, FaceDestinationDirection = true });
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Northtown/Pawn shop/Interior/Double Sofa", StartTime = 1145, DurationMinutes = 119 });
-                    plan.UseVendingMachine(1345);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench", StartTime = 1510, DurationMinutes = 94 });
-                    plan.Add(new WalkToSpec { Destination = playZone, StartTime = 1645, FaceDestinationDirection = true });
-                    plan.StayInBuilding(micksHouse, 1830, 784);
+                    plan.Add(new WalkToSpec { Destination = playZone, StartTime = 0805, FaceDestinationDirection = true });
+                    plan.StayInBuilding(cornerStore, 0910, 94);
+                    plan.Add(new WalkToSpec { Destination = dadsWork, StartTime = 1045, FaceDestinationDirection = true });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Northtown/Pawn shop/Interior/Double Sofa", StartTime = 1215, DurationMinutes = 119 });
+                    plan.UseVendingMachine(1415);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench", StartTime = 1540, DurationMinutes = 94 });
+                    plan.Add(new WalkToSpec { Destination = playZone, StartTime = 1715, FaceDestinationDirection = true });
+                    plan.StayInBuilding(micksHouse, 1900, 784);
                 });
         }
 

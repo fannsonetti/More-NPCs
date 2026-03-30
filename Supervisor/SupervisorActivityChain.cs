@@ -1,5 +1,6 @@
 using System.Collections;
 using MelonLoader;
+using MoreNPCs.Utils;
 using S1API.Entities;
 using UnityEngine;
 
@@ -8,9 +9,12 @@ namespace MoreNPCs.Supervisor
     /// <summary>Chains supervisor activities: distribute → collect → idle. Supports Silas and Dominic.</summary>
     public static class SupervisorActivityChain
     {
-        private const float IdleCheckInterval = 45f;
-        private const float ChainDelaySeconds = 5f;
-        private const float InitialStartDelay = 10f;
+        private static float IdleCheckInterval =>
+            !MoreNPCsPreferences.Registered ? 45f : MoreNPCsPreferences.SupervisorChain_IdleCheckInterval.Value;
+        private static float ChainDelaySeconds =>
+            !MoreNPCsPreferences.Registered ? 5f : MoreNPCsPreferences.SupervisorChain_ChainDelaySeconds.Value;
+        private static float InitialStartDelay =>
+            !MoreNPCsPreferences.Registered ? 10f : MoreNPCsPreferences.SupervisorChain_InitialStartDelay.Value;
 
         public static void Initialize(NPC npc, string supervisorId) => MelonCoroutines.Start(InitRoutine(npc, supervisorId));
 

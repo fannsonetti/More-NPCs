@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -83,16 +83,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(fishWarehouse, 630, 139);
-                    plan.StayInBuilding(randysBait, 805, 92);
-                    plan.Add(new WalkToSpec { Destination = warehousePier, StartTime = 934, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.UseATM(1155);
-                    plan.StayInBuilding(docksIndustrial, 1227, 148);
-                    plan.UseVendingMachine(1412);
-                    plan.StayInBuilding(fishWarehouse, 1442, 198);
-                    plan.StayInBuilding(randysBait, 1677, 93);
-                    plan.Add(new WalkToSpec { Destination = warehousePier, StartTime = 1807, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.StayInBuilding(docksIndustrial, 2045, 583);
+                    plan.StayInBuilding(fishWarehouse, 0638, 139);
+                    plan.StayInBuilding(randysBait, 0813, 92);
+                    plan.Add(new WalkToSpec { Destination = warehousePier, StartTime = 0942, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.UseATM(1203);
+                    plan.StayInBuilding(docksIndustrial, 1235, 148);
+                    plan.UseVendingMachine(1420);
+                    plan.StayInBuilding(fishWarehouse, 1450, 198);
+                    plan.StayInBuilding(randysBait, 1725, 93);
+                    plan.Add(new WalkToSpec { Destination = warehousePier, StartTime = 1815, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.StayInBuilding(docksIndustrial, 2053, 583);
                 });
         }
 

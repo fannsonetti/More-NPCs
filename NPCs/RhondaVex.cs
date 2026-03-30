@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -79,14 +79,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = managerSpot, StartTime = 702, FaceDestinationDirection = true });
-                    plan.StayInBuilding(westGasMart, 732, 179); // ~3h, ends 1 min before vending
-                    plan.UseVendingMachine(912); // ~30 min break (close to vending machine)
-                    plan.StayInBuilding(westGasMart, 928, 179); // ~3h
-                    plan.UseVendingMachine(1108); // afternoon break
-                    plan.StayInBuilding(westGasMart, 1112, 120); // ~2h (total ~8h at GasMart)
-                    plan.Add(new WalkToSpec { Destination = managerSpot, StartTime = 1232, FaceDestinationDirection = false });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 4", StartTime = 1858, DurationMinutes = 764 }); // Room 4 overnight until next shift
+                    plan.Add(new WalkToSpec { Destination = managerSpot, StartTime = 0701, FaceDestinationDirection = true });
+                    plan.StayInBuilding(westGasMart, 0731, 179); // ~3h, ends 1 min before vending
+                    plan.UseVendingMachine(0911); // ~30 min break (close to vending machine)
+                    plan.StayInBuilding(westGasMart, 0927, 179); // ~3h
+                    plan.UseVendingMachine(1107); // afternoon break
+                    plan.StayInBuilding(westGasMart, 1111, 120); // ~2h (total ~8h at GasMart)
+                    plan.Add(new WalkToSpec { Destination = managerSpot, StartTime = 1231, FaceDestinationDirection = false });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Room 4", StartTime = 1857, DurationMinutes = 764 }); // Room 4 overnight until next shift
                 });
         }
 

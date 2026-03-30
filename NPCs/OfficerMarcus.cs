@@ -81,16 +81,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 657, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 856, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 1104, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 1256, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1504, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos6, StartTime = 1656, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 1903, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 2057, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 2304, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Police Station", StartTime = 1435, DurationMinutes = 120 });
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 0708, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 0907, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 1115, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 1307, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1515, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos6, StartTime = 1707, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 1914, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 2108, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 2315, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Police Station", StartTime = 1446, DurationMinutes = 120 });
                 })
                 .WithInventoryDefaults(inv =>
                 {

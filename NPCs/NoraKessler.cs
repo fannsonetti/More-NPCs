@@ -80,14 +80,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(sauerkrautSupreme, 900, 104);
-                    plan.StayInBuilding(arcade, 1055, 114);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench", StartTime = 1220, DurationMinutes = 99 });
-                    plan.UseATM(1400);
-                    plan.UseVendingMachine(1545);
-                    plan.StayInBuilding(shermanHouse, 1928, 98);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench", StartTime = 2057, DurationMinutes = 168 });
-                    plan.StayInBuilding(shermanHouse, 2226, 840);
+                    plan.StayInBuilding(sauerkrautSupreme, 0851, 104);
+                    plan.StayInBuilding(arcade, 1046, 114);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench", StartTime = 1211, DurationMinutes = 99 });
+                    plan.UseATM(1351);
+                    plan.UseVendingMachine(1536);
+                    plan.StayInBuilding(shermanHouse, 1919, 98);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/Slums Park/OutdoorBench", StartTime = 2048, DurationMinutes = 168 });
+                    plan.StayInBuilding(shermanHouse, 2217, 840);
                 });
         }
 

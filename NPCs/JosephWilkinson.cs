@@ -76,17 +76,17 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new UseATMSpec { StartTime = 657 });
-                    plan.Add(new WalkToSpec { Destination = hounddog, StartTime = 804, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 330, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 856, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 150, 0) * Vector3.forward });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 927 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1003, DurationMinutes = 120 });
-                    plan.Add(new LocationDialogueSpec { Destination = elizabeth, StartTime = 1204, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1256, DurationMinutes = 127 });
-                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1504, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 150, 0) * Vector3.forward });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 1803, DurationMinutes = 173 });
-                    plan.Add(new UseVendingMachineSpec { StartTime = 2057 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2226, DurationMinutes = 509 });
+                    plan.Add(new UseATMSpec { StartTime = 0725 });
+                    plan.Add(new WalkToSpec { Destination = hounddog, StartTime = 0818, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 330, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 0910, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 150, 0) * Vector3.forward });
+                    plan.Add(new UseVendingMachineSpec { StartTime = 0955 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1017, DurationMinutes = 120 });
+                    plan.Add(new LocationDialogueSpec { Destination = elizabeth, StartTime = 1218, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Sauerkraut Supreme", StartTime = 1310, DurationMinutes = 127 });
+                    plan.Add(new WalkToSpec { Destination = hylandauto, StartTime = 1518, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 150, 0) * Vector3.forward });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 1817, DurationMinutes = 173 });
+                    plan.Add(new UseVendingMachineSpec { StartTime = 2125 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Wilkinson House", StartTime = 2240, DurationMinutes = 509 });
                 });
         }
         

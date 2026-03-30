@@ -81,18 +81,18 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 657, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 727, FaceDestinationDirection = true , Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = shelf2, StartTime = 833, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = shelf3, StartTime = 856, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 155, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1004, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
-                    plan.UseVendingMachine(1197);
-                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 1227, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1326, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1433, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1604, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 1726, FaceDestinationDirection = true });
-                    plan.StayInBuilding(kyleandaustin, 1826, 750);
+                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 0720, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 0750, FaceDestinationDirection = true , Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = shelf2, StartTime = 0856, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = shelf3, StartTime = 0919, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 155, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1027, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
+                    plan.UseVendingMachine(1300);
+                    plan.Add(new WalkToSpec { Destination = shelf1, StartTime = 1250, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 340, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = behindcounter, StartTime = 1349, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 160, 0) * Vector3.forward});
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1456, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1627, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 1749, FaceDestinationDirection = true });
+                    plan.StayInBuilding(kyleandaustin, 1849, 750);
                 });
         }
 

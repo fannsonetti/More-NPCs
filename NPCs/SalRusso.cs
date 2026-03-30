@@ -81,15 +81,15 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(docksIndustrial, 705, 113);
-                    plan.UseATM(855);
-                    plan.StayInBuilding(fishWarehouse, 915, 124);
-                    plan.StayInBuilding(randysBait, 1115, 87);
-                    plan.UseVendingMachine(1202);
-                    plan.StayInBuilding(docksIndustrial, 1232, 148);
-                    plan.StayInBuilding(fishWarehouse, 1417, 118);
-                    plan.StayInBuilding(hylandBank, 1612, 95);
-                    plan.StayInBuilding(docksIndustrial, 1704, 635);
+                    plan.StayInBuilding(docksIndustrial, 0724, 113);
+                    plan.UseATM(0914);
+                    plan.StayInBuilding(fishWarehouse, 0934, 124);
+                    plan.StayInBuilding(randysBait, 1134, 87);
+                    plan.UseVendingMachine(1221);
+                    plan.StayInBuilding(docksIndustrial, 1251, 148);
+                    plan.StayInBuilding(fishWarehouse, 1436, 118);
+                    plan.StayInBuilding(hylandBank, 1631, 95);
+                    plan.StayInBuilding(docksIndustrial, 1723, 635);
                 });
         }
 

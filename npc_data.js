@@ -1623,54 +1623,6 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MaxPennyson.cs",
-    "type": "customer",
-    "description": "",
-    "id": "max_pennyson",
-    "firstName": "Max",
-    "lastName": "Pennyson",
-    "name": "Max Pennyson",
-    "isDealer": false,
-    "isManager": false,
-    "isSupervisor": false,
-    "region": "Downtown",
-    "spending": [
-      600,
-      900
-    ],
-    "orders": [
-      1,
-      4
-    ],
-    "time": "19:00",
-    "standards": "Moderate",
-    "standardsDisplay": "Moderate",
-    "day": "Sat",
-    "affinities": {
-      "Marijuana": 45,
-      "Methamphetamine": -52,
-      "Shrooms": 62,
-      "Cocaine": -28
-    },
-    "properties": [
-      "Munchies",
-      "Calming",
-      "ThoughtProvoking"
-    ],
-    "noProps": false,
-    "policeRisk": 21,
-    "dependence": 0.2,
-    "connections": [
-      "bruce_norton",
-      "philip_wentworth"
-    ],
-    "unlocked": [
-      "bruce_norton",
-      "philip_wentworth"
-    ],
-    "avatar": "\ud83e\uddd1"
-  },
-  {
     "file": "MayaWebb.cs",
     "type": "customer",
     "description": "",
@@ -2089,12 +2041,10 @@ const NPC_DATA = [
     "policeRisk": 16,
     "dependence": 0.26,
     "connections": [
-      "kyle_cooley",
-      "jason_reed"
+      "moe_lester"
     ],
     "unlocked": [
-      "kyle_cooley",
-      "jason_reed"
+      "moe_lester"
     ],
     "avatar": "\ud83e\uddd1"
   },

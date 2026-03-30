@@ -78,12 +78,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(cafe, 900, 99);
-                    plan.StayInBuilding(slopShop, 1115, 109);
-                    plan.Add(new WalkToSpec { Destination = downtownBench, StartTime = 1320, FaceDestinationDirection = true });
-                    plan.UseATM(1510);
-                    plan.StayInBuilding(supermarket, 1700, 109);
-                    plan.StayInBuilding(supermarket, 2000, 359);
+                    plan.StayInBuilding(cafe, 0929, 99);
+                    plan.StayInBuilding(slopShop, 1144, 109);
+                    plan.Add(new WalkToSpec { Destination = downtownBench, StartTime = 1349, FaceDestinationDirection = true });
+                    plan.UseATM(1539);
+                    plan.StayInBuilding(supermarket, 1729, 109);
+                    plan.StayInBuilding(supermarket, 2029, 359);
                 });
         }
 

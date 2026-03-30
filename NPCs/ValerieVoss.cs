@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -83,15 +83,15 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = waterfront, StartTime = 720, FaceDestinationDirection = true });
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Northtown/Waterfront/OutdoorBench (1)", StartTime = 800, DurationMinutes = 46 });
-                    plan.UseATM(847);
-                    plan.StayInBuilding(chineseRestaurant, 913, 89);
-                    plan.StayInBuilding(budsBar, 1045, 134);
-                    plan.StayInBuilding(northIndustrial, 1220, 174);
-                    plan.StayInBuilding(chineseRestaurant, 1435, 99);
-                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 1688, FaceDestinationDirection = false });
-                    plan.StayInBuilding(northApartments, 1750, 1049);
+                    plan.Add(new WalkToSpec { Destination = waterfront, StartTime = 0726, FaceDestinationDirection = true });
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Northtown/Waterfront/OutdoorBench (1)", StartTime = 0806, DurationMinutes = 46 });
+                    plan.UseATM(0853);
+                    plan.StayInBuilding(chineseRestaurant, 0919, 89);
+                    plan.StayInBuilding(budsBar, 1051, 134);
+                    plan.StayInBuilding(northIndustrial, 1226, 174);
+                    plan.StayInBuilding(chineseRestaurant, 1441, 99);
+                    plan.Add(new WalkToSpec { Destination = spawnPos, StartTime = 1734, FaceDestinationDirection = false });
+                    plan.StayInBuilding(northApartments, 1756, 1049);
                 });
         }
 

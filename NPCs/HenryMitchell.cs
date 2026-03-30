@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -78,16 +78,16 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 857, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1104, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1256, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 1504, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1656, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1903, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 2057, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 2304, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 057, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 157, DurationMinutes = 419 });
+                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 0848, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1055, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1247, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 1455, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1647, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1854, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 2048, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 2255, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 0048, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0148, DurationMinutes = 419 });
                 });
         }
 

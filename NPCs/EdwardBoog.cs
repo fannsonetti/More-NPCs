@@ -74,11 +74,11 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Church", StartTime = 1127, DurationMinutes = 89 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Town hall", StartTime = 1257, DurationMinutes = 126 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Modern Mansion", StartTime = 1504, DurationMinutes = 178 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 1803, DurationMinutes = 173 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Modern Mansion", StartTime = 2057, DurationMinutes = 869 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Church", StartTime = 1141, DurationMinutes = 89 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Town hall", StartTime = 1311, DurationMinutes = 126 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Modern Mansion", StartTime = 1518, DurationMinutes = 178 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 1817, DurationMinutes = 173 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Modern Mansion", StartTime = 2111, DurationMinutes = 869 });
                 });
         }
 

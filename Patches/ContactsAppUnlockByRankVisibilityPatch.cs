@@ -1,19 +1,30 @@
+using System.Text;
 using HarmonyLib;
+using MelonLoader;
 using ScheduleOne.DevUtilities;
 using ScheduleOne.Map;
 using ScheduleOne.UI.Phone.ContactsApp;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace MoreNPCs.Patches
 {
     /// <summary>
-    /// Shows <c>UnlockByRank</c> under the Contacts scroll locked panel when the selected region is
-    /// Downtown, Docks, Suburbia, or Uptown. Resolves the object from <see cref="ContactsApp"/>'s transform
-    /// so the path does not depend on the player root name (e.g. <c>Player (0)</c>).
+    /// Shows <c>UnlockByRank</c> for Downtown–Uptown tabs, positions it, and sets copy on
+    /// <c>UnlockByRank/Description</c>, <c>UnlockByRank/Description/Rank</c> (UI Text), and
+    /// <c>UnlockByInfluence/Description</c>.
     /// </summary>
     [HarmonyPatch(typeof(ContactsApp), nameof(ContactsApp.SetSelectedRegion), new[] { typeof(EMapRegion), typeof(bool) })]
     internal static class ContactsAppUnlockByRankVisibilityPatch
     {
+        private const string LogPrefix = "[MoreNPCs] ContactsApp UnlockByRank";
         private const string UnlockByRankRelativePath = "Container/Scroll View/Locked/UnlockByRank";
+        private const string UnlockByInfluenceRelativePath = "Container/Scroll View/Locked/UnlockByInfluence";
+
+        private static readonly Vector3 UnlockByRankLocalPosition = new Vector3(0.0488f, 138.9526f, 2.9327f);
+
+        private const string UnlockByRankDescriptionText = "and reach rank     \n\n\nto unlock this region";
 
         [HarmonyPostfix]
         private static void Postfix(ContactsApp __instance, EMapRegion region, bool selectNPC)
@@ -21,9 +32,14 @@ namespace MoreNPCs.Patches
             if (NetworkSingleton<GameManager>.Instance.IsTutorial)
                 return;
 
-            var unlockByRank = __instance.transform.Find(UnlockByRankRelativePath);
+            var root = __instance.transform;
+
+            var unlockByRank = root.Find(UnlockByRankRelativePath) ?? FindDeepByName(root, "UnlockByRank");
             if (unlockByRank == null)
+            {
+                MelonLogger.Warning($"{LogPrefix} UnlockByRank transform not found.");
                 return;
+            }
 
             var show =
                 region == EMapRegion.Downtown
@@ -33,6 +49,129 @@ namespace MoreNPCs.Patches
 
             if (unlockByRank.gameObject.activeSelf != show)
                 unlockByRank.gameObject.SetActive(show);
+
+            unlockByRank.localPosition = UnlockByRankLocalPosition;
+
+            ApplyDescriptionText(unlockByRank.Find("Description"), UnlockByRankDescriptionText);
+            if (show)
+                ApplyRankText(unlockByRank.Find("Description/Rank"), GetRequiredRankLabelForTab(region));
+
+            var unlockByInfluence = root.Find(UnlockByInfluenceRelativePath) ?? FindDeepByName(root, "UnlockByInfluence");
+            if (unlockByInfluence != null)
+            {
+                var influenceText = BuildInfluenceDescription(region);
+                ApplyDescriptionText(unlockByInfluence.Find("Description"), influenceText);
+            }
+            else
+            {
+                MelonLogger.Warning($"{LogPrefix} UnlockByInfluence transform not found (Description copy skipped).");
+            }
+        }
+
+        private static string GetRequiredRankLabelForTab(EMapRegion tabRegion)
+        {
+            return tabRegion switch
+            {
+                EMapRegion.Downtown => "HUSTLER I",
+                EMapRegion.Docks => "ENFORCER I",
+                EMapRegion.Suburbia => "BLOCK BOSS I",
+                EMapRegion.Uptown => "BARON I",
+                _ => "",
+            };
+        }
+
+        /// <summary>Sets <see cref="Text"/> on <c>UnlockByRank/Description/Rank</c> (not TMP).</summary>
+        private static void ApplyRankText(Transform? rankTransform, string text)
+        {
+            if (rankTransform == null)
+            {
+                MelonLogger.Warning($"{LogPrefix} Description/Rank transform not found.");
+                return;
+            }
+
+            var uiText = rankTransform.GetComponent<Text>();
+            if (uiText != null)
+            {
+                uiText.text = text;
+                return;
+            }
+
+            MelonLogger.Warning($"{LogPrefix} No UnityEngine.UI.Text on {GetTransformPath(rankTransform)}.");
+        }
+
+        private static string BuildInfluenceDescription(EMapRegion selectedRegion)
+        {
+            var targetRegion = GetCartelInfluenceRegionName(selectedRegion);
+            // Same between-line gap as UnlockByRank; second line left empty (no threshold text).
+            return $"Reduce cartel influence in {targetRegion} to\n\n\n";
+        }
+
+        /// <summary>
+        /// Region where cartel influence must drop (vanilla: previous enum region) to open the selected one.
+        /// </summary>
+        private static string GetCartelInfluenceRegionName(EMapRegion selectedRegion)
+        {
+            if (selectedRegion == EMapRegion.Northtown)
+                return EMapRegion.Northtown.ToString();
+            return (selectedRegion - 1).ToString();
+        }
+
+        private static void ApplyDescriptionText(Transform? descriptionTransform, string text)
+        {
+            if (descriptionTransform == null)
+            {
+                MelonLogger.Warning($"{LogPrefix} Description child missing.");
+                return;
+            }
+
+            var uiText = descriptionTransform.GetComponent<Text>();
+            if (uiText != null)
+            {
+                uiText.text = text;
+                return;
+            }
+
+            var tmp = descriptionTransform.GetComponent<TextMeshProUGUI>();
+            if (tmp != null)
+            {
+                tmp.text = text;
+                return;
+            }
+
+            MelonLogger.Warning($"{LogPrefix} No Text or TextMeshProUGUI on {GetTransformPath(descriptionTransform)}.");
+        }
+
+        private static string GetTransformPath(Transform t)
+        {
+            return t == null ? "(null)" : BuildPath(t);
+        }
+
+        private static string BuildPath(Transform t)
+        {
+            var sb = new StringBuilder();
+            for (var i = t; i != null; i = i.parent)
+            {
+                if (sb.Length > 0)
+                    sb.Insert(0, "/");
+                sb.Insert(0, i.name);
+            }
+            return sb.ToString();
+        }
+
+        private static Transform? FindDeepByName(Transform parent, string name)
+        {
+            if (parent == null)
+                return null;
+            for (var i = 0; i < parent.childCount; i++)
+            {
+                var c = parent.GetChild(i);
+                if (c.name == name)
+                    return c;
+                var found = FindDeepByName(c, name);
+                if (found != null)
+                    return found;
+            }
+            return null;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -44,9 +44,10 @@ namespace MoreNPCs.NPCs
                     av.HairColor = new Color(0.198f, 0.118f, 0.062f);
                     av.HairPath = "Avatar/Hair/Spiky/Spiky";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SmugPout", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/ButtonUp", new Color(0.481f, 0.331f, 0.225f));
+                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/ButtonUp", new Color(0.36f, 0.30f, 0.24f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.151f, 0.151f, 0.151f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/CombatBoots/CombatBoots", new Color(0.481f, 0.331f, 0.225f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/CombatBoots/CombatBoots", new Color(0.34f, 0.28f, 0.22f));
                     av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.151f, 0.151f, 0.151f));
                     av.WithAccessoryLayer("Avatar/Accessories/Hands/Polex/Polex", new Color(0.151f, 0.151f, 0.151f));
                 })

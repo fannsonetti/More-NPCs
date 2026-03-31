@@ -23,7 +23,8 @@ namespace MoreNPCs.NPCs
             var shermanHouse = Building.Get<ShermanHouse>();
             var cornerStore = Building.Get<CornerStore>();
             Vector3 westGasmart = new Vector3(-113.1828f, -2.835f, 61.2241f);
-            Vector3 spawnPos = new Vector3(-60.5784f, 1.065f, 80.3446f);
+            // Sherman House interior — not the sidewalk in front of the lot
+            Vector3 spawnPos = new Vector3(-60.2f, 1.215f, 82.4f);
 
             builder.WithIdentity("bryce_sherman", "Bryce", "Sherman")
                 .WithAppearanceDefaults(av =>
@@ -77,12 +78,15 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
+                    // Home until first outing (1 min before Corner Store); covers 4 AM cold start
+                    plan.StayInBuilding(shermanHouse, 000, 504);
                     plan.StayInBuilding(cornerStore, 0825, 89);
                     plan.Add(new WalkToSpec { Destination = westGasmart, StartTime = 1010, FaceDestinationDirection = true });
                     plan.StayInBuilding(shermanHouse, 1140, 119);
                     plan.UseVendingMachine(1325);
                     plan.StayInBuilding(cornerStore, 1410, 104);
-                    plan.StayInBuilding(shermanHouse, 1725, 547);
+                    // Home 17:25 → midnight (next day loop picks up 000 block above)
+                    plan.StayInBuilding(shermanHouse, 1725, 395);
                 });
         }
 

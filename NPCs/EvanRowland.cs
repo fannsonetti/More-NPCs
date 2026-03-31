@@ -23,7 +23,8 @@ namespace MoreNPCs.NPCs
             var charlesHouse = Building.Get<CharlesHouse>();
             Vector3 arcade = new Vector3(-22f, 1.065f, 45f);
             Vector3 busStop = new Vector3(-13.0495f, 1.065f, 95.5169f);
-            Vector3 spawnPos = new Vector3(-60f, 1.065f, 75f);
+            // Charles' House interior (Westville) — not sidewalk; aligns with overnight StayInBuilding
+            Vector3 spawnPos = new Vector3(-55.2f, 1.065f, 72.8f);
 
             builder.WithIdentity("evan_rowland", "Evan", "Rowland")
                 .WithAppearanceDefaults(av =>
@@ -77,11 +78,14 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
+                    // Home until first outing (1 min before Arcade); covers 4 AM cold start
+                    plan.StayInBuilding(charlesHouse, 000, 535);
                     plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 0856, DurationMinutes = 119 });
                     plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Bus stops/Bus Stop (8)/OutdoorBench", StartTime = 1056, DurationMinutes = 129 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 1226, DurationMinutes = 119 });
                     plan.UseVendingMachine(1356);
-                    plan.StayInBuilding(charlesHouse, 1726, 547);
+                    // Home 17:26 → midnight (next day loop picks up 000 block above)
+                    plan.StayInBuilding(charlesHouse, 1726, 394);
                 });
         }
 
@@ -99,7 +103,7 @@ namespace MoreNPCs.NPCs
             }
             catch (Exception ex)
             {
-                MelonLogger.Error($"CharlieRowland OnCreated failed: {ex.Message}");
+                MelonLogger.Error($"EvanRowland OnCreated failed: {ex.Message}");
             }
         }
     }

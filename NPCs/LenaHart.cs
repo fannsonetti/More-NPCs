@@ -36,25 +36,25 @@ namespace MoreNPCs.NPCs
                     av.Gender = 0.84f;
                     av.Height = 0.98f;
                     av.Weight = 0.36f;
-                    av.SkinColor = new Color(0.69f, 0.57f, 0.48f);
+                    av.SkinColor = new Color(0.64f, 0.52f, 0.44f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = new Color(0.99f, 0.92f, 0.88f);
-                    av.PupilDilation = 0.66f;
-                    av.EyebrowScale = 0.94f;
-                    av.EyebrowThickness = 0.84f;
-                    av.EyebrowRestingHeight = -0.02f;
-                    av.EyebrowRestingAngle = 1.8f;
-                    av.LeftEye = (0.30f, 0.41f);
-                    av.RightEye = (0.30f, 0.41f);
-                    av.HairColor = new Color(0.37f, 0.25f, 0.18f);
-                    av.HairPath = "Avatar/Hair/SidePartBob/SidePartBob";
-                    av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
-                    av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.49f, 0.46f, 0.40f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.26f, 0.27f, 0.31f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Flats/Flats", new Color(0.22f, 0.22f, 0.24f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/Blazer/Blazer", new Color(0.28f, 0.31f, 0.36f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Head/RectangleFrameGlasses/RectangleFrameGlasses", new Color(0.14f, 0.14f, 0.16f));
+                    av.EyeBallTint = new Color(0.97f, 0.91f, 0.86f);
+                    av.PupilDilation = 0.68f;
+                    av.EyebrowScale = 1.02f;
+                    av.EyebrowThickness = 0.92f;
+                    av.EyebrowRestingHeight = -0.12f;
+                    av.EyebrowRestingAngle = 2.45f;
+                    av.LeftEye = (0.32f, 0.38f);
+                    av.RightEye = (0.32f, 0.38f);
+                    av.HairColor = new Color(0.28f, 0.20f, 0.15f);
+                    av.HairPath = "Avatar/Hair/MidFringe/MidFringe";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/RolledButtonUp", new Color(0.38f, 0.44f, 0.52f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.24f, 0.28f, 0.36f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Flats/Flats", new Color(0.26f, 0.28f, 0.32f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/CollarJacket/CollarJacket", new Color(0.32f, 0.36f, 0.40f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Head/SmallRoundGlasses/SmallRoundGlasses", new Color(0.18f, 0.18f, 0.20f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureCustomer()

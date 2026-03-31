@@ -43,6 +43,7 @@ namespace MoreNPCs.NPCs
                     av.HairColor = new Color(0.075f, 0.075f, 0.075f);
                     av.HairPath = "Avatar/Hair/Shoulderlength/ShoulderLength";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Agitated", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", new Color(0f, 0f, 0f, 0.2f));
                     av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.943f, 0.576f, 0.316f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.236f, 0.236f, 0.236f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.717f, 0.717f, 0.717f));

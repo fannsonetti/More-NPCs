@@ -18,6 +18,10 @@ namespace MoreNPCs.Utils
         public static MelonPreferences_Category CategoryReOffice { get; private set; } = null!;
         public static MelonPreferences_Category CategoryBusinessEconomy { get; private set; } = null!;
         public static MelonPreferences_Category CategoryExperimental { get; private set; } = null!;
+        public static MelonPreferences_Category CategoryRegionChanges { get; private set; } = null!;
+
+        public static MelonPreferences_Entry<bool> RegionChanges_ReducedCartelInfluenceOnNewCustomers { get; private set; } = null!;
+        public static MelonPreferences_Entry<bool> RegionChanges_RequireRankAndCartelForNextRegion { get; private set; } = null!;
 
         public static MelonPreferences_Entry<int> Manager_MaxAssignedBusinesses { get; private set; } = null!;
         public static MelonPreferences_Entry<float> Manager_LaunderCutPercent { get; private set; } = null!;
@@ -107,6 +111,18 @@ namespace MoreNPCs.Utils
                 "PropertyUnlockCheckInterval",
                 12f,
                 "Whiteboard / unlock poll (s).");
+
+            CategoryRegionChanges = MelonPreferences.CreateCategory(
+                "MoreNPCs_RegionChanges",
+                "Region Changes");
+            RegionChanges_ReducedCartelInfluenceOnNewCustomers = CategoryRegionChanges.CreateEntry(
+                "ReducedCartelInfluenceOnNewCustomers",
+                true,
+                "Cartel influence on new customers: use 0.025 penalty (instead of vanilla 0.075) when the cartel is hostile.");
+            RegionChanges_RequireRankAndCartelForNextRegion = CategoryRegionChanges.CreateEntry(
+                "RequireRankAndCartelForNextRegion",
+                true,
+                "Region unlocks: require both enough rank and low enough cartel influence in the previous region (300/1000 scale).");
 
             CategoryExperimental = MelonPreferences.CreateCategory(
                 "MoreNPCs_Experimental",

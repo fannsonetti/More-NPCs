@@ -88,6 +88,14 @@ Keep `WithOrdersPerWeek` max at 4 or lower — higher values spread the weekly b
 
 **StartTime order**: Do not reorder or vary StartTimes in a way that makes a later entry earlier than a previous one (e.g. first 1405, second 1355) — that breaks schedule flow.
 
+**Idle after leaving a building or standing from a seat**: Usually means the schedule has **no action** for some real-time minutes after one block ends. Common causes:
+
+1. **Duration / next-start mismatch** — If `StayInBuilding` or `SitSpec` ends more than ~1 minute before the next line’s `StartTime`, the NPC has nothing to do until that time fires. Re-check `DurationMinutes` with the formula above (same for `SitSpec`: end time = start + duration; next action should be `end + 1` minute in clock terms).
+2. **Long gap to the next timed action** — Example: leave a stay at 10:28 but the next entry is `SitSpec` at 10:39 → 11 minutes with no `WalkTo` or other action; they will stand around. Fix by tightening duration so the stay ends at 10:38, or add `plan.Add(new WalkToSpec { Destination = ..., StartTime = 1029, ... })` (or similar) toward the next location.
+3. **Building → building / sit → building without a walk leg** — The base game often expects movement to be **scheduled** (e.g. `WalkToSpec` to the next area) when chaining distant locations. If they still freeze right after an activity despite tight times, add a `WalkToSpec` to the next destination with `StartTime` equal to the minute after the previous block ends.
+
+After **bulk edits** to `StartTime` (e.g. phase offsets), re-run duration math so every chain still ends “1 minute before” the next line.
+
 ### Schedule similarity rule
 
 - New or updated schedules should not be more than ~40% similar to another existing NPC schedule pattern.

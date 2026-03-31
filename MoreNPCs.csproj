@@ -105,6 +105,9 @@
 		<Reference Include="0Harmony">
 			<HintPath>$(MelonLoaderPath)\0Harmony.dll</HintPath>
 		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(ManagedPath)\Assembly-CSharp.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 	<!-- CrossCompat references (Mono without Assembly-CSharp) -->
@@ -162,6 +165,9 @@
 		</Reference>
 		<Reference Include="0Harmony">
 			<HintPath>$(MelonLoaderPath)\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(ManagedPath)\Assembly-CSharp.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
@@ -247,6 +253,9 @@
 		<Compile Include="Utils\PlayerCashHelper.cs" />
 		<Compile Include="Persistence\MoreNPCsModSave.cs" />
 		<Compile Include="Utils\BuildingSetup.cs" />
+		<Compile Include="Patches\CustomerNewCustomerCartelInfluencePatch.cs" />
+		<Compile Include="Patches\RegionUnlockDualGatePatch.cs" />
+		<Compile Include="Patches\ContactsAppUnlockByRankVisibilityPatch.cs" />
 		<Compile Include="Supervisor\SupervisorIds.cs" />
 		<Compile Include="Supervisor\SupervisorConfig.cs" />
 		<Compile Include="Supervisor\SupervisorRegistry.cs" />

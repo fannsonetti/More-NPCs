@@ -62,7 +62,7 @@ namespace MoreNPCs.NPCs
                         .WithAffinities(new[] { (DrugType.Marijuana, 0.52f), (DrugType.Methamphetamine, -0.08f), (DrugType.Shrooms, 0.10f), (DrugType.Cocaine, -0.25f) })
                         .WithPreferredProperties(Property.Munchies, Property.Calming, Property.Energizing);
                 })
-                .WithRelationshipDefaults(r => r.WithDelta(2.0f).SetUnlocked(false).SetUnlockType(NPCRelationship.UnlockType.DirectApproach).WithConnectionsById("george_greene", "charles_rowland"))
+                .WithRelationshipDefaults(r => r.WithDelta(2.0f).SetUnlocked(false).SetUnlockType(NPCRelationship.UnlockType.DirectApproach).WithConnectionsById("george_greene", "charles_rowland", "elliot_vaughn"))
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();

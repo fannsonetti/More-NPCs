@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -66,7 +66,7 @@ namespace MoreNPCs.NPCs
                 })
                 .WithRelationshipDefaults(r =>
                 {
-                    r.WithDelta(2.5f)
+                    r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
                         .WithConnectionsById("michael_boog", "tobias_wentworth");

@@ -86,7 +86,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new WalkToSpec { Destination = rockInForest, StartTime = 1658, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = scopeBank, StartTime = 2005, FaceDestinationDirection = true });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 2159, DurationMinutes = 209 });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0129, DurationMinutes = 455 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Red Docks Shipping Container", StartTime = 0129, DurationMinutes = 455 });
                 });
         }
 

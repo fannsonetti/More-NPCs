@@ -31,10 +31,10 @@ namespace MoreNPCs.NPCs
                     av.Gender = 0.06f;
                     av.Height = 0.97f;
                     av.Weight = 0.36f;
-                    av.SkinColor = new Color(0.69f, 0.56f, 0.46f);
+                    av.SkinColor = new Color(0.32f, 0.24f, 0.20f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = new Color(0.93f, 0.91f, 0.87f);
+                    av.EyeBallTint = new Color(0.90f, 0.86f, 0.82f);
                     av.PupilDilation = 0.54f;
                     av.EyebrowScale = 1.03f;
                     av.EyebrowThickness = 0.94f;
@@ -42,7 +42,7 @@ namespace MoreNPCs.NPCs
                     av.EyebrowRestingAngle = 0.8f;
                     av.LeftEye = (0.31f, 0.39f);
                     av.RightEye = (0.31f, 0.39f);
-                    av.HairColor = new Color(0.22f, 0.16f, 0.12f);
+                    av.HairColor = new Color(0.08f, 0.07f, 0.07f);
                     av.HairPath = "Avatar/Hair/Curtains/Curtains";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
                     av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.36f, 0.32f, 0.28f));

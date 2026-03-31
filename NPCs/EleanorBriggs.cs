@@ -1,4 +1,4 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
@@ -67,7 +67,7 @@ namespace MoreNPCs.NPCs
                 })
                 .WithRelationshipDefaults(r =>
                 {
-                    r.WithDelta(2.5f)
+                    r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
                         .WithConnectionsById("randy_caulfield");
@@ -82,7 +82,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new WalkToSpec { Destination = hospital2, StartTime = 1701, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Hyland Medical", StartTime = 1831, DurationMinutes = 96 });
                     plan.Add(new WalkToSpec { Destination = hospital3, StartTime = 2008, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 180, 0) * Vector3.forward });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2102, DurationMinutes = 869 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Building 2", StartTime = 2102, DurationMinutes = 869 });
                 });
         }
 

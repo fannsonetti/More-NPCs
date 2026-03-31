@@ -55,7 +55,7 @@ namespace MoreNPCs.NPCs
                 .EnsureDealer()
                 .WithDealerDefaults(dd =>
                 {
-                    dd.WithSigningFee(2500f)
+                    dd.WithSigningFee(1000f)
                         .WithCut(0.20f)
                         .WithDealerType(DealerType.PlayerDealer)
                         .WithHome(caravan)

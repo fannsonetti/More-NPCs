@@ -2,17 +2,15 @@ using System;
 using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
-using S1API.Entities.Schedule;
 using S1API.Map;
-using S1API.Map.Buildings;
 using UnityEngine;
 
 namespace MoreNPCs.NPCs
 {
     /// <summary>
-    /// FannsoNetti - Northtown dealer at North Warehouse. Connected to Valerie and Jian.
+    /// Elliot Vaughn — Westville dealer at Chemical Plant B (mod enterable). Hazmat matches Maya Webb’s loadout (no respirator); glasses, neutral pout, single goatee, dark watch.
     /// </summary>
-    public sealed class FannsoNetti : NPC
+    public sealed class ElliotVaughn : NPC
     {
         public override bool IsPhysical => true;
         public override bool IsDealer => true;
@@ -23,46 +21,45 @@ namespace MoreNPCs.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
-            var northwarehouse = Building.Get<NorthWarehouse>();
-            Vector3 spawnPos = new Vector3(-41.7551f, -2.9354f, 171.8678f);
+            Vector3 spawnPos = new Vector3(-102.603f, -2.935f, 90.9458f);
+            var chemicalPlantB = Building.GetByName("Chemical Plant B");
 
-            builder.WithIdentity("fannsonetti", "FannsoNetti", "")
+            builder.WithIdentity("elliot_vaughn", "Elliot", "Vaughn")
                 .WithAppearanceDefaults(av =>
                 {
-                    // Matches Vincent Reeves’ prior look (warehouse regular — not default-unlocked).
                     av.Gender = 0.0f;
-                    av.Height = 0.98f;
-                    av.Weight = 0.40f;
-                    av.SkinColor = new Color(0.63f, 0.52f, 0.43f);
+                    av.Height = 1.01f;
+                    av.Weight = 0.44f;
+                    av.SkinColor = new Color(0.68f, 0.55f, 0.45f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = new Color(1.0f, 0.95f, 0.9f);
-                    av.PupilDilation = 0.40f;
-                    av.EyebrowScale = 1.15f;
-                    av.EyebrowThickness = 1.23f;
-                    av.EyebrowRestingHeight = -0.44f;
-                    av.EyebrowRestingAngle = -5.2f;
-                    av.LeftEye = (0.15f, 0.24f);
-                    av.RightEye = (0.15f, 0.24f);
-                    av.HairColor = new Color(0.18f, 0.14f, 0.10f);
-                    av.HairPath = "Avatar/Hair/Spiky/Spiky";
-                    av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", new Color(0f, 0f, 0f, 0.55f));
-                    av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.2f, 0.2f, 0.24f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.16f, 0.16f, 0.18f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.15f, 0.15f, 0.15f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.15f, 0.15f, 0.15f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.28f, 0.22f, 0.16f));
+                    av.EyeBallTint = new Color(0.98f, 0.98f, 0.98f);
+                    av.PupilDilation = 0.62f;
+                    av.EyebrowScale = 1.05f;
+                    av.EyebrowThickness = 1.02f;
+                    av.EyebrowRestingHeight = -0.14f;
+                    av.EyebrowRestingAngle = 1.1f;
+                    av.LeftEye = (0.30f, 0.40f);
+                    av.RightEye = (0.30f, 0.40f);
+                    av.HairColor = new Color(0.20f, 0.15f, 0.11f);
+                    av.HairPath = "Avatar/Hair/Peaked/Peaked";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_NeutralPout", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Goatee", av.HairColor);
+                    av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", new Color(0f, 0f, 0f, 0.7f));
+                    av.WithBodyLayer("Avatar/Layers/Top/HazmatSuit", new Color(0.9451f, 0.7882f, 0.0118f));
+                    av.WithBodyLayer("Avatar/Layers/Accessories/Gloves", new Color(0.2531f, 0.5563f, 0.7578f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/CombatBoots/CombatBoots", new Color(0.2539f, 0.2539f, 0.2539f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Hands/Polex/Polex", new Color(0.22f, 0.22f, 0.26f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Head/RectangleFrameGlasses/RectangleFrameGlasses", new Color(0.18f, 0.18f, 0.22f));
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureDealer()
                 .WithDealerDefaults(dd =>
                 {
-                    dd.WithSigningFee(500f)
+                    dd.WithSigningFee(1000f)
                         .WithCut(0.20f)
                         .WithDealerType(DealerType.PlayerDealer)
-                        .WithHome(northwarehouse)
+                        .WithHome(chemicalPlantB)
                         .AllowInsufficientQuality(false)
                         .AllowExcessQuality(true)
                         .WithCompletedDealsVariable("dealer_completed_deals");
@@ -71,17 +68,17 @@ namespace MoreNPCs.NPCs
                 {
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
-                        .WithConnectionsById("vincent_reeves", "nico_marlowe")
+                        .WithConnectionsById("brent_halver")
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach);
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northwarehouse, 0009, 1439);
+                    plan.StayInBuilding(chemicalPlantB, 0016, 1439);
                 });
         }
 
-        public FannsoNetti() : base() { }
+        public ElliotVaughn() : base() { }
 
         protected override void OnCreated()
         {
@@ -89,15 +86,17 @@ namespace MoreNPCs.NPCs
             {
                 base.OnCreated();
                 Appearance.Build();
-                Dealer.Home = Building.Get<NorthWarehouse>();
+                var b = Building.GetByName("Chemical Plant B");
+                if (b != null && Dealer != null)
+                    Dealer.Home = b;
                 WireDealerEvents();
-                Aggressiveness = 2f;
-                Region = Region.Northtown;
+                Aggressiveness = 0.68f;
+                Region = Region.Westville;
                 Schedule.Enable();
             }
             catch (Exception ex)
             {
-                MelonLogger.Error($"FannsoNetti OnCreated failed: {ex.Message}");
+                MelonLogger.Error($"ElliotVaughn OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
         }
@@ -130,11 +129,7 @@ namespace MoreNPCs.NPCs
             if (_dealerRecommendedHandler != null) Dealer.OnRecommended -= _dealerRecommendedHandler;
         }
 
-        private void HandleDealerRecruited()
-        {
-            MelonLogger.Msg($"Dealer {ID} has been recruited!");
-            SendTextMessage("Thank you for using MoreNPCs. As your reward, I�ll assist you with your dealings in exchange for a 20% share of the profits.");
-        }
+        private void HandleDealerRecruited() { }
         private void HandleContractAccepted() { }
         private void HandleDealerRecommended() { }
     }

@@ -58,7 +58,7 @@ namespace MoreNPCs.NPCs
                 .EnsureDealer()
                 .WithDealerDefaults(dd =>
                 {
-                    dd.WithSigningFee(7500f)
+                    dd.WithSigningFee(4000f)
                         .WithCut(0.20f)
                         .WithDealerType(DealerType.PlayerDealer)
                         .WithHome(policeStation)

@@ -65,7 +65,7 @@ namespace MoreNPCs.NPCs
                 })
                 .WithRelationshipDefaults(r =>
                 {
-                    r.WithDelta(4.0f)
+                    r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
                         .WithConnectionsById("");

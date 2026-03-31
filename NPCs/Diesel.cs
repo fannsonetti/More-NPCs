@@ -89,7 +89,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new StayInBuildingSpec { BuildingName = "Fish Warehouse", StartTime = 2002, DurationMinutes = 157 });
                     plan.Add(new UseVendingMachineSpec { StartTime = 2216 });
                     plan.Add(new WalkToSpec { Destination = waterDiesel, StartTime = 0033, FaceDestinationDirection = true });
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0133, DurationMinutes = 445 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Red Docks Shipping Container", StartTime = 0133, DurationMinutes = 445 });
                 });
         }
 

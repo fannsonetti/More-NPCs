@@ -74,6 +74,11 @@ Keep `WithOrdersPerWeek` max at 4 or lower — higher values spread the weekly b
 - Use `plan.Add(new StayInBuildingSpec { BuildingName = "..." })` only for custom/untypeable building names.
 - Do not use `BuildingName` string for base-game buildings when a typed building exists.
 
+**Vanilla vs mod-added names**
+
+- **Base-game locations** exposed under `S1API.Map.Buildings`: use `var b = Building.Get<T>();` and `plan.StayInBuilding(b, startTime, durationMinutes)`. Examples: `FishWarehouse`, `SouthOverpassBuilding`, `Cafe`, `Supermarket`, `SlopShop`, `HylandBank`, etc. Check S1API docs/source for the exact type name; do not guess `BuildingName` strings for those when `T` exists.
+- **Mod-only enterables** (e.g. doors/buildings created at runtime in `MoreNPCs.Utils.BuildingSetup` like `"Apartment Building 2"`, `"Red Docks Shipping Container"`): there is no `Building.Get<>()` — use `plan.Add(new StayInBuildingSpec { BuildingName = "Exact Name", ... })` only for those.
+
 | Action | Usage |
 |--------|-------|
 | WalkTo | `plan.Add(new WalkToSpec { Destination = pos, StartTime = 900, FaceDestinationDirection = true })` |
@@ -84,7 +89,9 @@ Keep `WithOrdersPerWeek` max at 4 or lower — higher values spread the weekly b
 
 **Time format**: HHMM — first two digits = hour (00–23), last two = minutes (00–59). Examples: `900` = 09:00, `1258` = 12:58. Invalid: `1298` (12:98), `1696` (16:96). Minutes must be 00–59.
 
-**DurationMinutes**: Set so the stay ends 1 minute before the next activity. Formula: (next_StartTime_minutes - this_StartTime_minutes) - 1. For overnight: (1440 - this) + next - 1. Max 1439 (1 min before same time next day).
+**DurationMinutes**: **Total length of the stay in minutes** — a plain integer (e.g. `149`, `559`), **not** `HHMM` clock time. Do not encode hours/minutes as four digits here (that is only for `StartTime`). Set so the stay ends 1 minute before the next activity. Formula: (next_StartTime_minutes - this_StartTime_minutes) - 1. For overnight: (1440 - this) + next - 1. Max 1439 (1 min before same time next day).
+
+**Home stays across midnight**: Prefer **one** `StayInBuilding` from evening through the next morning (duration = minutes from evening start until 1 min before the next day’s first outing) instead of ending a home block exactly at `00:00` and starting another at `000`. The split can make the NPC briefly leave and re-enter the same building.
 
 **StartTime order**: Do not reorder or vary StartTimes in a way that makes a later entry earlier than a previous one (e.g. first 1405, second 1355) — that breaks schedule flow.
 
@@ -331,6 +338,10 @@ Good examples:
 - `Buttonup` + `CollarJacket`
 - `CargoPants` instead of always `Jeans`
 - `CombatBoots` or `DressShoes` instead of always `Sneakers`
+
+### Dealer signing fee (`WithSigningFee`)
+
+Base signing fee on where the dealer lives (`Region` / `WithHome`): Northtown **500**, Westville **1000**, Downtown **2000**, Docks **3000**, Suburbia **4000**, Uptown **5000**.
 
 ### Civilian baseline rule
 
@@ -587,6 +598,8 @@ plan.StayInBuilding(Building.Get<SuburbanHouse>(), 2200, 539);
 ## In-Depth Relationship Defaults
 
 Use `WithRelationshipDefaults` to shape how the player unlocks and builds rapport with the NPC.
+
+**More-NPCs — `WithDelta` (starting relationship / rapport step):** Do not exceed **2.0f** except for the four child NPCs (**Bobby Cooley**, **Evan Rowland**, **Bryce Sherman**, **Cory Lubbin**), who use **3.0f**. Those four also use **1f** affinity for every `DrugType` in `WithAffinities` and **`WithSpending` max weekly 250** (or lower).
 
 - `Delta`: How much relationship changes per positive interaction. (Usually `0.05f` to `0.10f`).
 - `UnlockType`: Determines how the NPC becomes accessible (e.g., `RelationUnlockType.BuyXp`, `RelationUnlockType.Introduction`).

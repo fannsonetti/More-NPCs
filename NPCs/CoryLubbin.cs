@@ -57,7 +57,7 @@ namespace MoreNPCs.NPCs
                 .EnsureCustomer()
                 .WithCustomerDefaults(cd =>
                 {
-                    cd.WithSpending(400f, 600f)
+                    cd.WithSpending(50f, 250f)
                         .WithOrdersPerWeek(2, 4)
                         .WithPreferredOrderDay(Day.Saturday)
                         .WithOrderTime(1500)
@@ -67,8 +67,8 @@ namespace MoreNPCs.NPCs
                         .WithMutualRelationRequirement(0.00f, 1.00f)
                         .WithCallPoliceChance(0.09f)
                         .WithDependence(0.05f, 1.00f)
-                        .WithAffinities(new[] { (DrugType.Marijuana, 0.38f), (DrugType.Methamphetamine, -0.14f), (DrugType.Shrooms, 0.18f), (DrugType.Cocaine, -0.25f) })
-                        .WithPreferredProperties(Property.Energizing, Property.Refreshing, Property.Sneaky);
+                        .WithAffinities(new[] { (DrugType.Marijuana, 1f), (DrugType.Methamphetamine, 1f), (DrugType.Shrooms, 1f), (DrugType.Cocaine, 1f) })
+                        .WithPreferredProperties();
                 })
                 .WithRelationshipDefaults(r =>
                 {

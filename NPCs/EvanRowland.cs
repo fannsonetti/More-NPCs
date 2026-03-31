@@ -65,8 +65,8 @@ namespace MoreNPCs.NPCs
                         .WithMutualRelationRequirement(0f, 1f)
                         .WithCallPoliceChance(0.09f)
                         .WithDependence(0.0f, 1f)
-                        .WithAffinities(new[] { (DrugType.Marijuana, 0.1f), (DrugType.Methamphetamine, -0.4f), (DrugType.Shrooms, 0.2f), (DrugType.Cocaine, -0.5f) })
-                        .WithPreferredProperties(Property.Calming, Property.Refreshing, Property.Focused);
+                        .WithAffinities(new[] { (DrugType.Marijuana, 1f), (DrugType.Methamphetamine, 1f), (DrugType.Shrooms, 1f), (DrugType.Cocaine, 1f) })
+                        .WithPreferredProperties();
                 })
                 .WithRelationshipDefaults(r =>
                 {
@@ -78,14 +78,12 @@ namespace MoreNPCs.NPCs
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    // Home until first outing (1 min before Arcade); covers 4 AM cold start
-                    plan.StayInBuilding(charlesHouse, 000, 535);
                     plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 0856, DurationMinutes = 119 });
                     plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Bus stops/Bus Stop (8)/OutdoorBench", StartTime = 1056, DurationMinutes = 129 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 1226, DurationMinutes = 119 });
                     plan.UseVendingMachine(1356);
-                    // Home 17:26 → midnight (next day loop picks up 000 block above)
-                    plan.StayInBuilding(charlesHouse, 1726, 394);
+                    // One overnight home stay through next morning (929m); avoids ending a home block at 00:00 then starting another at 000 (brief exit/re-enter).
+                    plan.StayInBuilding(charlesHouse, 1726, 929);
                 });
         }
 

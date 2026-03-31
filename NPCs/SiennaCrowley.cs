@@ -1,9 +1,10 @@
-﻿using MelonLoader;
+using MelonLoader;
 using S1API.Economy;
 using S1API.Entities;
 using S1API.Entities.Schedule;
 using S1API.GameTime;
 using S1API.Map;
+using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace MoreNPCs.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
+            var northOverpass = Building.Get<SouthOverpassBuilding>();
+
             Vector3 spawnPos = new Vector3(134.1605f, 6.0623f, 114.3804f);
             Vector3 plaza = new Vector3(69.7895f, 1.065f, 15.4409f);
 
@@ -73,7 +76,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1141, FaceDestinationDirection = true });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1451, DurationMinutes = 99 });
                     plan.UseVendingMachine(1721);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 2001, DurationMinutes = 494 });
+                    plan.StayInBuilding(northOverpass, 2001, 494);
                 });
         }
 

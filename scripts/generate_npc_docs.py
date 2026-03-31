@@ -119,7 +119,8 @@ def parse_file(path):
         if home:
             out["home"] = home.group(1)
         else:
-            out["home"] = None
+            home_by_name = re.search(r'Building\.GetByName\s*\(\s*"([^"]+)"\s*\)', text)
+            out["home"] = home_by_name.group(1) if home_by_name else None
 
     # Supervisor-specific
     if out["isSupervisor"]:
@@ -190,16 +191,11 @@ def parse_file(path):
         dep = re.search(r'WithDependence\s*\(\s*baseAddiction:\s*([\d.]+)f?\s*', text)
         out["dependence"] = float(dep.group(1)) if dep else 1
 
-        conn = re.search(r'WithConnectionsById\s*\(\s*"([^"]*)"(?:\s*,\s*"([^"]*)")*(?:\s*,\s*"([^"]*)")*\s*\)', text)
+        conn = re.search(r'WithConnectionsById\s*\(([^)]*)\)', text)
         if conn:
-            ids = [g for g in conn.groups() if g]
-            out["connections"] = ids
+            out["connections"] = re.findall(r'"([^"]+)"', conn.group(1))
         else:
-            conn = re.search(r'WithConnectionsById\s*\(\s*([^)]+)\s*\)', text)
-            if conn:
-                out["connections"] = re.findall(r'"([^"]+)"', conn.group(1))
-            else:
-                out["connections"] = []
+            out["connections"] = []
 
         out["unlocked"] = out["connections"]  # For display
         out["avatar"] = "🧑"  # Default

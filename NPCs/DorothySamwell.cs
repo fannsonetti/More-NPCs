@@ -79,7 +79,7 @@ namespace MoreNPCs.NPCs
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("beth_penn", "peggy_myers");
+                        .WithConnectionsById("beth_penn", "peggy_myers", "iris_samwell");
                 })
                 .WithSchedule(plan =>
                 {

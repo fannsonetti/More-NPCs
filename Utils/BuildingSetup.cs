@@ -19,6 +19,7 @@ namespace MoreNPCs.Utils
             ("Map/Hyland Point/Region_Downtown/Towers/ShortOfficeBuilding", new Vector3(57.1401f, 0.495f, 58.8771f), "Small Tower", null, "downtown, ShortOfficeBuilding"),
             ("Map/Hyland Point/Region_Docks/Red Shipping Container", new Vector3(-54.0721f, -2.25f, -77.5079f), "Red Docks Shipping Container", null, "in docks, not a hangout spot, for sleeping"),
             ("Map/Hyland Point/Region_Docks/Red Shipping Container (1)", new Vector3(-57.9253f, -2.25f, -77.7083f), "Red Docks Shipping Container 2", null, "in docks, not a hangout spot, for sleeping"),
+            ("Map/Hyland Point/Region_Downtown", new Vector3(-0.7038f, 0.7125f, 72.4522f), "Apartment Building 2", "ApartmentBuilding2", "downtown, custom apartment building 2 container"),
             ("Map/Hyland Point/Region_Westville/Apartment Building", new Vector3(-165.8861f, -0.7f, 94.5868f), "Room 4", "Room4", "in westville, door in Room4 container"),
             ("Map/Hyland Point/Region_Westville/Apartment Building", new Vector3(-165.8861f, 2.4f, 94.5868f), "Room 5", "Room5", "in westville, door in Room5 container"),
             ("Map/Hyland Point/Region_Westville/Apartment Building", new Vector3(-172.8831f, 2.4f, 94.5868f), "Room 6", "Room6", "in westville, door in Room6 container"),
@@ -29,6 +30,7 @@ namespace MoreNPCs.Utils
             ("Map/Hyland Point/Region_Downtown/GroceryStore/grocerystore/Main", new Vector3(12.4867f, 0.2614f, 68.1383f), "Grocery Backdoor", null, "in downtown, not a hangout spot, kinda out of the way"),
             ("Map/Hyland Point/Region_Suburbia/Green House", new Vector3(78.243f, 5.0614f, -94.9608f), "Green House", null, "in suburbia, family home"),
             ("Map/Hyland Point/Region_Suburbia/Long House", new Vector3(65.2065f, 5.135f, -87.5172f), "Long House", null, "in suburbia, family home"),
+            ("Map/Hyland Point/Region_Northtown/Storage warehouse/Storage warehouse/Elevator", new Vector3(0.8832f, 0.5959f, 102.711f), "Storage Warehouse Elevator", null, "northtown, storage warehouse elevator door"),
         };
 
         private readonly HashSet<string> _completed = new HashSet<string>();

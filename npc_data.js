@@ -45,6 +45,22 @@ const NPC_DATA = [
     "cut": 10.0
   },
   {
+    "file": "ElliotVaughn.cs",
+    "type": "dealer",
+    "description": "",
+    "id": "elliot_vaughn",
+    "firstName": "Elliot",
+    "lastName": "Vaughn",
+    "name": "Elliot Vaughn",
+    "isDealer": true,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Westville",
+    "cut": 20.0,
+    "signingFee": 1000,
+    "home": "Chemical Plant B"
+  },
+  {
     "file": "FannsoNetti.cs",
     "type": "dealer",
     "description": "",
@@ -57,8 +73,24 @@ const NPC_DATA = [
     "isSupervisor": false,
     "region": "Northtown",
     "cut": 20.0,
-    "signingFee": 0,
+    "signingFee": 500,
     "home": "NorthWarehouse"
+  },
+  {
+    "file": "IrisSamwell.cs",
+    "type": "dealer",
+    "description": "",
+    "id": "iris_samwell",
+    "firstName": "Iris",
+    "lastName": "Samwell",
+    "name": "Iris Samwell",
+    "isDealer": true,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Northtown",
+    "cut": 20.0,
+    "signingFee": 500,
+    "home": "DansHardwareUpstairs"
   },
   {
     "file": "MaxineJunefield.cs",
@@ -73,7 +105,7 @@ const NPC_DATA = [
     "isSupervisor": false,
     "region": "Westville",
     "cut": 20.0,
-    "signingFee": 2500,
+    "signingFee": 1000,
     "home": "Caravan"
   },
   {
@@ -89,7 +121,7 @@ const NPC_DATA = [
     "isSupervisor": false,
     "region": "Downtown",
     "cut": 20.0,
-    "signingFee": 1500,
+    "signingFee": 2000,
     "home": "Supermarket"
   },
   {
@@ -105,7 +137,7 @@ const NPC_DATA = [
     "isSupervisor": false,
     "region": "Suburbia",
     "cut": 20.0,
-    "signingFee": 7500,
+    "signingFee": 4000,
     "home": "PoliceStation"
   },
   {
@@ -238,11 +270,13 @@ const NPC_DATA = [
     "dependence": 1,
     "connections": [
       "george_greene",
-      "charles_rowland"
+      "charles_rowland",
+      "elliot_vaughn"
     ],
     "unlocked": [
       "george_greene",
-      "charles_rowland"
+      "charles_rowland",
+      "elliot_vaughn"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -287,6 +321,54 @@ const NPC_DATA = [
     "unlocked": [
       "victor_hughes",
       "bobby_cooley"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "CalderWren.cs",
+    "type": "customer",
+    "description": "",
+    "id": "calder_wren",
+    "firstName": "Calder",
+    "lastName": "Wren",
+    "name": "Calder Wren",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      500,
+      900
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "20:15",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Mon",
+    "affinities": {
+      "Marijuana": -12,
+      "Methamphetamine": -44,
+      "Shrooms": 82,
+      "Cocaine": 10
+    },
+    "properties": [
+      "Focused",
+      "Calming",
+      "Refreshing"
+    ],
+    "noProps": false,
+    "policeRisk": 24,
+    "dependence": 1,
+    "connections": [
+      "philip_wentworth",
+      "maris_eldridge"
+    ],
+    "unlocked": [
+      "philip_wentworth",
+      "maris_eldridge"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -351,8 +433,8 @@ const NPC_DATA = [
     "isSupervisor": false,
     "region": "Westville",
     "spending": [
-      400,
-      600
+      50,
+      250
     ],
     "orders": [
       2,
@@ -363,17 +445,13 @@ const NPC_DATA = [
     "standardsDisplay": "Very Low",
     "day": "Sat",
     "affinities": {
-      "Marijuana": 38,
-      "Methamphetamine": -14,
-      "Shrooms": 18,
-      "Cocaine": -25
+      "Marijuana": 100,
+      "Methamphetamine": 100,
+      "Shrooms": 100,
+      "Cocaine": 100
     },
-    "properties": [
-      "Energizing",
-      "Refreshing",
-      "Sneaky"
-    ],
-    "noProps": false,
+    "properties": [],
+    "noProps": true,
     "policeRisk": 9,
     "dependence": 1,
     "connections": [
@@ -381,6 +459,52 @@ const NPC_DATA = [
     ],
     "unlocked": [
       "bobby_cooley"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "DamonRusk.cs",
+    "type": "customer",
+    "description": "",
+    "id": "damon_rusk",
+    "firstName": "Damon",
+    "lastName": "Rusk",
+    "name": "Damon Rusk",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      500,
+      800
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "20:30",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Sun",
+    "affinities": {
+      "Marijuana": 18,
+      "Methamphetamine": -22,
+      "Shrooms": 28,
+      "Cocaine": -10
+    },
+    "properties": [
+      "Smelly",
+      "Foggy",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 16,
+    "dependence": 1,
+    "connections": [
+      "juniper_lyre"
+    ],
+    "unlocked": [
+      "juniper_lyre"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -664,11 +788,13 @@ const NPC_DATA = [
     "dependence": 0.0,
     "connections": [
       "beth_penn",
-      "peggy_myers"
+      "peggy_myers",
+      "iris_samwell"
     ],
     "unlocked": [
       "beth_penn",
-      "peggy_myers"
+      "peggy_myers",
+      "iris_samwell"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -839,17 +965,13 @@ const NPC_DATA = [
     "standardsDisplay": "Very Low",
     "day": "Fri",
     "affinities": {
-      "Marijuana": 10,
-      "Methamphetamine": -40,
-      "Shrooms": 20,
-      "Cocaine": -50
+      "Marijuana": 100,
+      "Methamphetamine": 100,
+      "Shrooms": 100,
+      "Cocaine": 100
     },
-    "properties": [
-      "Calming",
-      "Refreshing",
-      "Focused"
-    ],
-    "noProps": false,
+    "properties": [],
+    "noProps": true,
     "policeRisk": 9,
     "dependence": 1,
     "connections": [
@@ -1184,10 +1306,14 @@ const NPC_DATA = [
     "dependence": 0.25,
     "connections": [
       "ludwig_meyer",
+      "ming",
+      "mr_ming",
       "fannsonetti"
     ],
     "unlocked": [
       "ludwig_meyer",
+      "ming",
+      "mr_ming",
       "fannsonetti"
     ],
     "avatar": "\ud83e\uddd1"
@@ -1237,6 +1363,54 @@ const NPC_DATA = [
     "unlocked": [
       "elizabeth_homley",
       "fungal_phil"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "JuniperLyre.cs",
+    "type": "customer",
+    "description": "",
+    "id": "juniper_lyre",
+    "firstName": "Juniper",
+    "lastName": "Lyre",
+    "name": "Juniper Lyre",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      400,
+      800
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "21:30",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Thu",
+    "affinities": {
+      "Marijuana": 12,
+      "Methamphetamine": -38,
+      "Shrooms": 78,
+      "Cocaine": -22
+    },
+    "properties": [
+      "Glowing",
+      "Calming",
+      "Euphoric"
+    ],
+    "noProps": false,
+    "policeRisk": 14,
+    "dependence": 1,
+    "connections": [
+      "lucy_pennington",
+      "damon_rusk"
+    ],
+    "unlocked": [
+      "lucy_pennington",
+      "damon_rusk"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -1520,11 +1694,61 @@ const NPC_DATA = [
     "dependence": 0.0,
     "connections": [
       "cranky_frank",
+      "anna_chesterfield",
       "mack"
     ],
     "unlocked": [
       "cranky_frank",
+      "anna_chesterfield",
       "mack"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "MarisEldridge.cs",
+    "type": "customer",
+    "description": "",
+    "id": "maris_eldridge",
+    "firstName": "Maris",
+    "lastName": "Eldridge",
+    "name": "Maris Eldridge",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      500,
+      900
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "18:45",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": 10,
+      "Methamphetamine": -28,
+      "Shrooms": 44,
+      "Cocaine": -16
+    },
+    "properties": [
+      "Euphoric",
+      "Glowing",
+      "Focused"
+    ],
+    "noProps": false,
+    "policeRisk": 18,
+    "dependence": 1,
+    "connections": [
+      "damon_rusk",
+      "calder_wren"
+    ],
+    "unlocked": [
+      "damon_rusk",
+      "calder_wren"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -1994,10 +2218,12 @@ const NPC_DATA = [
     "dependence": 0.0,
     "connections": [
       "alison_knight",
+      "carl_bundy",
       "jack_knight"
     ],
     "unlocked": [
       "alison_knight",
+      "carl_bundy",
       "jack_knight"
     ],
     "avatar": "\ud83e\uddd1"

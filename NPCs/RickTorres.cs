@@ -55,7 +55,7 @@ namespace MoreNPCs.NPCs
                 .EnsureDealer()
                 .WithDealerDefaults(dd =>
                 {
-                    dd.WithSigningFee(1500f)
+                    dd.WithSigningFee(2000f)
                         .WithCut(0.20f)
                         .WithDealerType(DealerType.PlayerDealer)
                         .WithHome(supermarket)

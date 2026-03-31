@@ -83,7 +83,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1117, FaceDestinationDirection = true });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1252, DurationMinutes = 104 });
                     plan.UseVendingMachine(1532);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Buiding", StartTime = 1937, DurationMinutes = 524 });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Building 2", StartTime = 1937, DurationMinutes = 524 });
                 });
         }
 

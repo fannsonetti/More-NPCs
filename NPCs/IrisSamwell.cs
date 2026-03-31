@@ -10,9 +10,9 @@ using UnityEngine;
 namespace MoreNPCs.NPCs
 {
     /// <summary>
-    /// FannsoNetti - Northtown dealer at North Warehouse. Connected to Valerie and Jian.
+    /// Iris Samwell — Northtown dealer, Dorothy Samwell’s daughter. Home base: parents’ apartment (Dan’s Hardware upstairs).
     /// </summary>
-    public sealed class FannsoNetti : NPC
+    public sealed class IrisSamwell : NPC
     {
         public override bool IsPhysical => true;
         public override bool IsDealer => true;
@@ -23,37 +23,36 @@ namespace MoreNPCs.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
-            var northwarehouse = Building.Get<NorthWarehouse>();
-            Vector3 spawnPos = new Vector3(-41.7551f, -2.9354f, 171.8678f);
+            var parentsHome = Building.Get<DansHardwareUpstairs>();
+            Vector3 spawnPos = GetSpawnNearParentsHome();
 
-            builder.WithIdentity("fannsonetti", "FannsoNetti", "")
+            builder.WithIdentity("iris_samwell", "Iris", "Samwell")
                 .WithAppearanceDefaults(av =>
                 {
-                    // Matches Vincent Reeves’ prior look (warehouse regular — not default-unlocked).
-                    av.Gender = 0.0f;
-                    av.Height = 0.98f;
-                    av.Weight = 0.40f;
-                    av.SkinColor = new Color(0.63f, 0.52f, 0.43f);
+                    av.Gender = 0.92f;
+                    av.Height = 0.97f;
+                    av.Weight = 0.38f;
+                    av.SkinColor = new Color(0.74f, 0.62f, 0.52f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
-                    av.EyeBallTint = new Color(1.0f, 0.95f, 0.9f);
-                    av.PupilDilation = 0.40f;
-                    av.EyebrowScale = 1.15f;
-                    av.EyebrowThickness = 1.23f;
-                    av.EyebrowRestingHeight = -0.44f;
-                    av.EyebrowRestingAngle = -5.2f;
-                    av.LeftEye = (0.15f, 0.24f);
-                    av.RightEye = (0.15f, 0.24f);
-                    av.HairColor = new Color(0.18f, 0.14f, 0.10f);
-                    av.HairPath = "Avatar/Hair/Spiky/Spiky";
-                    av.WithFaceLayer("Avatar/Layers/Face/Face_Neutral", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/TiredEyes", new Color(0f, 0f, 0f, 0.55f));
-                    av.WithBodyLayer("Avatar/Layers/Top/Buttonup", new Color(0.2f, 0.2f, 0.24f));
-                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.16f, 0.16f, 0.18f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.15f, 0.15f, 0.15f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.15f, 0.15f, 0.15f));
-                    av.WithAccessoryLayer("Avatar/Accessories/Waist/Belt/Belt", new Color(0.28f, 0.22f, 0.16f));
+                    av.EyeBallTint = new Color(0.96f, 0.90f, 0.86f);
+                    av.PupilDilation = 0.66f;
+                    av.EyebrowScale = 1.02f;
+                    av.EyebrowThickness = 0.88f;
+                    av.EyebrowRestingHeight = -0.10f;
+                    av.EyebrowRestingAngle = 2.15f;
+                    av.LeftEye = (0.30f, 0.40f);
+                    av.RightEye = (0.30f, 0.40f);
+                    av.HairColor = new Color(0.42f, 0.32f, 0.24f);
+                    av.HairPath = "Avatar/Hair/MidFringe/MidFringe";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/Tucked T-Shirt", new Color(0.38f, 0.34f, 0.42f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/CargoPants", new Color(0.22f, 0.24f, 0.30f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/OpenVest/OpenVest", new Color(0.28f, 0.26f, 0.30f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.14f, 0.14f, 0.16f));
+                    var goldAccent = new Color(0.72f, 0.58f, 0.22f);
+                    av.WithAccessoryLayer("Avatar/Accessories/Neck/GoldChain/GoldChain", goldAccent);
+                    av.WithAccessoryLayer("Avatar/Accessories/Hands/Polex/Polex", goldAccent);
                 })
                 .WithSpawnPosition(spawnPos)
                 .EnsureDealer()
@@ -62,7 +61,7 @@ namespace MoreNPCs.NPCs
                     dd.WithSigningFee(500f)
                         .WithCut(0.20f)
                         .WithDealerType(DealerType.PlayerDealer)
-                        .WithHome(northwarehouse)
+                        .WithHome(parentsHome)
                         .AllowInsufficientQuality(false)
                         .AllowExcessQuality(true)
                         .WithCompletedDealsVariable("dealer_completed_deals");
@@ -71,17 +70,28 @@ namespace MoreNPCs.NPCs
                 {
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
-                        .WithConnectionsById("vincent_reeves", "nico_marlowe")
+                        .WithConnectionsById("dorothy_samwell")
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach);
                 })
                 .WithSchedule(plan =>
                 {
                     plan.EnsureDealSignal();
-                    plan.StayInBuilding(northwarehouse, 0009, 1439);
+                    plan.StayInBuilding(parentsHome, 0009, 1439);
                 });
         }
 
-        public FannsoNetti() : base() { }
+        private static Vector3 GetSpawnNearParentsHome()
+        {
+            try
+            {
+                var t = GameObject.Find("Map/Hyland Point/Region_Northtown/Hardware Store/Outdoor chair")?.transform;
+                if (t != null) return t.position;
+            }
+            catch { }
+            return new Vector3(-58f, -2.5f, 154f);
+        }
+
+        public IrisSamwell() : base() { }
 
         protected override void OnCreated()
         {
@@ -89,15 +99,15 @@ namespace MoreNPCs.NPCs
             {
                 base.OnCreated();
                 Appearance.Build();
-                Dealer.Home = Building.Get<NorthWarehouse>();
+                Dealer.Home = Building.Get<DansHardwareUpstairs>();
                 WireDealerEvents();
-                Aggressiveness = 2f;
+                Aggressiveness = 0.55f;
                 Region = Region.Northtown;
                 Schedule.Enable();
             }
             catch (Exception ex)
             {
-                MelonLogger.Error($"FannsoNetti OnCreated failed: {ex.Message}");
+                MelonLogger.Error($"IrisSamwell OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
         }
@@ -130,11 +140,7 @@ namespace MoreNPCs.NPCs
             if (_dealerRecommendedHandler != null) Dealer.OnRecommended -= _dealerRecommendedHandler;
         }
 
-        private void HandleDealerRecruited()
-        {
-            MelonLogger.Msg($"Dealer {ID} has been recruited!");
-            SendTextMessage("Thank you for using MoreNPCs. As your reward, I�ll assist you with your dealings in exchange for a 20% share of the profits.");
-        }
+        private void HandleDealerRecruited() { }
         private void HandleContractAccepted() { }
         private void HandleDealerRecommended() { }
     }

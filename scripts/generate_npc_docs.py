@@ -62,7 +62,7 @@ def parse_file(path):
     if "sealed class" not in text or " NPC" not in text:
         return None
 
-    out = {"file": path.name, "type": "customer"}
+    out = {"file": str(path.relative_to(NPCS_DIR)).replace("\\", "/"), "type": "customer"}
 
     # Description intentionally omitted from generated DB output.
     out["description"] = ""
@@ -156,7 +156,7 @@ def parse_file(path):
         out["standards"] = std.group(1) if std else "Moderate"
         # Map to display names
         std_display = {"Trash": "Trash", "VeryLow": "Very Low", "Low": "Low", "Moderate": "Moderate",
-                       "High": "High", "Extreme": "Extreme"}
+                       "High": "High", "VeryHigh": "Very High", "Extreme": "Extreme"}
         out["standardsDisplay"] = std_display.get(out["standards"], out["standards"])
 
         day_m = re.search(r'WithPreferredOrderDay\s*\(\s*Day\.(\w+)\s*\)', text)
@@ -205,7 +205,7 @@ def parse_file(path):
 def main():
     seen = set()
     npcs = []
-    for p in sorted(NPCS_DIR.glob("*.cs")):
+    for p in sorted(NPCS_DIR.rglob("*.cs")):
         if p.name in seen:
             continue
         seen.add(p.name)
@@ -219,7 +219,7 @@ def main():
         return (t, n["name"])
     npcs.sort(key=order)
 
-    js_content = f"""// Auto-generated from NPCs/*.cs - run: python scripts/generate_npc_docs.py
+    js_content = f"""// Auto-generated from NPCs/**/*.cs - run: python scripts/generate_npc_docs.py
 // Do not edit manually.
 
 const NPC_DATA = {json.dumps(npcs, indent=2)};

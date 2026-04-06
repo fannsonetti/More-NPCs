@@ -1,0 +1,121 @@
+using MelonLoader;
+using S1API.Economy;
+using S1API.Entities;
+using S1API.Entities.Schedule;
+using S1API.GameTime;
+using S1API.Products;
+using S1API.Properties;
+using UnityEngine;
+
+namespace MoreNPCs.NPCs
+{
+    public sealed class HenryMitchell : NPC
+    {
+        public override bool IsPhysical => true;
+
+        protected override void ConfigurePrefab(NPCPrefabBuilder builder)
+        {
+            Vector3 pos1 = new Vector3(27.4168f, 1.065f, -14.4305f);
+            Vector3 pos2 = new Vector3(-22.5378f, 1.065f, -43.1838f);
+            Vector3 pos3 = new Vector3(-150.581f, -2.935f, 118.1681f);
+            Vector3 pos4 = new Vector3(-139.3423f, -4.335f, 18.8808f);
+            Vector3 pos5 = new Vector3(-121.0444f, -2.935f, 78.6722f);
+            Vector3 pos6 = new Vector3(-22.7021f, 1.065f, 46.8433f);
+            Vector3 spawnPos = new Vector3(-10.8076f, 1.065f, 66.7038f);
+            builder.WithIdentity("henry_mitchell", "Henry", "Mitchell")
+                .WithAppearanceDefaults(av =>
+                {
+                    av.Gender = 0.0f;
+                    av.Height = 1.0f;
+                    av.Weight = 0.25f;
+                    av.SkinColor = new Color(0.713f, 0.592f, 0.486f);
+                    av.LeftEyeLidColor = av.SkinColor;
+                    av.RightEyeLidColor = av.SkinColor;
+                    av.EyeBallTint = new Color(1.0f, 0.8f, 0.8f);
+                    av.PupilDilation = 0.75f;
+                    av.EyebrowScale = 1.39f;
+                    av.EyebrowThickness = 0.7f;
+                    av.EyebrowRestingHeight = -0.48f;
+                    av.EyebrowRestingAngle = -4.64f;
+                    av.LeftEye = (0.18f, 0.24f);
+                    av.RightEye = (0.18f, 0.24f);
+                    av.HairColor = new Color(0.55f, 0.41f, 0.31f);
+                    av.HairPath = "Avatar/Hair/CloseBuzzCut/CloseBuzzCut";
+                    av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
+                    av.WithFaceLayer("Avatar/Layers/Face/FacialHair_Stubble", Color.black);
+                    av.WithBodyLayer("Avatar/Layers/Top/T-Shirt", new Color(0.481f, 0.331f, 0.225f));
+                    av.WithBodyLayer("Avatar/Layers/Bottom/Jeans", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Feet/Sneakers/Sneakers", new Color(0.23529411852359773f, 0.23529411852359773f, 0.23529411852359773f));
+                    av.WithAccessoryLayer("Avatar/Accessories/Chest/Blazer/Blazer", new Color(0.613f, 0.493f, 0.344f));
+                })
+                .WithSpawnPosition(spawnPos)
+                .EnsureCustomer()
+                .WithCustomerDefaults(cd =>
+                {
+                    cd.WithSpending(minWeekly: 700f, maxWeekly: 1000f)
+                        .WithOrdersPerWeek(1, 4)
+                        .WithPreferredOrderDay(Day.Thursday)
+                        .WithOrderTime(1200)
+                        .WithStandards(CustomerStandard.Low)
+                        .AllowDirectApproach(true)
+                        .GuaranteeFirstSample(false)
+                        .WithMutualRelationRequirement(minAt50: 2.5f, maxAt100: 4.0f)
+                        .WithCallPoliceChance(0.16f)
+                        .WithDependence(baseAddiction: 0.0f, dependenceMultiplier: 1f)
+                        .WithAffinities(new[]
+                        {
+                            (DrugType.Marijuana, 0.15f), (DrugType.Methamphetamine, -0.52f), (DrugType.Shrooms, 0.79f), (DrugType.Cocaine, 0.64f)
+                        })
+                        .WithPreferredProperties(Property.Smelly, Property.ThoughtProvoking, Property.TropicThunder);
+                })
+                .WithRelationshipDefaults(r =>
+                {
+                    r.WithDelta(2.0f)
+                        .SetUnlocked(false)
+                        .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
+                        .WithConnectionsById("jane_lucero", "billy_kramer");
+                })
+                .WithSchedule(plan =>
+                {
+                    plan.EnsureDealSignal();
+                    plan.Add(new WalkToSpec { Destination = pos3, StartTime = 0848, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 1055, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1247, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 1455, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 1647, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos2, StartTime = 1854, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos4, StartTime = 2048, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos1, StartTime = 2255, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = pos5, StartTime = 0048, FaceDestinationDirection = true });
+                    plan.Add(new StayInBuildingSpec { BuildingName = "Docks Industrial Building", StartTime = 0148, DurationMinutes = 419 });
+                });
+        }
+
+        public HenryMitchell() : base()
+        {
+        }
+
+        protected override void OnCreated()
+        {
+            try
+            {
+                base.OnCreated();
+                Appearance.Build();
+
+                Aggressiveness = 0.64f;
+                Region = S1API.Map.Region.Docks;
+
+                Schedule.Enable();
+
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
+                MelonLogger.Error($"StackTrace: {ex.StackTrace}");
+            }
+        }
+    }
+}
+
+
+

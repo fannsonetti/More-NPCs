@@ -1,9 +1,9 @@
-// Auto-generated from NPCs/*.cs - run: python scripts/generate_npc_docs.py
+// Auto-generated from NPCs/**/*.cs - run: python scripts/generate_npc_docs.py
 // Do not edit manually.
 
 const NPC_DATA = [
   {
-    "file": "DominicCross.cs",
+    "file": "Downtown/DominicCross.cs",
     "type": "supervisor",
     "description": "",
     "id": "dominic_cross",
@@ -17,7 +17,7 @@ const NPC_DATA = [
     "cut": 10.0
   },
   {
-    "file": "SilasMercer.cs",
+    "file": "Uptown/SilasMercer.cs",
     "type": "supervisor",
     "description": "",
     "id": "silas_mercer",
@@ -31,7 +31,7 @@ const NPC_DATA = [
     "cut": 10.0
   },
   {
-    "file": "ThomasAshford.cs",
+    "file": "Suburbia/ThomasAshford.cs",
     "type": "manager",
     "description": "",
     "id": "thomas_ashford",
@@ -45,7 +45,23 @@ const NPC_DATA = [
     "cut": 10.0
   },
   {
-    "file": "ElliotVaughn.cs",
+    "file": "Downtown/BrookeWalsh.cs",
+    "type": "dealer",
+    "description": "",
+    "id": "brooke_walsh",
+    "firstName": "Brooke",
+    "lastName": "Walsh",
+    "name": "Brooke Walsh",
+    "isDealer": true,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "cut": 20.0,
+    "signingFee": 2000,
+    "home": "Apartment Building 2"
+  },
+  {
+    "file": "Westville/ElliotVaughn.cs",
     "type": "dealer",
     "description": "",
     "id": "elliot_vaughn",
@@ -61,7 +77,23 @@ const NPC_DATA = [
     "home": "Chemical Plant B"
   },
   {
-    "file": "FannsoNetti.cs",
+    "file": "Uptown/EstebanCordova.cs",
+    "type": "dealer",
+    "description": "",
+    "id": "esteban_cordova",
+    "firstName": "Esteban",
+    "lastName": "Cordova",
+    "name": "Esteban Cordova",
+    "isDealer": true,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Uptown",
+    "cut": 20.0,
+    "signingFee": 2800,
+    "home": "Manor Tunnel Hatch"
+  },
+  {
+    "file": "Northtown/FannsoNetti.cs",
     "type": "dealer",
     "description": "",
     "id": "fannsonetti",
@@ -77,7 +109,39 @@ const NPC_DATA = [
     "home": "NorthWarehouse"
   },
   {
-    "file": "IrisSamwell.cs",
+    "file": "Docks/FrozenFinch.cs",
+    "type": "dealer",
+    "description": "",
+    "id": "frozen_finch",
+    "firstName": "Frozen Finch",
+    "lastName": "",
+    "name": "Frozen Finch",
+    "isDealer": true,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "cut": 20.0,
+    "signingFee": 2800,
+    "home": "Gasmart Freezer"
+  },
+  {
+    "file": "Uptown/HayesDenberg.cs",
+    "type": "dealer",
+    "description": "",
+    "id": "hayes_denberg",
+    "firstName": "Hayes",
+    "lastName": "Denberg",
+    "name": "Hayes Denberg",
+    "isDealer": true,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Uptown",
+    "cut": 20.0,
+    "signingFee": 2500,
+    "home": "Manor Tunnel Hatch"
+  },
+  {
+    "file": "Northtown/IrisSamwell.cs",
     "type": "dealer",
     "description": "",
     "id": "iris_samwell",
@@ -93,7 +157,23 @@ const NPC_DATA = [
     "home": "DansHardwareUpstairs"
   },
   {
-    "file": "MaxineJunefield.cs",
+    "file": "Downtown/LuisNavarro.cs",
+    "type": "dealer",
+    "description": "",
+    "id": "luis_navarro",
+    "firstName": "Luis",
+    "lastName": "Navarro",
+    "name": "Luis Navarro",
+    "isDealer": true,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "cut": 20.0,
+    "signingFee": 2000,
+    "home": "Grocery Backdoor"
+  },
+  {
+    "file": "Westville/MaxineJunefield.cs",
     "type": "dealer",
     "description": "",
     "id": "maxine_junefield",
@@ -109,7 +189,7 @@ const NPC_DATA = [
     "home": "Caravan"
   },
   {
-    "file": "RickTorres.cs",
+    "file": "Suburbia/RickTorres.cs",
     "type": "dealer",
     "description": "",
     "id": "rick_torres",
@@ -119,13 +199,13 @@ const NPC_DATA = [
     "isDealer": true,
     "isManager": false,
     "isSupervisor": false,
-    "region": "Downtown",
+    "region": "Suburbia",
     "cut": 20.0,
-    "signingFee": 2000,
-    "home": "Supermarket"
+    "signingFee": 3000,
+    "home": "Long House Side Door"
   },
   {
-    "file": "SergeantGrey.cs",
+    "file": "Suburbia/SergeantGrey.cs",
     "type": "dealer",
     "description": "",
     "id": "sergeant_grey",
@@ -141,7 +221,23 @@ const NPC_DATA = [
     "home": "PoliceStation"
   },
   {
-    "file": "BenDover.cs",
+    "file": "Docks/SloaneReyes.cs",
+    "type": "dealer",
+    "description": "",
+    "id": "sloane_reyes",
+    "firstName": "Sloane",
+    "lastName": "Reyes",
+    "name": "Sloane Reyes",
+    "isDealer": true,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "cut": 20.0,
+    "signingFee": 3000,
+    "home": "Red Docks Shipping Container 2"
+  },
+  {
+    "file": "Northtown/BenDover.cs",
     "type": "customer",
     "description": "",
     "id": "ben_dover",
@@ -171,7 +267,7 @@ const NPC_DATA = [
       "Cocaine": 10
     },
     "properties": [
-      "Calming",
+      "Jennerising",
       "Refreshing",
       "Smelly"
     ],
@@ -189,7 +285,59 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "BobbyCooley.cs",
+    "file": "Docks/BlakeDrift.cs",
+    "type": "customer",
+    "description": "",
+    "id": "blake_drift",
+    "firstName": "Blake",
+    "lastName": "Drift",
+    "name": "Blake Drift",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      620,
+      920
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "21:15",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Fri",
+    "affinities": {
+      "Marijuana": 18,
+      "Methamphetamine": 48,
+      "Shrooms": -12,
+      "Cocaine": 22
+    },
+    "properties": [
+      "Paranoia",
+      "Sneaky",
+      "Energizing"
+    ],
+    "noProps": false,
+    "policeRisk": 15,
+    "dependence": 0.14,
+    "connections": [
+      "billy_kramer",
+      "maya_webb",
+      "henry_mitchell",
+      "dewey_koontz"
+    ],
+    "unlocked": [
+      "billy_kramer",
+      "maya_webb",
+      "henry_mitchell",
+      "dewey_koontz"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Westville/BobbyCooley.cs",
     "type": "customer",
     "description": "",
     "id": "bobby_cooley",
@@ -231,7 +379,49 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "BrentHalver.cs",
+    "file": "Docks/BrackSilt.cs",
+    "type": "customer",
+    "description": "",
+    "id": "brack_silt",
+    "firstName": "Brack",
+    "lastName": "Silt",
+    "name": "Brack Silt",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      520,
+      780
+    ],
+    "orders": [
+      1,
+      5
+    ],
+    "time": "02:30",
+    "standards": "VeryLow",
+    "standardsDisplay": "Very Low",
+    "day": "Sat",
+    "affinities": {
+      "Marijuana": -15,
+      "Methamphetamine": 82,
+      "Shrooms": -40,
+      "Cocaine": 68
+    },
+    "properties": [
+      "Energizing",
+      "Paranoia",
+      "Explosive"
+    ],
+    "noProps": false,
+    "policeRisk": 15,
+    "dependence": 0.45,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Westville/BrentHalver.cs",
     "type": "customer",
     "description": "",
     "id": "brent_halver",
@@ -262,7 +452,7 @@ const NPC_DATA = [
     },
     "properties": [
       "Munchies",
-      "Calming",
+      "Spicy",
       "Energizing"
     ],
     "noProps": false,
@@ -281,7 +471,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "BryceSherman.cs",
+    "file": "Westville/BryceSherman.cs",
     "type": "customer",
     "description": "",
     "id": "bryce_sherman",
@@ -325,7 +515,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "CalderWren.cs",
+    "file": "Downtown/CalderWren.cs",
     "type": "customer",
     "description": "",
     "id": "calder_wren",
@@ -356,7 +546,7 @@ const NPC_DATA = [
     },
     "properties": [
       "Focused",
-      "Calming",
+      "BrightEyed",
       "Refreshing"
     ],
     "noProps": false,
@@ -373,7 +563,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "Corkskrew.cs",
+    "file": "Westville/Corkskrew.cs",
     "type": "customer",
     "description": "",
     "id": "corkskrew",
@@ -421,7 +611,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "CoryLubbin.cs",
+    "file": "Westville/CoryLubbin.cs",
     "type": "customer",
     "description": "",
     "id": "cory_lubbin",
@@ -463,7 +653,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "DamonRusk.cs",
+    "file": "Downtown/DamonRusk.cs",
     "type": "customer",
     "description": "",
     "id": "damon_rusk",
@@ -509,7 +699,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "DanielJDalby.cs",
+    "file": "Uptown/DanielJDalby.cs",
     "type": "customer",
     "description": "",
     "id": "daniel_j_dalby",
@@ -557,7 +747,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "DariusCole.cs",
+    "file": "Uptown/DariusCole.cs",
     "type": "customer",
     "description": "",
     "id": "darius_cole",
@@ -605,7 +795,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "DarlaCrane.cs",
+    "file": "Westville/DarlaCrane.cs",
     "type": "customer",
     "description": "",
     "id": "darla_crane",
@@ -653,7 +843,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "DerekVale.cs",
+    "file": "Northtown/DerekVale.cs",
     "type": "customer",
     "description": "",
     "id": "derek_vale",
@@ -683,7 +873,7 @@ const NPC_DATA = [
       "Cocaine": -32
     },
     "properties": [
-      "Calming",
+      "Schizophrenic",
       "Euphoric",
       "Glowing"
     ],
@@ -701,7 +891,49 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "Diesel.cs",
+    "file": "Docks/DeweyKoontz.cs",
+    "type": "customer",
+    "description": "",
+    "id": "dewey_koontz",
+    "firstName": "Dewey",
+    "lastName": "Koontz",
+    "name": "Dewey Koontz",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      550,
+      820
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "18:15",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Fri",
+    "affinities": {
+      "Marijuana": 28,
+      "Methamphetamine": 22,
+      "Shrooms": -20,
+      "Cocaine": 35
+    },
+    "properties": [
+      "Sneaky",
+      "Munchies",
+      "Euphoric"
+    ],
+    "noProps": false,
+    "policeRisk": 16,
+    "dependence": 0.12,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Docks/Diesel.cs",
     "type": "customer",
     "description": "",
     "id": "diesel",
@@ -749,7 +981,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "DorothySamwell.cs",
+    "file": "Northtown/DorothySamwell.cs",
     "type": "customer",
     "description": "",
     "id": "dorothy_samwell",
@@ -779,7 +1011,7 @@ const NPC_DATA = [
       "Cocaine": -60
     },
     "properties": [
-      "Calming",
+      "LongFaced",
       "Refreshing",
       "Focused"
     ],
@@ -799,7 +1031,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "EarlHaskins.cs",
+    "file": "Westville/EarlHaskins.cs",
     "type": "customer",
     "description": "",
     "id": "earl_haskins",
@@ -847,7 +1079,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "EdwardBoog.cs",
+    "file": "Uptown/EdwardBoog.cs",
     "type": "customer",
     "description": "",
     "id": "edward_boog",
@@ -868,7 +1100,7 @@ const NPC_DATA = [
     ],
     "time": "21:00",
     "standards": "VeryHigh",
-    "standardsDisplay": "VeryHigh",
+    "standardsDisplay": "Very High",
     "day": "Tue",
     "affinities": {
       "Marijuana": -77,
@@ -895,7 +1127,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "EleanorBriggs.cs",
+    "file": "Downtown/EleanorBriggs.cs",
     "type": "customer",
     "description": "",
     "id": "eleanor_briggs",
@@ -941,7 +1173,55 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "EvanRowland.cs",
+    "file": "Downtown/EthanVance.cs",
+    "type": "customer",
+    "description": "",
+    "id": "ethan_vance",
+    "firstName": "Ethan",
+    "lastName": "Vance",
+    "name": "Ethan Vance",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      450,
+      850
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "19:20",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Tue",
+    "affinities": {
+      "Marijuana": -10,
+      "Methamphetamine": 42,
+      "Shrooms": 18,
+      "Cocaine": 22
+    },
+    "properties": [
+      "Paranoia",
+      "Energizing",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 19,
+    "dependence": 1,
+    "connections": [
+      "fungal_phil",
+      "kevin_oakley"
+    ],
+    "unlocked": [
+      "fungal_phil",
+      "kevin_oakley"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Westville/EvanRowland.cs",
     "type": "customer",
     "description": "",
     "id": "evan_rowland",
@@ -983,7 +1263,53 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "FinnMurphy.cs",
+    "file": "Downtown/FaithDonovan.cs",
+    "type": "customer",
+    "description": "",
+    "id": "faith_donovan",
+    "firstName": "Faith",
+    "lastName": "Donovan",
+    "name": "Faith Donovan",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      400,
+      800
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "21:00",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Fri",
+    "affinities": {
+      "Marijuana": 40,
+      "Methamphetamine": -24,
+      "Shrooms": 30,
+      "Cocaine": 8
+    },
+    "properties": [
+      "Munchies",
+      "Refreshing",
+      "Glowing"
+    ],
+    "noProps": false,
+    "policeRisk": 14,
+    "dependence": 1,
+    "connections": [
+      "tessa_ward"
+    ],
+    "unlocked": [
+      "tessa_ward"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Docks/FinnMurphy.cs",
     "type": "customer",
     "description": "",
     "id": "finn_murphy",
@@ -1031,7 +1357,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "GavinHolt.cs",
+    "file": "Downtown/GavinHolt.cs",
     "type": "customer",
     "description": "",
     "id": "gavin_holt",
@@ -1069,17 +1395,17 @@ const NPC_DATA = [
     "policeRisk": 20,
     "dependence": 1,
     "connections": [
-      "philip_wentworth",
-      "greg_fliggle"
+      "bruce_norton",
+      "jeff_gilmore"
     ],
     "unlocked": [
-      "philip_wentworth",
-      "greg_fliggle"
+      "bruce_norton",
+      "jeff_gilmore"
     ],
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "Grunk.cs",
+    "file": "Docks/Grunk.cs",
     "type": "customer",
     "description": "",
     "id": "grunk",
@@ -1116,16 +1442,58 @@ const NPC_DATA = [
     "noProps": false,
     "policeRisk": 14,
     "dependence": 0.1,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Downtown/HarperLin.cs",
+    "type": "customer",
+    "description": "",
+    "id": "harper_lin",
+    "firstName": "Harper",
+    "lastName": "Lin",
+    "name": "Harper Lin",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      480,
+      950
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "20:15",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": 22,
+      "Methamphetamine": -10,
+      "Shrooms": 28,
+      "Cocaine": 14
+    },
+    "properties": [
+      "Slippery",
+      "Focused",
+      "Refreshing"
+    ],
+    "noProps": false,
+    "policeRisk": 17,
+    "dependence": 1,
     "connections": [
-      "manhole_mike"
+      "rhea_larkin"
     ],
     "unlocked": [
-      "manhole_mike"
+      "rhea_larkin"
     ],
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "HenryMitchell.cs",
+    "file": "Docks/HenryMitchell.cs",
     "type": "customer",
     "description": "",
     "id": "henry_mitchell",
@@ -1155,7 +1523,7 @@ const NPC_DATA = [
       "Cocaine": 64
     },
     "properties": [
-      "Calming",
+      "Smelly",
       "ThoughtProvoking",
       "TropicThunder"
     ],
@@ -1173,7 +1541,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "JamalBennett.cs",
+    "file": "Westville/JamalBennett.cs",
     "type": "customer",
     "description": "",
     "id": "jamal_bennett",
@@ -1219,7 +1587,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "JasonReed.cs",
+    "file": "Northtown/JasonReed.cs",
     "type": "customer",
     "description": "",
     "id": "jason_reed",
@@ -1267,7 +1635,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "JianMing.cs",
+    "file": "Northtown/JianMing.cs",
     "type": "customer",
     "description": "",
     "id": "jian_ming",
@@ -1297,7 +1665,7 @@ const NPC_DATA = [
       "Cocaine": -22
     },
     "properties": [
-      "Calming",
+      "Slippery",
       "Refreshing",
       "ThoughtProvoking"
     ],
@@ -1319,7 +1687,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "JosephWilkinson.cs",
+    "file": "Downtown/JosephWilkinson.cs",
     "type": "customer",
     "description": "",
     "id": "joseph_wilkinson",
@@ -1367,7 +1735,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "JuniperLyre.cs",
+    "file": "Downtown/JuniperLyre.cs",
     "type": "customer",
     "description": "",
     "id": "juniper_lyre",
@@ -1398,7 +1766,7 @@ const NPC_DATA = [
     },
     "properties": [
       "Glowing",
-      "Calming",
+      "AntiGravity",
       "Euphoric"
     ],
     "noProps": false,
@@ -1415,7 +1783,57 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "KaelaThorn.cs",
+    "file": "Docks/JunoAlder.cs",
+    "type": "customer",
+    "description": "",
+    "id": "juno_alder",
+    "firstName": "Juno",
+    "lastName": "Alder",
+    "name": "Juno Alder",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      620,
+      900
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "17:45",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Tue",
+    "affinities": {
+      "Marijuana": 22,
+      "Methamphetamine": 18,
+      "Shrooms": 44,
+      "Cocaine": -8
+    },
+    "properties": [
+      "ThoughtProvoking",
+      "Munchies",
+      "Refreshing"
+    ],
+    "noProps": false,
+    "policeRisk": 18,
+    "dependence": 0.17,
+    "connections": [
+      "kaela_thorn",
+      "lisa_gardener",
+      "sable_reed"
+    ],
+    "unlocked": [
+      "kaela_thorn",
+      "lisa_gardener",
+      "sable_reed"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Docks/KaelaThorn.cs",
     "type": "customer",
     "description": "",
     "id": "kaela_thorn",
@@ -1463,7 +1881,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "KaraDempsey.cs",
+    "file": "Westville/KaraDempsey.cs",
     "type": "customer",
     "description": "",
     "id": "kara_dempsey",
@@ -1493,7 +1911,7 @@ const NPC_DATA = [
       "Cocaine": -12
     },
     "properties": [
-      "Calming",
+      "Toxic",
       "Refreshing",
       "Foggy"
     ],
@@ -1511,7 +1929,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "LenaHart.cs",
+    "file": "Northtown/LenaHart.cs",
     "type": "customer",
     "description": "",
     "id": "lena_hart",
@@ -1542,7 +1960,7 @@ const NPC_DATA = [
     },
     "properties": [
       "Refreshing",
-      "Calming",
+      "Cyclopean",
       "ThoughtProvoking"
     ],
     "noProps": false,
@@ -1559,7 +1977,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "LilaPark.cs",
+    "file": "Westville/LilaPark.cs",
     "type": "customer",
     "description": "",
     "id": "lila_park",
@@ -1607,7 +2025,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "Mack.cs",
+    "file": "Docks/Mack.cs",
     "type": "customer",
     "description": "",
     "id": "mack",
@@ -1655,7 +2073,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "ManholeMike.cs",
+    "file": "Docks/ManholeMike.cs",
     "type": "customer",
     "description": "",
     "id": "manhole_mike",
@@ -1695,17 +2113,19 @@ const NPC_DATA = [
     "connections": [
       "cranky_frank",
       "anna_chesterfield",
-      "mack"
+      "mack",
+      "grunk"
     ],
     "unlocked": [
       "cranky_frank",
       "anna_chesterfield",
-      "mack"
+      "mack",
+      "grunk"
     ],
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MarisEldridge.cs",
+    "file": "Downtown/MarisEldridge.cs",
     "type": "customer",
     "description": "",
     "id": "maris_eldridge",
@@ -1753,7 +2173,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MarlaHale.cs",
+    "file": "Northtown/MarlaHale.cs",
     "type": "customer",
     "description": "",
     "id": "marla_hale",
@@ -1801,7 +2221,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MarleneHaskins.cs",
+    "file": "Westville/MarleneHaskins.cs",
     "type": "customer",
     "description": "",
     "id": "marlene_haskins",
@@ -1847,7 +2267,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MayaWebb.cs",
+    "file": "Docks/MayaWebb.cs",
     "type": "customer",
     "description": "",
     "id": "maya_webb",
@@ -1877,7 +2297,7 @@ const NPC_DATA = [
       "Cocaine": -19
     },
     "properties": [
-      "Calming",
+      "Seizure",
       "Refreshing",
       "ThoughtProvoking"
     ],
@@ -1895,7 +2315,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MiltonDelaney.cs",
+    "file": "Downtown/MiltonDelaney.cs",
     "type": "customer",
     "description": "",
     "id": "milton_delaney",
@@ -1943,7 +2363,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MoeLester.cs",
+    "file": "Northtown/MoeLester.cs",
     "type": "customer",
     "description": "",
     "id": "moe_lester",
@@ -1991,7 +2411,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "MrMing.cs",
+    "file": "Northtown/MrMing.cs",
     "type": "customer",
     "description": "",
     "id": "mr_ming",
@@ -2021,7 +2441,7 @@ const NPC_DATA = [
       "Cocaine": 10
     },
     "properties": [
-      "Calming",
+      "Gingeritis",
       "Refreshing",
       "ThoughtProvoking"
     ],
@@ -2037,7 +2457,49 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "NadiaParker.cs",
+    "file": "Suburbia/MrSqueeblian.cs",
+    "type": "customer",
+    "description": "",
+    "id": "mr_squeeblian",
+    "firstName": "Mr. Squeeblian",
+    "lastName": "",
+    "name": "Mr. Squeeblian",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      500,
+      900
+    ],
+    "orders": [
+      1,
+      2
+    ],
+    "time": "11:00",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Thu",
+    "affinities": {
+      "Marijuana": 55,
+      "Methamphetamine": -15,
+      "Shrooms": 62,
+      "Cocaine": 8
+    },
+    "properties": [
+      "Munchies",
+      "ThoughtProvoking",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 22,
+    "dependence": 0.0,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Downtown/NadiaParker.cs",
     "type": "customer",
     "description": "",
     "id": "nadia_parker",
@@ -2085,7 +2547,49 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "NicoMarlowe.cs",
+    "file": "Docks/NadiaRim.cs",
+    "type": "customer",
+    "description": "",
+    "id": "nadia_rim",
+    "firstName": "Nadia",
+    "lastName": "Rim",
+    "name": "Nadia Rim",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      620,
+      880
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "20:45",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Tue",
+    "affinities": {
+      "Marijuana": 12,
+      "Methamphetamine": 57,
+      "Shrooms": 8,
+      "Cocaine": 22
+    },
+    "properties": [
+      "Paranoia",
+      "Laxative",
+      "Energizing"
+    ],
+    "noProps": false,
+    "policeRisk": 14,
+    "dependence": 0.18,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Northtown/NicoMarlowe.cs",
     "type": "customer",
     "description": "",
     "id": "nico_marlowe",
@@ -2131,7 +2635,53 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "NoraKessler.cs",
+    "file": "Downtown/NinaCho.cs",
+    "type": "customer",
+    "description": "",
+    "id": "nina_cho",
+    "firstName": "Nina",
+    "lastName": "Cho",
+    "name": "Nina Cho",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      500,
+      900
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "20:00",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Mon",
+    "affinities": {
+      "Marijuana": 18,
+      "Methamphetamine": 12,
+      "Shrooms": 36,
+      "Cocaine": -8
+    },
+    "properties": [
+      "Focused",
+      "Paranoia",
+      "Refreshing"
+    ],
+    "noProps": false,
+    "policeRisk": 16,
+    "dependence": 1,
+    "connections": [
+      "orlando_castillo"
+    ],
+    "unlocked": [
+      "orlando_castillo"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Westville/NoraKessler.cs",
     "type": "customer",
     "description": "",
     "id": "nora_kessler",
@@ -2179,7 +2729,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "OfficerMarcus.cs",
+    "file": "Suburbia/OfficerMarcus.cs",
     "type": "customer",
     "description": "",
     "id": "officer_marcus",
@@ -2229,7 +2779,103 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "OwenCrowe.cs",
+    "file": "Docks/OliveCrank.cs",
+    "type": "customer",
+    "description": "",
+    "id": "olive_crank",
+    "firstName": "Olive",
+    "lastName": "Crank",
+    "name": "Olive Crank",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      640,
+      920
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "20:30",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Thu",
+    "affinities": {
+      "Marijuana": 8,
+      "Methamphetamine": 62,
+      "Shrooms": -15,
+      "Cocaine": 28
+    },
+    "properties": [
+      "Paranoia",
+      "Energizing",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 16,
+    "dependence": 0.19,
+    "connections": [
+      "kaela_thorn",
+      "sable_reed"
+    ],
+    "unlocked": [
+      "kaela_thorn",
+      "sable_reed"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Downtown/OrlandoCastillo.cs",
+    "type": "customer",
+    "description": "",
+    "id": "orlando_castillo",
+    "firstName": "Orlando",
+    "lastName": "Castillo",
+    "name": "Orlando Castillo",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      450,
+      900
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "19:45",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Thu",
+    "affinities": {
+      "Marijuana": 36,
+      "Methamphetamine": 6,
+      "Shrooms": 24,
+      "Cocaine": -12
+    },
+    "properties": [
+      "Focused",
+      "Foggy",
+      "Refreshing"
+    ],
+    "noProps": false,
+    "policeRisk": 18,
+    "dependence": 1,
+    "connections": [
+      "milton_delaney",
+      "jeff_gilmore"
+    ],
+    "unlocked": [
+      "milton_delaney",
+      "jeff_gilmore"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Northtown/OwenCrowe.cs",
     "type": "customer",
     "description": "",
     "id": "owen_crowe",
@@ -2275,7 +2921,98 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "PiperSloan.cs",
+    "file": "Uptown/PPHyland.cs",
+    "type": "customer",
+    "description": "",
+    "id": "pp_hyland",
+    "firstName": "P.P. Hyland",
+    "lastName": "",
+    "name": "P.P. Hyland",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Uptown",
+    "spending": [
+      10000,
+      20000
+    ],
+    "orders": [
+      1,
+      1
+    ],
+    "time": "03:00",
+    "standards": "VeryHigh",
+    "standardsDisplay": "Very High",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": -95,
+      "Shrooms": -92,
+      "Cocaine": -97,
+      "Methamphetamine": 86
+    },
+    "properties": [
+      "Electrifying",
+      "Energizing",
+      "Focused",
+      "Refreshing"
+    ],
+    "noProps": false,
+    "policeRisk": 12,
+    "dependence": 1,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Docks/PikeMulch.cs",
+    "type": "customer",
+    "description": "",
+    "id": "pike_mulch",
+    "firstName": "Pike",
+    "lastName": "Mulch",
+    "name": "Pike Mulch",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      580,
+      850
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "21:10",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Thu",
+    "affinities": {
+      "Marijuana": -8,
+      "Methamphetamine": 44,
+      "Shrooms": -32,
+      "Cocaine": 52
+    },
+    "properties": [
+      "Focused",
+      "Paranoia",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 17,
+    "dependence": 0.1,
+    "connections": [
+      "diesel",
+      "mack"
+    ],
+    "unlocked": [
+      "diesel",
+      "mack"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Northtown/PiperSloan.cs",
     "type": "customer",
     "description": "",
     "id": "piper_sloan",
@@ -2305,7 +3042,7 @@ const NPC_DATA = [
       "Cocaine": -28
     },
     "properties": [
-      "Calming",
+      "Paranoia",
       "Euphoric",
       "Shrinking"
     ],
@@ -2321,7 +3058,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "PriyaMadden.cs",
+    "file": "Downtown/PriyaMadden.cs",
     "type": "customer",
     "description": "",
     "id": "priya_madden",
@@ -2352,7 +3089,7 @@ const NPC_DATA = [
     },
     "properties": [
       "Refreshing",
-      "Calming",
+      "Disorienting",
       "Glowing"
     ],
     "noProps": false,
@@ -2369,7 +3106,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "RheaLarkin.cs",
+    "file": "Downtown/RheaLarkin.cs",
     "type": "customer",
     "description": "",
     "id": "rhea_larkin",
@@ -2417,7 +3154,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "RhondaVex.cs",
+    "file": "Westville/RhondaVex.cs",
     "type": "customer",
     "description": "",
     "id": "rhonda_vex",
@@ -2465,7 +3202,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "RoryDempsey.cs",
+    "file": "Westville/RoryDempsey.cs",
     "type": "customer",
     "description": "",
     "id": "rory_dempsey",
@@ -2495,7 +3232,7 @@ const NPC_DATA = [
       "Cocaine": -22
     },
     "properties": [
-      "Calming",
+      "Explosive",
       "Foggy",
       "ThoughtProvoking"
     ],
@@ -2511,7 +3248,99 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "SalRusso.cs",
+    "file": "Docks/RustySump.cs",
+    "type": "customer",
+    "description": "",
+    "id": "rusty_sump",
+    "firstName": "Rusty",
+    "lastName": "Sump",
+    "name": "Rusty Sump",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      280,
+      480
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "15:45",
+    "standards": "VeryLow",
+    "standardsDisplay": "Very Low",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": 35,
+      "Methamphetamine": -20,
+      "Shrooms": 55,
+      "Cocaine": -35
+    },
+    "properties": [
+      "Munchies",
+      "ThoughtProvoking",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 8,
+    "dependence": 0.05,
+    "connections": [
+      "brack_silt",
+      "nadia_rim",
+      "manhole_mike"
+    ],
+    "unlocked": [
+      "brack_silt",
+      "nadia_rim",
+      "manhole_mike"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Docks/SableReed.cs",
+    "type": "customer",
+    "description": "",
+    "id": "sable_reed",
+    "firstName": "Sable",
+    "lastName": "Reed",
+    "name": "Sable Reed",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      630,
+      910
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "19:40",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": 12,
+      "Methamphetamine": 52,
+      "Shrooms": -22,
+      "Cocaine": 31
+    },
+    "properties": [
+      "Paranoia",
+      "Energizing",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 17,
+    "dependence": 0.16,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Docks/SalRusso.cs",
     "type": "customer",
     "description": "",
     "id": "sal_russo",
@@ -2541,7 +3370,7 @@ const NPC_DATA = [
       "Cocaine": -18
     },
     "properties": [
-      "Calming",
+      "Electrifying",
       "Munchies",
       "Paranoia"
     ],
@@ -2549,17 +3378,17 @@ const NPC_DATA = [
     "policeRisk": 17,
     "dependence": 0.15,
     "connections": [
-      "marco_baron",
-      "sherman_giles"
+      "finn_murphy",
+      "kelly_reynolds"
     ],
     "unlocked": [
-      "marco_baron",
-      "sherman_giles"
+      "finn_murphy",
+      "kelly_reynolds"
     ],
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "SarahGreene.cs",
+    "file": "Westville/SarahGreene.cs",
     "type": "customer",
     "description": "",
     "id": "sarah_greene",
@@ -2605,7 +3434,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "SharonWebster.cs",
+    "file": "Westville/SharonWebster.cs",
     "type": "customer",
     "description": "",
     "id": "sharon_webster",
@@ -2653,7 +3482,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "SiennaCrowley.cs",
+    "file": "Downtown/SiennaCrowley.cs",
     "type": "customer",
     "description": "",
     "id": "sienna_crowley",
@@ -2701,7 +3530,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "SkylerWilkinson.cs",
+    "file": "Suburbia/SkylerWilkinson.cs",
     "type": "customer",
     "description": "",
     "id": "skyler_wilkinson",
@@ -2749,7 +3578,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "TessTickle.cs",
+    "file": "Northtown/TessTickle.cs",
     "type": "customer",
     "description": "",
     "id": "tess_tickle",
@@ -2797,7 +3626,55 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "TrishaMorrow.cs",
+    "file": "Downtown/TessaWard.cs",
+    "type": "customer",
+    "description": "",
+    "id": "tessa_ward",
+    "firstName": "Tessa",
+    "lastName": "Ward",
+    "name": "Tessa Ward",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      500,
+      800
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "20:15",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Sat",
+    "affinities": {
+      "Marijuana": 22,
+      "Methamphetamine": -18,
+      "Shrooms": 44,
+      "Cocaine": 10
+    },
+    "properties": [
+      "Glowing",
+      "Euphoric",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 15,
+    "dependence": 1,
+    "connections": [
+      "faith_donovan",
+      "calder_wren"
+    ],
+    "unlocked": [
+      "faith_donovan",
+      "calder_wren"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Westville/TrishaMorrow.cs",
     "type": "customer",
     "description": "",
     "id": "trisha_morrow",
@@ -2843,7 +3720,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "ValerieVoss.cs",
+    "file": "Northtown/ValerieVoss.cs",
     "type": "customer",
     "description": "",
     "id": "valerie_voss",
@@ -2874,7 +3751,7 @@ const NPC_DATA = [
     },
     "properties": [
       "Refreshing",
-      "Calming",
+      "Laxative",
       "Glowing"
     ],
     "noProps": false,
@@ -2889,7 +3766,55 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "VictorHughes.cs",
+    "file": "Docks/VeraKnox.cs",
+    "type": "customer",
+    "description": "",
+    "id": "vera_knox",
+    "firstName": "Vera",
+    "lastName": "Knox",
+    "name": "Vera Knox",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Docks",
+    "spending": [
+      650,
+      940
+    ],
+    "orders": [
+      1,
+      4
+    ],
+    "time": "18:30",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Mon",
+    "affinities": {
+      "Marijuana": 15,
+      "Methamphetamine": 28,
+      "Shrooms": 8,
+      "Cocaine": 35
+    },
+    "properties": [
+      "Focused",
+      "Sneaky",
+      "Euphoric"
+    ],
+    "noProps": false,
+    "policeRisk": 20,
+    "dependence": 0.18,
+    "connections": [
+      "maya_webb",
+      "salvador_moreno"
+    ],
+    "unlocked": [
+      "maya_webb",
+      "salvador_moreno"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Westville/VictorHughes.cs",
     "type": "customer",
     "description": "",
     "id": "victor_hughes",
@@ -2935,7 +3860,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "VincentReeves.cs",
+    "file": "Northtown/VincentReeves.cs",
     "type": "customer",
     "description": "",
     "id": "vincent_reeves",
@@ -2981,7 +3906,55 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "WayneKerr.cs",
+    "file": "Downtown/WadeHumphrey.cs",
+    "type": "customer",
+    "description": "",
+    "id": "wade_humphrey",
+    "firstName": "Wade",
+    "lastName": "Humphrey",
+    "name": "Wade Humphrey",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Downtown",
+    "spending": [
+      500,
+      1000
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "18:30",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": 14,
+      "Methamphetamine": 28,
+      "Shrooms": -20,
+      "Cocaine": 32
+    },
+    "properties": [
+      "Sneaky",
+      "Euphoric",
+      "Focused"
+    ],
+    "noProps": false,
+    "policeRisk": 17,
+    "dependence": 1,
+    "connections": [
+      "philip_wentworth",
+      "calder_wren"
+    ],
+    "unlocked": [
+      "philip_wentworth",
+      "calder_wren"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Northtown/WayneKerr.cs",
     "type": "customer",
     "description": "",
     "id": "wayne_kerr",
@@ -3011,7 +3984,7 @@ const NPC_DATA = [
       "Cocaine": 61
     },
     "properties": [
-      "Calming",
+      "Zombifying",
       "ThoughtProvoking",
       "Sedating"
     ],
@@ -3029,7 +4002,7 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "WesleyPike.cs",
+    "file": "Westville/WesleyPike.cs",
     "type": "customer",
     "description": "",
     "id": "wesley_pike",

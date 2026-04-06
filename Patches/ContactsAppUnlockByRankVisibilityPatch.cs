@@ -1,6 +1,7 @@
 using System.Text;
 using HarmonyLib;
 using MelonLoader;
+using S1API.Cartel;
 using ScheduleOne.DevUtilities;
 using ScheduleOne.Map;
 using ScheduleOne.UI.Phone.ContactsApp;
@@ -41,6 +42,18 @@ namespace MoreNPCs.Patches
                 return;
             }
 
+            var unlockByInfluence = root.Find(UnlockByInfluenceRelativePath) ?? FindDeepByName(root, "UnlockByInfluence");
+
+            // While truced, cartel influence does not run the usual region-unlock loop; rank/influence hints are misleading.
+            if (IsCartelTruced())
+            {
+                if (unlockByRank.gameObject.activeSelf)
+                    unlockByRank.gameObject.SetActive(false);
+                if (unlockByInfluence != null && unlockByInfluence.gameObject.activeSelf)
+                    unlockByInfluence.gameObject.SetActive(false);
+                return;
+            }
+
             var show =
                 region == EMapRegion.Downtown
                 || region == EMapRegion.Docks
@@ -56,9 +69,10 @@ namespace MoreNPCs.Patches
             if (show)
                 ApplyRankText(unlockByRank.Find("Description/Rank"), GetRequiredRankLabelForTab(region));
 
-            var unlockByInfluence = root.Find(UnlockByInfluenceRelativePath) ?? FindDeepByName(root, "UnlockByInfluence");
             if (unlockByInfluence != null)
             {
+                if (!unlockByInfluence.gameObject.activeSelf)
+                    unlockByInfluence.gameObject.SetActive(true);
                 var influenceText = BuildInfluenceDescription(region);
                 ApplyDescriptionText(unlockByInfluence.Find("Description"), influenceText);
             }
@@ -66,6 +80,12 @@ namespace MoreNPCs.Patches
             {
                 MelonLogger.Warning($"{LogPrefix} UnlockByInfluence transform not found (Description copy skipped).");
             }
+        }
+
+        private static bool IsCartelTruced()
+        {
+            var c = Cartel.Instance;
+            return c != null && c.Status == CartelStatus.Truced;
         }
 
         private static string GetRequiredRankLabelForTab(EMapRegion tabRegion)

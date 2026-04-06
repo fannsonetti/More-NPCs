@@ -30,7 +30,8 @@
     .btn{appearance:none;border:1px solid var(--border);background:var(--panel);color:var(--text);padding:10px 12px;border-radius:10px;font-weight:800;cursor:pointer}
     .btn:hover{box-shadow:0 0 0 3px rgba(34,197,94,.2);border-color:#2b3a2f}
     .btn.ghost{background:transparent;color:var(--muted)}
-    .controls-adv{display:none;grid-template-columns:1fr 1fr 2fr;gap:10px;align-items:end;margin-top:6px}
+    .controls-adv{display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:end;margin-top:10px}
+    .controls-adv .wide{grid-column:1/-1}
     .dual{display:grid;gap:6px}
     .range-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
     .range-row input[type=range]{width:100%}
@@ -104,7 +105,7 @@
       </article>
       <article class="wiki-card">
         <h3>Standards Meaning</h3>
-        <p>Trash/Low/Moderate/High/Very High reflect quality expectations and tolerance. Higher standards generally need better product quality to satisfy consistently.</p>
+        <p>Low through Very High reflect quality expectations and tolerance. Higher standards generally need better product quality to satisfy consistently.</p>
       </article>
       <article class="wiki-card">
         <h3>Unlock Progression</h3>
@@ -118,13 +119,11 @@
         <div class="field"><label for="standards">Standards</label>
           <select id="standards">
             <option value="all">All Standards</option>
-            <option value="Trash">Trash</option>
             <option value="VeryLow">Very Low</option>
             <option value="Low">Low</option>
             <option value="Moderate">Moderate</option>
             <option value="High">High</option>
             <option value="VeryHigh">Very High</option>
-            <option value="Extreme">Extreme</option>
           </select>
         </div>
         <div class="field"><label for="region">Region</label>
@@ -148,6 +147,12 @@
           </select>
         </div>
         <div class="field"><label for="property">Preferred Property</label><select id="property"><option value="any">Any</option></select></div>
+        <div class="field"><label for="dayFilter">Preferred order day</label>
+          <select id="dayFilter">
+            <option value="any">Any</option>
+            <option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option>
+          </select>
+        </div>
         <div class="field dual">
           <label>Spending Range (weekly)</label>
           <div class="range-row">
@@ -156,6 +161,45 @@
           </div>
           <div class="range-label"><span id="minLbl">$0</span><span id="maxLbl">$10,000</span></div>
           <div class="range-summary" id="rangeSummary">Showing $0 – $10,000</div>
+        </div>
+        <div class="field dual">
+          <label for="policeMax">Max police risk (customers ≤ this %)</label>
+          <input id="policeMax" type="range" min="0" max="100" step="1" value="100" />
+          <div class="range-label"><span>0%</span><span id="policeMaxLbl">100%</span></div>
+        </div>
+        <div class="field"><label for="connQ">Connection ID contains</label>
+          <input id="connQ" type="text" placeholder="e.g. luis_navarro" />
+        </div>
+        <div class="field"><label for="affinityDrug">Strong liking for drug</label>
+          <select id="affinityDrug">
+            <option value="any">Any</option>
+            <option value="Marijuana">Weed (+)</option>
+            <option value="Methamphetamine">Meth (+)</option>
+            <option value="Shrooms">Shrooms (+)</option>
+            <option value="Cocaine">Cocaine (+)</option>
+          </select>
+        </div>
+        <div class="field"><label for="affinityNeg">Strong dislike for drug</label>
+          <select id="affinityNeg">
+            <option value="any">Any</option>
+            <option value="Marijuana">Weed (−)</option>
+            <option value="Methamphetamine">Meth (−)</option>
+            <option value="Shrooms">Shrooms (−)</option>
+            <option value="Cocaine">Cocaine (−)</option>
+          </select>
+        </div>
+        <div class="field dual">
+          <label>Dealer signing fee ($)</label>
+          <div class="range-row">
+            <input id="signMin" type="range" min="0" max="8000" step="100" value="0" />
+            <input id="signMax" type="range" min="0" max="8000" step="100" value="8000" />
+          </div>
+          <div class="range-label"><span id="signMinLbl">$0</span><span id="signMaxLbl">$8,000</span></div>
+          <div class="range-summary">Narrows dealers by fee (customers always shown)</div>
+        </div>
+        <div class="field wide"><label for="ordersMin">Min orders / week (at least this many max orders)</label>
+          <input id="ordersMin" type="range" min="1" max="10" step="1" value="1" />
+          <div class="range-label"><span>1</span><span id="ordersMinLbl">1+</span></div>
         </div>
       </div>
 
@@ -168,6 +212,8 @@
   <script src="npc_data.js"></script>
   <script>
     const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+    /** Game order for wiki cards (always Weed → Meth → Shrooms → Cocaine). */
+    const DRUG_AFFINITY_ORDER = ["Marijuana", "Methamphetamine", "Shrooms", "Cocaine"];
     const $ = (sel)=>document.querySelector(sel);
     const money = (n)=> `$${Number(n || 0).toLocaleString()}`;
 
@@ -184,22 +230,22 @@
       return `${h}:${String(M).padStart(2,"0")} ${ap}`;
     }
 
-    function affRow(label, val){
-      const pct = Math.min(100, Math.max(0, Math.abs(val || 0))) / 100;
-      const side = (val || 0) >= 0 ? "pos" : "neg";
-      let short = label;
-      if(label === "Marijuana") short = "Weed";
-      else if(label === "Methamphetamine") short = "Meth";
-      return `<div class="kv"><span class="sub">${short}</span><div class="bar2"><span class="fill ${side}" style="transform:scaleX(${pct})"></span></div><span class="pct">${(val || 0) >= 0 ? (val || 0) + "%" : "−" + Math.abs(val || 0) + "%"}</span></div>`;
+    function affRow(drugKey, val){
+      const v = Number(val) || 0;
+      const pct = Math.min(100, Math.max(0, Math.abs(v))) / 100;
+      const side = v >= 0 ? "pos" : "neg";
+      let short = drugKey;
+      if(drugKey === "Marijuana") short = "Weed";
+      else if(drugKey === "Methamphetamine") short = "Meth";
+      return `<div class="kv"><span class="sub">${short}</span><div class="bar2"><span class="fill ${side}" style="transform:scaleX(${pct})"></span></div><span class="pct">${v >= 0 ? v + "%" : "−" + Math.abs(v) + "%"}</span></div>`;
     }
 
     function starClassFromStandards(npc){
       const raw = String(npc.standards || npc.standardsDisplay || "").replace(/\s+/g, "").toLowerCase();
-      if(raw === "trash") return "red";
       if(raw === "verylow" || raw === "low") return "green";
       if(raw === "moderate") return "blue";
       if(raw === "high") return "purple";
-      if(raw === "veryhigh" || raw === "extreme") return "gold";
+      if(raw === "veryhigh") return "gold";
       return "";
     }
 
@@ -219,9 +265,7 @@
       let out = `<div class="sub" style="margin-top:4px">${money(npc.spending[0])} – ${money(npc.spending[1])} weekly • ${npc.region}</div>`;
       out += `<div class="tiles"><div class="tile"><div class="t">Orders/Week</div><div class="v">${npc.orders ? `${npc.orders[0]} – ${npc.orders[1]}` : "—"}</div></div><div class="tile"><div class="t">Preferred Time</div><div class="v">${formatTime(npc.time)}</div></div></div>`;
       if(npc.day) out += `<div class="days">${DAYS.map(d => `<span class="pill ${d===npc.day ? "active" : ""}">${d}</span>`).join("")}</div>`;
-      if(npc.affinities && Object.keys(npc.affinities).length > 0){
-        out += `<div class="section"><h4>Drug Affinities</h4>${Object.entries(npc.affinities).map(([k,v])=>affRow(k,v)).join("")}</div>`;
-      }
+      out += `<div class="section"><h4>Drug Affinities</h4>${DRUG_AFFINITY_ORDER.map(k => affRow(k, (npc.affinities || {})[k] ?? 0)).join("")}</div>`;
       if(npc.properties && npc.properties.length > 0){
         out += `<div class="section"><h4>Preferred Properties</h4><div class="chips">${npc.properties.map(p => `<span class="chip">${p}</span>`).join("")}</div></div>`;
       }
@@ -292,6 +336,15 @@
       const prop = $("#property").value;
       const min = Number($("#minSpend").value);
       const max = Number($("#maxSpend").value);
+      const dayPref = $("#dayFilter").value;
+      const policeMax = Number($("#policeMax").value);
+      const connQ = $("#connQ").value.trim().toLowerCase();
+      const affPos = $("#affinityDrug").value;
+      const affNeg = $("#affinityNeg").value;
+      const signMin = Number($("#signMin").value);
+      const signMax = Number($("#signMax").value);
+      const ordersMin = Number($("#ordersMin").value);
+      const signFilterActive = signMin > 0 || signMax < 8000;
 
       const filtered = data.filter(n => {
         if(q){
@@ -308,6 +361,31 @@
         }
         if(prop !== "any"){
           if(!Array.isArray(n.properties) || !n.properties.includes(prop)) return false;
+        }
+        if(dayPref !== "any" && (n.type || "customer") === "customer"){
+          if(n.day !== dayPref) return false;
+        }
+        if(policeMax < 100 && (n.type || "customer") === "customer" && typeof n.policeRisk === "number"){
+          if(n.policeRisk > policeMax) return false;
+        }
+        if(connQ){
+          const conns = (n.connections || []).map(c => String(c).toLowerCase());
+          if(!conns.some(c => c.includes(connQ))) return false;
+        }
+        if(affPos !== "any" && (n.type || "customer") === "customer"){
+          const a = (n.affinities || {})[affPos];
+          if(typeof a !== "number" || a <= 0) return false;
+        }
+        if(affNeg !== "any" && (n.type || "customer") === "customer"){
+          const a = (n.affinities || {})[affNeg];
+          if(typeof a !== "number" || a >= 0) return false;
+        }
+        if(signFilterActive && (n.type || "") === "dealer"){
+          const fee = Number(n.signingFee);
+          if(Number.isNaN(fee) || fee < signMin || fee > signMax) return false;
+        }
+        if(ordersMin > 1 && (n.type || "customer") === "customer"){
+          if(!Array.isArray(n.orders) || Number(n.orders[1] || 0) < ordersMin) return false;
         }
         if(Array.isArray(n.spending)){
           const lo = Number(n.spending[0] || 0);
@@ -359,6 +437,18 @@
       $("#region").value = "all";
       $("#standards").value = "all";
       $("#property").value = "any";
+      $("#dayFilter").value = "any";
+      $("#policeMax").value = "100";
+      $("#policeMaxLbl").textContent = "100%";
+      $("#connQ").value = "";
+      $("#affinityDrug").value = "any";
+      $("#affinityNeg").value = "any";
+      $("#signMin").value = "0";
+      $("#signMax").value = "8000";
+      $("#signMinLbl").textContent = money(0);
+      $("#signMaxLbl").textContent = money(8000);
+      $("#ordersMin").value = "1";
+      $("#ordersMinLbl").textContent = "1+";
       updateRangeMeta(data);
       applyFilters();
     }
@@ -368,6 +458,8 @@
       fillPropertyOptions(data);
       updateRangeMeta(data);
       $("#meta").innerHTML = `Data source: <code>npc_data.js</code> • <b>${data.length}</b> entries`;
+      $("#signMinLbl").textContent = money($("#signMin").value);
+      $("#signMaxLbl").textContent = money($("#signMax").value);
 
       $("#moreBtn").addEventListener("click", () => {
         const adv = $("#adv");
@@ -375,7 +467,27 @@
       });
       $("#resetBtn").addEventListener("click", resetFilters);
 
-      ["#q","#type","#region","#standards","#property"].forEach(sel => $(sel).addEventListener("input", applyFilters));
+      ["#q","#type","#region","#standards","#property","#dayFilter","#connQ","#affinityDrug","#affinityNeg"].forEach(sel => $(sel).addEventListener("input", applyFilters));
+      $("#policeMax").addEventListener("input", () => {
+        $("#policeMaxLbl").textContent = $("#policeMax").value + "%";
+        applyFilters();
+      });
+      $("#signMin").addEventListener("input", () => {
+        if(Number($("#signMin").value) > Number($("#signMax").value)) $("#signMax").value = $("#signMin").value;
+        $("#signMinLbl").textContent = money($("#signMin").value);
+        $("#signMaxLbl").textContent = money($("#signMax").value);
+        applyFilters();
+      });
+      $("#signMax").addEventListener("input", () => {
+        if(Number($("#signMax").value) < Number($("#signMin").value)) $("#signMin").value = $("#signMax").value;
+        $("#signMinLbl").textContent = money($("#signMin").value);
+        $("#signMaxLbl").textContent = money($("#signMax").value);
+        applyFilters();
+      });
+      $("#ordersMin").addEventListener("input", () => {
+        $("#ordersMinLbl").textContent = $("#ordersMin").value + "+";
+        applyFilters();
+      });
       $("#minSpend").addEventListener("input", () => {
         if(Number($("#minSpend").value) > Number($("#maxSpend").value)) $("#maxSpend").value = $("#minSpend").value;
         updateRangeLabels();

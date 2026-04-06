@@ -241,7 +241,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="Core.cs" />
-		<Compile Include="NPCs\*.cs" />
+		<Compile Include="NPCs\**\*.cs" />
 		<Compile Include="Utils\Constants.cs" />
 		<Compile Include="Utils\MoreNPCsPreferences.cs" />
 		<Compile Include="Utils\ExperimentalArtificialProperties.cs" />
@@ -253,6 +253,13 @@
 		<Compile Include="Utils\PlayerCashHelper.cs" />
 		<Compile Include="Persistence\MoreNPCsModSave.cs" />
 		<Compile Include="Utils\BuildingSetup.cs" />
+		<Compile Include="Utils\PPHylandDialogue.cs" />
+		<Compile Include="Utils\PPHylandHandoverWarning.cs" />
+		<Compile Include="Patches\DrugTypeMethodsGetColorPatch.cs" />
+		<Compile Include="Patches\PPHylandSampleDifficultyPatch.cs" />
+		<Compile Include="Patches\PPHylandHandoverSampleGatePatch.cs" />
+		<Compile Include="Patches\PPHylandHandoverScreenHelper.cs" />
+		<Compile Include="Patches\MaxPriceLimitTranspilerPatch.cs" />
 		<Compile Include="Patches\CustomerNewCustomerCartelInfluencePatch.cs" />
 		<Compile Include="Patches\RegionUnlockDualGatePatch.cs" />
 		<Compile Include="Patches\ContactsAppUnlockByRankVisibilityPatch.cs" />

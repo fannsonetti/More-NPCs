@@ -19,6 +19,8 @@ namespace MoreNPCs.Utils
     {
         private const float CheckIntervalSeconds = 30f;
         private const float LockEnforceIntervalSeconds = 5f;
+        /// <summary>Meet-at-player SMS + dialogue unlock refresh do not need 60 Hz; scanning <see cref="NPC.All"/> every frame is costly with many NPCs.</summary>
+        private const float NpcRelationScanIntervalSeconds = 0.25f;
         private const int DominicDealerThreshold = 6;
         private const int SilasDealerThreshold = 12;
         /// <summary>Relationship level at which the NPC gets the “come to me” SMS option and one-time intro text.</summary>
@@ -26,6 +28,7 @@ namespace MoreNPCs.Utils
         private const float DailyRelationshipGain = 0.1f;
         private float _nextCheckTime;
         private float _nextLockEnforceTime;
+        private float _nextRelationScanTime;
         private int _lastRelationshipDay = -1;
 
         private static readonly string[] TacoTicklerKeywords = { "taco tickler", "tacotickler" };
@@ -44,8 +47,13 @@ namespace MoreNPCs.Utils
         {
             TryEnforceLockedState();
             TryDailyRelationshipGain();
-            TryUnlockMeetAtPlayerSms();
-            TryRefreshDialogueState();
+
+            if (Time.time >= _nextRelationScanTime)
+            {
+                _nextRelationScanTime = Time.time + NpcRelationScanIntervalSeconds;
+                TryUnlockMeetAtPlayerSms();
+                TryRefreshDialogueState();
+            }
 
             if (Time.time < _nextCheckTime) return;
             _nextCheckTime = Time.time + CheckIntervalSeconds;
@@ -66,7 +74,7 @@ namespace MoreNPCs.Utils
                     if (npc?.Relationship == null) continue;
                     var id = npc.ID;
                     if (string.IsNullOrEmpty(id)) continue;
-                    if (!NpcIdsWithMeetAtPlayerSms.Contains(id)) continue;
+                    if (!NpcIdsWithMeetAtPlayerSms.Contains(id) && !string.Equals(id, "pp_hyland", StringComparison.OrdinalIgnoreCase)) continue;
 
                     var isUnlocked = npc.Relationship.IsUnlocked;
                     if (_lastKnownUnlockStates.TryGetValue(id, out var previous) && previous == isUnlocked) continue;
@@ -302,6 +310,12 @@ namespace MoreNPCs.Utils
                 if (string.Equals(npc.ID, SupervisorIds.Dominic, StringComparison.OrdinalIgnoreCase))
                 {
                     SupervisorDialogue.RefreshFor(npc, "Dominic Cross", SupervisorIds.Dominic);
+                    return;
+                }
+
+                if (string.Equals(npc.ID, "pp_hyland", StringComparison.OrdinalIgnoreCase) && npc is PPHyland hyland)
+                {
+                    PPHylandDialogue.RefreshFor(hyland);
                 }
             }
             catch (Exception ex)

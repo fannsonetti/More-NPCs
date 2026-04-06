@@ -26,6 +26,8 @@ Other fluent methods (StayInBuilding, UseVendingMachine, UseATM, LocationDialogu
 
 ## NPC Structure
 
+Source files live under `NPCs/{Northtown|Westville|Downtown|Docks|Suburbia|Uptown}/` (namespace stays `MoreNPCs.NPCs`).
+
 1. **ConfigurePrefab** — Identity, appearance, customer/dealer, relationships, schedule. All prefab setup happens here.
 2. **OnCreated** — Runtime init: `Appearance.Build()`, `Schedule.Enable()`, set `Aggressiveness`, `Region`.
 
@@ -102,6 +104,14 @@ Keep `WithOrdersPerWeek` max at 4 or lower — higher values spread the weekly b
 3. **Building → building / sit → building without a walk leg** — The base game often expects movement to be **scheduled** (e.g. `WalkToSpec` to the next area) when chaining distant locations. If they still freeze right after an activity despite tight times, add a `WalkToSpec` to the next destination with `StartTime` equal to the minute after the previous block ends.
 
 After **bulk edits** to `StartTime` (e.g. phase offsets), re-run duration math so every chain still ends “1 minute before” the next line.
+
+### Building occupancy (planning guideline)
+
+When placing `StayInBuilding` / vanilla venues in schedules, use this **soft target** so crowds stay plausible and nav congestion stays lower:
+
+- Treat each **vanilla enterable** as if it should usually have **at least 2** NPCs “worth” of presence across the day (spread across mod + vanilla schedules — you cannot count vanilla NPCs precisely in code here, so use judgment when several mod NPCs share one venue).
+- Aim for **no more than 5 mod NPCs in the same building at the same clock window** when you can stagger or alternate venues instead.
+- If many NPCs must share one building, **offset `StartTime` by 60+ minutes** (see schedule similarity rule) unless they are an intentional group.
 
 ### Schedule similarity rule
 

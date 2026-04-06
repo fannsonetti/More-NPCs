@@ -4,6 +4,7 @@ using S1API.Entities;
 using S1API.Entities.Schedule;
 using S1API.GameTime;
 using S1API.Map;
+using S1API.Map.Buildings;
 using S1API.Products;
 using S1API.Properties;
 using UnityEngine;
@@ -19,6 +20,9 @@ namespace MoreNPCs.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
+            var supermarket = Building.Get<Supermarket>();
+            var slopShop = Building.Get<SlopShop>();
+            Vector3 plaza = new Vector3(69.7895f, 1.065f, 15.4409f);
             Vector3 spawnPos = new Vector3(134.1605f, 6.0623f, 114.3804f);
 
             builder.WithIdentity("gavin_holt", "Gavin", "Holt")
@@ -80,8 +84,10 @@ namespace MoreNPCs.NPCs
                     plan.Add(new StayInBuildingSpec { BuildingName = "HAM Legal", StartTime = 0921, DurationMinutes = 119 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1221, DurationMinutes = 94 });
                     plan.UseATM(1416);
-                    plan.Add(new StayInBuildingSpec { BuildingName = "Supermarket", StartTime = 1651, DurationMinutes = 89 });
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Downtown/Diner/Round Outdoor Set/Outdoor chair (2)", StartTime = 1921, DurationMinutes = 224 });
+                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1648, FaceDestinationDirection = true });
+                    plan.StayInBuilding(supermarket, 1651, 89);
+                    plan.UseVendingMachine(1755);
+                    plan.StayInBuilding(slopShop, 1921, 224);
                     plan.Add(new StayInBuildingSpec { BuildingName = "Nightclub", StartTime = 2146, DurationMinutes = 299 });
                 });
         }

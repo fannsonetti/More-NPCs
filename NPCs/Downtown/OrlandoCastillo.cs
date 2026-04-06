@@ -156,7 +156,7 @@ namespace MoreNPCs.NPCs
 
                     plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 0855, DurationMinutes = 124 });
 
-                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat", StartTime = 1100, DurationMinutes = 109 });
+                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (1)", StartTime = 1100, DurationMinutes = 109 });
 
                     plan.StayInBuilding(cafe, 1210, 134);
 

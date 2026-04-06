@@ -477,7 +477,7 @@ For new Northtown NPCs, avoid North Apartments. Use these for overnight stays in
 - `Arcade`
 - `SauerkrautSupreme`
 
-NPCs can also use `SitSpec` at Taco Ticklers (`@Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat`) or other seats for day activities.
+NPCs can also use `SitSpec` at Taco Ticklers. Use the **`@Businesses/Taco Ticklers/Fast Food Booth`** paths exactly as listed under **Hyland Point seat paths** (booth root only — do not append `/fast food booth/Seat`).
 
 ### Regional hangout guidance (user-provided)
 
@@ -523,12 +523,10 @@ Use these as preferred day-time hangout anchors when building schedules. If a re
 
 Use these exact scene paths when building `SitSpec`/`LocationDialogue` style seated activities.
 
-- `@Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat (1)`
-- `@Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat`
-- `@Businesses/Taco Ticklers/Fast Food Booth (2)/fast food booth/Seat (1)`
-- `@Businesses/Taco Ticklers/Fast Food Booth (2)/fast food booth/Seat`
-- `@Businesses/Taco Ticklers/Fast Food Booth (3)/fast food booth/Seat (1)`
-- `@Businesses/Taco Ticklers/Fast Food Booth (3)/fast food booth/Seat`
+- `@Businesses/Taco Ticklers/Fast Food Booth`
+- `@Businesses/Taco Ticklers/Fast Food Booth (1)`
+- `@Businesses/Taco Ticklers/Fast Food Booth (2)`
+- `@Businesses/Taco Ticklers/Fast Food Booth (3)`
 - `Map/Hyland Point/Bus stops/Bus Stop (10)/OutdoorBench`
 - `Map/Hyland Point/Region_Northtown/Shooting range/OutdoorBench`
 - `Map/Hyland Point/Region_Northtown/Plaza/OutdoorBench (2)`

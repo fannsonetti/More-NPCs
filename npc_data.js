@@ -563,6 +563,54 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "Suburbia/CarlBundy.cs",
+    "type": "customer",
+    "description": "",
+    "id": "carl_bundy",
+    "firstName": "Carl",
+    "lastName": "Bundy",
+    "name": "Carl Bundy",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      750,
+      1200
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "11:30",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Fri",
+    "affinities": {
+      "Marijuana": 36,
+      "Methamphetamine": 14,
+      "Shrooms": 8,
+      "Cocaine": 22
+    },
+    "properties": [
+      "Munchies",
+      "Sedating",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 16,
+    "dependence": 0.09,
+    "connections": [
+      "marcy_bundy",
+      "trey_bundy"
+    ],
+    "unlocked": [
+      "marcy_bundy",
+      "trey_bundy"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "Westville/Corkskrew.cs",
     "type": "customer",
     "description": "",
@@ -1173,6 +1221,50 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "Suburbia/EmmaKennedy.cs",
+    "type": "customer",
+    "description": "",
+    "id": "emma_kennedy",
+    "firstName": "Emma",
+    "lastName": "Kennedy",
+    "name": "Emma Kennedy",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      0,
+      0
+    ],
+    "orders": [
+      0,
+      0
+    ],
+    "time": "12:00",
+    "standards": "VeryHigh",
+    "standardsDisplay": "Very High",
+    "day": "Mon",
+    "affinities": {
+      "Marijuana": -92,
+      "Methamphetamine": -92,
+      "Shrooms": -92,
+      "Cocaine": -92
+    },
+    "properties": [],
+    "noProps": true,
+    "policeRisk": 48,
+    "dependence": 0.0,
+    "connections": [
+      "tyler_kennedy",
+      "haley_kennedy"
+    ],
+    "unlocked": [
+      "tyler_kennedy",
+      "haley_kennedy"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "Downtown/EthanVance.cs",
     "type": "customer",
     "description": "",
@@ -1444,6 +1536,50 @@ const NPC_DATA = [
     "dependence": 0.1,
     "connections": [],
     "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Suburbia/HaleyKennedy.cs",
+    "type": "customer",
+    "description": "",
+    "id": "haley_kennedy",
+    "firstName": "Haley",
+    "lastName": "Kennedy",
+    "name": "Haley Kennedy",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      50,
+      250
+    ],
+    "orders": [
+      2,
+      4
+    ],
+    "time": "14:00",
+    "standards": "VeryLow",
+    "standardsDisplay": "Very Low",
+    "day": "Tue",
+    "affinities": {
+      "Marijuana": 100,
+      "Methamphetamine": 100,
+      "Shrooms": 100,
+      "Cocaine": 100
+    },
+    "properties": [],
+    "noProps": true,
+    "policeRisk": 11,
+    "dependence": 0.0,
+    "connections": [
+      "tyler_kennedy",
+      "emma_kennedy"
+    ],
+    "unlocked": [
+      "tyler_kennedy",
+      "emma_kennedy"
+    ],
     "avatar": "\ud83e\uddd1"
   },
   {
@@ -2121,6 +2257,54 @@ const NPC_DATA = [
       "anna_chesterfield",
       "mack",
       "grunk"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Suburbia/MarcyBundy.cs",
+    "type": "customer",
+    "description": "",
+    "id": "marcy_bundy",
+    "firstName": "Marcy",
+    "lastName": "Bundy",
+    "name": "Marcy Bundy",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      800,
+      1300
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "15:00",
+    "standards": "High",
+    "standardsDisplay": "High",
+    "day": "Tue",
+    "affinities": {
+      "Marijuana": 18,
+      "Methamphetamine": -12,
+      "Shrooms": 24,
+      "Cocaine": 31
+    },
+    "properties": [
+      "Refreshing",
+      "Glowing",
+      "Munchies"
+    ],
+    "noProps": false,
+    "policeRisk": 20,
+    "dependence": 0.07,
+    "connections": [
+      "carl_bundy",
+      "trey_bundy"
+    ],
+    "unlocked": [
+      "carl_bundy",
+      "trey_bundy"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -3674,6 +3858,50 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "Suburbia/TreyBundy.cs",
+    "type": "customer",
+    "description": "",
+    "id": "trey_bundy",
+    "firstName": "Trey",
+    "lastName": "Bundy",
+    "name": "Trey Bundy",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      50,
+      250
+    ],
+    "orders": [
+      2,
+      4
+    ],
+    "time": "15:30",
+    "standards": "VeryLow",
+    "standardsDisplay": "Very Low",
+    "day": "Thu",
+    "affinities": {
+      "Marijuana": 100,
+      "Methamphetamine": 100,
+      "Shrooms": 100,
+      "Cocaine": 100
+    },
+    "properties": [],
+    "noProps": true,
+    "policeRisk": 12,
+    "dependence": 0.0,
+    "connections": [
+      "carl_bundy",
+      "marcy_bundy"
+    ],
+    "unlocked": [
+      "carl_bundy",
+      "marcy_bundy"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "Westville/TrishaMorrow.cs",
     "type": "customer",
     "description": "",
@@ -3716,6 +3944,54 @@ const NPC_DATA = [
     ],
     "unlocked": [
       "shirley_watts"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Suburbia/TylerKennedy.cs",
+    "type": "customer",
+    "description": "",
+    "id": "tyler_kennedy",
+    "firstName": "Tyler",
+    "lastName": "Kennedy",
+    "name": "Tyler Kennedy",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      400,
+      800
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "15:45",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": 52,
+      "Methamphetamine": 18,
+      "Shrooms": 8,
+      "Cocaine": 24
+    },
+    "properties": [
+      "Munchies",
+      "Euphoric",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 14,
+    "dependence": 0.1,
+    "connections": [
+      "haley_kennedy",
+      "emma_kennedy"
+    ],
+    "unlocked": [
+      "haley_kennedy",
+      "emma_kennedy"
     ],
     "avatar": "\ud83e\uddd1"
   },

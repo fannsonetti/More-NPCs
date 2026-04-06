@@ -37,6 +37,8 @@ namespace MoreNPCs.NPCs
         {
 
             var supermarket = Building.Get<Supermarket>();
+            var cafe = Building.Get<Cafe>();
+            Vector3 plaza = new Vector3(69.7895f, 1.065f, 15.4409f);
 
             Vector3 spawnPos = new Vector3(22.4f, 1.065f, 54.3f);
 
@@ -152,9 +154,13 @@ namespace MoreNPCs.NPCs
 
                     plan.Add(new StayInBuildingSpec { BuildingName = "Tall Tower", StartTime = 0930, DurationMinutes = 104 });
 
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Downtown/TownCenter/OutdoorBench", StartTime = 1036, DurationMinutes = 79 });
+                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1036, FaceDestinationDirection = true });
 
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Downtown/TownCenter/OutdoorBench (1)", StartTime = 1116, DurationMinutes = 128 });
+                    plan.UseVendingMachine(1055);
+
+                    plan.StayInBuilding(cafe, 1105, 129);
+
+                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1236, FaceDestinationDirection = true });
 
                     plan.StayInBuilding(supermarket, 1245, 164);
 

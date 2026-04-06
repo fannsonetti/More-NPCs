@@ -83,7 +83,7 @@ namespace MoreNPCs.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.StayInBuilding(shack, 2355, 479);
-                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Businesses/Taco Ticklers/Fast Food Booth (1)/fast food booth/Seat (1)", StartTime = 0755, DurationMinutes = 109 });
+                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (1)", StartTime = 0755, DurationMinutes = 109 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "The Piss Hut", StartTime = 1005, DurationMinutes = 119 });
                     plan.StayInBuilding(shack, 1150, 104);
                     plan.StayInBuilding(communityCenter, 1255, 120);

@@ -93,7 +93,8 @@ namespace MoreNPCs.NPCs
                     plan.Add(new StayInBuildingSpec { BuildingName = "HAM Legal", StartTime = 0910, DurationMinutes = 119 });
                     plan.StayInBuilding(cafe, 1210, 94);
                     plan.UseATM(1405);
-                    plan.StayInBuilding(supermarket, 1505, 119);
+                    plan.Add(new WalkToSpec { Destination = townCenter, StartTime = 1505, FaceDestinationDirection = true });
+                    plan.StayInBuilding(supermarket, 1508, 116);
                     plan.Add(new WalkToSpec { Destination = townCenter, StartTime = 1745, FaceDestinationDirection = true });
                     plan.StayInBuilding(slopShop, 1845, 149);
                     plan.StayInBuilding(elevator, 2115, 714);

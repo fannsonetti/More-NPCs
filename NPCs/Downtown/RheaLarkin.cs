@@ -20,7 +20,7 @@ namespace MoreNPCs.NPCs
             var supermarket = Building.Get<Supermarket>();
             var cafe = Building.Get<Cafe>();
             var slopShop = Building.Get<SlopShop>();
-            Vector3 downtownBench = new Vector3(69.7895f, 1.065f, 15.4409f);
+            Vector3 plaza = new Vector3(69.7895f, 1.065f, 15.4409f);
             Vector3 spawnPos = new Vector3(128.5441f, 6.0615f, 108.1199f);
 
             builder.WithIdentity("rhea_larkin", "Rhea", "Larkin")
@@ -80,8 +80,10 @@ namespace MoreNPCs.NPCs
                     plan.EnsureDealSignal();
                     plan.StayInBuilding(cafe, 0929, 99);
                     plan.StayInBuilding(slopShop, 1144, 109);
-                    plan.Add(new WalkToSpec { Destination = downtownBench, StartTime = 1349, FaceDestinationDirection = true });
-                    plan.UseATM(1539);
+                    plan.UseATM(1255);
+                    plan.UseVendingMachine(1310);
+                    plan.StayInBuilding(cafe, 1335, 154);
+                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1725, FaceDestinationDirection = true });
                     plan.StayInBuilding(supermarket, 1729, 109);
                     plan.StayInBuilding(supermarket, 2029, 359);
                 });

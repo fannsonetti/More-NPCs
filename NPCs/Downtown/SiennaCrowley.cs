@@ -72,7 +72,7 @@ namespace MoreNPCs.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.Add(new StayInBuildingSpec { BuildingName = "Small Tower", StartTime = 0851, DurationMinutes = 109 });
-                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (3)/fast food booth/Seat (1)", StartTime = 1141, DurationMinutes = 309 });
+                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (3)", StartTime = 1141, DurationMinutes = 309 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Cafe", StartTime = 1451, DurationMinutes = 99 });
                     plan.UseVendingMachine(1721);
                     plan.StayInBuilding(northOverpass, 2001, 494);

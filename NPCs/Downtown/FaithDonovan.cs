@@ -76,7 +76,7 @@ namespace MoreNPCs.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.Add(new StayInBuildingSpec { BuildingName = "Les Ordures Puantes", StartTime = 1015, DurationMinutes = 119 });
-                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (3)/fast food booth/Seat", StartTime = 1255, DurationMinutes = 154 });
+                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (3)", StartTime = 1255, DurationMinutes = 154 });
                     plan.StayInBuilding(cafe, 1410, 134);
                     plan.Add(new StayInBuildingSpec { BuildingName = "Slop Shop", StartTime = 1735, DurationMinutes = 164 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Building 2", StartTime = 2100, DurationMinutes = 729 });

@@ -38,7 +38,7 @@ namespace MoreNPCs.NPCs
                     av.HairColor = new Color(0.716f, 0.527f, 0.226f);
                     av.HairPath = "Avatar/Hair/SidePartBob/SidePartBob";
                     av.WithFaceLayer("Avatar/Layers/Face/Face_SlightSmile", Color.black);
-                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color(0f, 0f, 0f, 0.22f));
+                    av.WithFaceLayer("Avatar/Layers/Face/OldPersonWrinkles", new Color(0f, 0f, 0f, 0.09f));
                     av.WithBodyLayer("Avatar/Layers/Top/ButtonUp", new Color(1f, 1f, 1f));
                     av.WithBodyLayer("Avatar/Layers/Bottom/FemaleUnderwear", new Color(1f, 1f, 1f));
                     av.WithAccessoryLayer("Avatar/Accessories/Feet/Flats/Flats", new Color(0.151f, 0.151f, 0.151f));
@@ -103,7 +103,7 @@ namespace MoreNPCs.NPCs
             }
             catch (Exception ex)
             {
-                MelonLogger.Error($"ExamplePhysicalNPC OnCreated failed: {ex.Message}");
+                MelonLogger.Error($"SkylerWilkinson OnCreated failed: {ex.Message}");
                 MelonLogger.Error($"StackTrace: {ex.StackTrace}");
             }
         }

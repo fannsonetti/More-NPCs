@@ -20,6 +20,7 @@ namespace MoreNPCs.NPCs
         {
             var supermarket = Building.Get<Supermarket>();
             var cafe = Building.Get<Cafe>();
+            Vector3 plaza = new Vector3(69.7895f, 1.065f, 15.4409f);
             Vector3 spawnPos = new Vector3(52.1f, 1.065f, 12.8f);
 
             builder.WithIdentity("nina_cho", "Nina", "Cho")
@@ -78,9 +79,12 @@ namespace MoreNPCs.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.Add(new StayInBuildingSpec { BuildingName = "Boutique Store", StartTime = 0845, DurationMinutes = 134 });
-                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (2)/fast food booth/Seat", StartTime = 1100, DurationMinutes = 139 });
+                    plan.Add(new SitSpec { SeatSetPath = "@Businesses/Taco Ticklers/Fast Food Booth (2)", StartTime = 1100, DurationMinutes = 139 });
                     plan.StayInBuilding(cafe, 1240, 89);
+                    plan.Add(new WalkToSpec { Destination = plaza, StartTime = 1405, FaceDestinationDirection = true });
                     plan.StayInBuilding(supermarket, 1415, 149);
+                    plan.UseVendingMachine(1705);
+                    plan.UseATM(1720);
                     plan.Add(new StayInBuildingSpec { BuildingName = "RE Office", StartTime = 1745, DurationMinutes = 164 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Apartment Building 2", StartTime = 2045, DurationMinutes = 764 });
                 });

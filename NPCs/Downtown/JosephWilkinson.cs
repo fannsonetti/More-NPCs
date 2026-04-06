@@ -26,7 +26,7 @@ namespace MoreNPCs.NPCs
                     av.Gender = 0.0f;
                     av.Height = 1.05f;
                     av.Weight = 0.5f;
-                    av.SkinColor = new Color(0.8599f, 0.6951f, 0.5886f);
+                    av.SkinColor = new Color(0.822f, 0.6746f, 0.5668f);
                     av.LeftEyeLidColor = av.SkinColor;
                     av.RightEyeLidColor = av.SkinColor;
                     av.EyeBallTint = new Color(1.0f, 0.8f, 0.8f);

@@ -30,7 +30,7 @@ namespace MoreNPCs.NPCs
                 .WithAppearanceDefaults(av =>
                 {
                     av.Gender = 0.15f;
-                    av.Height = 0.88f;
+                    av.Height = 0.97f;
                     av.Weight = 0.34f;
                     av.SkinColor = KidSkin;
                     av.LeftEyeLidColor = av.SkinColor;

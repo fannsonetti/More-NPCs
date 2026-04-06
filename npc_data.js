@@ -563,50 +563,48 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
-    "file": "Suburbia/CarlBundy.cs",
+    "file": "Downtown/ClaireColt.cs",
     "type": "customer",
     "description": "",
-    "id": "carl_bundy",
-    "firstName": "Carl",
-    "lastName": "Bundy",
-    "name": "Carl Bundy",
+    "id": "claire_colt",
+    "firstName": "Claire",
+    "lastName": "Colt",
+    "name": "Claire Colt",
     "isDealer": false,
     "isManager": false,
     "isSupervisor": false,
-    "region": "Suburbia",
+    "region": "Downtown",
     "spending": [
-      750,
-      1200
+      400,
+      900
     ],
     "orders": [
       1,
       3
     ],
-    "time": "11:30",
+    "time": "16:15",
     "standards": "Moderate",
     "standardsDisplay": "Moderate",
-    "day": "Fri",
+    "day": "Thu",
     "affinities": {
-      "Marijuana": 36,
-      "Methamphetamine": 14,
-      "Shrooms": 8,
-      "Cocaine": 22
+      "Marijuana": 38,
+      "Methamphetamine": 12,
+      "Shrooms": 6,
+      "Cocaine": 28
     },
     "properties": [
+      "Refreshing",
       "Munchies",
-      "Sedating",
       "Sneaky"
     ],
     "noProps": false,
-    "policeRisk": 16,
-    "dependence": 0.09,
+    "policeRisk": 15,
+    "dependence": 0.08,
     "connections": [
-      "marcy_bundy",
-      "trey_bundy"
+      "harold_colt"
     ],
     "unlocked": [
-      "marcy_bundy",
-      "trey_bundy"
+      "harold_colt"
     ],
     "avatar": "\ud83e\uddd1"
   },

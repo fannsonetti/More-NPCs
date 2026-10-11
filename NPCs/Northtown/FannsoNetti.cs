@@ -71,7 +71,7 @@ namespace MoreNPCs.NPCs
                 {
                     r.WithDelta(2.0f)
                         .SetUnlocked(false)
-                        .WithConnectionsById("vincent_reeves", "nico_marlowe")
+                        .WithConnectionsById("vincent_reeves")
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach);
                 })
                 .WithSchedule(plan =>
@@ -133,7 +133,7 @@ namespace MoreNPCs.NPCs
         private void HandleDealerRecruited()
         {
             MelonLogger.Msg($"Dealer {ID} has been recruited!");
-            SendTextMessage("Thank you for using MoreNPCs. As your reward, I�ll assist you with your dealings in exchange for a 20% share of the profits.");
+            SendTextMessage("Thank you for using MoreNPCs. As your reward, I'll assist you with your dealings in exchange for a 20% share of the profits.");
         }
         private void HandleContractAccepted() { }
         private void HandleDealerRecommended() { }

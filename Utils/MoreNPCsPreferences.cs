@@ -1,6 +1,6 @@
 using MelonLoader;
+using MoreNPCs.Distributor;
 using MoreNPCs.Manager;
-
 namespace MoreNPCs.Utils
 {
     /// <summary>
@@ -19,10 +19,14 @@ namespace MoreNPCs.Utils
         public static MelonPreferences_Category CategoryBusinessEconomy { get; private set; } = null!;
         public static MelonPreferences_Category CategoryExperimental { get; private set; } = null!;
         public static MelonPreferences_Category CategoryRegionChanges { get; private set; } = null!;
+        public static MelonPreferences_Category CategoryPhotoSession { get; private set; } = null!;
+        public static MelonPreferences_Category CategoryDebug { get; private set; } = null!;
+        public static MelonPreferences_Category CategoryDistributor { get; private set; } = null!;
 
         public static MelonPreferences_Entry<bool> RegionChanges_ReducedCartelInfluenceOnNewCustomers { get; private set; } = null!;
         public static MelonPreferences_Entry<bool> RegionChanges_RequireRankAndCartelForNextRegion { get; private set; } = null!;
 
+        public static MelonPreferences_Entry<bool> Manager_ArtificialBusinessesEnabled { get; private set; } = null!;
         public static MelonPreferences_Entry<int> Manager_MaxAssignedBusinesses { get; private set; } = null!;
         public static MelonPreferences_Entry<float> Manager_LaunderCutPercent { get; private set; } = null!;
 
@@ -46,11 +50,39 @@ namespace MoreNPCs.Utils
         public static MelonPreferences_Entry<float> ReOffice_CheckIntervalSeconds { get; private set; } = null!;
         public static MelonPreferences_Entry<bool> ExperimentalProperties { get; private set; } = null!;
 
+        public static MelonPreferences_Entry<float> PhotoSession_OriginX { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> PhotoSession_OriginY { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> PhotoSession_OriginZ { get; private set; } = null!;
+        public static MelonPreferences_Entry<int> PhotoSession_Columns { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> PhotoSession_Spacing { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> PhotoSession_RowSpacing { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> PhotoSession_FaceYaw { get; private set; } = null!;
+        public static MelonPreferences_Entry<string> PhotoSession_RegionFilter { get; private set; } = null!;
+
+        public static MelonPreferences_Entry<bool> DebugMenu_Enabled { get; private set; } = null!;
+
+        public static MelonPreferences_Entry<float> Distributor_VisitChancePerSleep { get; private set; } = null!;
+        public static MelonPreferences_Entry<int> Distributor_PityDaysWithoutEvent { get; private set; } = null!;
+        public static MelonPreferences_Entry<int> Distributor_WindowMinutes { get; private set; } = null!;
+        public static MelonPreferences_Entry<int> Distributor_BulkCocaineMinUnits { get; private set; } = null!;
+        public static MelonPreferences_Entry<int> Distributor_BulkCocaineMaxUnits { get; private set; } = null!;
+        public static MelonPreferences_Entry<int> Distributor_PremiumMinUnits { get; private set; } = null!;
+        public static MelonPreferences_Entry<int> Distributor_PremiumMaxUnits { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> Distributor_PremiumOrderChance { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> Distributor_Tier1Multiplier { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> Distributor_Tier2Multiplier { get; private set; } = null!;
+        public static MelonPreferences_Entry<int> Distributor_DealDeadlineDays { get; private set; } = null!;
+        public static MelonPreferences_Entry<float> Distributor_FullPriceMultiplier { get; private set; } = null!;
+
         public static void Register()
         {
             CategoryManager = MelonPreferences.CreateCategory(
                 "MoreNPCs_Manager",
                 "Manager");
+            Manager_ArtificialBusinessesEnabled = CategoryManager.CreateEntry(
+                "ArtificialBusinessesEnabled",
+                false,
+                "Enable Thomas Ashford's artificial business listings, RE whiteboard cards, laundering, and passive income.");
             Manager_MaxAssignedBusinesses = CategoryManager.CreateEntry(
                 "MaxAssignedBusinesses",
                 4,
@@ -136,6 +168,82 @@ namespace MoreNPCs.Utils
                 "MoreNPCs_BusinessEconomy",
                 "Business Prices");
             ArtificialBusinessCatalog.RegisterBusinessEconomyEntries(CategoryBusinessEconomy);
+
+            CategoryPhotoSession = MelonPreferences.CreateCategory(
+                "MoreNPCs_PhotoSession",
+                "Photo Session (debug tab)");
+            PhotoSession_OriginX = CategoryPhotoSession.CreateEntry("OriginX", -50f, "Grid origin X (world). Set in the F6 menu or here.");
+            PhotoSession_OriginY = CategoryPhotoSession.CreateEntry("OriginY", -2.935f, "Grid origin Y (world).");
+            PhotoSession_OriginZ = CategoryPhotoSession.CreateEntry("OriginZ", 170f, "Grid origin Z (world).");
+            PhotoSession_Columns = CategoryPhotoSession.CreateEntry("Columns", 6, "NPCs per row.");
+            PhotoSession_Spacing = CategoryPhotoSession.CreateEntry("ColumnSpacing", 1.5f, "Metres between columns.");
+            PhotoSession_RowSpacing = CategoryPhotoSession.CreateEntry("RowSpacing", 1.5f, "Metres between rows (rows extend -Z).");
+            PhotoSession_FaceYaw = CategoryPhotoSession.CreateEntry("FaceYaw", 180f, "World Y rotation all NPCs face after teleport.");
+            PhotoSession_RegionFilter = CategoryPhotoSession.CreateEntry(
+                "RegionFilter",
+                "All",
+                "All | Northtown | Westville | Downtown | Docks | Suburbia | Uptown — only mod NPCs in that region.");
+
+            CategoryDebug = MelonPreferences.CreateCategory(
+                "MoreNPCs_Debug",
+                "Debug Menu");
+            DebugMenu_Enabled = CategoryDebug.CreateEntry(
+                "Enabled",
+                false,
+                "Enable the F6 MoreNPCs debug menu (photo tools, distributor cheats, etc.).");
+
+            CategoryDistributor = MelonPreferences.CreateCategory(
+                "MoreNPCs_Distributor",
+                "Distributor (Richard Roe)");
+            Distributor_VisitChancePerSleep = CategoryDistributor.CreateEntry(
+                "VisitChancePerSleep",
+                DistributorConfig.DefaultVisitChancePerSleep,
+                "Chance (0–1) each sleep that a wholesale deal text is sent.");
+            Distributor_PityDaysWithoutEvent = CategoryDistributor.CreateEntry(
+                "PityDaysWithoutEvent",
+                DistributorConfig.DefaultPityDaysWithoutEvent,
+                "Guarantee a deal after this many sleeps without one.");
+            Distributor_DealDeadlineDays = CategoryDistributor.CreateEntry(
+                "DealDeadlineDays",
+                DistributorConfig.DefaultDealDeadlineDays,
+                "In-game days to complete a drop deal after the text arrives.");
+            Distributor_WindowMinutes = CategoryDistributor.CreateEntry(
+                "WindowMinutes",
+                DistributorConfig.DefaultWindowMinutes,
+                "Legacy setting (unused by drop-deal flow).");
+            Distributor_BulkCocaineMinUnits = CategoryDistributor.CreateEntry(
+                "BulkCocaineMinUnits",
+                DistributorConfig.DefaultBulkCocaineMinUnits,
+                "Bulk order minimum (cocaine baseline; other drugs scale up).");
+            Distributor_BulkCocaineMaxUnits = CategoryDistributor.CreateEntry(
+                "BulkCocaineMaxUnits",
+                DistributorConfig.DefaultBulkCocaineMaxUnits,
+                "Bulk order maximum (cocaine baseline; weed 1.5×, meth 1.2×, shrooms 1.3×).");
+            Distributor_PremiumMinUnits = CategoryDistributor.CreateEntry(
+                "PremiumMinUnits",
+                DistributorConfig.DefaultPremiumMinUnits,
+                "Premium property-order minimum units.");
+            Distributor_PremiumMaxUnits = CategoryDistributor.CreateEntry(
+                "PremiumMaxUnits",
+                DistributorConfig.DefaultPremiumMaxUnits,
+                "Premium property-order maximum units.");
+            Distributor_PremiumOrderChance = CategoryDistributor.CreateEntry(
+                "PremiumOrderChance",
+                DistributorConfig.DefaultPremiumOrderChance,
+                "Chance (0–1) each week that Grant requests a premium property order instead of bulk.");
+            Distributor_Tier1Multiplier = CategoryDistributor.CreateEntry(
+                "Tier1Multiplier",
+                DistributorConfig.DefaultTier1Multiplier,
+                "Bulk payout fraction for the first X units of the weekly drug (0.50 = 50%).");
+            Distributor_Tier2Multiplier = CategoryDistributor.CreateEntry(
+                "Tier2Multiplier",
+                DistributorConfig.DefaultTier2Multiplier,
+                "Payout fraction for extra units beyond the order (0.20 = 20%).");
+            Distributor_FullPriceMultiplier = CategoryDistributor.CreateEntry(
+                "FullPriceMultiplier",
+                DistributorConfig.DefaultFullPriceMultiplier,
+                "Premium property-order payout fraction (1.0 = full market price).");
+
             Registered = true;
         }
     }

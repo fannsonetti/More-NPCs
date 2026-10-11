@@ -51,6 +51,7 @@ namespace MoreNPCs.Manager
 
         public static void SyncFromGameState()
         {
+            if (!ArtificialBusinessFeature.IsEnabled) return;
             try
             {
                 ActiveListingByTier.Clear();

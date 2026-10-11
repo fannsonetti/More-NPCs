@@ -39,7 +39,7 @@ namespace MoreNPCs.Manager
             foreach (var kv in _byExactName)
             {
                 if (kv.Value != tier) continue;
-                if (ExperimentalArtificialProperties.IsArtificialPropertyDisabled(kv.Key)) continue;
+                if (ArtificialBusinessFeature.IsBusinessUnavailable(kv.Key)) continue;
                 yield return kv.Key;
             }
         }
@@ -108,7 +108,7 @@ namespace MoreNPCs.Manager
             tier = default;
             if (string.IsNullOrWhiteSpace(businessName)) return false;
             var key = businessName.Trim();
-            if (ExperimentalArtificialProperties.IsArtificialPropertyDisabled(key)) return false;
+            if (ArtificialBusinessFeature.IsBusinessUnavailable(key)) return false;
             return _byExactName.TryGetValue(key, out tier);
         }
 
@@ -154,7 +154,7 @@ namespace MoreNPCs.Manager
         {
             if (string.IsNullOrWhiteSpace(businessName)) return 0f;
             var key = businessName.Trim();
-            if (ExperimentalArtificialProperties.IsArtificialPropertyDisabled(key)) return 0f;
+            if (ArtificialBusinessFeature.IsBusinessUnavailable(key)) return 0f;
 
             if (TryGetTier(key, out var tier))
             {

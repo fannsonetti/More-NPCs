@@ -83,7 +83,7 @@ namespace MoreNPCs.NPCs
                     plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench (1)", StartTime = 1039, DurationMinutes = 104 });
                     plan.StayInBuilding(sauerkrautSupreme, 1224, 124);
                     plan.UseATM(1454);
-                    plan.UseVendingMachine(1644);
+                    plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Region_Westville/OutdoorBench (1)", StartTime = 1644, DurationMinutes = 45 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Room 2", StartTime = 1854, DurationMinutes = 720 });
                 });
         }

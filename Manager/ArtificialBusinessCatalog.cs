@@ -87,7 +87,7 @@ namespace MoreNPCs.Manager
             economy = default;
             if (string.IsNullOrWhiteSpace(businessName)) return false;
             var key = businessName.Trim();
-            if (ExperimentalArtificialProperties.IsArtificialPropertyDisabled(key)) return false;
+            if (ArtificialBusinessFeature.IsBusinessUnavailable(key)) return false;
             if (!ByName.TryGetValue(key, out var baseE)) return false;
             economy = ResolveEconomy(key, baseE);
             return true;

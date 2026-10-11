@@ -18,13 +18,13 @@ namespace MoreNPCs.Utils
             };
 
         /// <summary>
-        /// When experimental properties are off (default), these businesses are treated as unavailable.
+        /// When artificial businesses are disabled or experimental properties are off (default), these listings are unavailable.
         /// </summary>
         public static bool IsArtificialPropertyDisabled(string businessName)
         {
+            if (!ArtificialBusinessFeature.IsEnabled) return true;
             if (string.IsNullOrWhiteSpace(businessName)) return false;
             if (!NoInteriorBusinessNames.Contains(businessName.Trim())) return false;
-            if (!MoreNPCsPreferences.Registered) return true;
             return !MoreNPCsPreferences.ExperimentalProperties.Value;
         }
     }

@@ -89,8 +89,7 @@ namespace MoreNPCs.NPCs
                     plan.StayInBuilding(chineseRestaurant, 0815, 94);
                     plan.StayInBuilding(northWarehouse, 0945, 101);
                     plan.Add(new WalkToSpec { Destination = northStreet, StartTime = 1215, FaceDestinationDirection = true });
-                    plan.StayInBuilding(budsBar, 1420, 128);
-                    plan.UseVendingMachine(1645);
+                    plan.StayInBuilding(budsBar, 1420, 158);
                     plan.StayInBuilding(northIndustrial, 2115, 294);
                 });
         }

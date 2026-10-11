@@ -69,8 +69,8 @@ namespace MoreNPCs.NPCs
                 .WithRelationshipDefaults(r =>
                 {
                     r.WithDelta(2.0f)
-                        .SetUnlocked(false)
-                        .WithConnectionsById("officer_marcus")
+                        .SetUnlocked(true)
+                        .WithConnectionsById("")
                         .SetUnlockType(NPCRelationship.UnlockType.Recommendation);
                 })
                 .WithSchedule(plan =>
@@ -92,6 +92,7 @@ namespace MoreNPCs.NPCs
                 Appearance.Build();
 
                 WireDealerEvents();
+                SergeantGreyTextingSetup.Setup(this);
 
                 Aggressiveness = 0.81f;
                 Region = Region.Suburbia;
@@ -154,7 +155,10 @@ namespace MoreNPCs.NPCs
             }
         }
 
-        private void HandleDealerRecruited() { /* Recruitment done in person, no message needed */ }
+        private void HandleDealerRecruited()
+        {
+            SergeantGreyTextingSetup.Setup(this);
+        }
 
         private void HandleContractAccepted() { }
 

@@ -20,6 +20,7 @@ namespace MoreNPCs.Manager
 
         public static void Update()
         {
+            if (!ArtificialBusinessFeature.IsEnabled) return;
             if (UnityEngine.Time.time < _nextCheckAt) return;
             _nextCheckAt = UnityEngine.Time.time + CheckIntervalSeconds;
             try

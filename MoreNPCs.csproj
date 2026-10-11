@@ -38,6 +38,8 @@
 
 	<PropertyGroup>
 		<UsePublicized>false</UsePublicized>
+		<S1MAPIMonoPath>D:\Schedule 1 Dependencies\S1MAPI\S1MAPI_Mono.dll</S1MAPIMonoPath>
+		<S1MAPIIl2CppPath>D:\Schedule 1 Dependencies\S1MAPI\S1MAPI_Il2Cpp.dll</S1MAPIIl2CppPath>
 	</PropertyGroup>
 
 	<!-- S1API Reference Toggle -->
@@ -51,6 +53,10 @@
 
 	<!-- Mono references -->
 	<ItemGroup Condition="'$(Configuration)'=='Mono'">
+		<Reference Include="S1MAPI">
+			<HintPath>$(S1MAPIMonoPath)</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="com.rlabrecque.steamworks.net">
 			<HintPath>$(ManagedPath)\com.rlabrecque.steamworks.net.dll</HintPath>
 		</Reference>
@@ -112,6 +118,10 @@
 
 	<!-- CrossCompat references (Mono without Assembly-CSharp) -->
 	<ItemGroup Condition="'$(Configuration)'=='CrossCompat'">
+		<Reference Include="S1MAPI">
+			<HintPath>$(S1MAPIMonoPath)</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="com.rlabrecque.steamworks.net">
 			<HintPath>$(ManagedPath)\com.rlabrecque.steamworks.net.dll</HintPath>
 		</Reference>
@@ -173,6 +183,10 @@
 
 	<!-- Il2cpp references -->
 	<ItemGroup Condition="'$(Configuration)'=='Il2cpp'">
+		<Reference Include="S1MAPI">
+			<HintPath>$(S1MAPIIl2CppPath)</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="Assembly-CSharp" Condition="'$(Configuration)'=='Il2cpp'">
 			<HintPath>$(ManagedPath)\Assembly-CSharp.dll</HintPath>
 		</Reference>
@@ -245,16 +259,39 @@
 		<Compile Include="Utils\Constants.cs" />
 		<Compile Include="Utils\MoreNPCsPreferences.cs" />
 		<Compile Include="Utils\ExperimentalArtificialProperties.cs" />
+		<Compile Include="Utils\ArtificialBusinessFeature.cs" />
 		<Compile Include="Utils\WhiteboardListingSpriteLoader.cs" />
 		<Compile Include="Utils\CartelStatusWatcher.cs" />
 		<Compile Include="Utils\NPCUnlockWatcher.cs" />
 		<Compile Include="Utils\NPCIdleLocations.cs" />
 		<Compile Include="Utils\GameDealerFinder.cs" />
 		<Compile Include="Utils\PlayerCashHelper.cs" />
+		<Compile Include="Utils\QuestIconLoader.cs" />
+		<Compile Include="Utils\PlayerBankHelper.cs" />
+		<Compile Include="Quests\DistributorDealQuest.cs" />
+		<Compile Include="Quests\DistributorQuestManager.cs" />
+		<Compile Include="Utils\PlayerInventoryHelper.cs" />
+		<Compile Include="Utils\ProductPackagingUnits.cs" />
+		<Compile Include="Utils\PoliceVehicleHelper.cs" />
+		<Compile Include="Utils\PoliceVehicleSirenPrompt.cs" />
+		<Compile Include="Utils\ModAssetLoader.cs" />
+		<Compile Include="Utils\GlbModelLoader.cs" />
+		<Compile Include="Utils\GameTimeHelper.cs" />
 		<Compile Include="Persistence\MoreNPCsModSave.cs" />
+		<Compile Include="Persistence\DistributorSave.cs" />
+		<Compile Include="Persistence\SupervisorsSave.cs" />
+		<Compile Include="Persistence\DealersCashSave.cs" />
+		<Compile Include="Patches\DealersCashSavePatch.cs" />
 		<Compile Include="Utils\BuildingSetup.cs" />
+		<Compile Include="Utils\PhotoSessionTool.cs" />
+		<Compile Include="Utils\MoreNPCsDebugMenu.cs" />
 		<Compile Include="Utils\PPHylandDialogue.cs" />
 		<Compile Include="Utils\PPHylandHandoverWarning.cs" />
+		<Compile Include="Patches\PoliceSirenPromptVehiclePatch.cs" />
+		<Compile Include="Patches\PoliceVehicleCheckpointGatePatch.cs" />
+		<Compile Include="Patches\PoliceVehicleCheckpointPatch.cs" />
+		<Compile Include="Patches\PoliceVehicleCurfewPatch.cs" />
+		<Compile Include="Patches\PoliceShitboxTrunkPatch.cs" />
 		<Compile Include="Patches\DrugTypeMethodsGetColorPatch.cs" />
 		<Compile Include="Patches\PPHylandSampleDifficultyPatch.cs" />
 		<Compile Include="Patches\PPHylandHandoverSampleGatePatch.cs" />
@@ -284,6 +321,24 @@
 		<Compile Include="Manager\ArtificialBusinessCatalog.cs" />
 		<Compile Include="Manager\ReOfficePropertyBusinessUnlock.cs" />
 		<Compile Include="Manager\ReOfficeWhiteboardDisplay.cs" />
+		<Compile Include="Distributor\DistributorPropertyCatalog.cs" />
+		<Compile Include="Distributor\DistributorOrderKind.cs" />
+		<Compile Include="Distributor\DistributorIds.cs" />
+		<Compile Include="Distributor\DistributorVenue.cs" />
+		<Compile Include="Distributor\DistributorConfig.cs" />
+		<Compile Include="Distributor\DistributorRegistry.cs" />
+		<Compile Include="Distributor\DistributorWeeklyOrder.cs" />
+		<Compile Include="Distributor\DistributorRunSave.cs" />
+		<Compile Include="Distributor\DistributorPierLadder.cs" />
+		<Compile Include="Distributor\DistributorTrawlerDrop.cs" />
+		<Compile Include="Distributor\DistributorPlaceholderProps.cs" />
+		<Compile Include="Distributor\DistributorRunScheduler.cs" />
+		<Compile Include="Distributor\DistributorText.cs" />
+		<Compile Include="Distributor\DistributorTextingSetup.cs" />
+		<Compile Include="Distributor\DistributorRuntime.cs" />
+		<Compile Include="Distributor\DistributorDropBox.cs" />
+		<Compile Include="Distributor\DistributorPayoutEstimate.cs" />
+		<Compile Include="Distributor\DistributorStorageSellHelper.cs" />
 	</ItemGroup>
 	<!-- S1API.Forked Reference: NuGet Package (default) -->
 	<ItemGroup Condition="'$(UseLocalS1API)' != 'true'">
@@ -301,6 +356,9 @@
 	  <EmbeddedResource Include="Resources\circle_mask.png" />
 	  <EmbeddedResource Include="Resources\relation_circle.png" />
 	  <EmbeddedResource Include="Resources\tile.png" />
+	  <EmbeddedResource Include="Resources\quest_deal.png" />
+	  <EmbeddedResource Include="Resources\unknown_contact.png" />
+	  <EmbeddedResource Include="Resources\Models\salt-beaten_fishing_trawler_game-ready.glb" />
 	  <EmbeddedResource Include="Resources\WhiteboardListing\*.jpg" />
 	</ItemGroup>
 
@@ -308,12 +366,27 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 		<Nullable>enable</Nullable>
+		<NoWarn>$(NoWarn);CS8600;CS8602;CS8603;CS8618;CS8625;CS8632</NoWarn>
 	</PropertyGroup>
 
-	<Target Name="GenerateNpcDocs" BeforeTargets="Build">
+	<Target Name="GenerateNpcDocs" BeforeTargets="Build" Condition="'$(SkipGenerateNpcDocs)' != 'true'">
 		<Exec Command="python &quot;$(ProjectDir)scripts\generate_npc_docs.py&quot;" IgnoreExitCode="true" />
 	</Target>
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+
+	<Target Name="RemoveBundledS1Mapi" AfterTargets="Build">
+		<Delete Files="$(OutputPath)S1MAPI_Mono.dll" ContinueOnError="true" />
+		<Delete Files="$(OutputPath)S1MAPI_Il2Cpp.dll" ContinueOnError="true" />
+	</Target>
+
+	<Target Name="EnsureS1MapiUserLib" AfterTargets="Build" Condition="'$(Configuration)'=='Mono' Or '$(Configuration)'=='CrossCompat'">
+		<Copy SourceFiles="$(S1MAPIMonoPath)" DestinationFiles="$(GamePath)\UserLibs\S1MAPI.dll" SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="EnsureS1MapiUserLibIl2Cpp" AfterTargets="Build" Condition="'$(Configuration)'=='Il2cpp'">
+		<Copy SourceFiles="$(S1MAPIIl2CppPath)" DestinationFiles="$(GamePath)\UserLibs\S1MAPI.dll" SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(RunPostBuildEvent)' != 'Never'">
 		<!-- IgnoreExitCode: copy/launch can fail in CI or when paths differ; DLL is already in $(OutputPath). -->
 		<Exec Command="(tasklist | findstr /I &quot;Schedule.*I.exe&quot; &gt;nul &amp;&amp; taskkill /F /IM &quot;Schedule I.exe&quot; &amp;&amp; timeout /t 3 /nobreak &gt;nul) || echo Game not running&#xD;&#xA;for /L %%i in (1,1,5) do (COPY &quot;$(TargetPath)&quot; &quot;$(ModsPath)&quot; &amp;&amp; goto copied || timeout /t 1 /nobreak &gt;nul)&#xD;&#xA;:copied&#xD;&#xA;START &quot;&quot; &quot;$(GamePath)\Schedule I.exe&quot; --melonloader.launchdebugger --melonloader.debug" IgnoreExitCode="true" />
 	</Target>

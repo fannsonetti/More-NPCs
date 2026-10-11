@@ -257,7 +257,7 @@ namespace MoreNPCs.Patches
         private sealed class ReferenceEqualityComparerImpl : IEqualityComparer<object>
         {
             internal static readonly ReferenceEqualityComparerImpl Instance = new ReferenceEqualityComparerImpl();
-            public bool Equals(object x, object y) => ReferenceEquals(x, y);
+            public new bool Equals(object x, object y) => ReferenceEquals(x, y);
             public int GetHashCode(object obj) => RuntimeHelpers.GetHashCode(obj);
         }
 

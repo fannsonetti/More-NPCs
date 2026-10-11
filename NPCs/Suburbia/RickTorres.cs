@@ -67,7 +67,7 @@ namespace MoreNPCs.NPCs
                 .WithRelationshipDefaults(r =>
                 {
                     r.WithDelta(2.0f)
-                        .SetUnlocked(false)
+                        .SetUnlocked(true)
                         .WithConnectionsById("")
                         .SetUnlockType(NPCRelationship.UnlockType.Recommendation);
                 })

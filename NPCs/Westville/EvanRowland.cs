@@ -82,7 +82,6 @@ namespace MoreNPCs.NPCs
                     plan.Add(new SitSpec { SeatSetPath = "Map/Hyland Point/Bus stops/Bus Stop (8)/OutdoorBench", StartTime = 1056, DurationMinutes = 129 });
                     plan.Add(new StayInBuildingSpec { BuildingName = "Arcade", StartTime = 1226, DurationMinutes = 119 });
                     plan.UseVendingMachine(1356);
-                    // One overnight home stay through next morning (929m); avoids ending a home block at 00:00 then starting another at 000 (brief exit/re-enter).
                     plan.StayInBuilding(charlesHouse, 1726, 929);
                 });
         }

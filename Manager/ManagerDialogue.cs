@@ -388,7 +388,7 @@ namespace MoreNPCs.Manager
             foreach (var name in ManagerBusinessSave.GetVanillaPurchasedNames())
             {
                 if (string.IsNullOrEmpty(name) || !seen.Add(name)) continue;
-                if (ExperimentalArtificialProperties.IsArtificialPropertyDisabled(name)) continue;
+                if (ArtificialBusinessFeature.IsBusinessUnavailable(name)) continue;
                 if (ManagerBusinessSave.IsAssignedStatic(name)) continue;
                 list.Add((name, SafeBusinessId(name)));
             }

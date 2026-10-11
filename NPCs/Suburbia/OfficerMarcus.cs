@@ -75,9 +75,9 @@ namespace MoreNPCs.NPCs
                 .WithRelationshipDefaults(r =>
                 {
                     r.WithDelta(1.0f)
-                        .SetUnlocked(false)
+                        .SetUnlocked(true)
                         .SetUnlockType(NPCRelationship.UnlockType.DirectApproach)
-                        .WithConnectionsById("alison_knight", "carl_bundy", "jack_knight");
+                        .WithConnectionsById("");
                 })
                 .WithSchedule(plan =>
                 {

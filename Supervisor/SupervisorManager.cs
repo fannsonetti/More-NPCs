@@ -38,13 +38,29 @@ namespace MoreNPCs.Supervisor
         {
             if (supervisorId == SupervisorIds.Silas)
             {
-                if (MoreNPCsModSave.Instance != null) MoreNPCsModSave.Instance.SilasAssignDealer(dealerId);
-                else MoreNPCsModSave.SilasCartelSupervisor.AssignDealerRuntime(dealerId);
+                if (SupervisorsSave.Instance != null)
+                {
+                    if (!SupervisorsSave.Instance.SilasDealerIds.Contains(dealerId)
+                        && SupervisorsSave.Instance.SilasDealerIds.Count < MaxAssignedDealers)
+                        SupervisorsSave.Instance.SilasDealerIds.Add(dealerId);
+                }
+                else if (MoreNPCsModSave.Instance != null)
+                    MoreNPCsModSave.Instance.SilasAssignDealer(dealerId);
+                else
+                    MoreNPCsModSave.SilasCartelSupervisor.AssignDealerRuntime(dealerId);
             }
             else if (supervisorId == SupervisorIds.Dominic)
             {
-                if (MoreNPCsModSave.Instance != null) MoreNPCsModSave.Instance.DominicAssignDealer(dealerId);
-                else MoreNPCsModSave.DominicCartelSupervisor.AssignDealerRuntime(dealerId);
+                if (SupervisorsSave.Instance != null)
+                {
+                    if (!SupervisorsSave.Instance.DominicDealerIds.Contains(dealerId)
+                        && SupervisorsSave.Instance.DominicDealerIds.Count < MaxAssignedDealers)
+                        SupervisorsSave.Instance.DominicDealerIds.Add(dealerId);
+                }
+                else if (MoreNPCsModSave.Instance != null)
+                    MoreNPCsModSave.Instance.DominicAssignDealer(dealerId);
+                else
+                    MoreNPCsModSave.DominicCartelSupervisor.AssignDealerRuntime(dealerId);
             }
         }
 
@@ -52,13 +68,21 @@ namespace MoreNPCs.Supervisor
         {
             if (supervisorId == SupervisorIds.Silas)
             {
-                if (MoreNPCsModSave.Instance != null) MoreNPCsModSave.Instance.SilasUnassignDealer(dealerId);
-                else MoreNPCsModSave.SilasCartelSupervisor.UnassignDealerRuntime(dealerId);
+                if (SupervisorsSave.Instance != null)
+                    SupervisorsSave.Instance.SilasDealerIds.Remove(dealerId);
+                else if (MoreNPCsModSave.Instance != null)
+                    MoreNPCsModSave.Instance.SilasUnassignDealer(dealerId);
+                else
+                    MoreNPCsModSave.SilasCartelSupervisor.UnassignDealerRuntime(dealerId);
             }
             else if (supervisorId == SupervisorIds.Dominic)
             {
-                if (MoreNPCsModSave.Instance != null) MoreNPCsModSave.Instance.DominicUnassignDealer(dealerId);
-                else MoreNPCsModSave.DominicCartelSupervisor.UnassignDealerRuntime(dealerId);
+                if (SupervisorsSave.Instance != null)
+                    SupervisorsSave.Instance.DominicDealerIds.Remove(dealerId);
+                else if (MoreNPCsModSave.Instance != null)
+                    MoreNPCsModSave.Instance.DominicUnassignDealer(dealerId);
+                else
+                    MoreNPCsModSave.DominicCartelSupervisor.UnassignDealerRuntime(dealerId);
             }
         }
 

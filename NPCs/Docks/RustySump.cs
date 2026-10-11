@@ -21,14 +21,13 @@ namespace MoreNPCs.NPCs
 
         protected override void ConfigurePrefab(NPCPrefabBuilder builder)
         {
-            Vector3 pit = new Vector3(44.4508f, -8.035f, 36.1825f);
             Vector3 sewerBalcony = new Vector3(77.1413f, -4.535f, 34.6874f);
             Vector3 sewerWarehouse = new Vector3(74.0413f, -4.535f, 28.6874f);
             Vector3 underMotelChill = new Vector3(-52.25f, -6.535f, 92.5f);
             Vector3 sewerStorageChill = new Vector3(36.7f, -8.035f, 76.7f);
             Vector3 crossroad = new Vector3(97.4504f, 1.065f, 7.0207f);
             Vector3 sewerCrossSection = new Vector3(83.0061f, -5.785f, 5.8099f);
-            Vector3 spawnPos = new Vector3(-10.2f, 1.065f, 65.9f);
+            Vector3 spawnPos = crossroad;
 
             builder.WithIdentity("rusty_sump", "Rusty", "Sump")
                 .WithAppearanceDefaults(av =>
@@ -87,13 +86,13 @@ namespace MoreNPCs.NPCs
                 {
                     plan.EnsureDealSignal();
                     plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 0755, FaceDestinationDirection = false });
-                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 0952, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 1218, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerCrossSection, StartTime = 1433, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = underMotelChill, StartTime = 1647, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 105, 0) * Vector3.forward });
-                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1904, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 2126, FaceDestinationDirection = true });
-                    plan.Add(new WalkToSpec { Destination = pit, StartTime = 2341, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerCrossSection, StartTime = 0940, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = underMotelChill, StartTime = 1215, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 105, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = sewerStorageChill, StartTime = 1430, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 210, 0) * Vector3.forward });
+                    plan.Add(new WalkToSpec { Destination = crossroad, StartTime = 1650, FaceDestinationDirection = false });
+                    plan.Add(new WalkToSpec { Destination = sewerWarehouse, StartTime = 1910, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerBalcony, StartTime = 2130, FaceDestinationDirection = true });
+                    plan.Add(new WalkToSpec { Destination = sewerCrossSection, StartTime = 2335, FaceDestinationDirection = true });
                     plan.Add(new WalkToSpec { Destination = sewerStorageChill, StartTime = 0214, FaceDestinationDirection = true, Forward = Quaternion.Euler(0, 210, 0) * Vector3.forward });
                 });
         }

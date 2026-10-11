@@ -127,7 +127,7 @@ namespace MoreNPCs.Utils
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return list.OrderBy(d => d.FullName).ToList();

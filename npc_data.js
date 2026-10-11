@@ -237,6 +237,51 @@ const NPC_DATA = [
     "home": "Red Docks Shipping Container 2"
   },
   {
+    "file": "Suburbia/AveryWilkinson.cs",
+    "type": "customer",
+    "description": "",
+    "id": "avery_wilkinson",
+    "firstName": "Avery",
+    "lastName": "Wilkinson",
+    "name": "Avery Wilkinson",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      650,
+      1100
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "18:00",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Wed",
+    "affinities": {
+      "Marijuana": 35,
+      "Methamphetamine": 15,
+      "Shrooms": -20,
+      "Cocaine": 55
+    },
+    "properties": [
+      "Glowing",
+      "Focused"
+    ],
+    "noProps": false,
+    "policeRisk": 24,
+    "dependence": 0.05,
+    "connections": [
+      "skyler_wilkinson"
+    ],
+    "unlocked": [
+      "skyler_wilkinson"
+    ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "Northtown/BenDover.cs",
     "type": "customer",
     "description": "",
@@ -1253,12 +1298,10 @@ const NPC_DATA = [
     "policeRisk": 48,
     "dependence": 0.0,
     "connections": [
-      "tyler_kennedy",
-      "haley_kennedy"
+      "tyler_kennedy"
     ],
     "unlocked": [
-      "tyler_kennedy",
-      "haley_kennedy"
+      "tyler_kennedy"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -1571,12 +1614,10 @@ const NPC_DATA = [
     "policeRisk": 11,
     "dependence": 0.0,
     "connections": [
-      "tyler_kennedy",
-      "emma_kennedy"
+      "tyler_kennedy"
     ],
     "unlocked": [
-      "tyler_kennedy",
-      "emma_kennedy"
+      "tyler_kennedy"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -2159,6 +2200,47 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "Suburbia/LuciaTorres.cs",
+    "type": "customer",
+    "description": "",
+    "id": "lucia_torres",
+    "firstName": "Lucia",
+    "lastName": "Torres",
+    "name": "Lucia Torres",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      500,
+      900
+    ],
+    "orders": [
+      1,
+      2
+    ],
+    "time": "16:00",
+    "standards": "High",
+    "standardsDisplay": "High",
+    "day": "Fri",
+    "affinities": {
+      "Marijuana": 22,
+      "Methamphetamine": -10,
+      "Shrooms": 18,
+      "Cocaine": 20
+    },
+    "properties": [
+      "Refreshing",
+      "Sedating"
+    ],
+    "noProps": false,
+    "policeRisk": 22,
+    "dependence": 0.04,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "Docks/Mack.cs",
     "type": "customer",
     "description": "",
@@ -2259,6 +2341,47 @@ const NPC_DATA = [
     "avatar": "\ud83e\uddd1"
   },
   {
+    "file": "Suburbia/MarcoTorres.cs",
+    "type": "customer",
+    "description": "",
+    "id": "marco_torres",
+    "firstName": "Marco",
+    "lastName": "Torres",
+    "name": "Marco Torres",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      600,
+      1100
+    ],
+    "orders": [
+      1,
+      2
+    ],
+    "time": "19:00",
+    "standards": "Moderate",
+    "standardsDisplay": "Moderate",
+    "day": "Sat",
+    "affinities": {
+      "Marijuana": 28,
+      "Methamphetamine": 10,
+      "Shrooms": 12,
+      "Cocaine": 34
+    },
+    "properties": [
+      "Sedating",
+      "Munchies"
+    ],
+    "noProps": false,
+    "policeRisk": 16,
+    "dependence": 0.08,
+    "connections": [],
+    "unlocked": [],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
     "file": "Suburbia/MarcyBundy.cs",
     "type": "customer",
     "description": "",
@@ -2297,12 +2420,10 @@ const NPC_DATA = [
     "policeRisk": 20,
     "dependence": 0.07,
     "connections": [
-      "carl_bundy",
-      "trey_bundy"
+      "carl_bundy"
     ],
     "unlocked": [
-      "carl_bundy",
-      "trey_bundy"
+      "carl_bundy"
     ],
     "avatar": "\ud83e\uddd1"
   },
@@ -2948,16 +3069,8 @@ const NPC_DATA = [
     "noProps": false,
     "policeRisk": 75,
     "dependence": 0.0,
-    "connections": [
-      "alison_knight",
-      "carl_bundy",
-      "jack_knight"
-    ],
-    "unlocked": [
-      "alison_knight",
-      "carl_bundy",
-      "jack_knight"
-    ],
+    "connections": [],
+    "unlocked": [],
     "avatar": "\ud83e\uddd1"
   },
   {
@@ -3750,13 +3863,52 @@ const NPC_DATA = [
     "policeRisk": 28,
     "dependence": 0.0,
     "connections": [
-      "alison_knight",
-      "officer_marcus"
+      "dennis_kennedy"
     ],
     "unlocked": [
-      "alison_knight",
-      "officer_marcus"
+      "dennis_kennedy"
     ],
+    "avatar": "\ud83e\uddd1"
+  },
+  {
+    "file": "Suburbia/SofiaTorres.cs",
+    "type": "customer",
+    "description": "",
+    "id": "sofia_torres",
+    "firstName": "Sofia",
+    "lastName": "Torres",
+    "name": "Sofia Torres",
+    "isDealer": false,
+    "isManager": false,
+    "isSupervisor": false,
+    "region": "Suburbia",
+    "spending": [
+      200,
+      500
+    ],
+    "orders": [
+      1,
+      3
+    ],
+    "time": "17:00",
+    "standards": "Low",
+    "standardsDisplay": "Low",
+    "day": "Thu",
+    "affinities": {
+      "Marijuana": 40,
+      "Methamphetamine": 8,
+      "Shrooms": 15,
+      "Cocaine": 18
+    },
+    "properties": [
+      "Euphoric",
+      "Sneaky"
+    ],
+    "noProps": false,
+    "policeRisk": 14,
+    "dependence": 0.06,
+    "connections": [],
+    "unlocked": [],
     "avatar": "\ud83e\uddd1"
   },
   {
@@ -3890,11 +4042,9 @@ const NPC_DATA = [
     "policeRisk": 12,
     "dependence": 0.0,
     "connections": [
-      "carl_bundy",
       "marcy_bundy"
     ],
     "unlocked": [
-      "carl_bundy",
       "marcy_bundy"
     ],
     "avatar": "\ud83e\uddd1"
@@ -3984,12 +4134,10 @@ const NPC_DATA = [
     "policeRisk": 14,
     "dependence": 0.1,
     "connections": [
-      "haley_kennedy",
-      "emma_kennedy"
+      "karen_kennedy"
     ],
     "unlocked": [
-      "haley_kennedy",
-      "emma_kennedy"
+      "karen_kennedy"
     ],
     "avatar": "\ud83e\uddd1"
   },
